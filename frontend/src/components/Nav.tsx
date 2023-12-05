@@ -1,20 +1,33 @@
-const menu = [
-  { id: "1", title: "Услуги", url: "/services" },
-  { id: "2", title: "Мои работы", url: "/portfolio" },
-  { id: "3", title: "Обо мне", url: "/about" },
-  { id: "4", title: "Контакты", url: "/contact" },
-];
+import { NavbarMenu, NavbarMenuItem, Link } from "@nextui-org/react";
 
 export default function Nav() {
+  const menuItems = [
+    { title: "Услуги", url: "/services" },
+    { title: "Мои работы", url: "/portfolio" },
+    { title: "Обо мне", url: "/about" },
+    { title: "Контакты", url: "/contact" },
+  ];
+
   return (
-    <nav>
-      <ul className="flex space-x-4">
-        {menu.map((item) => (
-          <li key={item.id} className="text-gray-700 hover:text-gray-900">
-            <a href={item.url}>{item.title}</a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <NavbarMenu className="md:w-[20%]">
+      {menuItems.map((item, index) => (
+        <NavbarMenuItem key={`${item}-${index}`}>
+          <Link
+            color={
+              index === 2
+                ? "primary"
+                : index === menuItems.length - 1
+                ? "danger"
+                : "foreground"
+            }
+            className="w-full"
+            href={item.url}
+            size="lg"
+          >
+            {item.title}
+          </Link>
+        </NavbarMenuItem>
+      ))}
+    </NavbarMenu>
   );
 }
