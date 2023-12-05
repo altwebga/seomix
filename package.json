@@ -1,0 +1,22 @@
+{
+  "name": "seomix",
+  "version": "1.0.0",
+  "description": "my-portfolio",
+  "scripts": {
+    "frontend": "npm --prefix ../frontend/ run dev",
+    "backend": "npm --prefix ../backend/ run dev",
+    "clear": "cd frontend && rm -rf .next && rm -rf cache",
+    "setup:frontend": "cd frontend && npm install",
+    "setup:backend": "cd backend && npm install",
+    "setup": "npm install && npm run setup:frontend && npm run setup:backend",
+    "dev": "npm run clear && concurrently \"npm --prefix frontend/ run dev\" \"npm --prefix backend/ run dev\"",
+    "seed": "cd backend && npm run strapi import -f ../seed-data.tar.gz",
+    "export": "cd backend && npm run strapi export --no-encrypt -f ../seed-data",
+    "repo:upstream": "git fetch upstream && git merge upstream/main"
+  },
+  "author": "Konstantin Kuznetsov",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
