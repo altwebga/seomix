@@ -1,22 +1,25 @@
 {
   "name": "seomix",
-  "version": "1.0.0",
-  "description": "my-portfolio",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "frontend": "npm --prefix ../frontend/ run dev",
-    "backend": "npm --prefix ../backend/ run dev",
-    "clear": "cd frontend && rm -rf .next && rm -rf cache",
-    "setup:frontend": "cd frontend && npm install",
-    "setup:backend": "cd backend && npm install",
-    "setup": "npm install && npm run setup:frontend && npm run setup:backend",
-    "dev": "npm run clear && concurrently \"npm --prefix frontend/ run dev\" \"npm --prefix backend/ run dev\"",
-    "seed": "cd backend && npm run strapi import -f ../seed-data.tar.gz",
-    "export": "cd backend && npm run strapi export --no-encrypt -f ../seed-data",
-    "repo:upstream": "git fetch upstream && git merge upstream/main"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "author": "Konstantin Kuznetsov",
-  "license": "MIT",
+  "dependencies": {
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "14.1.0"
+  },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0"
   }
 }
