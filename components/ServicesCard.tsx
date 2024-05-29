@@ -60,7 +60,7 @@ const IconWrapper: FC<IconWrapperProps> = ({ icon: Icon }) => <Icon className="h
 
 const ServicesCard: FC = () => {
   return (
-    <div className="max-w-4xl">
+    
       <Accordion>
         {servicesItems.map((item) => (
           <AccordionItem
@@ -73,7 +73,7 @@ const ServicesCard: FC = () => {
           </AccordionItem>
         ))}
       </Accordion>
-    </div>
+ 
   );
 };
 

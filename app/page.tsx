@@ -54,8 +54,9 @@ export default function Home() {
         <p className="pt-2">
           Весь спектр услуг для старта продаж в интернете.
         </p>
-        <Divider className="my-8" />
+        <div className="p-8 border border-zinc-400 max-w-4xl mt-8">
         <ServicesCard />
+        </div>
       </section>
       <section className="mt-20">
         <h2 className={title({ color: 'cyan', size: 'sm' })}>Среди моих клиентов</h2>
