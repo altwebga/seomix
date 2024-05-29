@@ -17,7 +17,7 @@ export default function Home() {
   );
 
   return (
-    <>
+    <div className="container mx-auto max-w-7xl px-4">
     <section className="flex flex-col md:flex-row items-center justify-center gap-4">
       <div className="md:w-1/2">
         <h1 className={title()}>Разработка&nbsp;</h1>
@@ -63,6 +63,6 @@ export default function Home() {
       <Divider className="my-8"/>
       <ClientCard/>
     </section>
-    </>
+    </div>
   );
 }

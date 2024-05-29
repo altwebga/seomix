@@ -44,7 +44,7 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
             <Header />
-            <main className="container mx-auto max-w-7xl flex-grow px-4">
+            <main className="flex-grow">
               {children}
             </main>
            <Footer/>
