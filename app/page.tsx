@@ -6,7 +6,7 @@ import animationData from "@/public/animations/home_banner.json";
 import { Button } from "@nextui-org/button";
 import { CursorArrowRippleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import ServicesCard from '@/components/ServicesCard'
+import ServicesCard from "@/components/ServicesCard";
 import ClientCard from "@/components/ClientCard";
 import { Divider } from "@nextui-org/divider";
 
@@ -15,7 +15,7 @@ export default function Home() {
     () => import("../components/LottieAnimation"),
     { ssr: false }
   );
-  const displayIds = [1, 2, 4, 5, 6]; // массив ID карточек, которые нужно отображать
+  const displayIds = [1, 2, 4, 5]; // массив ID карточек, которые нужно отображать
   return (
     <div className="container mx-auto max-w-7xl px-4">
       <section className="flex flex-col md:flex-row items-center justify-center gap-4">
@@ -50,16 +50,24 @@ export default function Home() {
         </div>
       </section>
       <section className="my-4">
-        <h2 className={title({ color: 'cyan', size: 'sm' })}>Мои услуги</h2>
-        <p className="pt-2">
-          Весь спектр услуг для старта продаж в интернете.
-        </p>
-        
-        <ServicesCard displayIds={displayIds} />
+        <h2 className={title({ color: "cyan", size: "sm" })}>Мои услуги</h2>
+        <p className="pt-2 mb-8">Весь спектр услуг для старта продаж в интернете.</p>
 
+        <ServicesCard displayIds={displayIds} />
+        <Button
+          className="mt-8"
+          color="primary"
+          variant="shadow"
+          size="md"
+          startContent={<CursorArrowRippleIcon className="h-4 w-4" />}
+        >
+          <Link href="/services">Все услуги</Link>
+        </Button>
       </section>
       <section className="mt-20">
-        <h2 className={title({ color: 'cyan', size: 'sm' })}>Среди моих клиентов</h2>
+        <h2 className={title({ color: "cyan", size: "sm" })}>
+          Среди моих клиентов
+        </h2>
         <p className="pt-2">малый и средний бизнес.</p>
         <Divider className="my-8" />
         <ClientCard />

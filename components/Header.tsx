@@ -58,13 +58,13 @@ const Header = () => {
       <NavbarContent>
         <NavbarBrand>
           <Link className="flex justify-start items-center gap-1" href="/">
-            <CodeBracketIcon className="h-4 w-4" />
-            <p>seomix.</p>
+            <CodeBracketIcon className="h-6 w-6" />
+            <p className="text-xl">seomix.</p>
           </Link>
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent justify="end">
-        <ul className="hidden lg:flex gap-4 justify-start ml-2">
+        <ul className="hidden lg:flex gap-6 justify-start ml-2">
           {renderNavItems()}
         </ul>
         <ThemeSwitch className="ml-5 hidden lg:block" />
