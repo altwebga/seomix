@@ -15,7 +15,7 @@ export default function Home() {
     () => import("../components/LottieAnimation"),
     { ssr: false }
   );
-
+  const displayIds = [1, 2, 4, 5, 6]; // массив ID карточек, которые нужно отображать
   return (
     <div className="container mx-auto max-w-7xl px-4">
       <section className="flex flex-col md:flex-row items-center justify-center gap-4">
@@ -54,9 +54,9 @@ export default function Home() {
         <p className="pt-2">
           Весь спектр услуг для старта продаж в интернете.
         </p>
-        <div className="p-8 border border-zinc-400 max-w-4xl mt-8">
-        <ServicesCard />
-        </div>
+        
+        <ServicesCard displayIds={displayIds} />
+
       </section>
       <section className="mt-20">
         <h2 className={title({ color: 'cyan', size: 'sm' })}>Среди моих клиентов</h2>
