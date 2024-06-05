@@ -9,6 +9,7 @@ import Link from "next/link";
 import ServicesCard from "@/components/ServicesCard";
 import ClientCard from "@/components/ClientCard";
 import { Divider } from "@nextui-org/divider";
+import AboutMe from "@/components/AboutMe";
 
 export default function Home() {
   const LottieAnimation = dynamic(
@@ -71,6 +72,12 @@ export default function Home() {
         <p className="pt-2">малый и средний бизнес.</p>
         <Divider className="my-8" />
         <ClientCard />
+      </section>
+      <section className="mt-20">
+      <h2 className={title({ color: "cyan", size: "sm" })}>
+          Обо мне
+        </h2>
+        <AboutMe/>
       </section>
     </div>
   );
