@@ -1,4 +1,4 @@
-export default function PortfolioLayout({
+export default function PortfolioItemLayout({
   children,
 }: {
   children: React.ReactNode;
