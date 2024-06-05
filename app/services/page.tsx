@@ -6,7 +6,7 @@ import { Image } from "@nextui-org/image";
 
 export default function ServicesPage() {
   return (
-    <section className="mt-6">
+    <div className="mt-6">
       <h1 className={title()}>Мои услуги</h1>
       <p className={subtitle()}>Инструменты цифрового продвижения.</p>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -34,6 +34,6 @@ export default function ServicesPage() {
           </Card>
         ))}
       </div>
-    </section>
+    </div>
   );
 }

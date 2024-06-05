@@ -1,17 +1,16 @@
-import WebDevelopment from "@/public/images/services_01.webp";
-import DesignBranding from "@/public/images/services_02.webp";
-import ECommerce from "@/public/images/services_03.webp";
-import MobileDevelopment from "@/public/images/services_04.webp";
-import SEOPromotion from "@/public/images/services_05.webp";
-import TechSupport from "@/public/images/services_06.webp";
-import ContentMarketing from "@/public/images/services_07.webp";
-import Advertising from "@/public/images/services_08.webp";
-import SMM from "@/public/images/services_09.webp";
-import EmailMarketing from "@/public/images/services_10.webp";
-import WebAnalytics from "@/public/images/services_11.webp";
-import UXUIDesign from "@/public/images/services_12.webp";
-import MobileOptimization from "@/public/images/services_13.webp";
-import Consulting from "@/public/images/services_14.webp";
+import WebDevelopment from "@/public/images/service_01.webp";
+import DesignBranding from "@/public/images/service_02.webp";
+import ECommerce from "@/public/images/service_03.webp";
+import MobileDevelopment from "@/public/images/service_04.webp";
+import SEOPromotion from "@/public/images/service_05.webp";
+import TechSupport from "@/public/images/service_06.webp";
+import ContentMarketing from "@/public/images/service_07.webp";
+import Advertising from "@/public/images/service_08.webp";
+import SMM from "@/public/images/service_09.webp";
+import EmailMarketing from "@/public/images/service_10.webp";
+import WebAnalytics from "@/public/images/service_11.webp";
+import MobileOptimization from "@/public/images/service_12.webp";
+
 
 export const Services = [
   {
@@ -109,13 +108,5 @@ export const Services = [
       "Адаптация сайта для корректной работы на мобильных устройствах, включая смартфоны и планшеты. Включает в себя техническую поддержку, обновление версий CMS и плагинов, резервное копирование данных, обеспечение безопасности сайта.",
     image: MobileOptimization,
     price:'от 10 000 ₽'
-  },
-  {
-    id: 13,
-    title: "Консалтинг и стратегическое планирование",
-    description:
-      "Помощь в разработке онлайн-стратегии, включая анализ рынка, целевой аудитории, конкурентов.",
-    image: Consulting,
-    price:'от 5 000 ₽'
-  },
+  }
 ];
