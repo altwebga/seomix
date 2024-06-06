@@ -1,25 +1,39 @@
-import KalinaMebelLogo from "@/public/images/client_01.png";
-import OmmaLogo from "@/public/images/client_02.png";
-import AltayLogo from "@/public/images/client_03.png";
-import MzaLogo from "@/public/images/client_04.jpg";
-import SibGuideLogo from "@/public/images/client_05.png";
-import AltayTilLogo from "@/public/images/client_06.png";
-import ParnasLogo from "@/public/images/client_07.png";
-import InovaMedLogo from "@/public/images/client_08.png";
-import ZdorovieLogo from "@/public/images/client_09.png";
-import NezabudkaLogo from "@/public/images/client_10.png";
-import TransferLogo from "@/public/images/client_11.png";
-import CsvetaLogo from "@/public/images/client_12.png";
-import AltaiActiveLogo from "@/public/images/client_13.png";
-import UsadbaZLogo from "@/public/images/client_14.png";
+import KalinaMebelLogo from "@/public/images/logo/client_01.png";
+import KalinaMebelImage from '@/public/images/portfolio/mebel-kalina.png';
+import OmmaLogo from "@/public/images/logo/client_02.png";
+import OmmaImage from '@/public/images/portfolio/omma.png';
+import AltayLogo from "@/public/images/logo/client_03.png";
+import AltayImage from '@/public/images/portfolio/mc-altay.png';
+import MzaLogo from "@/public/images/logo/client_04.jpg";
+import MzaImage from '@/public/images/portfolio/mz-altay.png';
+import SibGuideLogo from "@/public/images/logo/client_05.png";
+import SibGuideImage from '@/public/images/portfolio/sibguide.png';
+import AltayTilLogo from "@/public/images/logo/client_06.png";
+import AltayTilImage from '@/public/images/portfolio/altaitil.png';
+import ParnasLogo from "@/public/images/logo/client_07.png";
+import ParnasImage from '@/public/images/portfolio/hotel-parnas.png';
+import InovaMedLogo from "@/public/images/logo/client_08.png";
+import InovaMedImage from '@/public/images/portfolio/inovamed.png';
+import ZdorovieLogo from "@/public/images/logo/client_09.png";
+import ZdorovieImage from '@/public/images/portfolio/ga-zdorovie.png';
+import NezabudkaLogo from "@/public/images/logo/client_10.png";
+import NezabudkaImage from '@/public/images/portfolio/nezabudka04.png';
+import TransferLogo from "@/public/images/logo/client_11.png";
+import TransferImage from '@/public/images/portfolio/transfer-altay.png';
+import CsvetaLogo from "@/public/images/logo/client_12.png";
+import CsvetaImage from '@/public/images/portfolio/altaybaza.png';
+import AltaiActiveLogo from "@/public/images/logo/client_13.png";
+import AltaiActiveImage from '@/public/images/portfolio/altaiactive.png';
+import UsadbaZLogo from "@/public/images/logo/client_14.png";
+import UsadbaZImage from '@/public/images/portfolio/usadba-z.png';
 import { PortfolioItem } from "@/types";
-
 
 export const Portfolio: PortfolioItem[] = [
   {
     id: 1,
     title: "Калина Мебель",
     logo: KalinaMebelLogo,
+    image: KalinaMebelImage,
     site: "https://mebel-kalina.ru/",
     description: "Мебельный салон",
     youtube: "twgCHCBvg7c",
@@ -33,6 +47,7 @@ export const Portfolio: PortfolioItem[] = [
     id: 2,
     title: "Окна ОММА",
     logo: OmmaLogo,
+    image: OmmaImage,
     site: "https://omma.pro/",
     description: "Строительно монтажная фирма",
     youtube: "wHwvJVM8Oo8",
@@ -47,6 +62,7 @@ export const Portfolio: PortfolioItem[] = [
     id: 3,
     title: "СИБГИД",
     logo: SibGuideLogo,
+    image: SibGuideImage,
     site: "https://sibguide.ru/",
     description: "Туристический инфоцентр",
     youtube: "N4yqm766JTA",
@@ -60,6 +76,7 @@ export const Portfolio: PortfolioItem[] = [
     id: 4,
     title: "Алтай Тиль",
     logo: AltayTilLogo,
+    image: AltayTilImage,
     site: "https://altaitil.ru/",
     description: "Онлайн сервис изучения Алтайского языка",
     youtube: "LQjGKX7V3kE",
@@ -77,6 +94,7 @@ export const Portfolio: PortfolioItem[] = [
     id: 5,
     title: "Парнас",
     logo: ParnasLogo,
+    image: ParnasImage,
     site: "https://hotel-parnas.ru/",
     description: "Гостиница в Горно-Алтайске",
     youtube: "K3kWI0dE2Ec",
@@ -93,6 +111,7 @@ export const Portfolio: PortfolioItem[] = [
     id: 6,
     title: "Иннова Мед",
     logo: InovaMedLogo,
+    image: InovaMedImage,
     site: "https://inovamed.ru/",
     description: "Многопрофильный медицинский центр",
     youtube: "HfTdVVUOAVw",
@@ -107,6 +126,7 @@ export const Portfolio: PortfolioItem[] = [
     id: 7,
     title: "Гармония здоровья",
     logo: ZdorovieLogo,
+    image: ZdorovieImage,
     site: "https://ga-zdorovie.ru/",
     description: "Многопрофильный медицинский центр",
     youtube: "CfB6NwtaOhs",
@@ -128,6 +148,7 @@ export const Portfolio: PortfolioItem[] = [
     id: 8,
     title: "Незабудка",
     logo: NezabudkaLogo,
+    image: NezabudkaImage,
     site: "https://nezabudka04.ru/",
     description: "База отдыха",
     youtube: "LxlRR9bfe90",
@@ -145,6 +166,7 @@ export const Portfolio: PortfolioItem[] = [
     id: 9,
     title: "Алтай Трансфер",
     logo: TransferLogo,
+    image: TransferImage,
     site: "https://transfer-altay.ru/",
     description: "Пассажирские перевозки",
     youtube: "LxlRR9bfe90",
@@ -159,6 +181,7 @@ export const Portfolio: PortfolioItem[] = [
     id: 10,
     title: "Царство Света",
     logo: CsvetaLogo,
+    image: CsvetaImage,
     site: "https://altaybaza.su/",
     description: "База отдыха",
     youtube: "ri3evcjIJ98",
@@ -173,7 +196,8 @@ export const Portfolio: PortfolioItem[] = [
     id: 11,
     title: "Бюро путешествий Созвездие",
     logo: AltaiActiveLogo,
-    site: "https://altaybaza.su/",
+    image: AltaiActiveImage,
+    site: "https://altaiactive.ru/",
     description: "Организация активных туров",
     youtube: "immNv9oCegs",
     rutube: '0df4f2b20b46b3e6a24519ce293c98aa',
@@ -187,6 +211,7 @@ export const Portfolio: PortfolioItem[] = [
     id: 12,
     title: "Мать Земля Алтай",
     logo: MzaLogo,
+    image: MzaImage,
     site: "",
     description: "Событие",
     youtube: "ak6qs4nMHVo",
@@ -201,6 +226,7 @@ export const Portfolio: PortfolioItem[] = [
     id: 13,
     title: "Алтай",
     logo: AltayLogo,
+    image: AltayImage,
     site: "https://mc-altay.ru/",
     description: "Медицинский центр",
     youtube: "8KU5R0k6LBE",
@@ -216,6 +242,7 @@ export const Portfolio: PortfolioItem[] = [
     id: 14,
     title: "Усадьба Зыряновых",
     logo: UsadbaZLogo,
+    image: UsadbaZImage,
     site: "https://usadba-z.ru/",
     description: "База отдыха в Горном Алтае",
     youtube: "CBeSUsyI90M",

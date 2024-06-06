@@ -10,6 +10,9 @@ export interface PortfolioItem {
   logo: {
     src: string;
   };
+  image?: {
+    src: string;
+  };
   site: string;
   description: string;
   youtube: string;

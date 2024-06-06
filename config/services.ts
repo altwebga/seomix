@@ -1,15 +1,15 @@
-import WebDevelopment from "@/public/images/service_01.webp";
-import DesignBranding from "@/public/images/service_02.webp";
-import ECommerce from "@/public/images/service_03.webp";
-import MobileDevelopment from "@/public/images/service_04.webp";
-import SEOPromotion from "@/public/images/service_05.webp";
-import TechSupport from "@/public/images/service_06.webp";
-import ContentMarketing from "@/public/images/service_07.webp";
-import Advertising from "@/public/images/service_08.webp";
-import SMM from "@/public/images/service_09.webp";
-import EmailMarketing from "@/public/images/service_10.webp";
-import WebAnalytics from "@/public/images/service_11.webp";
-import MobileOptimization from "@/public/images/service_12.webp";
+import WebDevelopment from "@/public/images/services/service_01.webp";
+import DesignBranding from "@/public/images/services/service_02.webp";
+import ECommerce from "@/public/images/services/service_03.webp";
+import MobileDevelopment from "@/public/images/services/service_04.webp";
+import SEOPromotion from "@/public/images/services/service_05.webp";
+import TechSupport from "@/public/images/services/service_06.webp";
+import ContentMarketing from "@/public/images/services/service_07.webp";
+import Advertising from "@/public/images/services/service_08.webp";
+import SMM from "@/public/images/services/service_09.webp";
+import EmailMarketing from "@/public/images/services/service_10.webp";
+import WebAnalytics from "@/public/images/services/service_11.webp";
+import MobileOptimization from "@/public/images/services/service_12.webp";
 
 
 export const Services = [
