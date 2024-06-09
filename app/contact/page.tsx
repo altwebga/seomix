@@ -17,7 +17,12 @@ export default function ContactPage() {
       <div className="flex flex-col md:flex-row py-6">
         <div className="w-full md:w-1/2">
           <h3 className="py-4 text-2xl">Я в социальных сетях</h3>
-          <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <p className="py-4 max-w-lg">
+            Я не публикую номер телефона т.к. не хочу попасть в базу спам
+            звонков. Вы можете легко получить его перейдя в любой из моих
+            социальных аккаунтов.
+          </p>
+          <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
             {socialLinks.map((item, index) => (
               <li key={index}>
                 <Link href={item.url} isExternal showAnchorIcon size="lg">

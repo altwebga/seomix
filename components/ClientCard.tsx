@@ -1,37 +1,30 @@
-import { Card, CardFooter } from "@nextui-org/card";
+import { Card, CardHeader } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
-import { Client} from '@/config/client'
+import { Client } from "@/config/client";
 
 const ClientCard = () => {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
-      {Client.slice(0, 8).map((client, index) => (
+    <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4">
+      {Client.slice(0, 6).map((client, index) => (
         <Card
           isFooterBlurred
           radius="lg"
           className="border-none flex flex-col justify-between items-center p-4"
           key={index}
         >
-          <div className="flex-grow flex items-center justify-center">
+          <CardHeader className="flex gap-3">
             <Image
               alt={client.title}
-              className="object-cover"
-              height={80}
-              width={80}
-              src={client.logo ? client.logo.src : client.logo}
-              radius='none'
+              height={40}
+              radius="none"
+              src={client.logo?client.logo.src:client.logo}
+              width={40}
             />
-          </div>
-          <CardFooter className="justify-center w-full py-2 mt-2">
-            <a
-              href={client.site}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-tiny text-center"
-            >
-              {client.title}
-            </a>
-          </CardFooter>
+            <div className="flex flex-col">
+              <p className="text-md">{client.title}</p>
+              <p className="text-small text-default-500">{client.description}</p>
+            </div>
+          </CardHeader>
         </Card>
       ))}
     </div>
@@ -39,4 +32,3 @@ const ClientCard = () => {
 };
 
 export default ClientCard;
-
