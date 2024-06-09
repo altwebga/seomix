@@ -4,8 +4,8 @@ import OmmaLogo from "@/public/images/logo/client_02.png";
 import OmmaImage from '@/public/images/portfolio/omma.png';
 import AltayLogo from "@/public/images/logo/client_03.png";
 import AltayImage from '@/public/images/portfolio/mc-altay.png';
-import MzaLogo from "@/public/images/logo/client_04.jpg";
-import MzaImage from '@/public/images/portfolio/mz-altay.png';
+import RussianTravelLogo from "@/public/images/logo/client_15.png";
+import RussianTravelImage from '@/public/images/portfolio/russian-travel.png'
 import SibGuideLogo from "@/public/images/logo/client_05.png";
 import SibGuideImage from '@/public/images/portfolio/sibguide.png';
 import AltayTilLogo from "@/public/images/logo/client_06.png";
@@ -209,16 +209,16 @@ export const Portfolio: PortfolioItem[] = [
   },
   {
     id: 12,
-    title: "Мать Земля Алтай",
-    logo: MzaLogo,
-    image: MzaImage,
-    site: "",
-    description: "Событие",
-    youtube: "ak6qs4nMHVo",
-    rutube: '5f285473f068c76d7d3d4d25bd8c5c3f',
+    title: "Путешествие по России",
+    logo: RussianTravelLogo,
+    image: RussianTravelImage,
+    site: "https://altwebga.github.io/russian-travel/",
+    description: "учебный проект",
+    youtube: "",
+    rutube: '5c35144d4661cf8cd383e4bd17a8ca16',
     content: [
-      { paragraph: "Разработка сайта гастрофестиваля Мать Земля Алтай 2019." },
-      { paragraph: "Долгая, кропотливая работа: разработка концепции навигации по программе фестиваля, а затем публикация отчета с обработкой тысяч фотографий." }
+      { paragraph: "Путешествие по России" },
+      { paragraph: "Адаптивный landing посвященный путешествию по России. Проект адаптирован под различные размеры экрана: 1280px, 1024px, 768px, 320px." }
     ],
     release: "12.04.2019",
   },
@@ -230,7 +230,7 @@ export const Portfolio: PortfolioItem[] = [
     site: "https://mc-altay.ru/",
     description: "Медицинский центр",
     youtube: "8KU5R0k6LBE",
-    rutube: 'gZmfQUR0IrPjZFX-w7kqbA',
+    rutube: '71c0711c5eb957066a2c741501ff2e93',
     content: [
       { paragraph: "Разработка сайта для медицинского центра «Алтай» в городе Барнаул была выполнена с учетом всех требований заказчика и пользователей." },
       { paragraph: "Сайт имеет удобный интерфейс и интуитивно понятную навигацию, что позволяет пациентам быстро находить необходимую информацию о медицинских услугах, врачах и ценах." },
