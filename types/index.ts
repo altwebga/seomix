@@ -6,6 +6,7 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 
 export interface PortfolioItem {
   id: number;
+  slug: string;
   title: string;
   logo: {
     src: string;

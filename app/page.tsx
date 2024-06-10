@@ -1,22 +1,17 @@
 "use client";
-
 import { title, subtitle } from "@/components/primitives";
-import dynamic from "next/dynamic";
 import animationData from "@/public/animations/home_banner.json";
 import { Button } from "@nextui-org/button";
-import { CursorArrowRippleIcon } from "@heroicons/react/24/outline";
+import { CursorArrowRippleIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import ServicesCard from "@/components/ServicesCard";
 import ClientCard from "@/components/ClientCard";
 import { Divider } from "@nextui-org/divider";
-import AboutMe from "@/components/AboutMe";
+import PortfolioCard from "@/components/PortfolioCard";
+import LottieAnimation from "@/components/LottieAnimation";
+import {Services} from '@/config/services'
 
 export default function Home() {
-  const LottieAnimation = dynamic(
-    () => import("../components/LottieAnimation"),
-    { ssr: false }
-  );
-  const displayIds = [1, 2, 4, 5]; // массив ID карточек, которые нужно отображать
+  const showWorkId = [1, 3, 14, 13, 8, 11];
   return (
     <div className="container mx-auto max-w-7xl px-4">
       <section className="flex flex-col md:flex-row items-center justify-center gap-4">
@@ -52,9 +47,17 @@ export default function Home() {
       </section>
       <section className="my-4">
         <h2 className={title({ color: "cyan", size: "sm" })}>Мои услуги</h2>
-        <p className="pt-2 mb-8">Весь спектр услуг для старта продаж в интернете.</p>
-
-        <ServicesCard displayIds={displayIds} />
+        <p className="pt-2 mb-8">
+          Весь спектр услуг для старта продаж в интернете.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {Services.map((item)=>(
+          <div className="flex flex-row gap-2">
+          <CheckCircleIcon className="w-6 h-6 text-green-600" />
+          <p>{item.title}</p>
+          </div>
+        ))}
+        </div>
         <Button
           className="mt-8"
           color="primary"
@@ -62,10 +65,10 @@ export default function Home() {
           size="md"
           startContent={<CursorArrowRippleIcon className="h-4 w-4" />}
         >
-          <Link href="/services">Все услуги</Link>
+          <Link href="/services">Подробнее</Link>
         </Button>
       </section>
-      <section className="mt-20">
+      <section className="my-20">
         <h2 className={title({ color: "cyan", size: "sm" })}>
           Среди моих клиентов
         </h2>
@@ -73,11 +76,19 @@ export default function Home() {
         <Divider className="my-8" />
         <ClientCard />
       </section>
-      <section className="mt-20">
-      <h2 className={title({ color: "cyan", size: "sm" })}>
-          Обо мне
-        </h2>
-        <AboutMe/>
+      <section className="my-20">
+        <h2 className={title({ color: "cyan", size: "sm" })}>Новые работы</h2>
+        <p className="pt-2 pb-6">от дизайна до продвижения и интеграций</p>
+        <PortfolioCard showWorkId={showWorkId} />
+        <Button
+          className="mt-8"
+          color="primary"
+          variant="shadow"
+          size="md"
+          startContent={<CursorArrowRippleIcon className="h-4 w-4" />}
+        >
+          <Link href="/portfolio">Все работы</Link>
+        </Button>
       </section>
     </div>
   );

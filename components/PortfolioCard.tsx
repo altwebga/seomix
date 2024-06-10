@@ -1,15 +1,18 @@
-// components/PortfolioCard.tsx
-import { Card, CardBody, CardHeader, CardFooter } from "@nextui-org/card";
+import { Card, CardHeader, CardFooter } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import Link from "next/link";
 import { Portfolio } from "@/config/portfolio";
 import { PortfolioItem } from "@/types";
 
-const PortfolioCard = () => {
+interface ServicesCardProps {
+  showWorkId: number[]; // новый пропс для отображаемых ID
+}
+
+const PortfolioCard: React.FC<ServicesCardProps> = ({  showWorkId }) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-      {Portfolio.map((item: PortfolioItem) => (
-        <Link href={`/portfolio/${item.id}`} key={item.id} passHref>
+      {Portfolio.filter(item => showWorkId.includes(item.id)).map((item: PortfolioItem) => (
+        <Link href={`/portfolio/${item.slug}`} key={item.id} passHref>
           <div className="block">
             <Card
               isFooterBlurred

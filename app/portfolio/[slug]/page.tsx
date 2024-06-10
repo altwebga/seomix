@@ -5,16 +5,17 @@ import { PortfolioItem } from "@/types";
 import { title } from "@/components/primitives";
 import RuTubePlayer from "@/components/RuTubePlayer";
 import { Divider } from "@nextui-org/divider";
+import { Link } from "@nextui-org/link";
 
 interface PortfolioDetailProps {
   params: {
-    id: string;
+    slug: string;
   };
 }
 
 const PortfolioDetail = ({ params }: PortfolioDetailProps) => {
   const item: PortfolioItem | undefined = Portfolio.find(
-    (p) => p.id === parseInt(params.id)
+    (p) => p.slug === params.slug
   );
 
   if (!item) {
@@ -22,7 +23,7 @@ const PortfolioDetail = ({ params }: PortfolioDetailProps) => {
   }
 
   return (
-    <div className="container mx-auto mt-6 rounded-lg shadow-lg">
+    <div className="container mx-auto my-6 rounded-lg shadow-lg">
       <div className="flex flex-col md:flex-row gap-4 items-center mb-4">
         <Image
           src={item.logo.src}
@@ -38,7 +39,7 @@ const PortfolioDetail = ({ params }: PortfolioDetailProps) => {
           </div>
         </div>
       </div>
-      <Divider/>
+      <Divider />
       <div className="mt-6">
         <div className="space-y-2">
           {item.content.map((paragraph, index) => (
@@ -49,16 +50,11 @@ const PortfolioDetail = ({ params }: PortfolioDetailProps) => {
           <div className="border border-gray-300 rounded-lg mt-6 p-4 w-full md:w-2/3">
             {item.rutube && <RuTubePlayer videoId={item.rutube} />}
           </div>
-          <div className="w-full md:w-auto">
-            <p className="mb-4">Дата релиза: {item.release}</p>
-            <a
-              href={item.site}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:underline"
-            >
+          <div className="w-full md:w-auto space-y-2">
+            <p>Дата релиза: {item.release}</p>
+            <Link href={item.site} isExternal>
               Посмотреть сайт
-            </a>
+            </Link>
           </div>
         </div>
       </div>

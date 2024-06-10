@@ -31,6 +31,7 @@ import { PortfolioItem } from "@/types";
 export const Portfolio: PortfolioItem[] = [
   {
     id: 1,
+    slug: 'kalina-mebel',
     title: "Калина Мебель",
     logo: KalinaMebelLogo,
     image: KalinaMebelImage,
@@ -45,6 +46,7 @@ export const Portfolio: PortfolioItem[] = [
   },
   {
     id: 2,
+    slug: 'omma',
     title: "Окна ОММА",
     logo: OmmaLogo,
     image: OmmaImage,
@@ -60,6 +62,7 @@ export const Portfolio: PortfolioItem[] = [
   },
   {
     id: 3,
+    slug: 'sibguide',
     title: "СИБГИД",
     logo: SibGuideLogo,
     image: SibGuideImage,
@@ -74,6 +77,7 @@ export const Portfolio: PortfolioItem[] = [
   },
   {
     id: 4,
+    slug: 'altaitil',
     title: "Алтай Тиль",
     logo: AltayTilLogo,
     image: AltayTilImage,
@@ -92,6 +96,7 @@ export const Portfolio: PortfolioItem[] = [
   },
   {
     id: 5,
+    slug: 'parnas',
     title: "Парнас",
     logo: ParnasLogo,
     image: ParnasImage,
@@ -109,6 +114,7 @@ export const Portfolio: PortfolioItem[] = [
   },
   {
     id: 6,
+    slug: 'inovamed',
     title: "Иннова Мед",
     logo: InovaMedLogo,
     image: InovaMedImage,
@@ -124,6 +130,7 @@ export const Portfolio: PortfolioItem[] = [
   },
   {
     id: 7,
+    slug: 'ga-zdorovie',
     title: "Гармония здоровья",
     logo: ZdorovieLogo,
     image: ZdorovieImage,
@@ -146,6 +153,7 @@ export const Portfolio: PortfolioItem[] = [
   },
   {
     id: 8,
+    slug: 'nezabudka04',
     title: "Незабудка",
     logo: NezabudkaLogo,
     image: NezabudkaImage,
@@ -164,6 +172,7 @@ export const Portfolio: PortfolioItem[] = [
   },
   {
     id: 9,
+    slug: 'transfer-altay',
     title: "Алтай Трансфер",
     logo: TransferLogo,
     image: TransferImage,
@@ -179,6 +188,7 @@ export const Portfolio: PortfolioItem[] = [
   },
   {
     id: 10,
+    slug: 'altaybaza',
     title: "Царство Света",
     logo: CsvetaLogo,
     image: CsvetaImage,
@@ -194,6 +204,7 @@ export const Portfolio: PortfolioItem[] = [
   },
   {
     id: 11,
+    slug: 'altaiactive',
     title: "Бюро путешествий Созвездие",
     logo: AltaiActiveLogo,
     image: AltaiActiveImage,
@@ -209,6 +220,7 @@ export const Portfolio: PortfolioItem[] = [
   },
   {
     id: 12,
+    slug: 'russian-travel',
     title: "Путешествие по России",
     logo: RussianTravelLogo,
     image: RussianTravelImage,
@@ -224,6 +236,7 @@ export const Portfolio: PortfolioItem[] = [
   },
   {
     id: 13,
+    slug: 'mc-altay',
     title: "Алтай",
     logo: AltayLogo,
     image: AltayImage,
@@ -240,6 +253,7 @@ export const Portfolio: PortfolioItem[] = [
   },
   {
     id: 14,
+    slug: 'usadba-z',
     title: "Усадьба Зыряновых",
     logo: UsadbaZLogo,
     image: UsadbaZImage,
