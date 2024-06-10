@@ -11,7 +11,7 @@ import {
 import { ThemeSwitch } from "@/components/theme-switch";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
-import { CodeBracketIcon } from "@heroicons/react/24/outline";
+import { RocketLaunchIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { link as linkStyles } from "@nextui-org/theme";
 import { useReducer } from "react";
@@ -58,7 +58,7 @@ const Header = () => {
       <NavbarContent>
         <NavbarBrand>
           <Link className="flex justify-start items-center gap-1" href="/">
-            <CodeBracketIcon className="h-6 w-6" />
+            <RocketLaunchIcon className="h-6 w-6" />
             <p className="text-xl">seomix.</p>
           </Link>
         </NavbarBrand>
