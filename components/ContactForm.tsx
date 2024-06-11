@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { Input, Textarea } from "@nextui-org/input";
 import {
   UserIcon,
@@ -15,6 +15,7 @@ interface FormData {
   phone: string;
   message: string;
   privacyPolicy: boolean;
+  pagePath: string; // Новое поле для хранения пути страницы
 }
 
 export default function ContactForm() {
@@ -23,10 +24,19 @@ export default function ContactForm() {
     phone: "",
     message: "",
     privacyPolicy: false,
+    pagePath: "", // Инициализация нового поля
   });
   const [responseMessage, setResponseMessage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  useEffect(() => {
+    // Установите путь страницы при загрузке компонента
+    setFormData((prevData) => ({
+      ...prevData,
+      pagePath: window.location.pathname,
+    }));
+  }, []);
 
   const handleInputChange = (name: string, value: string) => {
     setFormData({
@@ -151,6 +161,8 @@ export default function ContactForm() {
             Согласен(а) с политикой конфиденциальности
           </a>
         </Checkbox>
+        {/* Скрытое поле для пути страницы */}
+        <input type="hidden" name="pagePath" value={formData.pagePath} />
         <Button
           color="primary"
           type="submit"
@@ -161,7 +173,7 @@ export default function ContactForm() {
           {isLoading ? "Отправка..." : "Отправить"}
         </Button>
       </form>
-      {responseMessage && <p>{responseMessage}</p>}
+      {responseMessage && <p className="text-green-600 text-center">{responseMessage}</p>}
     </div>
   );
 }

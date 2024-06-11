@@ -23,3 +23,15 @@ export interface PortfolioItem {
   }[];
   release: string;
 }
+
+
+export interface ServiceItem {
+  id: number,
+  slug: string,
+  title: string,
+  description: string
+  image?: {
+    src: string;
+  };
+  price: string
+}

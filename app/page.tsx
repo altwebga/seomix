@@ -2,13 +2,16 @@
 import { title, subtitle } from "@/components/primitives";
 import animationData from "@/public/animations/home_banner.json";
 import { Button } from "@nextui-org/button";
-import { CursorArrowRippleIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
+import {
+  CursorArrowRippleIcon,
+  CheckCircleIcon,
+} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import ClientCard from "@/components/ClientCard";
 import { Divider } from "@nextui-org/divider";
 import PortfolioCard from "@/components/PortfolioCard";
 import LottieAnimation from "@/components/LottieAnimation";
-import {Services} from '@/config/services'
+import { Services } from "@/config/services";
 
 export default function Home() {
   const showWorkId = [1, 3, 14, 13, 8, 11];
@@ -51,12 +54,16 @@ export default function Home() {
           Весь спектр услуг для старта продаж в интернете.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {Services.map((item)=>(
-          <div className="flex flex-row gap-2">
-          <CheckCircleIcon className="w-6 h-6 text-green-600" />
-          <p>{item.title}</p>
-          </div>
-        ))}
+          {Services.map((item) => (
+            <Link
+              href={`/services/${item.slug}`}
+              className="flex flex-row gap-2"
+              key={item.id}
+            >
+              <CheckCircleIcon className="w-6 h-6 text-green-600" />
+              <p>{item.title}</p>
+            </Link>
+          ))}
         </div>
         <Button
           className="mt-8"
