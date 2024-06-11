@@ -1,4 +1,3 @@
-
 'use client'
 import { notFound } from "next/navigation";
 import { Services } from "@/config/services";
@@ -26,16 +25,16 @@ const ServiceDetail = ({ params }: ServiceDetailProps) => {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   return (
     <div className="my-6">
-      <h1 className={title({ size: "md" })}>{item.title}</h1>
-      <div className="flex flex-col md:flex-row gap-4">
+      <h1 className={title({ size: "md"})}>{item.title}</h1>
+      <div className="flex flex-col md:flex-row gap-4 py-6">
         <div>
-          <p className="max-w-lg">{item.description}</p>
+          <p className="max-w-lg py-6">{item.description}</p>
           <Button onPress={onOpen}>Заказать услугу</Button>
           <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="xl">
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Заказать услугу</ModalHeader>
+              <ModalHeader className="text-2xl">Заказать услугу</ModalHeader>
               <ModalBody>
               <ContactForm />
               </ModalBody>

@@ -2,16 +2,17 @@
 import { title, subtitle } from "@/components/primitives";
 import animationData from "@/public/animations/home_banner.json";
 import { Button } from "@nextui-org/button";
+import { Link } from "@nextui-org/link";
 import {
   CursorArrowRippleIcon,
   CheckCircleIcon,
 } from "@heroicons/react/24/outline";
-import Link from "next/link";
 import ClientCard from "@/components/ClientCard";
 import { Divider } from "@nextui-org/divider";
 import PortfolioCard from "@/components/PortfolioCard";
 import LottieAnimation from "@/components/LottieAnimation";
 import { Services } from "@/config/services";
+import CallToAction from "@/components/CallToAction";
 
 export default function Home() {
   const showWorkId = [1, 3, 14, 13, 8, 11];
@@ -28,15 +29,23 @@ export default function Home() {
           </h2>
           <div className="flex flex-col md:flex-row gap-4 mt-4">
             <Button
+              href="/contact"
+              as={Link}
               color="primary"
               variant="shadow"
               size="md"
               startContent={<CursorArrowRippleIcon className="h-4 w-4" />}
             >
-              <Link href="/contact">Контакты</Link>
+              Контакты
             </Button>
-            <Button color="default" variant="shadow" size="md">
-              <Link href="/portfolio">Мои работы</Link>
+            <Button
+              href="/portfolio"
+              as={Link}
+              color="default"
+              variant="shadow"
+              size="md"
+            >
+              Мои работы
             </Button>
           </div>
         </div>
@@ -66,13 +75,15 @@ export default function Home() {
           ))}
         </div>
         <Button
+          href="/services"
+          as={Link}
           className="mt-8"
           color="primary"
           variant="shadow"
           size="md"
           startContent={<CursorArrowRippleIcon className="h-4 w-4" />}
         >
-          <Link href="/services">Подробнее</Link>
+          Подробнее
         </Button>
       </section>
       <section className="my-20">
@@ -88,13 +99,15 @@ export default function Home() {
         <p className="pt-2 pb-6">от дизайна до продвижения и интеграций</p>
         <PortfolioCard showWorkId={showWorkId} />
         <Button
+          href="/portfolio"
+          as={Link}
           className="mt-8"
           color="primary"
           variant="shadow"
           size="md"
           startContent={<CursorArrowRippleIcon className="h-4 w-4" />}
         >
-          <Link href="/portfolio">Все работы</Link>
+          Все работы
         </Button>
       </section>
     </div>
