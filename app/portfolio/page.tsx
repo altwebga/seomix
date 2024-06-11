@@ -1,3 +1,4 @@
+import CallToAction from "@/components/CallToAction";
 import PortfolioCard from "@/components/PortfolioCard";
 import { title,subtitle } from "@/components/primitives";
 
@@ -10,6 +11,9 @@ export default function PortfolioPage() {
       <p className={subtitle()}>2014 – 2024</p>
       <div className="mt-6">
       <PortfolioCard showWorkId={showWorkId}/>
+      </div>
+      <div className="mt-6">
+      <CallToAction/>
       </div>
     </div>
   );
