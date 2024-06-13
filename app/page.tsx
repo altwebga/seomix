@@ -70,7 +70,7 @@ export default function Home() {
               key={item.id}
             >
               <CheckCircleIcon className="w-6 h-6 text-green-600" />
-              <p>{item.title}</p>
+              <p className="font-bold text-xl">{item.title}</p>
             </Link>
           ))}
         </div>
