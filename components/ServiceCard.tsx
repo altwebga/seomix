@@ -29,11 +29,11 @@ const ServiceCard: FC<ServiceItem> = ({ id, image, title, price, description, sl
           <div className="flex flex-col col-span-6 md:col-span-8">
             <div className="flex justify-between items-start">
               <div className="flex flex-col gap-4">
-                <h3 className="text-2xl font-semibold text-foreground/90">
+                <h2 className="text-2xl font-semibold text-foreground/90">
                   {title}
-                </h3>
+                </h2>
                 <p className="text-small text-foreground/80">{price}</p>
-                <h1 className="font-medium mt-2">{description}</h1>
+                <p className="mt-2">{description}</p>
               </div>
             </div>
           </div>

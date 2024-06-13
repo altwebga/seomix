@@ -33,5 +33,8 @@ export interface ServiceItem {
   image?: {
     src: string;
   };
-  price: string
+  price: string;
+  content: {
+    paragraph?: string;
+  }[];
 }

@@ -60,7 +60,7 @@ export default function Home() {
       <section className="my-4">
         <h2 className={title({ color: "cyan", size: "sm" })}>Мои услуги</h2>
         <p className="pt-2 mb-8">
-          Весь спектр услуг для старта продаж в интернете.
+          Весь спектр услуг для старта продаж и привлечения клиентов.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {Services.map((item) => (
@@ -90,13 +90,13 @@ export default function Home() {
         <h2 className={title({ color: "cyan", size: "sm" })}>
           Среди моих клиентов
         </h2>
-        <p className="pt-2">малый и средний бизнес.</p>
+        <p className="pt-2">Малый и средний бизнес.</p>
         <Divider className="my-8" />
         <ClientCard />
       </section>
       <section className="my-20">
         <h2 className={title({ color: "cyan", size: "sm" })}>Новые работы</h2>
-        <p className="pt-2 pb-6">от дизайна до продвижения и интеграций</p>
+        <p className="pt-2 pb-6">От дизайна до продвижения и интеграций</p>
         <PortfolioCard showWorkId={showWorkId} />
         <Button
           href="/portfolio"

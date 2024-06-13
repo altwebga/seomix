@@ -16,7 +16,7 @@ const PortfolioCard: React.FC<ServicesCardProps> = ({  showWorkId }) => {
           <div className="block">
             <Card
               isFooterBlurred
-              className="w-full h-[300px] col-span-12 sm:col-span-7"
+              className="w-full h-[300px] col-span-12 sm:col-span-7 border border-gray-400"
             >
               <CardHeader className="absolute z-10 top-1 flex-col items-start">
                 <p className="text-tiny text-white/60 uppercase font-bold">
