@@ -1,15 +1,37 @@
 import { notFound } from "next/navigation";
 import { Portfolio } from "@/config/portfolio";
-import { Image } from "@nextui-org/image";
+import { Image as NextImage } from "@nextui-org/image";
 import { PortfolioItem } from "@/types";
 import { title } from "@/components/primitives";
 import RuTubePlayer from "@/components/RuTubePlayer";
 import { Divider } from "@nextui-org/divider";
 import { Link } from "@nextui-org/link";
+import type { Metadata, ResolvingMetadata } from 'next'
 
 interface PortfolioDetailProps {
   params: {
     slug: string;
+  };
+}
+
+// Generate metadata for each portfolio item
+export async function generateMetadata(
+  { params }: PortfolioDetailProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const item: PortfolioItem | undefined = Portfolio.find(
+    (p) => p.slug === params.slug
+  );
+
+  if (!item) {
+    return {
+      title: 'Not Found',
+      description: 'The portfolio item could not be found',
+    };
+  }
+  return {
+    title: item.title,
+    description: item.description,
   };
 }
 
@@ -25,7 +47,7 @@ const PortfolioDetail = ({ params }: PortfolioDetailProps) => {
   return (
     <div className="container mx-auto my-6 rounded-lg shadow-lg">
       <div className="flex flex-col md:flex-row gap-4 items-center mb-4">
-        <Image
+        <NextImage
           src={item.logo.src}
           alt={item.title}
           className="my-4 rounded-full"
