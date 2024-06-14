@@ -1,10 +1,28 @@
-'use client'
 import AboutMe from "@/components/AboutMe";
 import CallToAction from "@/components/CallToAction";
 import { title } from "@/components/primitives";
 import DiplomaPage01 from "@/public/images/diploma_page_01.webp";
 import DiplomaPage02 from "@/public/images/diploma_page_02.webp";
 import ImageModal from "@/components/ImageModal";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Обо мне',
+  description: 'Описание страницы обо мне',
+  openGraph: {
+    title: 'Обо мне - My Site',
+    description: 'Описание страницы обо мне',
+    images: [
+      {
+        url: DiplomaPage01.src,
+        width: 800,
+        height: 600,
+        alt: 'Diploma Page 01'
+      },
+    ],
+  },
+};
+
 
 export default function AboutPage() {
   return (

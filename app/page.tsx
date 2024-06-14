@@ -12,7 +12,6 @@ import { Divider } from "@nextui-org/divider";
 import PortfolioCard from "@/components/PortfolioCard";
 import LottieAnimation from "@/components/LottieAnimation";
 import { Services } from "@/config/services";
-import CallToAction from "@/components/CallToAction";
 
 export default function Home() {
   const showWorkId = [1, 3, 14, 13, 8, 11];

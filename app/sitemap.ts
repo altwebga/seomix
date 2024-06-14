@@ -4,7 +4,7 @@ import { Portfolio } from '@/config/portfolio'
 import { siteConfig } from '@/config/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.SITE_URL
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
   if (!baseUrl) {
     throw new Error('SITE_URL is not defined in the environment variables')
   }

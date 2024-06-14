@@ -1,18 +1,55 @@
-'use client'
+import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from "next/navigation";
 import { Services } from "@/config/services";
 import { ServiceItem } from "@/types";
 import { Image } from "@nextui-org/image";
 import { title } from "@/components/primitives";
-import ContactForm from "@/components/ContactForm";
-import { Modal, useDisclosure, ModalContent, ModalHeader, ModalBody } from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
+import ContactModalForm from "@/components/ContactModalForm";  // Импортируем новый компонент
 
 interface ServiceDetailProps {
   params: {
     slug: string;
   };
 }
+
+
+export async function generateMetadata(
+  { params }: ServiceDetailProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const item: ServiceItem | undefined = Services.find(
+    (p) => p.slug === params.slug
+  );
+
+  if (!item) {
+    notFound();
+  }
+
+  const imageUrl = `/api/og/${params.slug}`;
+
+  return {
+    title: item.title,
+    description: item.description,
+    openGraph: {
+      title: item.title,
+      description: item.description,
+      images: [
+        {
+          url: imageUrl,
+          alt: item.title,
+        },
+      ],
+      siteName: 'Your Site Name',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: item.title,
+      description: item.description,
+      images: [imageUrl],
+    },
+  };
+}
+
 
 const ServiceDetail = ({ params }: ServiceDetailProps) => {
   const item: ServiceItem | undefined = Services.find(
@@ -22,8 +59,6 @@ const ServiceDetail = ({ params }: ServiceDetailProps) => {
   if (!item) {
     notFound();
   }
-
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <div className="my-6">
@@ -35,19 +70,7 @@ const ServiceDetail = ({ params }: ServiceDetailProps) => {
           {item.content.map((p, index) => (
             <p key={index} className="py-1">{p.paragraph}</p>
           ))}
-          <Button onPress={onOpen} color="primary" className="mt-6">Заказать услугу</Button>
-          <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="xl">
-            <ModalContent>
-              {(onClose) => (
-                <>
-                  <ModalHeader className="text-2xl">Заказать услугу</ModalHeader>
-                  <ModalBody>
-                    <ContactForm />
-                  </ModalBody>
-                </>
-              )}
-            </ModalContent>
-          </Modal>
+          <ContactModalForm />  {/* Используем новый компонент */}
         </div>
       </div>
     </div>
