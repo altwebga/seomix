@@ -30,7 +30,7 @@ export interface ServiceItem {
   slug: string,
   title: string,
   description: string
-  image?: {
+  image: {
     src: string;
   };
   price: string;

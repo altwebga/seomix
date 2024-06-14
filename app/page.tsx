@@ -12,6 +12,7 @@ import { Divider } from "@nextui-org/divider";
 import PortfolioCard from "@/components/PortfolioCard";
 import LottieAnimation from "@/components/LottieAnimation";
 import { Services } from "@/config/services";
+import Quiz from "@/components/Quiz";
 
 export default function Home() {
   const showWorkId = [1, 3, 14, 13, 8, 11];
@@ -108,6 +109,9 @@ export default function Home() {
         >
           Все работы
         </Button>
+      </section>
+      <section>
+        <Quiz/>
       </section>
     </div>
   );

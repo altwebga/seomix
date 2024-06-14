@@ -12,7 +12,7 @@ interface ServiceDetailProps {
   };
 }
 
-
+// Generate metadata for each portfolio item
 export async function generateMetadata(
   { params }: ServiceDetailProps,
   parent: ResolvingMetadata
@@ -22,31 +22,14 @@ export async function generateMetadata(
   );
 
   if (!item) {
-    notFound();
+    return {
+      title: 'Not Found',
+      description: 'The portfolio item could not be found',
+    };
   }
-
-  const imageUrl = `/api/og/${params.slug}`;
-
   return {
     title: item.title,
     description: item.description,
-    openGraph: {
-      title: item.title,
-      description: item.description,
-      images: [
-        {
-          url: imageUrl,
-          alt: item.title,
-        },
-      ],
-      siteName: 'Your Site Name',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: item.title,
-      description: item.description,
-      images: [imageUrl],
-    },
   };
 }
 
