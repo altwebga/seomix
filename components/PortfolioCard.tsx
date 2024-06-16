@@ -15,6 +15,7 @@ const PortfolioCard: React.FC<ServicesCardProps> = ({  showWorkId }) => {
         <Link href={`/portfolio/${item.slug}`} key={item.id} passHref>
           <div className="block">
             <Card
+              shadow="md"
               isFooterBlurred
               className="w-full h-[300px] col-span-12 sm:col-span-7 border border-gray-400"
             >
