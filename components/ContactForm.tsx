@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useState, useEffect, FormEvent } from "react";
-import { Input, Textarea } from "@nextui-org/input";
+import { useState, useEffect, FormEvent } from 'react';
+import { Input, Textarea } from '@nextui-org/input';
 import {
   UserIcon,
   DevicePhoneMobileIcon,
   PencilIcon,
-} from "@heroicons/react/24/outline";
-import { Button } from "@nextui-org/button";
-import { Checkbox } from "@nextui-org/checkbox";
+} from '@heroicons/react/24/outline';
+import { Button } from '@nextui-org/button';
+import { Checkbox } from '@nextui-org/checkbox';
 
 interface FormData {
   name: string;
@@ -20,13 +20,13 @@ interface FormData {
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
-    name: "",
-    phone: "",
-    message: "",
+    name: '',
+    phone: '',
+    message: '',
     privacyPolicy: false,
-    pagePath: "", // Инициализация нового поля
+    pagePath: '', // Инициализация нового поля
   });
-  const [responseMessage, setResponseMessage] = useState<string>("");
+  const [responseMessage, setResponseMessage] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -45,7 +45,7 @@ export default function ContactForm() {
     });
     setErrors({
       ...errors,
-      [name]: "",
+      [name]: '',
     });
   };
 
@@ -62,20 +62,20 @@ export default function ContactForm() {
 
     if (!formData.name) {
       valid = false;
-      newErrors.name = "Введите ваше имя";
+      newErrors.name = 'Введите ваше имя';
     }
     if (!formData.phone) {
       valid = false;
-      newErrors.phone = "Введите ваш номер телефона";
+      newErrors.phone = 'Введите ваш номер телефона';
     }
     if (!formData.message) {
       valid = false;
-      newErrors.message = "Введите сообщение";
+      newErrors.message = 'Введите сообщение';
     }
     if (!formData.privacyPolicy) {
       valid = false;
       newErrors.privacyPolicy =
-        "Необходимо согласие с политикой конфиденциальности";
+        'Необходимо согласие с политикой конфиденциальности';
     }
 
     setErrors(newErrors);
@@ -91,10 +91,10 @@ export default function ContactForm() {
 
     setIsLoading(true);
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
+    const res = await fetch('/api/contact', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(formData),
     });
@@ -110,16 +110,16 @@ export default function ContactForm() {
         onSubmit={handleSubmit}
         className="flex flex-col gap-6 border border-gray-400 p-8"
       >
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col gap-4 md:flex-row">
           <Input
             type="text"
             label="Ваше имя"
             placeholder="Иван"
             name="name"
             value={formData.name}
-            onValueChange={(value) => handleInputChange("name", value)}
+            onValueChange={(value) => handleInputChange('name', value)}
             labelPlacement="outside"
-            startContent={<UserIcon className="w-6 h-6" />}
+            startContent={<UserIcon className="h-6 w-6" />}
             isInvalid={!!errors.name}
             errorMessage={errors.name}
             isRequired
@@ -131,9 +131,9 @@ export default function ContactForm() {
             placeholder="+7 123 456 7788"
             name="phone"
             value={formData.phone}
-            onValueChange={(value) => handleInputChange("phone", value)}
+            onValueChange={(value) => handleInputChange('phone', value)}
             labelPlacement="outside"
-            startContent={<DevicePhoneMobileIcon className="w-6 h-6" />}
+            startContent={<DevicePhoneMobileIcon className="h-6 w-6" />}
             isInvalid={!!errors.phone}
             errorMessage={errors.phone}
             isRequired
@@ -144,9 +144,9 @@ export default function ContactForm() {
           placeholder="Сообщение"
           name="message"
           value={formData.message}
-          onChange={(e) => handleInputChange("message", e.target.value)}
+          onChange={(e) => handleInputChange('message', e.target.value)}
           labelPlacement="outside"
-          startContent={<PencilIcon className="w-6 h-6" />}
+          startContent={<PencilIcon className="h-6 w-6" />}
           isInvalid={!!errors.message}
           errorMessage={errors.message}
           isRequired
@@ -170,10 +170,12 @@ export default function ContactForm() {
           isDisabled={!formData.privacyPolicy || isLoading}
           spinnerPlacement="start"
         >
-          {isLoading ? "Отправка..." : "Отправить"}
+          {isLoading ? 'Отправка...' : 'Отправить'}
         </Button>
       </form>
-      {responseMessage && <p className="text-green-600 text-center">{responseMessage}</p>}
+      {responseMessage && (
+        <p className="text-center text-green-600">{responseMessage}</p>
+      )}
     </div>
   );
 }

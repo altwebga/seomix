@@ -1,17 +1,17 @@
-import { Link } from "@nextui-org/link";
-import { Button } from "@nextui-org/button";
-import { Card, CardBody } from "@nextui-org/card";
+import { Link } from '@nextui-org/link';
+import { Button } from '@nextui-org/button';
+import { Card, CardBody } from '@nextui-org/card';
 
 const CallToAction = () => {
   return (
-    <Card shadow="md" className="py-12 px-8 bg-stone-950">
+    <Card shadow="md" className="bg-stone-950 px-8 py-12">
       <CardBody>
-        <h2 className="text-white py-2 text-4xl">Обсудим ваш проект?</h2>
-        <p className="text-white py-2 max-w-4xl">
+        <h2 className="py-2 text-4xl text-white">Обсудим ваш проект?</h2>
+        <p className="max-w-4xl py-2 text-white">
           Не ждите идеального момента или подходящего времени — начинайте прямо
           сейчас!
         </p>
-        <p className="text-white max-w-4xl">
+        <p className="max-w-4xl text-white">
           Свяжитесь со мной, и я помогу воплотить ваши идеи в реальность.
         </p>
         <Button
