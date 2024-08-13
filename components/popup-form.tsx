@@ -17,7 +17,7 @@ export function PopupForm() {
 
   return (
     <>
-      <Button color="primary" onPress={onOpen}>
+      <Button color="primary" size="lg" onPress={onOpen}>
         Узнать стоимость
       </Button>
       <Modal isOpen={isOpen} placement="top-center" onOpenChange={onOpenChange}>
@@ -56,7 +56,7 @@ export function PopupForm() {
                   </Checkbox>
                 </div>
               </ModalBody>
-              <ModalFooter>
+              <ModalFooter className="flex justify-between">
                 <Button color="danger" variant="flat" onPress={onClose}>
                   Отмена
                 </Button>

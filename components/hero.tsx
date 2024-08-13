@@ -8,7 +8,7 @@ import HeroImage from "@/public/images/hero.svg";
 
 export function Hero() {
   return (
-    <section className="bg-hero-grid">
+    <section className="bg-hero-bg">
       <div className="flex flex-col md:flex-row items-center justify-center h-screen container max-w-7xl mx-auto gap-8">
         <div className="md:w-1/2">
           <h1>
@@ -19,9 +19,15 @@ export function Hero() {
             Разработка, продвижение, техническая поддержка, интеграция со
             сторонними системами — весь спектр услуг для вашего бизнеса
           </p>
-          <div className="flex space-x-4 mt-4">
+          <div className="flex gap-6 mt-4">
             <PopupForm />
-            <Button as={Link} color="default" href="/portfolio" variant="solid">
+            <Button
+              as={Link}
+              color="default"
+              href="/portfolio"
+              size="lg"
+              variant="solid"
+            >
               Примеры работ
             </Button>
           </div>

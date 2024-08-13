@@ -10,7 +10,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "hero-grid": "url('../public/images/hero-grid.svg')",
+        "hero-bg": "url('../public/images/hero-bg.svg')",
+        "services-bg": "url('../public/images/services-bg.svg')",
       },
     },
   },

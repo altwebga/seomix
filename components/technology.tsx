@@ -1,6 +1,9 @@
+import { Divider } from "@nextui-org/divider";
 import Image from "next/image";
 
-const techBadges = [
+import { techBadgesType } from "@/types";
+
+const techBadges: techBadgesType[] = [
   {
     id: 1,
     title: "HTML5",
@@ -114,10 +117,12 @@ const techBadges = [
 export function Technology() {
   return (
     <section className="py-8 container mx-auto max-w-7xl">
-      <h2 className="mb-4 text-center">
+      <h2 className="mb-4 ">Современные технологии</h2>
+      <p className="mb-8">
         Использую только самые современные технологии, никаких шаблонных
         решений.
-      </h2>
+      </p>
+      <Divider className="mb-8" />
       <div className="flex flex-wrap justify-center gap-4">
         {techBadges.map((item) => (
           <Image
@@ -130,6 +135,7 @@ export function Technology() {
           />
         ))}
       </div>
+      <Divider className="mt-8" />
     </section>
   );
 }
