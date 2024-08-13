@@ -1,20 +1,69 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "SEOMIX",
-  description: "Разработка сайтов и мобильных приложений в Горно-Алтайске",
+  name: "Next.js + NextUI",
+  description: "Make beautiful websites regardless of your design experience.",
   navItems: [
-    { label: "Услуги", href: "/services" },
-    { label: "Обо мне", href: "/about" },
-    { label: "Портфолио", href: "/portfolio" },
-    { label: "Блог", href: "/blog" },
-    { label: "Контакты", href: "/contact" },
+    {
+      label: "Home",
+      href: "/",
+    },
+    {
+      label: "Docs",
+      href: "/docs",
+    },
+    {
+      label: "Pricing",
+      href: "/pricing",
+    },
+    {
+      label: "Blog",
+      href: "/blog",
+    },
+    {
+      label: "About",
+      href: "/about",
+    },
   ],
   navMenuItems: [
-    { label: "Услуги", href: "/services" },
-    { label: "Обо мне", href: "/about" },
-    { label: "Портфолио", href: "/portfolio" },
-    { label: "Блог", href: "/blog" },
-    { label: "Контакты", href: "/contact" },
+    {
+      label: "Profile",
+      href: "/profile",
+    },
+    {
+      label: "Dashboard",
+      href: "/dashboard",
+    },
+    {
+      label: "Projects",
+      href: "/projects",
+    },
+    {
+      label: "Team",
+      href: "/team",
+    },
+    {
+      label: "Calendar",
+      href: "/calendar",
+    },
+    {
+      label: "Settings",
+      href: "/settings",
+    },
+    {
+      label: "Help & Feedback",
+      href: "/help-feedback",
+    },
+    {
+      label: "Logout",
+      href: "/logout",
+    },
   ],
+  links: {
+    github: "https://github.com/nextui-org/nextui",
+    twitter: "https://twitter.com/getnextui",
+    docs: "https://nextui.org",
+    discord: "https://discord.gg/9b6yyZKmH4",
+    sponsor: "https://patreon.com/jrgarciadev",
+  },
 };

@@ -1,98 +1,56 @@
-
-import { title, subtitle } from "@/components/primitives";
-import animationData from "@/public/animations/home_banner.json";
-import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
-import {
-  CursorArrowRippleIcon,
-  CheckCircleIcon,
-} from "@heroicons/react/24/outline";
-import ClientCard from "@/components/ClientCard";
-import { Divider } from "@nextui-org/divider";
-import PortfolioCard from "@/components/PortfolioCard";
-import LottieAnimation from "@/components/LottieAnimation";
-import { Services } from "@/config/services";
-import Quiz from "@/components/Quiz";
+import { Snippet } from "@nextui-org/snippet";
+import { Code } from "@nextui-org/code";
+import { button as buttonStyles } from "@nextui-org/theme";
+
+import { siteConfig } from "@/config/site";
+import { title, subtitle } from "@/components/primitives";
+import { GithubIcon } from "@/components/icons";
 
 export default function Home() {
-  const showWorkId = [1, 3, 14, 13, 8, 11];
   return (
-    <div className="container mx-auto max-w-7xl px-4">
-      <section className="flex flex-col md:flex-row items-center justify-center gap-4">
-        <div className="md:w-1/2">
-          <h1 className={title()}>Разработка&nbsp;</h1>
-          <h1 className={title()}>и продвижение сайтов&nbsp;</h1>
-          <br />
-          <h1 className={title({ color: "violet" })}> в Горно-Алтайске</h1>
-          <h2 className={subtitle({ class: "mt-4" })}>
-            Хотите узнать больше о том, как мы можем сотрудничать?
-          </h2>
-          <div className="flex flex-col md:flex-row gap-4 mt-4">
-            <Button
-              href="/contact"
-              as={Link}
-              color="primary"
-              variant="shadow"
-              size="md"
-              startContent={<CursorArrowRippleIcon className="h-4 w-4" />}
-            >
-              Контакты
-            </Button>
-            <Button
-              href="/portfolio"
-              as={Link}
-              color="default"
-              variant="shadow"
-              size="md"
-            >
-              Мои работы
-            </Button>
-          </div>
-        </div>
-        <div className="flex justify-center items-center w-[20rem] h-[20rem] md:w-[30rem] md:h-[30rem] lg:w-[38rem] lg:h-[38rem] mt-6">
-          <LottieAnimation
-            animationData={animationData}
-            height="100%"
-            width="100%"
-          />
-        </div>
-      </section>
-      <section className="my-4">
-        <h2 className={title({ color: "cyan", size: "sm" })}>Оценить стоимость</h2>
-        <p className="pt-2 mb-8">
-          Пройдите небольшой опрос и определите примерную стоимость услуг.
-        </p>
-        <div>
-          <Quiz />
-        </div>
-      </section>
-      <section className="my-20">
-        <h2 className={title({ color: "cyan", size: "sm" })}>
-          Среди моих клиентов
+    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+      <div className="inline-block max-w-lg text-center justify-center">
+        <h1 className={title()}>Make&nbsp;</h1>
+        <h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
+        <br />
+        <h1 className={title()}>
+          websites regardless of your design experience.
+        </h1>
+        <h2 className={subtitle({ class: "mt-4" })}>
+          Beautiful, fast and modern React UI library.
         </h2>
-        <p className="pt-2">Малый и средний бизнес.</p>
-        <Divider className="my-8" />
-        <ClientCard />
-      </section>
-      <section className="my-20">
-        <h2 className={title({ color: "cyan", size: "sm" })}>Новые работы</h2>
-        <p className="pt-2 pb-6">От дизайна до продвижения и интеграций</p>
-        <PortfolioCard showWorkId={showWorkId} />
-        <Button
-          href="/portfolio"
-          as={Link}
-          className="mt-8"
-          color="primary"
-          variant="shadow"
-          size="md"
-          startContent={<CursorArrowRippleIcon className="h-4 w-4" />}
+      </div>
+
+      <div className="flex gap-3">
+        <Link
+          isExternal
+          className={buttonStyles({
+            color: "primary",
+            radius: "full",
+            variant: "shadow",
+          })}
+          href={siteConfig.links.docs}
         >
-          Все работы
-        </Button>
-      </section>
-      <section>
-        <Quiz />
-      </section>
-    </div>
+          Documentation
+        </Link>
+        <Link
+          isExternal
+          className={buttonStyles({ variant: "bordered", radius: "full" })}
+          href={siteConfig.links.github}
+        >
+          <GithubIcon size={20} />
+          GitHub
+        </Link>
+      </div>
+
+      <div className="mt-8">
+        <Snippet hideCopyButton hideSymbol variant="bordered">
+          <span>
+            Get started by editing <Code color="primary">app/page.tsx</Code>
+          </span>
+        </Snippet>
+      </div>
+    </section>
   );
 }
