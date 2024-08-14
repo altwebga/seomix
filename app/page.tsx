@@ -1,3 +1,4 @@
+import { CallAction } from "@/components/call-action";
 import { DevStages } from "@/components/dev-stages";
 import { Hero } from "@/components/hero";
 import { Services } from "@/components/services";
@@ -10,6 +11,7 @@ export default function Home() {
       <Services />
       <Technology />
       <DevStages />
+      <CallAction />
     </div>
   );
 }

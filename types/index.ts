@@ -1,3 +1,5 @@
+import { IconType } from "react-icons";
+
 export type navLinksType = {
   id: number;
   title: string;
@@ -15,4 +17,10 @@ export type servicesDataType = {
   title: string;
   description: string;
   image: string;
+};
+
+export type socialLinksType = {
+  title: string;
+  url: string;
+  icon: IconType;
 };
