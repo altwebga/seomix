@@ -44,8 +44,8 @@ export function Services() {
   return (
     <section className="w-full bg-services-bg bg-no-repeat bg-center">
       <div className="container mx-auto max-w-7xl py-8">
-        <div className="flex flex-col gap-4 md:flex-row items-center justify-between mb-4">
-          <div className="max-w-4xl ">
+        <div className="flex flex-col gap-8 md:flex-row md:items-center justify-between mb-4">
+          <div className="max-w-2xl">
             <h2>Какие услуги я предлагаю</h2>
             <p>
               Работайте с единым подрядчиком для всех Ваших

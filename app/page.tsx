@@ -1,3 +1,4 @@
+import { DevStages } from "@/components/dev-stages";
 import { Hero } from "@/components/hero";
 import { Services } from "@/components/services";
 import { Technology } from "@/components/technology";
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <Services />
       <Technology />
+      <DevStages />
     </div>
   );
 }
