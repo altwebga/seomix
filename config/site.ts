@@ -22,16 +22,21 @@ export const navLinks: navLinksType[] = [
   },
   {
     id: 2,
-    title: "Обо мне",
+    title: "Портфолио",
     href: "/portfolio",
   },
   {
     id: 3,
+    title: "Обо мне",
+    href: "/about",
+  },
+  {
+    id: 4,
     title: "Контакты",
     href: "/contact",
   },
   {
-    id: 4,
+    id: 5,
     title: "Блог",
     href: "/blog",
   },

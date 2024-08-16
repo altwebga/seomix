@@ -10,12 +10,6 @@ export default async function ServicePage({
 
   return (
     <div className="flex flex-col md:flex-row gap-4">
-      <Image
-        alt={service.title.rendered}
-        height={600}
-        src={service.featured_media_url}
-        width={600}
-      />
       <div>
         <h1 className="py-8">{service.title.rendered}</h1>
         <div
@@ -23,6 +17,12 @@ export default async function ServicePage({
           className="space-y-4"
         />
       </div>
+      <Image
+        alt={service.title.rendered}
+        height={600}
+        src={service.featured_media_url}
+        width={600}
+      />
     </div>
   );
 }
