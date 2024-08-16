@@ -76,7 +76,7 @@ export const Header = () => {
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-6">
           {navLinks.map((item) => (
-            <NavbarMenuItem key={item.id}>
+            <NavbarMenuItem key={item.id} className="list-none">
               <Link
                 className={clsx(
                   linkStyles({ color: "foreground" }),
