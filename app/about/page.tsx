@@ -11,8 +11,16 @@ export default function AboutPage() {
       <h1>Обо мне</h1>
       <About />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Image alt="diploma" height={424} src={DiplomaImage1.src} width={600} />
-        <Image alt="diploma" height={424} src={DiplomaImage2.src} width={600} />
+        <Image
+          alt="diploma"
+          className="w-full h-auto object-contain"
+          src={DiplomaImage1.src}
+        />
+        <Image
+          alt="diploma"
+          className="w-full h-auto object-contain"
+          src={DiplomaImage2.src}
+        />
       </div>
       <CallAction />
     </div>
