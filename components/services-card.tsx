@@ -19,7 +19,10 @@ export const ServicesCard = ({
 }: ServicesCardProps) => {
   return (
     <Link href={`services/${slug}`}>
-      <Card className="w-full" shadow="lg">
+      <Card
+        className="border-1 border-gray-500 hover:border-gray-300 transition-transform duration-300 transform hover:scale-105 peer"
+        shadow="lg"
+      >
         <CardBody>
           <div className="flex flex-col md:flex-row gap-8 items-center ">
             <div className="md:w-1/2">

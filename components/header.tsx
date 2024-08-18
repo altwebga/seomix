@@ -12,7 +12,6 @@ import {
   NavbarMenuItem,
 } from "@nextui-org/navbar";
 import { Link } from "@nextui-org/link";
-import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
 
@@ -28,7 +27,7 @@ export const Header = () => {
     <NextUINavbar
       isBordered
       isMenuOpen={isMenuOpen}
-      maxWidth="xl"
+      maxWidth="2xl"
       position="sticky"
       onMenuOpenChange={setIsMenuOpen}
     >
@@ -49,9 +48,8 @@ export const Header = () => {
             <NavbarItem key={item.id}>
               <NextLink
                 className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
-                  pathname === item.href && "text-primary font-medium"
+                  "text-xl hover:text-gray-400 transition-colors",
+                  pathname === item.href && "text-primary"
                 )}
                 color="foreground"
                 href={item.href}
@@ -79,9 +77,8 @@ export const Header = () => {
             <NavbarMenuItem key={item.id} className="list-none">
               <Link
                 className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium text-xl",
-                  pathname === item.href && "text-primary font-medium"
+                  "text-xl hover:text-gray-400 transition-colors",
+                  pathname === item.href && "text-primary"
                 )}
                 color="foreground"
                 href={item.href}
