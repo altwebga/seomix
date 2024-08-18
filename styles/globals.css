@@ -4,7 +4,7 @@
 
 @layer base {
   h1 {
-    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-6xl;
+    @apply scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-6xl;
   }
   h2 {
     @apply scroll-m-20 pb-2 text-4xl font-semibold tracking-tight first:mt-0;

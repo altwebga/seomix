@@ -18,7 +18,9 @@ export default async function ServicePage({
         />
       </div>
       <Image
+        isBlurred
         alt={service.title.rendered}
+        className="object-contain"
         height={600}
         src={service.featured_media_url}
         width={600}

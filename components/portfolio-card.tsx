@@ -25,7 +25,7 @@ export const PortfolioCard = ({
         shadow="lg"
       >
         <Image
-          removeWrapper
+          isZoomed
           alt={title}
           className="z-0 w-full h-full object-cover"
           src={image}

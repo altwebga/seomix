@@ -27,6 +27,7 @@ export const ServicesCard = ({
           <div className="flex flex-col md:flex-row gap-8 items-center ">
             <div className="md:w-1/2">
               <Image
+                isZoomed
                 alt={title}
                 className="h-56 w-full object-cover"
                 height={300}

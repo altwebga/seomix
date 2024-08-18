@@ -27,7 +27,7 @@ export const Header = () => {
     <NextUINavbar
       isBordered
       isMenuOpen={isMenuOpen}
-      maxWidth="2xl"
+      maxWidth="xl"
       position="sticky"
       onMenuOpenChange={setIsMenuOpen}
     >
