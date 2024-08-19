@@ -25,17 +25,15 @@ export const ServicesCard = ({
       >
         <CardBody>
           <div className="flex flex-col md:flex-row gap-8 items-center ">
-            <div className="md:w-1/2">
-              <Image
-                isZoomed
-                alt={title}
-                className="h-56 w-full object-cover"
-                height={300}
-                shadow="md"
-                src={image}
-                width={300}
-              />
-            </div>
+            <Image
+              isBlurred
+              alt={title}
+              className="object-cover"
+              height={300}
+              shadow="md"
+              src={image}
+              width={300}
+            />
             <div className="md:w-1/2">
               <h3 className="text-xl">{title}</h3>
               <div dangerouslySetInnerHTML={{ __html: excerpt }} />

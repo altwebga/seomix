@@ -9,6 +9,7 @@
 		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
 	},
 	"dependencies": {
+		"@hookform/resolvers": "^3.9.0",
 		"@nextui-org/button": "2.0.37",
 		"@nextui-org/card": "^2.0.33",
 		"@nextui-org/checkbox": "^2.1.4",
@@ -31,12 +32,16 @@
 		"intl-messageformat": "^10.5.0",
 		"next": "14.2.4",
 		"next-themes": "^0.2.1",
+		"nodemailer": "^6.9.14",
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
-		"react-icons": "^5.3.0"
+		"react-hook-form": "^7.52.2",
+		"react-icons": "^5.3.0",
+		"zod": "^3.23.8"
 	},
 	"devDependencies": {
 		"@types/node": "20.5.7",
+		"@types/nodemailer": "^6.4.15",
 		"@types/react": "18.3.3",
 		"@types/react-dom": "18.3.0",
 		"@typescript-eslint/eslint-plugin": "7.2.0",
