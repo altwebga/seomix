@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
+import { SessionProvider } from "next-auth/react";
 
 import { auth } from "@/auth";
+import { DashboardNav } from "@/components/dashboard-nav";
 export default async function DashboardLayout({
   children,
 }: {
@@ -13,10 +15,9 @@ export default async function DashboardLayout({
   }
 
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-lg text-center justify-center">
-        {children}
-      </div>
-    </section>
+    <SessionProvider>
+      <DashboardNav />
+      <main>{children}</main>
+    </SessionProvider>
   );
 }

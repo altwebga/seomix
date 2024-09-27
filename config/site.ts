@@ -3,67 +3,48 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
   name: "Next.js + NextUI",
   description: "Make beautiful websites regardless of your design experience.",
-  navItems: [
+  siteNavItems: [
     {
-      label: "Home",
+      label: "Главная",
       href: "/",
     },
     {
-      label: "Docs",
-      href: "/docs",
+      label: "Услуги",
+      href: "/services",
     },
     {
-      label: "Pricing",
-      href: "/pricing",
+      label: "Портфолио",
+      href: "/portfolio",
     },
     {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
-      label: "About",
+      label: "Обо мне",
       href: "/about",
     },
-  ],
-  navMenuItems: [
     {
-      label: "Profile",
-      href: "/profile",
+      label: "Контакты",
+      href: "/contacts",
     },
     {
-      label: "Dashboard",
+      label: "Блог",
+      href: "/blog",
+    },
+  ],
+  dashboardNavItems: [
+    {
+      label: "Записи",
       href: "/dashboard",
     },
     {
-      label: "Projects",
-      href: "/projects",
-    },
-    {
-      label: "Team",
-      href: "/team",
+      label: "Медиа",
+      href: "/dashboard/media",
     },
     {
       label: "Calendar",
-      href: "/calendar",
+      href: "/dashboard/profile",
     },
     {
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
+      label: "Пользователи",
+      href: "/dashboard/users",
     },
   ],
-  links: {
-    github: "https://github.com/nextui-org/nextui",
-    twitter: "https://twitter.com/getnextui",
-    docs: "https://nextui.org",
-    discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
-  },
 };

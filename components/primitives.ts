@@ -51,3 +51,15 @@ export const subtitle = tv({
     fullWidth: true,
   },
 });
+
+export const menuItem = tv({
+  base: "text-lg text-default-600 hover:text-default-700",
+  variants: {
+    active: {
+      true: "text-default-700",
+    },
+  },
+  defaultVariants: {
+    active: false,
+  },
+});
