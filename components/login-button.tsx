@@ -2,7 +2,7 @@ import { Button } from "@nextui-org/button";
 
 import { signIn } from "@/auth";
 
-export default function SignIn() {
+export function LoginButton() {
   return (
     <form
       action={async () => {
