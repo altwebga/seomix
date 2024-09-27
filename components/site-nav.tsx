@@ -23,7 +23,12 @@ export function SiteNav() {
   const pathname = usePathname();
 
   return (
-    <Navbar maxWidth="2xl" position="sticky" onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      isBordered
+      maxWidth="2xl"
+      position="sticky"
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}

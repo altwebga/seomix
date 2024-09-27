@@ -39,10 +39,6 @@ export const siteConfig = {
       href: "/dashboard/media",
     },
     {
-      label: "Calendar",
-      href: "/dashboard/profile",
-    },
-    {
       label: "Пользователи",
       href: "/dashboard/users",
     },

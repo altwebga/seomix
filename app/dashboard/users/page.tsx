@@ -1,8 +1,8 @@
 import { title } from "@/components/primitives";
-export default function DashboardPage() {
+export default function UsersPage() {
   return (
     <div>
-      <h1 className={title()}>Dashboard</h1>
+      <h1 className={title()}>Users</h1>
     </div>
   );
 }
