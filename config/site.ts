@@ -3,66 +3,67 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
   name: "Next.js + NextUI",
   description: "Make beautiful websites regardless of your design experience.",
-  siteNavItems: [
+  navItems: [
     {
-      label: "Главная",
+      label: "Home",
       href: "/",
     },
     {
-      label: "Услуги",
-      href: "/services",
+      label: "Docs",
+      href: "/docs",
     },
     {
-      label: "Портфолио",
-      href: "/portfolio",
+      label: "Pricing",
+      href: "/pricing",
     },
     {
-      label: "Обо мне",
-      href: "/about",
-    },
-    {
-      label: "Контакты",
-      href: "/contacts",
-    },
-    {
-      label: "Блог",
+      label: "Blog",
       href: "/blog",
     },
-  ],
-  dashboardNavItems: [
     {
-      label: "Записи",
+      label: "About",
+      href: "/about",
+    },
+  ],
+  navMenuItems: [
+    {
+      label: "Profile",
+      href: "/profile",
+    },
+    {
+      label: "Dashboard",
       href: "/dashboard",
     },
     {
-      label: "Медиа",
-      href: "/dashboard/media",
+      label: "Projects",
+      href: "/projects",
     },
     {
-      label: "Пользователи",
-      href: "/dashboard/users",
+      label: "Team",
+      href: "/team",
     },
     {
-      label: "Настройки",
-      href: "/dashboard/settings",
+      label: "Calendar",
+      href: "/calendar",
+    },
+    {
+      label: "Settings",
+      href: "/settings",
+    },
+    {
+      label: "Help & Feedback",
+      href: "/help-feedback",
+    },
+    {
+      label: "Logout",
+      href: "/logout",
     },
   ],
-  postTypes: [
-    {
-      value: "post",
-      label: "Статья",
-    },
-    {
-      value: "portfolio",
-      label: "Портфолио",
-    },
-    {
-      value: "client",
-      label: "Клиент",
-    },
-    {
-      value: "services",
-      label: "Услуга",
-    },
-  ],
+  links: {
+    github: "https://github.com/nextui-org/nextui",
+    twitter: "https://twitter.com/getnextui",
+    docs: "https://nextui.org",
+    discord: "https://discord.gg/9b6yyZKmH4",
+    sponsor: "https://patreon.com/jrgarciadev",
+  },
 };
