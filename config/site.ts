@@ -42,5 +42,27 @@ export const siteConfig = {
       label: "Пользователи",
       href: "/dashboard/users",
     },
+    {
+      label: "Настройки",
+      href: "/dashboard/settings",
+    },
+  ],
+  postTypes: [
+    {
+      value: "post",
+      label: "Статья",
+    },
+    {
+      value: "portfolio",
+      label: "Портфолио",
+    },
+    {
+      value: "client",
+      label: "Клиент",
+    },
+    {
+      value: "services",
+      label: "Услуга",
+    },
   ],
 };

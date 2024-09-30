@@ -2,7 +2,7 @@ import { title } from "@/components/primitives";
 export default function UsersPage() {
   return (
     <div>
-      <h1 className={title()}>Users</h1>
+      <h1 className={title()}>Пользователи</h1>
     </div>
   );
 }

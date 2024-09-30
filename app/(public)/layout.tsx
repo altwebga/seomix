@@ -1,13 +1,7 @@
-export default function AboutLayout({
+export default function SiteLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <>
-      <main className="inline-block max-w-lg text-center justify-center">
-        {children}
-      </main>
-    </>
-  );
+  return <main className="container mx-auto px-4">{children}</main>;
 }
