@@ -3,7 +3,7 @@ import { Logo } from "./Logo";
 import { MobileNav } from "./MobileNav";
 import { ThemeToggle } from "./ThemeToggle";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { UserDropdownMenu } from "./UserDropdownMenu";
 
 export function Header() {
   return (
@@ -14,7 +14,7 @@ export function Header() {
       </Link>
       <HeaderNav />
       <div className="hidden lg:flex items-center gap-8">
-        <Button variant="default">Get Started</Button>
+        <UserDropdownMenu />
         <ThemeToggle />
       </div>
       <div className="flex items-center gap-4 lg:hidden">

@@ -11,7 +11,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { siteNavigation } from "@/lib/siteConfig";
-import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import { Logo } from "./Logo";
@@ -55,9 +54,7 @@ export function MobileNav() {
             </ul>
           </nav>
         </SheetHeader>
-        <SheetFooter>
-          <Button variant="outline">Войти</Button>
-        </SheetFooter>
+        <SheetFooter></SheetFooter>
       </SheetContent>
     </Sheet>
   );
