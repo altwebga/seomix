@@ -2,6 +2,11 @@ import { siteNavigationType } from "./types";
 
 export const siteNavigation: siteNavigationType[] = [
   {
+    title: "Главная",
+    href: "/",
+    description: "Главная страница сайта",
+  },
+  {
     title: "Услуги",
     href: "/services",
     description: "Полный список услуг",
