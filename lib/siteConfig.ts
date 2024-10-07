@@ -1,6 +1,7 @@
-import { siteNavigationType } from "./types";
+import { SiteNavigationType } from "./types";
+import { ContentType } from "./types";
 
-export const siteNavigation: siteNavigationType[] = [
+export const siteNavigation: SiteNavigationType[] = [
   {
     title: "Главная",
     href: "/",
@@ -30,5 +31,32 @@ export const siteNavigation: siteNavigationType[] = [
     title: "Блог",
     href: "/blog",
     description: "Последние посты из блога",
+  },
+];
+export const contentType: ContentType[] = [
+  {
+    id: 1,
+    label: "Статья",
+    value: "blog",
+  },
+  {
+    id: 2,
+    label: "Портфолио",
+    value: "portfolio",
+  },
+  {
+    id: 3,
+    label: "Клиент",
+    value: "client",
+  },
+  {
+    id: 4,
+    label: "Услуга",
+    value: "service",
+  },
+  {
+    id: 5,
+    label: "Задача",
+    value: "task",
   },
 ];

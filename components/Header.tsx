@@ -1,8 +1,8 @@
+import Link from "next/link";
 import { HeaderNav } from "./HeaderNav";
 import { Logo } from "./Logo";
 import { MobileNav } from "./MobileNav";
 import { ThemeToggle } from "./ThemeToggle";
-import Link from "next/link";
 import { UserDropdownMenu } from "./UserDropdownMenu";
 
 export function Header() {
@@ -13,11 +13,11 @@ export function Header() {
         <span className="text-lg font-bold">seomix.</span>
       </Link>
       <HeaderNav />
-      <div className="hidden lg:flex items-center gap-8">
+      <div className="hidden lg:flex items-center gap-4">
         <UserDropdownMenu />
         <ThemeToggle />
       </div>
-      <div className="flex items-center gap-4 lg:hidden">
+      <div className="lg:hidden flex items-center gap-4">
         <MobileNav />
         <ThemeToggle />
       </div>

@@ -30,6 +30,9 @@ export async function UserDropdownMenu() {
         <DropdownMenuLabel>{session?.user?.email}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
+          <Link href="/dashboard">Личный кабинет</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
           <Link href="/dashboard/profile">Профиль</Link>
         </DropdownMenuItem>
         <DropdownMenuItem>Поддержка</DropdownMenuItem>
