@@ -84,8 +84,9 @@ model Post {
 
 model Image {
   id        String   @id @default(cuid())
-  url       String   // URL изображения
-  posts     PostImage[] // Связь через промежуточную таблицу PostImage
+  url       String
+  s3Key     String
+  posts     PostImage[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
