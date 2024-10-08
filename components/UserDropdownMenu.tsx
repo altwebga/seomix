@@ -17,7 +17,7 @@ export async function UserDropdownMenu() {
   if (!session)
     return (
       <Button variant="default">
-        <Link href="/login">Get Started</Link>
+        <Link href="/login">Войти в ЛК</Link>
       </Button>
     );
   return (
