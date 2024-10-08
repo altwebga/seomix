@@ -1,4 +1,4 @@
-import { signIn } from "@/lib/auth";
+import { signIn } from "@/auth";
 import { Button } from "./ui/button";
 
 export function SignInButton() {

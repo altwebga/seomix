@@ -10,7 +10,7 @@ import {
 import { Button } from "./ui/button";
 import { CircleUser } from "lucide-react";
 import { SignOutButton } from "./SignOutButton";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 
 export async function UserDropdownMenu() {
   const session = await auth();
