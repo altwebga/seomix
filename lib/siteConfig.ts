@@ -1,5 +1,4 @@
-import { SiteNavigationType } from "./types";
-import { ContentType } from "./types";
+import { SiteNavigationType, ContentType, UserRoleType } from "./types";
 
 export const siteNavigation: SiteNavigationType[] = [
   {
@@ -58,5 +57,15 @@ export const contentType: ContentType[] = [
     id: 5,
     label: "Задача",
     value: "task",
+  },
+];
+export const userRoles: UserRoleType[] = [
+  {
+    label: "Администратор",
+    value: "admin",
+  },
+  {
+    label: "Клиент",
+    value: "client",
   },
 ];

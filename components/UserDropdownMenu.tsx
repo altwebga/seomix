@@ -11,6 +11,7 @@ import { Button } from "./ui/button";
 import { CircleUser } from "lucide-react";
 import { SignOutButton } from "./SignOutButton";
 import { auth } from "@/auth";
+import { userRoles } from "@/lib/siteConfig";
 
 export async function UserDropdownMenu() {
   const session = await auth();
@@ -20,6 +21,11 @@ export async function UserDropdownMenu() {
         <Link href="/login">Войти в ЛК</Link>
       </Button>
     );
+
+  const roleValue = session?.user?.role;
+  // Найдем соответствующий объект из массива userRoles
+  const roleLabel =
+    userRoles.find((role) => role.value === roleValue)?.label || "Хакер";
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex items-center gap-2 px-4 py-2 border border-muted hover:bg-muted rounded-sm">
@@ -27,7 +33,7 @@ export async function UserDropdownMenu() {
         <span>Привет, {session?.user?.name || "UserName"}</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel>{session?.user?.email}</DropdownMenuLabel>
+        <DropdownMenuLabel>{roleLabel}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <Link href="/dashboard">Личный кабинет</Link>

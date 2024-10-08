@@ -9,3 +9,8 @@ export type ContentType = {
   label: string;
   value: string;
 };
+
+export type UserRoleType = {
+  label: string;
+  value: string;
+};
