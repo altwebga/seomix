@@ -76,7 +76,7 @@ export function UploadMediaForm() {
       });
 
       setTimeout(() => {
-        router.push("/dashboard/gallery");
+        router.push("/dashboard/admin/gallery");
       }, 1000); // Задержка в 1 секунду
     } catch (error) {
       if (error instanceof Error) {
