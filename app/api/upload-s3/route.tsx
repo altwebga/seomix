@@ -40,7 +40,7 @@ export async function POST(request: Request) {
     const newImage = await prisma.image.create({
       data: {
         url: fileUrl,
-        s3Key: uniqueFileName, // Сохраняем ключ S3
+        s3Key: uniqueFileName,
       },
     });
 

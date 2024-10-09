@@ -1,35 +1,40 @@
-import { SiteNavigationType, ContentType, UserRoleType } from "./types";
+import { UserRoleType, SiteNavigationType, ContentType } from "./types";
+
+export const userRoles: UserRoleType[] = [
+  {
+    label: "Администратор",
+    value: "admin",
+  },
+  {
+    label: "Пользователь",
+    value: "user",
+  },
+];
 
 export const siteNavigation: SiteNavigationType[] = [
   {
     title: "Главная",
     href: "/",
-    description: "Главная страница сайта",
   },
   {
     title: "Услуги",
     href: "/services",
-    description: "Полный список услуг",
   },
   {
     title: "Портфолио",
     href: "/portfolio",
-    description: "Мои работы и проекты",
   },
   {
     title: "Обо мне",
     href: "/about",
-    description: "Био, статистика и контакты",
   },
   {
     title: "Контакты",
     href: "/contact",
-    description: "Мои контакты и адрес",
   },
   {
     title: "Блог",
     href: "/blog",
-    description: "Последние посты из блога",
   },
 ];
 export const contentType: ContentType[] = [
@@ -57,15 +62,5 @@ export const contentType: ContentType[] = [
     id: 5,
     label: "Задача",
     value: "task",
-  },
-];
-export const userRoles: UserRoleType[] = [
-  {
-    label: "Администратор",
-    value: "admin",
-  },
-  {
-    label: "Клиент",
-    value: "client",
   },
 ];

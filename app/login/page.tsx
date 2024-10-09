@@ -1,15 +1,22 @@
-import { SignInButton } from "@/components/SignInButton";
-import { auth } from "@/auth";
+import { auth, signIn } from "@/auth";
 import { redirect } from "next/navigation";
+import { Button } from "@/components/ui/button";
 export default async function LoginPage() {
   const session = await auth();
   if (session) {
     redirect("/dashboard");
   }
   return (
-    <div className="flex flex-col items-center justify-center min-h-64">
-      <h1 className="mb-4">Войти на сайт</h1>
-      <SignInButton />
+    <div>
+      <h1>Войти в ЛК</h1>
+      <form
+        action={async () => {
+          "use server";
+          await signIn("yandex");
+        }}
+      >
+        <Button type="submit">Войти через Яндекс</Button>
+      </form>
     </div>
   );
 }

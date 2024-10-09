@@ -1,34 +1,28 @@
+export type UserRoleValue = "admin" | "user";
+
+export type UserRoleType = {
+  label: string;
+  value: UserRoleValue;
+};
+
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  role: UserRoleType;
+  image?: string;
+  emailVerified?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
+};
+
 export type SiteNavigationType = {
   title: string;
   href: string;
-  description: string;
 };
 
 export type ContentType = {
   id: number;
   label: string;
   value: string;
-};
-
-export type UserRoleType = {
-  label: string;
-  value: string;
-};
-
-export type Post = {
-  id: string;
-  slug: string;
-  postType: string;
-  title: string;
-  description: string;
-  userEmail: string;
-  createdAt: Date;
-  updatedAt: Date;
-  images: ImageType[];
-};
-
-export type ImageType = {
-  id: string;
-  url: string;
-  s3Key: string;
 };
