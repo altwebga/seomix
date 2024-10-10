@@ -3,55 +3,61 @@ import { v4 as uuidv4 } from "uuid";
 import { s3Client } from "@/lib/s3Client";
 import { prisma } from "@/lib/prisma";
 
-export async function POST(request: Request) {
+export async function POST(request: Request, userEmail: string) {
   try {
     const formData = await request.formData();
-    const file = formData.get("file") as File | null;
+    const files = formData.getAll("file") as File[]; // Получаем все файлы
 
-    if (!file) {
-      return new Response(JSON.stringify({ error: "Файл не найден" }), {
+    if (!files || files.length === 0) {
+      return new Response(JSON.stringify({ error: "Файлы не найдены" }), {
         status: 400,
       });
     }
 
-    // Определяем расширение файла на основе его типа
-    const fileExtension = file.name.split(".").pop();
-    const uniqueFileName = `${uuidv4()}.${fileExtension}`;
+    const uploadedFiles = [];
 
-    console.log("Получен файл:", file);
-    console.log("Имя файла для загрузки:", uniqueFileName);
+    for (const file of files) {
+      // Определяем расширение файла на основе его типа
+      const fileExtension = file.name.split(".").pop();
+      const uniqueFileName = `${uuidv4()}.${fileExtension}`;
 
-    const params = {
-      Bucket: process.env.YANDEX_S3_BUCKET_NAME!,
-      Key: uniqueFileName,
-      Body: Buffer.from(await file.arrayBuffer()),
-      ContentType: file.type,
-    };
+      console.log("Получен файл:", file);
+      console.log("Имя файла для загрузки:", uniqueFileName);
 
-    console.log("S3 параметры загрузки:", params);
+      const params = {
+        Bucket: process.env.YANDEX_S3_BUCKET_NAME!,
+        Key: uniqueFileName,
+        Body: Buffer.from(await file.arrayBuffer()),
+        ContentType: file.type,
+      };
 
-    // Загрузка файла в S3
-    await s3Client.send(new PutObjectCommand(params));
+      console.log("S3 параметры загрузки:", params);
 
-    // Генерация ссылки на файл
-    const fileUrl = `${process.env.YANDEX_S3_ENDPOINT}/${process.env.YANDEX_S3_BUCKET_NAME}/${uniqueFileName}`;
+      // Загрузка файла в S3
+      await s3Client.send(new PutObjectCommand(params));
 
-    // Сохранение данных в базу данных
-    const newImage = await prisma.image.create({
-      data: {
-        url: fileUrl,
-        s3Key: uniqueFileName,
-      },
-    });
+      // Генерация ссылки на файл
+      const fileUrl = `${process.env.YANDEX_S3_ENDPOINT}/${process.env.YANDEX_S3_BUCKET_NAME}/${uniqueFileName}`;
 
-    console.log("Изображение успешно сохранено в базе данных:", newImage);
+      // Сохранение данных в базу данных
+      const newImage = await prisma.image.create({
+        data: {
+          url: fileUrl,
+          s3Key: uniqueFileName,
+          userEmail: userEmail,
+        },
+      });
 
-    return new Response(JSON.stringify({ url: fileUrl }), { status: 200 });
+      console.log("Изображение успешно сохранено в базе данных:", newImage);
+      uploadedFiles.push({ url: fileUrl });
+    }
+
+    return new Response(JSON.stringify({ uploadedFiles }), { status: 200 });
   } catch (error) {
-    console.error("Ошибка при загрузке файла:", error);
+    console.error("Ошибка при загрузке файлов:", error);
 
     return new Response(
-      JSON.stringify({ error: "Ошибка при загрузке файла на сервере" }),
+      JSON.stringify({ error: "Ошибка при загрузке файлов на сервере" }),
       { status: 500 }
     );
   }
