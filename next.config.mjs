@@ -1,4 +1,15 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+import nextMDX from "@next/mdx";
+
+const withMDX = nextMDX({
+  extension: /\.mdx?$/,
+  options: {
+    rehypePlugins: [],
+  },
+});
+
+const nextConfig = withMDX({
+  pageExtensions: ["ts", "tsx", "md", "mdx"],
+});
 
 export default nextConfig;
