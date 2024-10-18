@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { Header } from "@/components/Header";
 
 const geistSans = localFont({
   src: "../public/fonts/GeistVF.woff",
@@ -16,8 +17,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "СИБГИД",
-  description: "Путеводитель по западной и восточной Сибири.",
+  title: "SEOMIX",
+  description: "Разработка и продвижение сайтов в Горно-Алтайске",
 };
 
 export default function RootLayout({
@@ -36,6 +37,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Header/>
           {children}
           <Toaster />
         </ThemeProvider>
