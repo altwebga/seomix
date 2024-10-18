@@ -1,11 +1,9 @@
-import { PopUpForm } from "@/components/PopUpForm";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { Hero } from "@/components/Hero";
 
 export default function Home() {
   return (
     <div>
-      <ThemeToggle />
-      <PopUpForm />
+     <Hero />
     </div>
   );
 }

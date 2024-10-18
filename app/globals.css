@@ -100,4 +100,8 @@ body {
   code {
     @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] text-sm font-[family-name:var(--font-geist-mono)];
   }
+  ol,
+  ul {
+    @apply my-6 ml-6 list-disc [&>li]:mt-2 font-[family-name:var(--font-geist-mono)];
+  }
 }

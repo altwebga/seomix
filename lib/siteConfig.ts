@@ -1,35 +1,30 @@
-import { ListingType, UserRoleType, BlogCategoryType } from "./types";
+import { navLinksType, UserRoleType, BlogCategoryType } from "./types";
 
-export const listing: ListingType[] = [
+export const navLinks: navLinksType[] = [
   {
     id: 1,
-    value: "post",
-    label: "Статья",
+    title: "Услуги",
+    href: "/services",
   },
   {
     id: 2,
-    value: "place",
-    label: "Место",
+    title: "Портфолио",
+    href: "/portfolio",
   },
   {
     id: 3,
-    value: "tour",
-    label: "Тур",
+    title: "Обо мне",
+    href: "/about",
   },
   {
     id: 4,
-    value: "event",
-    label: "Мероприятие",
+    title: "Контакты",
+    href: "/contact",
   },
   {
     id: 5,
-    value: "excursion",
-    label: "Экскурсия",
-  },
-  {
-    id: 6,
-    value: "hotel",
-    label: "Отель",
+    title: "Блог",
+    href: "/blog",
   },
 ];
 
@@ -41,10 +36,6 @@ export const userRoles: UserRoleType[] = [
   {
     label: "Пользователь",
     value: "user",
-  },
-  {
-    label: "Владелец",
-    value: "owner",
   },
 ];
 export const blogCategories: BlogCategoryType[] = [

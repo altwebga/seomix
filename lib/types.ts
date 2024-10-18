@@ -1,7 +1,7 @@
-export type ListingType = {
+export type navLinksType = {
   id: number;
-  value: string;
-  label: string;
+  title: string;
+  href: string;
 };
 
 export type UserRoleValue = "admin" | "user" | "client";
