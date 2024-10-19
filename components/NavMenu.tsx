@@ -12,7 +12,7 @@ export function NavMenu({ className }: NavMenuProps) {
   const pathname = usePathname();
   return (
     <nav className={cn(className, "w-full")}>
-      <ul className="flex gap-4 list-none">
+      <ul className="flex flex-col md:flex-row gap-4 list-none">
         {navLinks.map((link) => (
           <li key={link.id}>
             <Link
