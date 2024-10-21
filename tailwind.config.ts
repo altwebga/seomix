@@ -56,13 +56,8 @@ const config: Config = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		}
-  	},
-	backgroundImage: {
-		'hero-bg-dark': 'url("../public/images/elegant_background_10_dark.png")',
-		'hero-bg': 'url("../public/images/elegant_background_10.png")',
-	}
+  	}
   },
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require("tailwindcss-animate")],
 };
 export default config;

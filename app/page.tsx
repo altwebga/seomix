@@ -1,9 +1,7 @@
-import { Hero } from "@/components/Hero";
-
 export default function Home() {
   return (
     <div>
-     <Hero />
+      <h1>Разработка и продвижение сайтов в Горно-Алтайске</h1>
     </div>
   );
 }
