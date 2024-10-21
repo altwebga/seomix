@@ -1,3 +1,10 @@
+import { PortfolioCards } from "@/components/PortfolioCard";
+
 export default function PortfolioPage() {
-  return <div></div>;
+  return (
+    <div>
+      <h1>Мои работы</h1>
+      <PortfolioCards />
+    </div>
+  );
 }
