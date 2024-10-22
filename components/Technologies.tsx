@@ -1,4 +1,13 @@
+"use client";
+import { useRef } from "react";
 import Image from "next/image";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+
+import AutoScroll from "embla-carousel-auto-scroll";
 
 import { techBadgesType } from "@/lib/types";
 
@@ -114,26 +123,37 @@ const techBadges: techBadgesType[] = [
 ];
 
 export function Technologies() {
+  const plugin = useRef(AutoScroll({}));
+
   return (
-    <section className="py-8 container mx-auto">
+    <section className="mt-12">
       <h2>Современные технологии</h2>
       <p>
         Использую только самые современные технологии, никаких шаблонных
         решений.
       </p>
 
-      <div className="flex flex-wrap justify-center gap-4 mt-4">
-        {techBadges.map((item) => (
-          <Image
-            key={item.id}
-            alt={item.title}
-            className="w-auto h-auto"
-            height={200}
-            src={item.image}
-            width={200}
-          />
-        ))}
-      </div>
+      <Carousel
+        plugins={[plugin.current]}
+        onMouseEnter={plugin.current.stop}
+        onMouseLeave={plugin.current.reset}
+        className="flex flex-wrap justify-center gap-4 mt-4"
+      >
+        <CarouselContent>
+          {techBadges.map((item) => (
+            <CarouselItem key={item.id} className="basis-1/4 md:basis-auto">
+              <Image
+                key={item.id}
+                alt={item.title}
+                className="w-auto h-auto object-contain"
+                height={40}
+                width={40}
+                src={item.image}
+              />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
     </section>
   );
 }

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import { PopUpForm } from "./PopUpForm";
 import heroImage from "@/public/images/undraw_mobile_development_re_wwsn.svg";
+import { Flame } from "lucide-react";
 
 export function Hero() {
   return (
@@ -13,6 +14,7 @@ export function Hero() {
             Разработка и продвижение сайтов{" "}
             <span className="text-sky-500">в Горно-Алтайске</span>
           </h1>
+          <p>Адекватный креатив и технологичные решения для вашего бизнеса.</p>
           <div className="flex flex-col md:flex-row gap-4 mt-12">
             <PopUpForm />
             <Button
@@ -22,6 +24,10 @@ export function Hero() {
             >
               <Link href={"/services"}>Услуги</Link>
             </Button>
+          </div>
+          <div className="flex items-center gap-2 mt-4">
+            <Flame className="text-red-800 w-8 h-8" />
+            <span>Все под ключ</span>
           </div>
         </div>
         <div>

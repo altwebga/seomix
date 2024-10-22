@@ -1,7 +1,7 @@
 export function ServicesHome() {
   return (
-    <section>
-      <h2>Услуги</h2>
+    <section className="mt-12">
+      <h2>Какие услуги я предлагаю</h2>
     </section>
   );
 }
