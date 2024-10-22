@@ -32,7 +32,7 @@ export function PopUpForm() {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className="min-w-48">Начать проект</Button>
+          <Button className="w-full md:w-48 shadow-md">Начать проект</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -48,7 +48,7 @@ export function PopUpForm() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button className="min-w-48">Начать проект</Button>
+        <Button className="w-full md:w-48 shadow-md">Начать проект</Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">

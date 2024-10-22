@@ -2,20 +2,24 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { PopUpForm } from "./PopUpForm";
-import heroImage from "@/public/images/hero-image.png";
+import heroImage from "@/public/images/undraw_mobile_development_re_wwsn.svg";
 
 export function Hero() {
   return (
-    <section className="bg-hero-bg bg-no-repeat bg-left h-screen flex flex-col justify-center items-baseline">
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+    <section className="bg-hero-bg bg-no-repeat bg-left h-[80vh] flex flex-col justify-center">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 items-center">
         <div>
-          <h1>
+          <h1 className="text-4xl md:text-6xl font-bold">
             Разработка и продвижение сайтов{" "}
             <span className="text-sky-500">в Горно-Алтайске</span>
           </h1>
-          <div className="flex flex-col md:flex-row gap-4 mt-8">
+          <div className="flex flex-col md:flex-row gap-4 mt-12">
             <PopUpForm />
-            <Button asChild variant={"outline"} className="min-w-48">
+            <Button
+              asChild
+              variant={"outline"}
+              className="w-full md:w-48 shadow-md"
+            >
               <Link href={"/services"}>Услуги</Link>
             </Button>
           </div>
