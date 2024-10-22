@@ -28,3 +28,9 @@ export type BlogCategoryType = {
   href: string;
   description: string;
 };
+
+export type techBadgesType = {
+  id: number;
+  title: string;
+  image: string;
+};
