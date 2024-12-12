@@ -1,59 +1,61 @@
-import Link from "next/link"
-
-import { Button } from "@/components/ui/button"
+import { signIn } from "@/auth";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export function LoginForm() {
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
-        <CardTitle className="text-2xl">Login</CardTitle>
+        <CardTitle className="text-2xl">Войти</CardTitle>
         <CardDescription>
-          Enter your email below to login to your account
+          Введите свои данные, чтобы войти в аккаунт
         </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="grid gap-4">
-          <div className="grid gap-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="m@example.com"
-              required
-            />
-          </div>
-          <div className="grid gap-2">
-            <div className="flex items-center">
-              <Label htmlFor="password">Password</Label>
-              <Link href="#" className="ml-auto inline-block text-sm underline">
-                Forgot your password?
-              </Link>
+          <form
+            action={async (formData) => {
+              "use server";
+              const email = formData.get("email"); // Extract email from formData
+              if (!email) {
+                throw new Error("Email is required");
+              }
+              await signIn("nodemailer", { email }, { redirectTo: "/pending" }); // Use the extracted email
+            }}
+          >
+            <div className="grid gap-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                name="email" // Important to include
+                type="email"
+                placeholder="m@example.com"
+                required
+              />
+              <Button type="submit" className="w-full">
+                Войти по ссылке
+              </Button>
             </div>
-            <Input id="password" type="password" required />
-          </div>
-          <Button type="submit" className="w-full">
-            Login
-          </Button>
-          <Button variant="outline" className="w-full">
-            Login with Google
-          </Button>
-        </div>
-        <div className="mt-4 text-center text-sm">
-          Don&apos;t have an account?{" "}
-          <Link href="#" className="underline">
-            Sign up
-          </Link>
+          </form>
+
+          <form
+            action={async () => {
+              "use server";
+              await signIn("yandex");
+            }}
+          >
+            <Button type="submit">Войти через Яндекс</Button>
+          </form>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
