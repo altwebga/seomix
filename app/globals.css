@@ -91,4 +91,26 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  h1 {
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl font-[family-name:var(--font-geist-sans)];
+  }
+  h2 {
+    @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 font-[family-name:var(--font-geist-sans)];
+  }
+  h3,
+  label {
+    @apply scroll-m-20 text-2xl mt-4 font-semibold tracking-tight font-[family-name:var(--font-geist-sans)];
+  }
+  h4 {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight font-[family-name:var(--font-geist-sans)];
+  }
+  p {
+    @apply leading-7 [&:not(:first-child)]:mt-6 text-lg font-[family-name:var(--font-geist-mono)];
+  }
+  a {
+    @apply font-medium decoration-primary decoration-2 font-[family-name:var(--font-geist-mono)];
+  }
+  blockquote {
+    @apply mt-6 border-l-2 pl-6 italic font-[family-name:var(--font-geist-mono)];
+  }
 }

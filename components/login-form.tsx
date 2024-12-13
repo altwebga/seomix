@@ -28,7 +28,7 @@ export function LoginForm() {
               if (!email) {
                 throw new Error("Email is required");
               }
-              await signIn("nodemailer", { email }, { redirectTo: "/pending" }); // Use the extracted email
+              await signIn("nodemailer", { email }); // Use the extracted email
             }}
           >
             <div className="grid gap-2">
@@ -49,10 +49,12 @@ export function LoginForm() {
           <form
             action={async () => {
               "use server";
-              await signIn("yandex");
+              await signIn("yandex", { redirectTo: "/dashboard" });
             }}
           >
-            <Button type="submit">Войти через Яндекс</Button>
+            <Button type="submit" className="w-full">
+              Войти через Яндекс
+            </Button>
           </form>
         </div>
       </CardContent>
