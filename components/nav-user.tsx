@@ -1,5 +1,7 @@
 "use client";
+import { useState, useEffect } from "react";
 import { signOut } from "next-auth/react";
+import { auth } from "@/auth";
 import {
   BadgeCheck,
   Bell,
@@ -36,6 +38,25 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+  const [userName, setUserName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
+  const [avatar, setAvatar] = useState(user.avatar);
+
+  useEffect(() => {
+    async function getUser() {
+      try {
+        const session = await auth();
+        if (session && session.user) {
+          setUserName(session.user.name || "");
+          setEmail(session.user.email || "");
+          setAvatar(session.user.image || "");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getUser();
+  }, []);
 
   return (
     <SidebarMenu>
@@ -47,12 +68,12 @@ export function NavUser({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.avatar} alt={user.name} />
+                <AvatarImage src={avatar} alt={userName} />
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
+                <span className="truncate font-semibold">{userName}</span>
+                <span className="truncate text-xs">{email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -98,9 +119,9 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => signOut()}>
               <LogOut />
-              <button onClick={() => signOut()}>Выйти</button>
+              Выйти
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

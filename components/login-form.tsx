@@ -35,7 +35,7 @@ export function LoginForm() {
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
-                name="email" // Important to include
+                name="email"
                 type="email"
                 placeholder="m@example.com"
                 required
