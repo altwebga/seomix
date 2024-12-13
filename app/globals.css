@@ -89,7 +89,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-[family-name:var(--font-geist-mono)];
   }
   h1 {
     @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl font-[family-name:var(--font-geist-sans)];
@@ -105,12 +105,12 @@ body {
     @apply scroll-m-20 text-xl font-semibold tracking-tight font-[family-name:var(--font-geist-sans)];
   }
   p {
-    @apply leading-7 [&:not(:first-child)]:mt-6 text-lg font-[family-name:var(--font-geist-mono)];
+    @apply leading-7 [&:not(:first-child)]:mt-6 text-lg;
   }
   a {
-    @apply font-medium decoration-primary decoration-2 font-[family-name:var(--font-geist-mono)];
+    @apply font-medium decoration-primary decoration-2;
   }
   blockquote {
-    @apply mt-6 border-l-2 pl-6 italic font-[family-name:var(--font-geist-mono)];
+    @apply mt-6 border-l-2 pl-6 italic;
   }
 }

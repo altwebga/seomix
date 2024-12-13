@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   AudioWaveform,
   BookOpen,
@@ -12,19 +12,19 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
-} from "lucide-react"
+} from "lucide-react";
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { NavMain } from "@/components/nav-main";
+import { NavProjects } from "@/components/nav-projects";
+import { NavUser } from "@/components/nav-user";
+import { TeamSwitcher } from "@/components/team-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 // This is sample data.
 const data = {
@@ -52,86 +52,86 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Портфолио",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Все работы",
           url: "#",
         },
         {
-          title: "Starred",
+          title: "Добавить",
           url: "#",
         },
         {
-          title: "Settings",
+          title: "Категории",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Услуги",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
+          title: "Все услуги",
           url: "#",
         },
         {
-          title: "Explorer",
+          title: "Добавить",
           url: "#",
         },
         {
-          title: "Quantum",
+          title: "Категории",
           url: "#",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Клиенты",
       url: "#",
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
+          title: "Все клиенты",
           url: "#",
         },
         {
-          title: "Get Started",
+          title: "Добавить",
           url: "#",
         },
         {
-          title: "Tutorials",
+          title: "Категории",
           url: "#",
         },
         {
-          title: "Changelog",
+          title: "Задачи от клиентов",
           url: "#",
         },
       ],
     },
     {
-      title: "Settings",
+      title: "Блог",
       url: "#",
       icon: Settings2,
       items: [
         {
-          title: "General",
+          title: "Все статьи",
           url: "#",
         },
         {
-          title: "Team",
+          title: "Добавить статью",
           url: "#",
         },
         {
-          title: "Billing",
+          title: "Категории",
           url: "#",
         },
         {
-          title: "Limits",
+          title: "Тэги",
           url: "#",
         },
       ],
@@ -154,7 +154,7 @@ const data = {
       icon: Map,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -171,5 +171,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }
