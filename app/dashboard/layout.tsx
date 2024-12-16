@@ -1,21 +1,22 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import dynamic from "next/dynamic";
 
 import { AppSidebar } from "@/components/app-sidebar";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+
+const BreadcrumbDashboard = dynamic(
+  () =>
+    import("@/components/breadcrumb-dashboard").then(
+      (mod) => mod.BreadcrumbDashboard
+    ),
+  { ssr: false }
+);
 
 export default async function DashboardLayout({
   children,
@@ -34,19 +35,7 @@ export default async function DashboardLayout({
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2 h-4" />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+            <BreadcrumbDashboard />
           </div>
         </header>
         {children}
