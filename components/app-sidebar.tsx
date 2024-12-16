@@ -26,12 +26,6 @@ import { ThemeToggle } from "./theme-toggle";
 
 // This is sample data.
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/images/profile.png",
-  },
-
   navMain: [
     {
       title: "Playground",
@@ -142,7 +136,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SessionProvider } from "next-auth/react";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -32,7 +33,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <SessionProvider
+            session={null}
+            refetchInterval={300}
+            refetchOnWindowFocus={false}
+          >
+            {children}
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>
