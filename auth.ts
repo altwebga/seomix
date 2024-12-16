@@ -1,64 +1,27 @@
-import authConfig from "@/auth.config";
+import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import NextAuth, { type DefaultSession } from "next-auth";
+import { prisma } from "@/prisma";
+import type { Provider } from "next-auth/providers";
+import Yandex from "next-auth/providers/yandex";
+import GitHub from "next-auth/providers/github";
 
-import { prisma } from "@/lib/prisma";
-import { getUserById } from "@/lib/user";
+const providers: Provider[] = [Yandex, GitHub];
 
-// More info: https://authjs.dev/getting-started/typescript#module-augmentation
-declare module "next-auth" {
-  interface Session {
-    user: {
-      role: string;
-    } & DefaultSession["user"];
-  }
-}
+export const providerMap = providers
+  .map((provider) => {
+    if (typeof provider === "function") {
+      const providerData = provider();
+      return { id: providerData.id, name: providerData.name };
+    } else {
+      return { id: provider.id, name: provider.name };
+    }
+  })
+  .filter((provider) => provider.id !== "credentials");
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
-
-  callbacks: {
-    async session({ token, session }) {
-      if (session.user) {
-        if (token.sub) {
-          session.user.id = token.sub;
-        }
-
-        if (token.email) {
-          session.user.email = token.email;
-        }
-
-        if (token.role) {
-          session.user.role = token.role as string;
-        }
-
-        session.user.name = token.name;
-        session.user.image = token.picture;
-      }
-
-      return session;
-    },
-
-    async jwt({ token }) {
-      if (!token.sub) return token;
-
-      const dbUser = await getUserById(token.sub);
-
-      if (!dbUser) return token;
-
-      token.name = dbUser.name;
-      token.email = dbUser.email;
-      token.picture = dbUser.image;
-      token.role = dbUser.role;
-
-      return token;
-    },
-  },
-  session: { strategy: "jwt" },
+  providers,
   pages: {
     signIn: "/login",
-    verifyRequest: "/auth/verify",
-    error: "/auth/error",
   },
-  ...authConfig,
 });

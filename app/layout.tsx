@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
+import { ThemeProvider } from "@/components/theme-provider";
 import localFont from "next/font/local";
-import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "../public/fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "../public/fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
+const TildaSans = localFont({
+  src: "../public/fonts/TildaSans-VF.woff",
+  variable: "--font-tilda-sans",
   weight: "100 900",
 });
 
@@ -25,12 +20,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-        <Toaster />
+    <html
+      lang="ru"
+      suppressHydrationWarning
+      className={`${TildaSans.variable}`}
+    >
+      <body className="antialiased">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

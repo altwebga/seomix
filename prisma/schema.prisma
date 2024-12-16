@@ -74,7 +74,7 @@ model VerificationToken {
 }
 
 enum PostType {
-  BLOG
+  ARTICLE
   PORTFOLIO
   CLIENT
   SERVICES
@@ -83,7 +83,7 @@ enum PostType {
 model Post {
   id          String   @id @default(cuid())
   slug        String   @unique
-  postType    PostType @default(BLOG)
+  postType    PostType @default(ARTICLE)
   title       String
   description String
   images      PostImage[]

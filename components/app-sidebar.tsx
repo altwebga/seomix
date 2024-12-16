@@ -2,12 +2,9 @@
 
 import * as React from "react";
 import {
-  AudioWaveform,
   BookOpen,
   Bot,
-  Command,
   Frame,
-  GalleryVerticalEnd,
   Map,
   PieChart,
   Settings2,
@@ -17,7 +14,7 @@ import {
 import { NavMain } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
 import { NavUser } from "@/components/nav-user";
-import { TeamSwitcher } from "@/components/team-switcher";
+
 import {
   Sidebar,
   SidebarContent,
@@ -25,113 +22,98 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { ThemeToggle } from "./theme-toggle";
 
 // This is sample data.
 const data = {
   user: {
     name: "shadcn",
     email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "/images/profile.png",
   },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
+
   navMain: [
     {
-      title: "Портфолио",
+      title: "Playground",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "Все работы",
+          title: "History",
           url: "#",
         },
         {
-          title: "Добавить",
+          title: "Starred",
           url: "#",
         },
         {
-          title: "Категории",
+          title: "Settings",
           url: "#",
         },
       ],
     },
     {
-      title: "Услуги",
+      title: "Models",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Все услуги",
+          title: "Genesis",
           url: "#",
         },
         {
-          title: "Добавить",
+          title: "Explorer",
           url: "#",
         },
         {
-          title: "Категории",
+          title: "Quantum",
           url: "#",
         },
       ],
     },
     {
-      title: "Клиенты",
+      title: "Documentation",
       url: "#",
       icon: BookOpen,
       items: [
         {
-          title: "Все клиенты",
+          title: "Introduction",
           url: "#",
         },
         {
-          title: "Добавить",
+          title: "Get Started",
           url: "#",
         },
         {
-          title: "Категории",
+          title: "Tutorials",
           url: "#",
         },
         {
-          title: "Задачи от клиентов",
+          title: "Changelog",
           url: "#",
         },
       ],
     },
     {
-      title: "Блог",
+      title: "Settings",
       url: "#",
       icon: Settings2,
       items: [
         {
-          title: "Все статьи",
+          title: "General",
           url: "#",
         },
         {
-          title: "Добавить статью",
+          title: "Team",
           url: "#",
         },
         {
-          title: "Категории",
+          title: "Billing",
           url: "#",
         },
         {
-          title: "Тэги",
+          title: "Limits",
           url: "#",
         },
       ],
@@ -160,14 +142,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <NavUser user={data.user} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <ThemeToggle />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
