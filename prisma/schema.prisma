@@ -101,7 +101,7 @@ model Image {
   title       String?
   description String?
   alt         String?
-  s3Key       String
+  s3Key       String @unique
   posts       PostImage[]
 
   createdAt DateTime @default(now())

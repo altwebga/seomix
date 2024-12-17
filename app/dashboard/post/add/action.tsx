@@ -41,16 +41,23 @@ export async function createPost(data: PostFormData) {
       return { error: "Неверный формат URL изображения!" };
     }
 
-    // Создание записи изображения
-    const imageRecord = await prisma.image.create({
-      data: {
-        url: image,
-        title,
-        s3Key,
-      },
+    // Проверка существования изображения по s3Key
+    let imageRecord = await prisma.image.findUnique({
+      where: { s3Key },
     });
 
-    // Создание поста и привязка изображения
+    // Если изображения нет, создаём его
+    if (!imageRecord) {
+      imageRecord = await prisma.image.create({
+        data: {
+          url: image,
+          title, // Заголовок из данных поста
+          s3Key,
+        },
+      });
+    }
+
+    // Создание поста и привязка изображения через правильную вложенную связь
     const post = await prisma.post.create({
       data: {
         title,
@@ -59,10 +66,19 @@ export async function createPost(data: PostFormData) {
         slug,
         userEmail: session.user.email,
         images: {
-          create: {
-            image: {
-              connect: { id: imageRecord.id },
+          create: [
+            {
+              image: {
+                connect: { id: imageRecord.id }, // Подключение существующего изображения
+              },
             },
+          ],
+        },
+      },
+      include: {
+        images: {
+          include: {
+            image: true, // Включение информации об изображении
           },
         },
       },

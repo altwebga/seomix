@@ -1,5 +1,6 @@
 import NextAuth, { type DefaultSession } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
+import { UserRole } from "@prisma/client";
 import { prisma } from "@/prisma";
 import type { Provider } from "next-auth/providers";
 import Yandex from "next-auth/providers/yandex";
@@ -13,7 +14,7 @@ declare module "next-auth" {
       email: string;
       emailVerified: string | null;
       image: string | null;
-      role: "ADMIN" | "USER" | "CLIENT"; // Можно добавить другие роли, если необходимо
+      role: UserRole;
       createdAt: string; // ISO дата в виде строки
       updatedAt: string; // ISO дата в виде строки
     } & DefaultSession["user"];
