@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SessionProvider } from "next-auth/react";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
 
 const TildaSans = localFont({
   src: "../public/fonts/TildaSans-VF.woff",
@@ -39,6 +40,7 @@ export default function RootLayout({
             refetchOnWindowFocus={false}
           >
             {children}
+            <Toaster />
           </SessionProvider>
         </ThemeProvider>
       </body>
