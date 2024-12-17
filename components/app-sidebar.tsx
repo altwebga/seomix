@@ -28,86 +28,78 @@ import { ThemeToggle } from "./theme-toggle";
 const data = {
   navMain: [
     {
-      title: "Playground",
+      title: "Блог",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Все статьи",
           url: "#",
         },
         {
-          title: "Starred",
+          title: "Добавить статью",
           url: "#",
         },
         {
-          title: "Settings",
+          title: "Категории",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Портфолио",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
+          title: "Все кейсы",
           url: "#",
         },
         {
-          title: "Explorer",
+          title: "Добавить кейс",
           url: "#",
         },
         {
-          title: "Quantum",
+          title: "Категории",
           url: "#",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Услуги",
       url: "#",
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
+          title: "Все услуги",
           url: "#",
         },
         {
-          title: "Get Started",
+          title: "Добавить услугу",
           url: "#",
         },
         {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
+          title: "Категории",
           url: "#",
         },
       ],
     },
     {
-      title: "Settings",
+      title: "Клиенты",
       url: "#",
       icon: Settings2,
       items: [
         {
-          title: "General",
+          title: "Все клиенты",
           url: "#",
         },
         {
-          title: "Team",
+          title: "Добавить клиента",
           url: "#",
         },
         {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
+          title: "Категории",
           url: "#",
         },
       ],
@@ -115,17 +107,17 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
+      name: "Задачи",
       url: "#",
       icon: Frame,
     },
     {
-      name: "Sales & Marketing",
+      name: "Настройки сайта",
       url: "#",
       icon: PieChart,
     },
     {
-      name: "Travel",
+      name: "Медиа",
       url: "#",
       icon: Map,
     },

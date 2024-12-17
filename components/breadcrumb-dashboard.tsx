@@ -16,6 +16,8 @@ const segmentTitles: Record<string, string> = {
   settings: "Настройки",
   account: "Аккаунт",
   home: "Главная",
+  post: "Пост",
+  add: "Добавить",
 };
 
 export function BreadcrumbDashboard() {
