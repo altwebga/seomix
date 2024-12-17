@@ -27,7 +27,7 @@ const FormSchema = z.object({
 
 export function EditProfileForm() {
   const { data: session } = useSession();
-  console.log(session);
+  console.log(session?.user);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -91,7 +91,6 @@ export function EditProfileForm() {
             </FormItem>
           )}
         />
-
         <Button type="submit">Обновить</Button>
       </form>
     </Form>

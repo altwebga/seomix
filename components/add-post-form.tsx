@@ -96,7 +96,7 @@ export function AddPostForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-2/3 space-y-6 max-w-sm"
+        className="w-2/3 space-y-6 max-w-lg"
       >
         <FormField
           control={form.control}
@@ -141,7 +141,7 @@ export function AddPostForm() {
             <FormItem>
               <FormLabel>Описание</FormLabel>
               <FormControl>
-                <Textarea {...field} />
+                <Textarea {...field} className="h-40" />
               </FormControl>
               <FormMessage />
             </FormItem>

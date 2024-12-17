@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { Slash } from "lucide-react";
 import { useSelectedLayoutSegments } from "next/navigation";
 import {
@@ -10,7 +11,6 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-// Маппинг маршрутов к названиям страниц
 const segmentTitles: Record<string, string> = {
   dashboard: "Панель управления",
   settings: "Настройки",
@@ -23,7 +23,6 @@ const segmentTitles: Record<string, string> = {
 export function BreadcrumbDashboard() {
   const segments = useSelectedLayoutSegments();
 
-  // Построение пути для хлебных крошек
   const buildPath = (segments: string[], index: number) => {
     return "/" + ["dashboard", ...segments.slice(0, index + 1)].join("/");
   };
@@ -32,14 +31,15 @@ export function BreadcrumbDashboard() {
     <Breadcrumb>
       <BreadcrumbList>
         {/* Главная страница */}
-        <BreadcrumbItem>
+        <BreadcrumbItem key="dashboard">
           <BreadcrumbLink href="/dashboard">
             <BreadcrumbPage>{segmentTitles["dashboard"]}</BreadcrumbPage>
           </BreadcrumbLink>
-          <BreadcrumbSeparator>
-            <Slash />
-          </BreadcrumbSeparator>
         </BreadcrumbItem>
+
+        <BreadcrumbSeparator key="separator-dashboard">
+          <Slash />
+        </BreadcrumbSeparator>
 
         {/* Остальные сегменты */}
         {segments.map((segment, index) => {
@@ -47,14 +47,19 @@ export function BreadcrumbDashboard() {
           const title = segmentTitles[segment] || segment;
 
           return (
-            <BreadcrumbItem key={index}>
-              <BreadcrumbLink href={path}>
-                <BreadcrumbPage>{title}</BreadcrumbPage>
-              </BreadcrumbLink>
-              <BreadcrumbSeparator>
-                <Slash />
-              </BreadcrumbSeparator>
-            </BreadcrumbItem>
+            <React.Fragment key={`breadcrumb-segment-${index}`}>
+              <BreadcrumbItem>
+                <BreadcrumbLink href={path}>
+                  <BreadcrumbPage>{title}</BreadcrumbPage>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+
+              {index < segments.length - 1 && (
+                <BreadcrumbSeparator key={`separator-${index}`}>
+                  <Slash />
+                </BreadcrumbSeparator>
+              )}
+            </React.Fragment>
           );
         })}
       </BreadcrumbList>
