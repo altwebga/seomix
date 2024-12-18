@@ -1,6 +1,13 @@
 "use client";
 import { deletePost } from "@/actions/delete-post";
-import { Button } from "./ui/button";
+import { Trash2Icon, PencilIcon, EllipsisIcon } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 type EditPostButtonProps = {
   postId: string;
@@ -18,8 +25,21 @@ export function EditPostButton({ postId, onPostDelete }: EditPostButtonProps) {
   }
 
   return (
-    <Button variant="destructive" onClick={handleDeletePost}>
-      Удалить
-    </Button>
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+        <EllipsisIcon />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <PencilIcon />
+          Изменить
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={handleDeletePost}>
+          <Trash2Icon />
+          Удалить
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
