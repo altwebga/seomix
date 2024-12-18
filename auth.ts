@@ -15,8 +15,8 @@ declare module "next-auth" {
       emailVerified: string | null;
       image: string | null;
       role: UserRole;
-      createdAt: string; // ISO дата в виде строки
-      updatedAt: string; // ISO дата в виде строки
+      createdAt: Date;
+      updatedAt: Date;
     } & DefaultSession["user"];
   }
 }
