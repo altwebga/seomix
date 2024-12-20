@@ -1,9 +1,12 @@
-import { PostTableDashboard } from "@/components/post-table-dashboard";
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
-export default function Page() {
-  return (
-    <div className="px-4 max-w-4xl">
-      <PostTableDashboard />
-    </div>
-  );
+export default async function Dashboard() {
+  const session = await auth();
+
+  if (!session?.user) {
+    return redirect('/');
+  } else {
+    redirect('/dashboard/overview');
+  }
 }

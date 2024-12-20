@@ -1,45 +1,34 @@
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
-import dynamic from "next/dynamic";
+import KBar from '@/components/kbar';
+import AppSidebar from '@/components/layout/app-sidebar';
+import Header from '@/components/layout/header';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
+import type { Metadata } from 'next';
+import { cookies } from 'next/headers';
 
-import { AppSidebar } from "@/components/app-sidebar";
-import { Separator } from "@/components/ui/separator";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+export const metadata: Metadata = {
+  title: 'Next Shadcn Dashboard Starter',
+  description: 'Basic dashboard with Next.js and Shadcn'
+};
 
-const BreadcrumbDashboard = dynamic(
-  () =>
-    import("@/components/breadcrumb-dashboard").then(
-      (mod) => mod.BreadcrumbDashboard
-    ),
-  { ssr: false }
-);
-
-export default async function DashboardLayout({
-  children,
+export default function DashboardLayout({
+  children
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth();
-  if (!session) {
-    redirect("/login");
-  }
+  // Persisting the sidebar state in the cookie.
+  const cookieStore = cookies();
+  const defaultOpen = cookieStore.get('sidebar:state')?.value === 'true';
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-          <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-            <BreadcrumbDashboard />
-          </div>
-        </header>
-        {children}
-      </SidebarInset>
-    </SidebarProvider>
+    <KBar>
+      <SidebarProvider defaultOpen={defaultOpen}>
+        <AppSidebar />
+        <SidebarInset>
+          <Header />
+          {/* page main content */}
+          {children}
+          {/* page main content ends */}
+        </SidebarInset>
+      </SidebarProvider>
+    </KBar>
   );
 }
