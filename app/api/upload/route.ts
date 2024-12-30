@@ -2,13 +2,22 @@ import { NextRequest, NextResponse } from "next/server";
 import { uploadFileToS3 } from "@/lib/s3-client";
 import { prisma } from "@/prisma";
 import { v4 as uuidv4 } from "uuid";
+import { auth } from "@/auth";
 
 export async function POST(req: NextRequest) {
   try {
+    const session = await auth();
     const formData = await req.formData();
     const files = formData.getAll("files") as File[]; // Получаем массив файлов
     const titles = formData.getAll("titles") as string[]; // Получаем массив названий
     const descriptions = formData.getAll("descriptions") as string[];
+
+    if (!session) {
+      return NextResponse.json(
+        { error: "Пользователь не авторизован" },
+        { status: 401 }
+      );
+    }
 
     if (!files || files.length === 0) {
       return NextResponse.json(
@@ -70,7 +79,7 @@ export async function POST(req: NextRequest) {
         const image = await prisma.image.create({
           data: {
             url: fileUrl,
-            s3Key: fileName,
+            userId: session.user.id,
             title: title, // Используем пользовательское название
             description: desc, // Используем пользовательское описание
           },
