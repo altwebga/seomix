@@ -1,8 +1,15 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import dynamic from "next/dynamic";
 
-import { AppSidebar } from "@/components/shared/app-sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -10,31 +17,20 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 
-const BreadcrumbAdmin = dynamic(
-  () =>
-    import("@/components/shared/breadcrumb-admin").then(
-      (mod) => mod.BreadcrumbAdmin
-    ),
-  { ssr: false }
-);
-
 export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const session = await auth();
-
   if (!session) {
     redirect("/login");
-    return null; // Чтобы остановить рендеринг
+    return null;
   }
-
-  if (session?.user.role !== "ADMIN") {
+  if (session.user.role !== "ADMIN") {
     redirect("/dashboard");
-    return null; // Чтобы остановить рендеринг
+    return null;
   }
-
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -43,10 +39,22 @@ export default async function AdminLayout({
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2 h-4" />
-            <BreadcrumbAdmin />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem className="hidden md:block">
+                  <BreadcrumbLink href="#">
+                    Building Your Application
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator className="hidden md:block" />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
           </div>
         </header>
-        {children}
+        <div className="px-4">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   );
