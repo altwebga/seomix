@@ -3,7 +3,7 @@
 import * as React from "react";
 import { BookOpen, Bot, Settings2, SquareTerminal } from "lucide-react";
 
-import { NavMain } from "@/components/nav-main";
+import { NavDashboard } from "./nav-dashboard";
 import { NavUser } from "@/components/nav-user";
 
 import {
@@ -115,7 +115,7 @@ export function DashboardSidebar({
         <Logo />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navUser} />
+        <NavDashboard items={data.navUser} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser />
