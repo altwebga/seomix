@@ -38,8 +38,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers,
   pages: {
-    signIn: "/login",
-    error: "/error",
+    signIn: "auth/login",
+    error: "auth/error",
   },
   callbacks: {
     session({ session, user }) {

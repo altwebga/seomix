@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { SessionProvider } from "next-auth/react";
-import { ThemeProvider } from "@/components/shared/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
+import { AppProvider } from "@/provider/app-provider";
 
 import localFont from "next/font/local";
 import "./globals.css";
@@ -24,20 +24,10 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body className={`${tildaSans.variable} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <SessionProvider
-            session={null}
-            refetchInterval={600}
-            refetchOnWindowFocus={false}
-          >
-            {children}
-          </SessionProvider>
-        </ThemeProvider>
+        <AppProvider>
+          {children}
+          <Toaster />
+        </AppProvider>
       </body>
     </html>
   );
