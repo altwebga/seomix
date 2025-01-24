@@ -15,6 +15,7 @@ import {
 import { Button } from "./ui/button";
 
 import { ThemeToggle } from "./theme-toggle";
+import { UserNav } from "./user-nav";
 
 export const navItems = [
   {
@@ -47,32 +48,33 @@ export function MobileNav() {
         <SheetTrigger asChild>
           <Button>Меню</Button>
         </SheetTrigger>
-        <SheetContent side="left" className="md:min-w-[800px]">
+        <SheetContent side="left">
           <SheetHeader>
-            <SheetTitle>logo</SheetTitle>
-            <SheetDescription asChild>
-              <nav>
-                <ul className="list-none space-y-4">
-                  {navItems.map((item) => (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className={cn(
-                          "cursor-pointer font-medium transition-colors hover:text-primary",
-                          pathname === item.href
-                            ? "text-primary"
-                            : "text-muted-foreground"
-                        )}
-                      >
-                        <SheetClose>{item.title}</SheetClose>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </SheetDescription>
+            <SheetTitle className="text-left">
+              <UserNav />
+            </SheetTitle>
+            <SheetDescription className="text-left">Меню</SheetDescription>
+            <nav className="text-left">
+              <ul className="list-none space-y-4">
+                {navItems.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "cursor-pointer font-medium transition-colors hover:text-primary",
+                        pathname === item.href
+                          ? "text-primary"
+                          : "text-muted-foreground"
+                      )}
+                    >
+                      <SheetClose>{item.title}</SheetClose>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </SheetHeader>
-          <SheetFooter>
+          <SheetFooter className="mt-4">
             <ThemeToggle />
           </SheetFooter>
         </SheetContent>
