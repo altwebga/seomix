@@ -17,7 +17,9 @@ export function UserNav() {
   if (!session) {
     return (
       <Link href="auth/login">
-        <Button>Войти</Button>
+        <Button className="w-32" variant="secondary">
+          Войти
+        </Button>
       </Link>
     );
   }
@@ -25,7 +27,7 @@ export function UserNav() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost">
-          <Avatar>
+          <Avatar className="h-8 w-8">
             <AvatarImage
               src={session?.user?.image || ""}
               alt={session?.user?.name || ""}
@@ -35,7 +37,7 @@ export function UserNav() {
           <span>{session?.user?.name}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="w-48">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>

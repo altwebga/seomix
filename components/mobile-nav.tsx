@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
@@ -13,7 +14,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { Button } from "./ui/button";
-
+import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { UserNav } from "./user-nav";
 
@@ -41,12 +42,13 @@ export const navItems = [
 ];
 
 export function MobileNav() {
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
   return (
     <div className="md:hidden">
-      <Sheet>
+      <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Button>Меню</Button>
+          <Button> {open ? <X /> : <Menu />} Меню</Button>
         </SheetTrigger>
         <SheetContent side="left">
           <SheetHeader>
