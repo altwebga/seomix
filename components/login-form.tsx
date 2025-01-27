@@ -13,7 +13,7 @@ import { Button } from "./ui/button";
 
 export function LoginForm() {
   return (
-    <Card>
+    <Card className="w-full max-w-sm">
       <CardHeader className="text-center">
         <CardTitle className="text-xl">Добро пожаловать!</CardTitle>
         <CardDescription>Войдите через Яндекс или GitHub</CardDescription>

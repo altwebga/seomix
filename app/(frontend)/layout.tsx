@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 export default function FrontendLayout({
   children,
@@ -5,9 +6,10 @@ export default function FrontendLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="container mx-auto px-4 mt-4">{children}</main>
-    </>
+      <main className="container mx-auto px-4 mt-4 flex-grow">{children}</main>
+      <Footer />
+    </div>
   );
 }

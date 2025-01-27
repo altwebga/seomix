@@ -38,7 +38,7 @@ export function UserNav() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-48">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel>{session?.user?.email}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <Link href="dashboard/profile">Профиль</Link>
