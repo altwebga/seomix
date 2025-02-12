@@ -10,12 +10,10 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetFooter,
   SheetClose,
 } from "@/components/ui/sheet";
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
-import { ThemeToggle } from "./theme-toggle";
 import { UserNav } from "./user-nav";
 
 export const navItems = [
@@ -55,8 +53,8 @@ export function MobileNav() {
             <SheetTitle className="text-left">
               <UserNav />
             </SheetTitle>
-            <SheetDescription className="text-left">Меню</SheetDescription>
-            <nav className="text-left">
+            <SheetDescription className="text-left px-4">Меню</SheetDescription>
+            <nav className="text-left p-4">
               <ul className="list-none space-y-4">
                 {navItems.map((item) => (
                   <li key={item.href}>
@@ -76,9 +74,6 @@ export function MobileNav() {
               </ul>
             </nav>
           </SheetHeader>
-          <SheetFooter className="mt-4">
-            <ThemeToggle />
-          </SheetFooter>
         </SheetContent>
       </Sheet>
     </div>
