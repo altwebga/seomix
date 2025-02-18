@@ -59,10 +59,12 @@ export function ContactDialog() {
             мин.
           </DrawerDescription>
         </DrawerHeader>
-        <ContactForm />
+        <ContactForm className="px-4 space-y-4" />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="outline" className="w-full mt-2">
+              Отмена
+            </Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>

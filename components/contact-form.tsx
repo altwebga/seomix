@@ -9,13 +9,16 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+
+type ContactFormProps = {
+  className?: string;
+};
 
 const FormSchema = z.object({
   firstName: z.string().min(2, {
@@ -27,7 +30,7 @@ const FormSchema = z.object({
   }),
 });
 
-export function ContactForm() {
+export function ContactForm({ className }: ContactFormProps) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -49,7 +52,7 @@ export function ContactForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="">
+      <form onSubmit={form.handleSubmit(onSubmit)} className={className}>
         <FormField
           control={form.control}
           name="firstName"
@@ -59,7 +62,6 @@ export function ContactForm() {
               <FormControl>
                 <Input placeholder="Тони Старк" {...field} />
               </FormControl>
-              <FormDescription>Введите ваше имя</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -73,9 +75,6 @@ export function ContactForm() {
               <FormControl>
                 <Input placeholder="+71234567890" {...field} />
               </FormControl>
-              <FormDescription>
-                Номер телефона в формате +71234567890
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
