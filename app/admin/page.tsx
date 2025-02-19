@@ -1,7 +1,10 @@
+import { AddPostForm } from "@/components/backend/add-post-form";
+
 export default function AdminPage() {
   return (
-    <div>
+    <div className="container mx-auto px-4">
       <h1>Admin</h1>
+      <AddPostForm />
     </div>
   );
 }
