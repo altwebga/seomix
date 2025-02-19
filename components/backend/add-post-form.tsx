@@ -1,6 +1,6 @@
 "use client";
 
-import { useTransition } from "react";
+import { useTransition, useRef } from "react"; // Добавляем useRef
 import { createPost } from "@/actions/create-post";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -27,22 +27,28 @@ const FormSchema = z.object({
   description: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
-  image: z.instanceof(File).optional(), // Ожидаем файл, но делаем его необязательным
+  image: z.instanceof(File).optional(),
+  video: z.string().optional(),
+  price: z.string().optional(),
 });
 
 export function AddPostForm() {
   const [isPending, startTransition] = useTransition();
+  const fileInputRef = useRef<HTMLInputElement>(null); // Ref для файлового поля
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       postType: "ARTICLE",
       title: "",
       description: "",
-      image: undefined, // Инициализируем поле image
+      image: undefined,
+      video: "",
+      price: "",
     },
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
+    console.log("Form submitted", data);
     const formData = new FormData();
     formData.append("postType", data.postType);
     formData.append("title", data.title);
@@ -50,19 +56,49 @@ export function AddPostForm() {
     if (data.image) {
       formData.append("image", data.image);
     }
+    if (data.price) {
+      formData.append("price", data.price);
+    }
+    if (data.video) {
+      formData.append("video", data.video);
+    }
 
     startTransition(async () => {
-      const result = await createPost(formData);
-      if (result.error) {
+      console.log("Transition started");
+      try {
+        const result = await createPost(formData);
+        if (result.error) {
+          toast({
+            title: "Error",
+            description: result.error,
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Success",
+            description: "Post created successfully",
+          });
+          // Сбрасываем форму после успешной загрузки
+          form.reset({
+            postType: "ARTICLE", // Явно сбрасываем postType
+            title: "",
+            description: "",
+            image: undefined,
+            video: "",
+            price: "",
+          });
+
+          // Очищаем файловое поле
+          if (fileInputRef.current) {
+            fileInputRef.current.value = ""; // Очищаем значение файлового поля
+          }
+        }
+      } catch (error) {
+        console.error("Error during transition:", error);
         toast({
           title: "Error",
-          description: result.error,
+          description: "An unexpected error occurred",
           variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "Success",
-          description: "Post created successfully",
         });
       }
     });
@@ -100,6 +136,36 @@ export function AddPostForm() {
             </FormItem>
           )}
         />
+        {form.watch("postType") === "SERVICE" && (
+          <FormField
+            control={form.control}
+            name="price"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Цена услуги</FormLabel>
+                <FormControl>
+                  <Input placeholder="" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
+        {form.watch("postType") === "PORTFOLIO" && (
+          <FormField
+            control={form.control}
+            name="video"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Ссылка на видео RuTube</FormLabel>
+                <FormControl>
+                  <Input placeholder="" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
         <FormField
           control={form.control}
           name="description"
@@ -122,6 +188,7 @@ export function AddPostForm() {
               <FormControl>
                 <Input
                   type="file"
+                  ref={fileInputRef} // Привязываем ref к файловому полю
                   onChange={(e) => {
                     const file = e.target.files?.[0];
                     field.onChange(file);
@@ -133,7 +200,7 @@ export function AddPostForm() {
           )}
         />
         <Button type="submit" disabled={isPending}>
-          {isPending ? "Publishing..." : "Publish"}
+          {isPending ? "Публикуется..." : "Опубликовать"}
         </Button>
       </form>
     </Form>
