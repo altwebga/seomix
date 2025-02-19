@@ -1,5 +1,5 @@
 "use client";
-
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { YandexCaptcha } from "@/components/yandex-captcha";
 
 type ContactFormProps = {
   className?: string;
@@ -31,6 +32,7 @@ const FormSchema = z.object({
 });
 
 export function ContactForm({ className }: ContactFormProps) {
+  const [isCaptchaVerified, setIsCaptchaVerified] = useState<boolean>(false);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -79,7 +81,12 @@ export function ContactForm({ className }: ContactFormProps) {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full mt-4">
+        <YandexCaptcha onVerify={() => setIsCaptchaVerified(true)} />
+        <Button
+          disabled={!isCaptchaVerified}
+          type="submit"
+          className="w-full mt-4"
+        >
           Отправить
         </Button>
       </form>
