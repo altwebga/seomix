@@ -14,7 +14,7 @@ export default async function Page({
   return (
     <div>
       <h1>{data.title}</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
         <div className="flex flex-col gap-4">
           {data.description && (
             <div dangerouslySetInnerHTML={{ __html: data.description }} />
@@ -22,7 +22,7 @@ export default async function Page({
           {data.price && <div>Цена: {data.price}</div>}
         </div>
         <Image
-          className="hidden md:block"
+          className="hidden md:block rounded-md"
           src={data.image || ""}
           alt={data.title || ""}
           width={500}
