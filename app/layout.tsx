@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Toaster } from "@/components/ui/toaster";
-import { AppProvider } from "@/provider/app-provider";
+import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/theme-provider";
 
 import localFont from "next/font/local";
 import "./globals.css";
@@ -24,10 +24,10 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body className={`${tildaSans.variable} antialiased`}>
-        <AppProvider>
+        <ThemeProvider>
           {children}
           <Toaster />
-        </AppProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
