@@ -39,9 +39,3 @@ export async function generateMetadata({
     },
   };
 }
-
-export function generateStaticParams() {
-  return [{ slug: "website" }];
-}
-
-export const dynamicParams = false;
