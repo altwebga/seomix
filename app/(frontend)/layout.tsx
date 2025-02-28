@@ -1,7 +1,14 @@
+import { Header } from "@/components/shared/header";
+
 export default function FrontEndLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <main className="container px-4 mx-auto">{children}</main>;
+  return (
+    <>
+      <Header />
+      <main className="container px-4 mx-auto">{children}</main>
+    </>
+  );
 }
