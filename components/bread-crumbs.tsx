@@ -13,6 +13,8 @@ import {
 
 const pathSetting: Record<string, string> = {
   profile: "Профиль",
+  blog: "Блог",
+  services: "Услуги",
 };
 
 export function BreadCrumbs() {

@@ -2,11 +2,30 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
- 
+
 generator client {
   provider = "prisma-client-js"
 }
 
+/* ==== ENUMS ==== */
+enum Role {
+  USER
+  ADMIN
+}
+
+enum PostType {
+  POST       // обычная статья/новость/блог
+  SERVICES   // услуга
+  PORTFOLIO  // портфолио/кейс
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+/* ==== EXISTING MODELS ==== */
 model Account {
   id                 String  @id @default(cuid())
   userId             String  @map("user_id")
@@ -20,40 +39,76 @@ model Account {
   scope              String?
   id_token           String? @db.Text
   session_state      String?
- 
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@unique([provider, providerAccountId])
   @@map("accounts")
 }
- 
+
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique @map("session_token")
   userId       String   @map("user_id")
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@map("sessions")
 }
- 
+
 model User {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")
   image         String?
+
+  // NEW: роль (по умолчанию USER)
+  role          Role      @default(USER)
+
   accounts      Account[]
   sessions      Session[]
- 
+
+  // связь с постами как автор
+  posts         Post[]
+
   @@map("users")
 }
- 
+
 model VerificationToken {
   identifier String
   token      String
   expires    DateTime
- 
+
   @@unique([identifier, token])
   @@map("verification_tokens")
+}
+
+/* ==== NEW MODEL ==== */
+model Post {
+  id          String     @id @default(cuid())
+  title       String
+  slug        String     @unique
+  type        PostType
+  status      PostStatus @default(DRAFT)
+
+  excerpt     String?    @db.Text
+  content     String?    @db.Text
+  coverImage  String?
+  publishedAt DateTime?
+
+  // Автор
+  authorId    String?    @map("author_id")
+  author      User?      @relation(fields: [authorId], references: [id], onDelete: SetNull)
+
+  // SEO/метаданные по желанию
+  metaTitle       String?
+  metaDescription String?
+
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt      @map("updated_at")
+
+  @@map("posts")
+  @@index([type, status])
+  @@index([authorId])
 }
