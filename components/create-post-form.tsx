@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useTransition } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -25,6 +26,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { PostType } from "@prisma/client";
+import { createPost } from "@/app/dashboard/actions";
 
 const FormSchema = z.object({
   title: z.string().min(2, {
@@ -37,6 +39,7 @@ const FormSchema = z.object({
 });
 
 export function CreatePostForm() {
+  const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -47,12 +50,14 @@ export function CreatePostForm() {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast("You submitted the following values", {
-      description: (
-        <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
+    startTransition(async () => {
+      try {
+        await createPost(data);
+        form.reset();
+        toast.success("Запись создана");
+      } catch {
+        toast.error("Не удалось создать запись");
+      }
     });
   }
 
@@ -116,7 +121,9 @@ export function CreatePostForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Опубликовать</Button>
+        <Button type="submit" disabled={isPending}>
+          Опубликовать
+        </Button>
       </form>
     </Form>
   );
