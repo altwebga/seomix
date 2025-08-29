@@ -17,6 +17,7 @@ export type CityExtra = {
   advantages: CityAdvantage[];
   services: CityService[];
   prep: string | null;
+  prepFrom: string | null;
 };
 
 export type CityImage = {
@@ -29,6 +30,7 @@ export type City = {
   id: string;
   slug: string;
   title: string | null;
+  excerpt: string | null;
   content: string | null;
   cityExtra?: CityExtra;
   featuredImage?: CityImage;
@@ -55,6 +57,7 @@ export async function getCityBySlug(slug: string) {
       city(id: $slug, idType: SLUG) {
         slug
         title
+        excerpt
         content
         cityExtra {
           advantages {
@@ -66,6 +69,7 @@ export async function getCityBySlug(slug: string) {
             serviceDescription
           }
           prep
+          prepFrom
         }
         featuredImage {
           node {

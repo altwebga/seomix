@@ -1,20 +1,20 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 type CityServicesCardProps = {
-  cardTitle: string;
-  cardDescription: string;
+  servicesTitle: string;
+  servicesDescription: string;
 };
 
 export function CityServicesCard({
-  cardTitle,
-  cardDescription,
+  servicesTitle,
+  servicesDescription,
 }: CityServicesCardProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{cardTitle}</CardTitle>
+        <CardTitle>{servicesTitle}</CardTitle>
       </CardHeader>
-      <CardContent>{cardDescription}</CardContent>
+      <CardContent>{servicesDescription}</CardContent>
     </Card>
   );
 }
