@@ -10,8 +10,8 @@ export default async function PostPage({
   const post = await getPost(slug);
   return (
     <section className="container mx-auto px-4">
-      <h1>{post.title}</h1>
-      <Markdown markdown={String(post.content ?? "")} />
+      <h1 className="pb-4">{post.title}</h1>
+      <Markdown className="max-w-4xl" markdown={String(post.content ?? "")} />
     </section>
   );
 }

@@ -37,6 +37,7 @@ export async function getPostsLite(status = "published") {
           id
           title
         }
+          seo
       }
     }
   `;

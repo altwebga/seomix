@@ -124,7 +124,7 @@
     @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-2;
   }
   h2 {
-    @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 mb-2;
+    @apply scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0 mb-2;
   }
   h3,
   label {
@@ -151,5 +151,23 @@
   }
   ol {
     @apply list-decimal pl-4 my-2;
+  }
+  table {
+    @apply block w-max max-w-full overflow-x-auto border-collapse text-sm border my-8;
+  }
+  thead,
+  tbody,
+  tfoot {
+    @apply w-max;
+  }
+
+  th {
+    @apply px-4 py-2 border text-left font-semibold whitespace-nowrap;
+  }
+  td {
+    @apply px-4 py-2 border align-middle whitespace-nowrap;
+  }
+  tfoot td {
+    @apply font-medium;
   }
 }
