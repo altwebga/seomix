@@ -11,10 +11,9 @@ export function ThemeSwitch() {
 
   return (
     <Button
-      variant="ghost"
+      variant="outline"
       size="icon"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="w-12 h-12"
     >
       <Sun className="h-12 w-12 dark:hidden" />
       <Moon className="h-12 w-12 hidden dark:block" />
