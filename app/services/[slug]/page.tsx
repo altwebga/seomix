@@ -1,6 +1,10 @@
 import { getService } from "@/actions/get-services";
 import { Markdown } from "@/components/markdown";
 import { Metadata } from "next";
+import { getDirectusImage } from "@/lib/get-directus-image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { MoveLeft } from "lucide-react";
 
 export async function generateMetadata({
   params,
@@ -9,11 +13,19 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const service = await getService(slug);
+
   return {
     title: service.seo.title,
     description: service.seo.meta_description,
     openGraph: {
-      images: [`process.env.NEXT_PUBLIC_IMAGE_URL || "") + service.image.id`],
+      images: [
+        getDirectusImage(service.image.id, {
+          width: 1200,
+          height: 630,
+          fit: "cover",
+          quality: 80,
+        }),
+      ],
     },
   };
 }
@@ -28,10 +40,20 @@ export default async function PostPage({
   return (
     <section className="container mx-auto p-4 bg-[url(/images/squares-bg.min.svg)] bg-no-repeat">
       <h1 className="pb-4">{service.title}</h1>
-      <Markdown
-        className="max-w-5xl"
-        markdown={String(service.content ?? "")}
-      />
+      <div className="flex flex-col md:flex-row gap-8">
+        <Markdown
+          className="md:w-3/4 w-full"
+          markdown={String(service.content ?? "")}
+        />
+        <div className="md:w-1/4 w-full lg:sticky lg:top-20 lg:self-start">
+          <Button asChild variant={"outline"}>
+            <Link href={"/services"}>
+              <MoveLeft /> Назад к услугам
+            </Link>
+          </Button>
+          <p className="mt-4">Тут вставить баннер</p>
+        </div>
+      </div>
     </section>
   );
 }
