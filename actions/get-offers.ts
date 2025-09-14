@@ -18,6 +18,8 @@ export type Offer = {
   status: string;
   slug: string;
   title: string;
+  in_city: string;
+  from_city: string;
   content: string;
   image: OfferImage;
   seo: OfferSeo;
@@ -52,6 +54,8 @@ export async function getOffer(slug: string, status = "published") {
         status
         slug
         title
+        in_city
+        from_city
         content
         image {
           id

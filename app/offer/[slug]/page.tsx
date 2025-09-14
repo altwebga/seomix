@@ -1,6 +1,7 @@
 import { getOffer } from "@/actions/get-offers";
 import { Metadata } from "next";
 import { Markdown } from "@/components/markdown";
+import { Hero } from "@/components/hero";
 
 export async function generateMetadata({
   params,
@@ -22,9 +23,8 @@ export default async function OfferPage({
   const { slug } = await params;
   const offer = await getOffer(slug);
   return (
-    <div className="container mx-auto">
-      <h1 className="text-2xl font-bold">{offer.title}</h1>
-      <Markdown markdown={String(offer.content ?? "")} />
-    </div>
+    <>
+      <Hero city={offer.in_city} offer={offer.seo.meta_description} />
+    </>
   );
 }

@@ -9,7 +9,7 @@ export default async function PostPage({
   const { slug } = await params;
   const post = await getPost(slug);
   return (
-    <section className="container mx-auto px-4">
+    <section className="container mx-auto p-4">
       <h1 className="pb-4">{post.title}</h1>
       <Markdown className="max-w-4xl" markdown={String(post.content ?? "")} />
     </section>
