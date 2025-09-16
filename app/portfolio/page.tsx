@@ -1,19 +1,20 @@
 import { Card, CardHeader, CardFooter } from "@/components/ui/card";
 
-import { getCasesLite } from "@/actions/get-cases";
+import { getContentLite } from "@/actions/get-content";
 import Link from "next/link";
 import Image from "next/image";
+import { getDirectusImage } from "@/lib/get-directus-image";
 
 export default async function PortfolioPage() {
-  const { cases } = await getCasesLite();
-  if (!cases) {
+  const { content } = await getContentLite("portfolio");
+  if (!content) {
     return <p>not found</p>;
   }
 
   // сортировка: от новых к старым
-  const sortedCases = cases.sort(
+  const sortedCases = content.sort(
     (a, b) =>
-      new Date(b.creation_date).getTime() - new Date(a.creation_date).getTime()
+      new Date(b.release_date).getTime() - new Date(a.release_date).getTime()
   );
 
   return (
@@ -25,12 +26,14 @@ export default async function PortfolioPage() {
             <Card className="transition delay-10 duration-50 ease-linear hover:-translate-y-1 hover:scale-102">
               <CardHeader>
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL || ""}/${
-                    caseItem.image.id
-                  }`}
+                  src={getDirectusImage(caseItem.cover_image?.id, {
+                    width: 600,
+                    height: 600,
+                    fit: "inside",
+                  })}
                   alt={caseItem.title}
-                  width={300}
-                  height={300}
+                  width={600}
+                  height={600}
                   property="false"
                   className="w-full h-full rounded-md"
                 />

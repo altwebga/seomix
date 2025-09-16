@@ -1,4 +1,4 @@
-import { getPost } from "@/actions/get-posts";
+import { getContentBySlug } from "@/actions/get-content";
 import { Markdown } from "@/components/markdown";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -10,13 +10,18 @@ export default async function PostPage({
   params: { slug: string };
 }) {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const post = await getContentBySlug({ type: "post", slug });
+
+  if (!post) {
+    return <div>Пост не найден</div>;
+  }
+
   return (
     <section className="container mx-auto p-4">
       <h1 className="pb-4">{post.title}</h1>
       <div className="flex flex-col md:flex-row gap-8 mt-4">
         <div className="md:w-3/4">
-          <Markdown markdown={String(post.content ?? "")} />
+          <Markdown markdown={String(post.description ?? "")} />
         </div>
         <div className="md:w-1/4 w-full lg:sticky lg:top-20 lg:self-start md:border-l md:px-4 h-screen">
           <Button asChild variant={"outline"}>

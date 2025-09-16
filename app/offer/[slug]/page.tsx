@@ -1,7 +1,8 @@
-import { getOffer } from "@/actions/get-offers";
+import { getContentBySlug } from "@/actions/get-content";
 import { Metadata } from "next";
 import { Markdown } from "@/components/markdown";
-import { Hero } from "@/components/hero";
+import { getDirectusImage } from "@/lib/get-directus-image";
+import Image from "next/image";
 
 export async function generateMetadata({
   params,
@@ -9,7 +10,15 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   const { slug } = await params;
-  const offer = await getOffer(slug);
+  const offer = await getContentBySlug({ type: "offer", slug });
+
+  if (!offer) {
+    return {
+      title: "Предложение не найдено",
+      description: "Запрашиваемое предложение не найдено",
+    };
+  }
+
   return {
     title: offer.seo.title,
     description: offer.seo.meta_description,
@@ -21,10 +30,38 @@ export default async function OfferPage({
   params: { slug: string };
 }) {
   const { slug } = await params;
-  const offer = await getOffer(slug);
+  const offer = await getContentBySlug({ type: "offer", slug });
+
+  if (!offer) {
+    return <div>Предложение не найдено</div>;
+  }
+
   return (
-    <>
-      <Hero city={offer.in_city} offer={offer.seo.meta_description} />
-    </>
+    <section className="bg-background/50">
+      <div className="container mx-auto flex flex-col h-screen justify-center px-4">
+        <div className="backdrop-blur max-w-5xl px-4 py-8 rounded-4xl space-y-6">
+          <h1 className="flex flex-col gap-2">
+            Разработка и продвижение сайтов{" "}
+            <span className="text-4xl md:text-8xl text-red-400">
+              {offer.in_city}
+            </span>
+          </h1>
+          <Markdown markdown={String(offer.description ?? "")} />
+        </div>
+      </div>
+      <Image
+        src={
+          getDirectusImage(offer.cover_image?.id, {
+            width: 1920,
+            height: 1080,
+            fit: "cover",
+          }) || ""
+        }
+        alt={offer.cover_image?.title || ""}
+        width={1920}
+        height={1080}
+        className="w-full h-full fixed top-0 left-0 z-[-10] object-cover"
+      />
+    </section>
   );
 }

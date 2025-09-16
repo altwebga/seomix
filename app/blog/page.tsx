@@ -1,12 +1,13 @@
-import { getPostsLite } from "@/actions/get-posts";
+import { getContentLite } from "@/actions/get-content";
 import Link from "next/link";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
+import { getDirectusImage } from "@/lib/get-directus-image";
 
 export default async function BlogPage() {
-  const { posts } = await getPostsLite();
+  const { content: posts } = await getContentLite("post");
   return (
     <section className="container mx-auto p-4">
       <h1>Блог</h1>
@@ -22,10 +23,12 @@ export default async function BlogPage() {
               <Link href={`blog/${post.slug}`}>
                 <div className="flex flex-col md:flex-row gap-4 p-4">
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL || ""}/${
-                      post.image.id
-                    }`}
-                    alt={post.image.title || "Изображение поста"}
+                    src={getDirectusImage(post.cover_image?.id, {
+                      width: 300,
+                      height: 300,
+                      fit: "cover",
+                    })}
+                    alt={post.cover_image?.title || "Изображение поста"}
                     width={300}
                     height={300}
                     priority={false}

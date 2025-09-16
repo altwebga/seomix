@@ -13,15 +13,16 @@ export type ContentBase = {
   title: string;
   description?: string | null;
   cover_image?: Image | null;
+  release_date: string;
   seo: Seo;
 };
 
 /* ========= Варианты по content_type (дискриминируемое объединение) ========= */
 export type PortfolioContent = ContentBase & {
   content_type: "portfolio";
-  release_date?: string | null; // у тебя на скрине release_date
+  release_date?: string | null;
   video_id?: string | null;
-  site_url?: string | null; // = link в твоём старом коде
+  site_url?: string | null;
   client?: string | null;
   client_tag?: string | null;
   client_logo?: Image | null;
@@ -51,7 +52,7 @@ export type AnyContent =
 
 /* ========= Фрагменты GraphQL, чтобы не дублировать ========= */
 const FRAGMENT_BASE = `
-  fragment ContentBase on Content {
+  fragment ContentBase on content {
     id
     status
     content_type
@@ -59,13 +60,13 @@ const FRAGMENT_BASE = `
     title
     description
     cover_image { id title }
+    release_date
     seo
   }
 `;
 
 const FRAGMENT_PORTFOLIO = `
-  fragment PortfolioFields on Content {
-    release_date
+  fragment PortfolioFields on content {
     video_id
     site_url
     client
@@ -75,14 +76,14 @@ const FRAGMENT_PORTFOLIO = `
 `;
 
 const FRAGMENT_OFFER = `
-  fragment OfferFields on Content {
+  fragment OfferFields on content {
     from_city
     in_city
   }
 `;
 
 const FRAGMENT_SERVICE = `
-  fragment ServiceFields on Content {
+  fragment ServiceFields on content {
     price
   }
 `;
@@ -94,15 +95,18 @@ export async function getContentLite(
 ) {
   const q = /* GraphQL */ `
     ${FRAGMENT_BASE}
-    query GetContentLite($type: String!, $status: String!) {
+    query GetContentLite($status: String!, $content_type: String!) {
       content(
-        filter: { content_type: { _eq: $type }, status: { _eq: $status } }
+        filter: {
+          status: { _eq: $status }
+          content_type: { _eq: $content_type }
+        }
       ) {
         ...ContentBase
       }
     }
   `;
-  return gql<{ content: ContentBase[] }>(q, { type, status });
+  return gql<{ content: ContentBase[] }>(q, { status, content_type: type });
 }
 
 /* ========= Детальная карточка по slug + типу =========
