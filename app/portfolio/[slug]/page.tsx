@@ -36,7 +36,7 @@ export default async function PortfolioPage({
 }: {
   params: { slug: string };
 }) {
-  const { slug } = params; // await не нужен
+  const { slug } = await params;
   const portfolioItem = await getCase(slug);
 
   // если getDirectusImage вернёт "", используем локальный плейсхолдер
@@ -56,6 +56,7 @@ export default async function PortfolioPage({
           height={100}
           sizes="100px"
           className="w-24 h-24 rounded-full p-2 border object-cover"
+          priority={false}
         />
         <div>
           <h1 className="p-0">{portfolioItem.title}</h1>
