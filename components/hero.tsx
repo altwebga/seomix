@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { ModalForm } from "./modal-form";
 
 type HeroProp = {
   city: string;
@@ -16,10 +17,14 @@ export function Hero({ city, offer }: HeroProp) {
             {city}
           </span>
         </h1>
+
         <p className="max-w-3xl pt-4">{offer}</p>
-        <Button asChild size={"lg"} className="max-w-48" variant={"outline"}>
-          <Link href={"/portfolio"}>Портфолио</Link>
-        </Button>
+        <div className="flex flex-row gap-2">
+          <ModalForm />
+          <Button asChild size={"lg"} className="max-w-48" variant={"outline"}>
+            <Link href={"/portfolio"}>Портфолио</Link>
+          </Button>
+        </div>
       </div>
       <video
         autoPlay

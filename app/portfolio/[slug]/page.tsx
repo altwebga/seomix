@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { RuTubeFrame } from "@/components/rutube-frame";
 import { getDirectusImage } from "@/lib/get-directus-image";
+import { CallAction } from "@/components/call-actions";
 
 export async function generateMetadata({
   params,
@@ -85,9 +86,9 @@ export default async function PortfolioPage({
             />
           )}
         </div>
-        <div className="md:w-1/4 w-full lg:sticky lg:top-20 lg:self-start">
+        <div className="md:w-1/4 w-full lg:sticky lg:top-20 lg:self-start space-y-4">
           {portfolioItem.site_url && (
-            <Button asChild>
+            <Button asChild variant={"outline"}>
               <a
                 href={portfolioItem.site_url}
                 target="_blank"
@@ -97,7 +98,7 @@ export default async function PortfolioPage({
               </a>
             </Button>
           )}
-          <p className="mt-4">Тут вставить баннер</p>
+          <CallAction />
         </div>
       </div>
     </section>

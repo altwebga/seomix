@@ -5,6 +5,7 @@ import { getDirectusImage } from "@/lib/get-directus-image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MoveLeft } from "lucide-react";
+import { CallAction } from "@/components/call-actions";
 
 export async function generateMetadata({
   params,
@@ -57,13 +58,13 @@ export default async function PostPage({
           className="md:w-3/4 w-full"
           markdown={String(service.description ?? "")}
         />
-        <div className="md:w-1/4 w-full lg:sticky lg:top-20 lg:self-start">
+        <div className="md:w-1/4 w-full lg:sticky lg:top-20 lg:self-start space-y-4">
           <Button asChild variant={"outline"}>
             <Link href={"/services"}>
               <MoveLeft /> Назад к услугам
             </Link>
           </Button>
-          <p className="mt-4">Тут вставить баннер</p>
+          <CallAction />
         </div>
       </div>
     </section>
