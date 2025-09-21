@@ -12,16 +12,16 @@ export default async function BlogPage() {
     <section className="container mx-auto p-4">
       <h1>Блог</h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="flex flex-col md:flex-row gap-4">
         {/* Основной контент */}
-        <div className="grid grid-cols-1 gap-4 py-4 lg:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4 lg:col-span-2 md:w-3/4">
           {posts.map((post) => (
             <Card
               key={post.id}
               className="transition delay-10 duration-50 ease-linear hover:-translate-y-1 hover:scale-102"
             >
               <Link href={`blog/${post.slug}`}>
-                <div className="flex flex-col md:flex-row gap-4 p-4">
+                <div className="flex flex-col md:flex-row gap-4 p-4 items-center">
                   <Image
                     src={getDirectusImage(post.cover_image?.id, {
                       width: 300,
@@ -36,7 +36,7 @@ export default async function BlogPage() {
                   />
                   <div className="w-full flex flex-col">
                     <h3>{post.title}</h3>
-                    <p>{post.seo.meta_description}</p>
+                    <p className="line-clamp-3">{post.seo.meta_description}</p>
                     <Button
                       className="flex gap-2 self-end cursor-pointer px-4"
                       variant={"link"}
@@ -51,7 +51,7 @@ export default async function BlogPage() {
         </div>
 
         {/* Баннер */}
-        <div className="my-4 lg:sticky lg:top-20 lg:self-start">
+        <div className="my-4 lg:sticky lg:top-20 lg:self-start md:w-1/4">
           <div className="border p-4 rounded-md">
             <p>Здесь будет баннер</p>
           </div>

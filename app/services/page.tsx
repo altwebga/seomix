@@ -19,12 +19,12 @@ export default async function ServicesPage() {
           return (
             <Link href={`services/${service.slug}`} key={service.id}>
               <Card className="py-0 relative transition delay-10 duration-50 ease-linear hover:-translate-y-1 hover:scale-102">
-                <div className="absolute right-0 top-0 z-10 text-white">
-                  <p className="p-4">{serviceData.price}</p>
-                </div>
-                <div className="absolute bottom-0 left-0 z-10">
-                  <h3 className="px-4 pb-2 text-white">{service.title}</h3>
-                </div>
+                <p className="p-4 absolute right-0 top-0 z-10 text-white">
+                  {serviceData.price}
+                </p>
+                <h3 className="px-4 pb-2 text-white absolute bottom-0 left-0 z-10">
+                  {service.title}
+                </h3>
                 <Image
                   src={getDirectusImage(service.cover_image?.id, {
                     width: 600,

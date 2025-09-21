@@ -2,8 +2,6 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeHighlight from "rehype-highlight";
 import Image from "next/image";
 
@@ -14,11 +12,7 @@ export function Markdown({ markdown, className }: Props) {
     <article className={className ?? "prose"}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        rehypePlugins={[
-          rehypeSlug,
-          [rehypeAutolinkHeadings, { behavior: "wrap" }],
-          [rehypeHighlight, { ignoreMissing: true }],
-        ]}
+        rehypePlugins={[[rehypeHighlight, { ignoreMissing: true }]]}
         components={{
           a: (props) => (
             <a {...props} target="_blank" rel="noopener noreferrer" />

@@ -20,10 +20,10 @@ export default async function PostPage({
     <section className="container mx-auto p-4">
       <h1 className="pb-4">{post.title}</h1>
       <div className="flex flex-col md:flex-row gap-8 mt-4">
-        <div className="md:w-3/4">
+        <div className="md:w-3/4 md:border-r md:px-4">
           <Markdown markdown={String(post.description ?? "")} />
         </div>
-        <div className="md:w-1/4 w-full lg:sticky lg:top-20 lg:self-start md:border-l md:px-4 h-screen">
+        <div className="md:w-1/4 w-full lg:sticky lg:top-20 lg:self-start">
           <Button asChild variant={"outline"}>
             <Link href={"/blog"}>
               <MoveLeft /> Назад к блогу

@@ -62,6 +62,7 @@ const FRAGMENT_BASE = `
     cover_image { id title }
     release_date
     seo
+    price
   }
 `;
 

@@ -22,6 +22,15 @@ export async function generateMetadata({
   return {
     title: offer.seo.title,
     description: offer.seo.meta_description,
+    openGraph: {
+      images: [
+        getDirectusImage(offer.cover_image?.id, {
+          width: 1200,
+          height: 630,
+          fit: "cover",
+        }) || "",
+      ],
+    },
   };
 }
 export default async function OfferPage({
@@ -42,7 +51,7 @@ export default async function OfferPage({
         <div className="backdrop-blur max-w-5xl px-4 py-8 rounded-4xl space-y-6">
           <h1 className="flex flex-col gap-2">
             Разработка и продвижение сайтов{" "}
-            <span className="text-4xl md:text-8xl text-red-400">
+            <span className="text-4xl md:text-8xl text-violet-500">
               {offer.in_city}
             </span>
           </h1>

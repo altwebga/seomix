@@ -50,7 +50,7 @@ export default async function PostPage({
   }
 
   return (
-    <section className="container mx-auto p-4 bg-[url(/images/squares-bg.min.svg)] bg-no-repeat">
+    <section className="container mx-auto p-4 bg-[url(/images/squares-bg.min.svg)] bg-repeat bg-fixed">
       <h1 className="pb-4">{service.title}</h1>
       <div className="flex flex-col md:flex-row gap-8">
         <Markdown
