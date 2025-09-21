@@ -16,31 +16,90 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { PhoneInput } from "./ui/phone-input";
+import { YandexCaptcha } from "@/components/smart-captcha";
+import { useState } from "react";
+import { submitContactForm } from "@/actions/send-form";
+import { usePathname } from "next/navigation";
 
 const FormSchema = z.object({
   username: z.string().min(2, {
     message: "Имя не может быть короче 2 символов",
   }),
-  phone: z.string(),
+  phone: z.string().min(1, { message: "Укажите номер телефона" }),
+  // Требуем наличие токена от капчи
+  captchaToken: z.string().min(1, { message: "Подтвердите, что вы не робот" }),
 });
 
-export function ContactForm() {
-  const form = useForm<z.infer<typeof FormSchema>>({
+type FormValues = z.infer<typeof FormSchema>;
+
+interface ContactFormProps {
+  onSuccess?: () => void;
+}
+
+export function ContactForm({ onSuccess }: ContactFormProps) {
+  const [captchaSolved, setCaptchaSolved] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [captchaKey, setCaptchaKey] = useState(0);
+  const pathname = usePathname();
+
+  const form = useForm<FormValues>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       username: "",
       phone: "",
+      captchaToken: "",
     },
+    mode: "onChange",
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast("You submitted the following values", {
-      description: (
-        <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+  async function onSubmit(data: FormValues) {
+    // Дополнительная проверка капчи перед отправкой
+    if (!captchaSolved || !data.captchaToken) {
+      toast.error("Пожалуйста, пройдите проверку капчи");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const result = await submitContactForm({
+        username: data.username,
+        phone: data.phone,
+        captchaToken: data.captchaToken,
+        url: process.env.NEXT_PUBLIC_BASE_URL + pathname,
+      });
+
+      if (result.success) {
+        toast.success("Заявка успешно отправлена!", {
+          description: result.message,
+        });
+
+        // Сбрасываем форму после успешной отправки
+        form.reset({
+          username: "",
+          phone: "",
+          captchaToken: "",
+        });
+        setCaptchaSolved(false);
+
+        // Сбрасываем капчу
+        setCaptchaKey((prev) => prev + 1);
+
+        // Вызываем функцию закрытия модального окна
+        onSuccess?.();
+      } else {
+        toast.error("Ошибка отправки формы", {
+          description: result.error,
+        });
+      }
+    } catch (error) {
+      console.error("Ошибка отправки формы:", error);
+      toast.error("Ошибка отправки формы", {
+        description: "Попробуйте позже",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -78,8 +137,43 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
-          Отправить
+
+        {/* Скрытое поле под токен — чтобы schema его видела */}
+        <input type="hidden" {...form.register("captchaToken")} />
+
+        <div className="space-y-2">
+          <YandexCaptcha
+            key={captchaKey}
+            onVerify={(token) => {
+              form.setValue("captchaToken", token, {
+                shouldValidate: true,
+                shouldDirty: true,
+              });
+              setCaptchaSolved(true);
+            }}
+            onInvalidate={() => {
+              form.setValue("captchaToken", "", {
+                shouldValidate: true,
+                shouldDirty: true,
+              });
+              setCaptchaSolved(false);
+            }}
+            language="ru"
+            test={false}
+          />
+          {!captchaSolved && (
+            <p className="text-sm text-muted-foreground">
+              Пройдите проверку, чтобы активировать отправку формы
+            </p>
+          )}
+        </div>
+
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={!captchaSolved || isSubmitting}
+        >
+          {isSubmitting ? "Отправляем..." : "Отправить"}
         </Button>
       </form>
     </Form>

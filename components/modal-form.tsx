@@ -43,7 +43,7 @@ export function ModalForm() {
               минут.
             </DialogDescription>
           </DialogHeader>
-          <ContactForm />
+          <ContactForm onSuccess={() => setOpen(false)} />
         </DialogContent>
       </Dialog>
     );
@@ -64,7 +64,7 @@ export function ModalForm() {
             минут.
           </DrawerDescription>
         </DrawerHeader>
-        <ContactForm />
+        <ContactForm onSuccess={() => setOpen(false)} />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline" className="w-full">
