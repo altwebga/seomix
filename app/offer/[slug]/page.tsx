@@ -3,6 +3,9 @@ import { Metadata } from "next";
 import { Markdown } from "@/components/markdown";
 import { getDirectusImage } from "@/lib/get-directus-image";
 import Image from "next/image";
+import { ModalForm } from "@/components/modal-form";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export async function generateMetadata({
   params,
@@ -51,11 +54,17 @@ export default async function OfferPage({
         <div className="backdrop-blur max-w-5xl px-4 py-8 rounded-4xl space-y-6">
           <h1 className="flex flex-col gap-2">
             Разработка и продвижение сайтов{" "}
-            <span className="text-4xl md:text-8xl text-violet-500">
+            <span className="text-5xl md:text-8xl text-red-500">
               {offer.in_city}
             </span>
           </h1>
           <Markdown markdown={String(offer.description ?? "")} />
+          <div className="flex flex-row gap-4">
+            <ModalForm />
+            <Button asChild variant={"outline"} size={"lg"}>
+              <Link href={"/portfolio"}>Портфолио</Link>
+            </Button>
+          </div>
         </div>
       </div>
       <Image

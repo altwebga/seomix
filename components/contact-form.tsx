@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-
+import { Loader2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -161,11 +161,6 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
             language="ru"
             test={false}
           />
-          {!captchaSolved && (
-            <p className="text-sm text-muted-foreground">
-              Пройдите проверку, чтобы активировать отправку формы
-            </p>
-          )}
         </div>
 
         <Button
@@ -173,7 +168,13 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
           className="w-full"
           disabled={!captchaSolved || isSubmitting}
         >
-          {isSubmitting ? "Отправляем..." : "Отправить"}
+          {isSubmitting ? (
+            <div className="flex flex-row gap-2 items-center">
+              <Loader2Icon className="animate-spin" /> Отправка
+            </div>
+          ) : (
+            "Отправить"
+          )}
         </Button>
       </form>
     </Form>

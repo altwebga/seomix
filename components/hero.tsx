@@ -9,16 +9,16 @@ type HeroProp = {
 
 export function Hero({ city, offer }: HeroProp) {
   return (
-    <section className="h-screen dark:bg-none bg-[url(/images/bg-image.jpg)] bg-background/50">
+    <section className="h-screen dark:bg-none bg-[url(/images/bg-image.jpg)] bg-background/10">
       <div className="container mx-auto flex flex-col justify-center h-screen px-4">
         <h1 className="flex flex-col gap-2">
           Разработка и продвижение сайтов{" "}
-          <span className="text-6xl md:text-8xl font-bold text-primary">
+          <span className="text-6xl md:text-9xl font-bold text-red-500">
             {city}
           </span>
         </h1>
 
-        <p className="max-w-3xl pt-4">{offer}</p>
+        <p className="max-w-3xl pt-4 text-xl">{offer}</p>
         <div className="flex flex-row gap-2">
           <ModalForm />
           <Button asChild size={"lg"} className="max-w-48" variant={"outline"}>
@@ -32,7 +32,7 @@ export function Hero({ city, offer }: HeroProp) {
         loop
         className="absolute top-0 left-0 w-full h-screen object-cover z-[-1] hidden dark:block"
       >
-        <source src="/videos/hero.webm" type="video/webm" />
+        <source src="/videos/bg-video-6.webm" type="video/webm" />
       </video>
     </section>
   );
