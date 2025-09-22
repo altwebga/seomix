@@ -1,5 +1,4 @@
 import { Hero } from "@/components/hero";
-import { ServicesHome } from "@/components/services-home";
 
 export default function Home() {
   return (
@@ -8,7 +7,6 @@ export default function Home() {
         city="в Краснодаре"
         offer="Создаем эффективные сайты, запускаем SEO и рекламу, настраиваем аналитику и помогаем бизнесу расти. Работаем на результат — если не понравится, вернем деньги."
       />
-      <ServicesHome />
     </>
   );
 }
