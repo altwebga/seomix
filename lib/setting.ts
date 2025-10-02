@@ -1,6 +1,10 @@
 export const setting = {
   menuLinks: [
     {
+      title: "Главная",
+      href: "/",
+    },
+    {
       title: "Услуги",
       href: "/services",
     },
