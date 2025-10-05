@@ -3,6 +3,7 @@ import { Markdown } from "@/components/markdown";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { MoveLeft } from "lucide-react";
+import { CallAction } from "@/components/call-actions";
 
 export default async function PostPage({
   params,
@@ -23,13 +24,13 @@ export default async function PostPage({
         <div className="md:w-3/4 md:border-r md:px-4">
           <Markdown markdown={String(post.description ?? "")} />
         </div>
-        <div className="md:w-1/4 w-full lg:sticky lg:top-20 lg:self-start">
+        <div className="md:w-1/4 w-full lg:sticky lg:top-20 lg:self-start space-y-8">
           <Button asChild variant={"outline"}>
             <Link href={"/blog"}>
               <MoveLeft /> Назад к блогу
             </Link>
           </Button>
-          <p className="mt-4">Тут вставить баннер</p>
+          <CallAction />
         </div>
       </div>
     </section>

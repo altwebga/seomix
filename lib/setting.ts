@@ -13,7 +13,7 @@ export const setting = {
       href: "/portfolio",
     },
     {
-      title: "Обо мне",
+      title: "О нас",
       href: "/about",
     },
     {

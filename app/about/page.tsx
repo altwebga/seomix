@@ -5,8 +5,8 @@ import diploma_page_02 from "@/public/images/diploma_page_02.webp";
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto px-4">
-      <h1>Обо мне</h1>
+    <div className="container mx-auto px-4 py-8">
+      <h1>О нас</h1>
       <AboutMe />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-self-center">
         <ModalImage

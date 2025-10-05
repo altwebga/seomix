@@ -18,8 +18,8 @@ export default async function PortfolioPage() {
   );
 
   return (
-    <section className="container mx-auto p-4">
-      <h1>Услуги</h1>
+    <section className="container mx-auto px-4 py-8">
+      <h1>Портфолио</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
         {sortedCases.map((caseItem) => (
           <Link href={`portfolio/${caseItem.slug}`} key={caseItem.id}>

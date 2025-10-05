@@ -44,12 +44,16 @@ export type PostContent = ContentBase & {
   // при необходимости: content/html, cover_image и т.п.
 };
 
+export type AboutContent = ContentBase & {
+  content_type: "about";
+};
+
 export type AnyContent =
   | PortfolioContent
   | OfferContent
   | ServiceContent
-  | PostContent;
-
+  | PostContent
+  | AboutContent;
 /* ========= Фрагменты GraphQL, чтобы не дублировать ========= */
 const FRAGMENT_BASE = `
   fragment ContentBase on content {

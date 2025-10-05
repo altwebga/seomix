@@ -11,7 +11,7 @@ export default async function ServicesPage() {
     return <p>not found</p>;
   }
   return (
-    <section className="container mx-auto p-4">
+    <section className="container mx-auto px-4 py-8">
       <h1>Услуги</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 pt-4">
         {services.map((service) => {

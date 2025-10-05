@@ -5,11 +5,12 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { getDirectusImage } from "@/lib/get-directus-image";
+import { CallAction } from "@/components/call-actions";
 
 export default async function BlogPage() {
   const { content: posts } = await getContentLite("post");
   return (
-    <section className="container mx-auto p-4">
+    <section className="container mx-auto px-4 py-8">
       <h1>Блог</h1>
 
       <div className="flex flex-col md:flex-row gap-4">
@@ -52,9 +53,7 @@ export default async function BlogPage() {
 
         {/* Баннер */}
         <div className="my-4 lg:sticky lg:top-20 lg:self-start md:w-1/4">
-          <div className="border p-4 rounded-md">
-            <p>Здесь будет баннер</p>
-          </div>
+          <CallAction />
         </div>
       </div>
     </section>
