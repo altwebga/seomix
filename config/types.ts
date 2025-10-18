@@ -11,6 +11,7 @@ interface Image {
 interface Base {
   id: string;
   status: "published" | "draft" | "archived";
+  slug: string;
   title: string;
   content: string;
 }
