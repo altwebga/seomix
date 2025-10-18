@@ -20,7 +20,7 @@ export default async function BlogPostPage({
   return (
     <section className="container mx-auto p-4">
       <h1>{article.title}</h1>
-      <Markdown markdown={article.content} />s
+      <Markdown markdown={article.content} />
     </section>
   );
 }

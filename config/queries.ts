@@ -1,6 +1,6 @@
 // Храним GraphQL как строковые константы
 
-export const GET_ARTICLES = /* GraphQL */ `
+export const GET_ARTICLES = `
   query GetArticles {
     articles(
       filter: { status: { _eq: "published" } }
@@ -19,7 +19,7 @@ export const GET_ARTICLES = /* GraphQL */ `
   }
 `;
 
-export const GET_ARTICLE = /* GraphQL */ `
+export const GET_ARTICLE = `
   query GetArticle($slug: String!) {
     articles(filter: { slug: { _eq: $slug }, status: { _eq: "published" } }) {
       id
@@ -33,4 +33,48 @@ export const GET_ARTICLE = /* GraphQL */ `
       seo
     }
   }
+`;
+
+export const GET_PROJECTS = `
+query GetProjects {
+    projects(
+      filter: { status: { _eq: "published" } }
+      sort: ["-release_date"]
+    ) {
+      id
+      slug
+      title
+      release_date
+      cover_image {
+        id
+        title
+      }
+    }
+  }
+`;
+
+export const GET_PROJECT = `
+query GetProject($slug: String!) {
+      projects(filter: { slug: { _eq: $slug }, status: { _eq: "published" } }) {
+      id
+      slug
+      title
+      seo
+      release_date
+      client {
+        title
+        direction
+        logo {
+        id
+        title
+        }
+      }
+      site
+      video_url
+      cover_image {
+        id
+        title
+      }
+      }
+    }
 `;

@@ -21,7 +21,7 @@ const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 export function BlogCard({ slug, title, content, image }: BlogCardProps) {
   return (
     <Link href={slug}>
-      <Card className="max-w-2xl">
+      <Card className="max-w-3xl">
         <div className="flex flex-col md:flex-row">
           <Image
             src={`${imageUrl}/${image}`}
