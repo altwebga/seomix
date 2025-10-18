@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "cp.seomix.ru",
+        port: "",
         pathname: "/assets/**",
       },
     ],

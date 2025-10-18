@@ -21,16 +21,13 @@ export default async function PortfolioPage() {
   return (
     <section className="container mx-auto p-4">
       <h1>Портфолио</h1>
-      <div className="grid grid-cols-1 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {projects.map((project) => (
           <ProjectCard
             key={project.id}
             slug={`/portfolio/${project.slug}`}
             title={project.title}
-            releaseDate={project.release_date}
             imageId={project.cover_image?.id}
-            clientTitle={project.client?.title}
-            description={project.seo?.meta_description}
           />
         ))}
       </div>
