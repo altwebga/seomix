@@ -45,6 +45,10 @@ query GetProjects {
       slug
       title
       release_date
+      seo
+      client {
+        title
+      }
       cover_image {
         id
         title
@@ -59,6 +63,7 @@ query GetProject($slug: String!) {
       id
       slug
       title
+      content
       seo
       release_date
       client {
