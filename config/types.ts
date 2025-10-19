@@ -43,3 +43,9 @@ export interface IProject extends Base {
   seo: SEO;
   cover_image: Image;
 }
+
+export interface IService extends Base {
+  price: string;
+  seo: SEO;
+  cover_image: Image;
+}
