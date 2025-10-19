@@ -85,10 +85,37 @@ query GetProject($slug: String!) {
 `;
 
 export const GET_SERVICES = `
-
+query GetServices {
+    services(
+      filter: { status: { _eq: "published" } }
+    ) {
+      id
+      slug
+      title
+      price
+      seo
+      cover_image {
+        id
+        title
+      }
+    }
+  }
 `;
 export const GET_SERVICE = `
-
+query GetService($slug: String!) {
+      services(filter: { slug: { _eq: $slug }, status: { _eq: "published" } }) {
+        id
+        slug
+        title
+        content
+        price
+        cover_image {
+          title
+          id
+        }
+        seo
+      }
+    }
 `;
 
 export const GET_HERO = `
