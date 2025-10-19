@@ -24,25 +24,20 @@ export default async function ServiceSinglePage({
 
   return (
     <section className="container mx-auto p-4 space-y-6">
-      <header className="space-y-2">
-        <h1>{service.title}</h1>
-        {service.price ? (
-          <p className="text-lg font-semibold">Стоимость: {service.price}</p>
-        ) : null}
-      </header>
-      {service.cover_image?.id ? (
-        <div className="w-full max-w-3xl">
+      <div className="flex flex-col md:flex-row gap-2">
+        <div className="md:w-2/3 space-y-4">
+          <h1>{service.title}</h1>
+          <Markdown markdown={service.content} />
+        </div>
+        <div className="md:w-1/3">
           <Image
             src={`${imageUrl}/${service.cover_image.id}`}
-            alt={service.cover_image.title ?? service.title}
-            width={800}
-            height={450}
-            className="w-full h-auto rounded-lg object-cover"
-            priority={false}
+            alt={service.cover_image.title}
+            width={600}
+            height={600}
           />
         </div>
-      ) : null}
-      <Markdown markdown={service.content} />
+      </div>
     </section>
   );
 }

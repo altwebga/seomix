@@ -21,7 +21,8 @@ export default async function ServicesPage() {
   return (
     <section className="container mx-auto p-4">
       <h1>Услуги</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <p>Побеждаем демонов бизнеса</p>
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {services.map((service) => (
           <ServiceCard
             key={service.id}
@@ -29,6 +30,7 @@ export default async function ServicesPage() {
             title={service.title}
             price={service.price}
             imageId={service.cover_image?.id}
+            imageTitle={service.cover_image?.title}
           />
         ))}
       </div>
