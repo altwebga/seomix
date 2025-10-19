@@ -83,3 +83,24 @@ query GetProject($slug: String!) {
       }
     }
 `;
+
+export const GET_SERVICES = `
+
+`;
+export const GET_SERVICE = `
+
+`;
+
+export const GET_HERO = `
+query GetHero  {
+      hero {
+        hero_title
+        hero_city
+        hero_content
+        hero_image {
+            id
+            title
+        }
+      }
+    }
+`;

@@ -8,6 +8,13 @@ interface Image {
   title: string;
 }
 
+export interface IHero {
+  hero_title: string;
+  hero_city: string;
+  hero_content: string;
+  hero_image: Image;
+}
+
 interface Base {
   id: string;
   status: "published" | "draft" | "archived";
