@@ -18,7 +18,7 @@ export async function Hero() {
   const { hero } = data;
 
   return (
-    <section className="h-[80vh] flex items-center justify-center bg-[url(/images/hero-bg.min.svg)] bg-no-repeat">
+    <section className="h-screen flex items-center justify-center bg-[url(/images/hero-bg.min.svg)] bg-no-repeat">
       <div className="container mx-auto p-4">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="md:w-1/2 flex justify-center">

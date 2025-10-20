@@ -1,13 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardAction,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface ServiceCardProps {
   slug: string;
