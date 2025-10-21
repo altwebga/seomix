@@ -10,6 +10,7 @@ const ContactFormSchema = z.object({
   }),
   phone: z.string().min(1, { message: "Укажите номер телефона" }),
   captchaToken: z.string().min(1, { message: "Подтвердите, что вы не робот" }),
+  url: z.string().optional(),
 });
 
 // Тип данных формы

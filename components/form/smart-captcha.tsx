@@ -1,16 +1,10 @@
 "use client";
 
 import React from "react";
-import dynamic from "next/dynamic";
+import { SmartCaptcha } from "@yandex/smart-captcha";
 
 const sitekey =
   process.env.NEXT_PUBLIC_YANDEX_SMART_CAPTCHA_CLIENT_KEY || "test";
-
-// ВАЖНО: динамический импорт, чтобы не падать на сервере.
-const SmartCaptcha = dynamic(
-  () => import("@yandex/smart-captcha").then((m) => m.SmartCaptcha),
-  { ssr: false }
-);
 
 export interface YandexCaptchaProps {
   /** Вернёт одноразовый токен после успешного прохождения капчи */

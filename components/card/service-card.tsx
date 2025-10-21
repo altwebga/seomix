@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 interface ServiceCardProps {
   slug: string;
   title: string;
+  shortContent?: string | null;
   price?: string | null;
   imageId?: string | null;
   imageTitle?: string | null;
@@ -18,14 +19,16 @@ export function ServiceCard({
   title,
   price,
   imageId,
-  imageTitle,
+  shortContent,
 }: ServiceCardProps) {
   return (
     <Link href={slug}>
-      <Card className="max-w-2xl relative">
-        <p className="absolute top-2 right-2 z-10 text-foreground text-sm">
-          {imageTitle}
-        </p>
+      <Card className="max-w-2xl relative p-0">
+        {price ? (
+          <p className="absolute top-2 right-2 z-10 text-sm px-4 py-2 backdrop-blur-sm rounded-md bg-background/50">
+            {price}
+          </p>
+        ) : null}
         <CardHeader className="space-y-2">
           {imageId ? (
             <Image
@@ -40,9 +43,9 @@ export function ServiceCard({
             <h3>{title}</h3>
           </CardTitle>
         </CardHeader>
-        {price ? (
+        {shortContent ? (
           <CardContent>
-            <p className="text-sm text-muted-foreground">{price}</p>
+            <p className="text-sm text-muted-foreground">{shortContent}</p>
           </CardContent>
         ) : null}
       </Card>

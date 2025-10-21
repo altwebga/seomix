@@ -31,6 +31,7 @@ export default async function ServicesPage() {
             price={service.price}
             imageId={service.cover_image?.id}
             imageTitle={service.cover_image?.title}
+            shortContent={service.short_content}
           />
         ))}
       </div>

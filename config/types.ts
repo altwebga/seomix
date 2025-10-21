@@ -45,6 +45,7 @@ export interface IProject extends Base {
 }
 
 export interface IService extends Base {
+  short_content: string | null;
   price: string;
   seo: SEO;
   cover_image: Image;

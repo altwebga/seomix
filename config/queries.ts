@@ -92,6 +92,7 @@ query GetServices {
       id
       slug
       title
+      short_content
       price
       seo
       cover_image {

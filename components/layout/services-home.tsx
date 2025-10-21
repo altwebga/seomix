@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { getContent } from "@/actions/fetch-data";
 import { GET_SERVICES } from "@/config/queries";
 import { IService } from "@/config/types";
@@ -22,30 +21,33 @@ export async function ServicesHome() {
   }
 
   return (
-    <section className="container mx-auto p-4">
-      <div className="flex flex-col md:flex-row gap-2 justify-between">
-        <h2 className="md:text-5xl flex flex-col gap-2 uppercase justify-start">
-          <span>Избавим</span>
-          <span className="md:pl-40">Ваш бизнес</span>
-          <span className="md:pl-80">от демонов</span>
-        </h2>
-        <p></p>
+    <section className="bg-[url(/images/fog.png)] bg-no-repeat bg-cover">
+      <div className="container mx-auto p-4">
+        <div className="flex flex-col md:flex-row gap-2 justify-between">
+          <h2 className="md:text-5xl flex flex-col gap-2 uppercase justify-center py-8">
+            Избавим ваш бизнес от цифровых демонов
+          </h2>
+          <p></p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {services.slice(0, 4).map((service) => (
+            <ServiceCard
+              key={service.id}
+              slug={`services/${service.slug}`}
+              title={service.title}
+              //price={service.price}
+              imageId={service.cover_image.id}
+              imageTitle={service.cover_image.title}
+              shortContent={service.short_content}
+            />
+          ))}
+        </div>
+        <div className="pt-8 flex justify-end">
+          <Button asChild size={"lg"} className="w-56">
+            <Link href={"/services"}>Все услуги</Link>
+          </Button>
+        </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {services.slice(0, 4).map((service) => (
-          <ServiceCard
-            key={service.id}
-            slug={`services/${service.id}`}
-            title={service.title}
-            //price={service.price}
-            imageId={service.cover_image.id}
-            imageTitle={service.cover_image.title}
-          />
-        ))}
-      </div>
-      <Button asChild size={"lg"}>
-        <Link href={"/services"}>Все услуги</Link>
-      </Button>
     </section>
   );
 }
