@@ -2,6 +2,14 @@ import { getContent } from "@/actions/fetch-data";
 import { ServiceCard } from "@/components/card/service-card";
 import { GET_SERVICES } from "@/config/queries";
 import { IService } from "@/config/types";
+import { CallAction } from "@/components/layout/call-action";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface GraphQLResponse {
   services?: IService[];
@@ -22,19 +30,37 @@ export default async function ServicesPage() {
     <section className="container mx-auto p-4">
       <h1>Услуги</h1>
       <p>Побеждаем демонов бизнеса</p>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {services.map((service) => (
-          <ServiceCard
-            key={service.id}
-            slug={`/services/${service.slug}`}
-            title={service.title}
-            price={service.price}
-            imageId={service.cover_image?.id}
-            imageTitle={service.cover_image?.title}
-            shortContent={service.short_content}
-          />
-        ))}
-      </div>
+
+      <Carousel
+        opts={{
+          align: "start",
+          loop: true,
+          dragFree: true,
+        }}
+        className="w-full"
+      >
+        <CarouselContent className="py-4">
+          {services.map((service) => (
+            <CarouselItem
+              key={service.id}
+              className="md:basis-1/3 lg:basis-1/4"
+            >
+              <ServiceCard
+                key={service.id}
+                slug={`/services/${service.slug}`}
+                title={service.title}
+                price={service.price}
+                imageId={service.cover_image?.id}
+                imageTitle={service.cover_image?.title}
+                shortContent={service.short_content}
+              />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="hidden md:block" />
+        <CarouselNext className="hidden md:block" />
+      </Carousel>
+      <CallAction />
     </section>
   );
 }

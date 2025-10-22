@@ -45,7 +45,7 @@ interface SocialIconsProps {
 
 export const SocialIcons = ({ size = "md" }: SocialIconsProps) => {
   return (
-    <div className="flex gap-6">
+    <div className="flex flex-row gap-8 justify-between items-center">
       {socialLinks.map((item) => (
         <SocialIcon
           key={item.title}

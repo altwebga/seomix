@@ -4,6 +4,7 @@ import { getContentParams } from "@/actions/fetch-data";
 import { GET_SERVICE } from "@/config/queries";
 import { IService } from "@/config/types";
 import { Markdown } from "@/components/handlers/markdown";
+import { CallAction } from "@/components/layout/call-action";
 
 const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 
@@ -35,9 +36,11 @@ export default async function ServiceSinglePage({
             alt={service.cover_image.title}
             width={600}
             height={600}
+            className="object-contain md:fixed md:top-20"
           />
         </div>
       </div>
+      <CallAction />
     </section>
   );
 }

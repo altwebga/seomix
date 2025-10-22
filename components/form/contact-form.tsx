@@ -112,7 +112,11 @@ export function ContactForm() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild onClick={() => setIsOpen(true)}>
-        <Button variant={"default"} size={"lg"} className="w-full">
+        <Button
+          variant={"default"}
+          size={"lg"}
+          className="w-full h-12 bg-red-500"
+        >
           Начать проект
         </Button>
       </DialogTrigger>
