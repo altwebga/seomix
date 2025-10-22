@@ -10,7 +10,7 @@ export function ClientCard({ title, direction, logo }: ClientCardProps) {
   return (
     <div className="flex items-center gap-2 px-1 py-1.5 text-left">
       <Avatar className="h-14 w-14 rounded-lg">
-        <AvatarImage src={logo} alt={title} />
+        <AvatarImage src={logo} alt={title} className="bg-white" />
         <AvatarFallback className="rounded-lg">LG</AvatarFallback>
       </Avatar>
       <div className="grid flex-1 text-left leading-tight">

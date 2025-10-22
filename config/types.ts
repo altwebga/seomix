@@ -50,3 +50,22 @@ export interface IService extends Base {
   seo: SEO;
   cover_image: Image;
 }
+
+export interface IStageItem {
+  step: number;
+  title: string;
+  content: string;
+}
+
+export interface IStageData {
+  stage: {
+    phase: IStageItem[];
+  };
+}
+
+export interface IClientsData {
+  id: string;
+  title: string;
+  direction: string;
+  logo: Image;
+}

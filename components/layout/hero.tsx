@@ -44,7 +44,7 @@ export async function Hero() {
               </div>
 
               <div className="md:w-1/2 flex justify-center">
-                <SocialIcons size="sm" />
+                <SocialIcons size="md" />
               </div>
             </div>
           </div>

@@ -102,6 +102,7 @@ query GetServices {
     }
   }
 `;
+
 export const GET_SERVICE = `
 query GetService($slug: String!) {
       services(filter: { slug: { _eq: $slug }, status: { _eq: "published" } }) {
@@ -131,4 +132,26 @@ query GetHero  {
         }
       }
     }
+`;
+
+export const GET_STAGE = `
+query GetStage {
+  stage {
+    phase  
+  }
+}
+`;
+
+export const GET_CLIENTS = `
+query GetClients {
+    clients {
+      id
+      title
+      direction
+      logo {
+        id
+        title
+      }
+    }
+  }
 `;
