@@ -1,3 +1,4 @@
+import { CallAction } from "@/components/layout/call-action";
 import { ClientsList } from "@/components/layout/clients-list";
 import { Hero } from "@/components/layout/hero";
 import { ServicesHome } from "@/components/layout/services-home";
@@ -10,6 +11,7 @@ export default function Home() {
       <ServicesHome />
       <StageList />
       <ClientsList />
+      <CallAction className="container mx-auto px-4" />
     </>
   );
 }

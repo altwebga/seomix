@@ -6,19 +6,34 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ContactForm } from "../form/contact-form";
+import { cn } from "@/lib/utils";
 
-export function CallAction() {
+interface CallActionProps {
+  className?: string;
+}
+
+export function CallAction({ className }: CallActionProps) {
   return (
-    <Card className="bg-[url(/images/pattern.min.svg)] bg-no-repeat bg-top min-h-[25vh] my-8 container mx-auto px-4">
+    <Card
+      className={cn(
+        className,
+        "bg-[url(/images/pattern.min.svg)] bg-no-repeat bg-top min-h-[25vh] my-8 w-full"
+      )}
+    >
       <CardHeader>
-        <CardTitle className="text-3xl">Обсудим ваш проект?</CardTitle>
+        <CardTitle>
+          <h3>Обсудим ваш проект?</h3>
+        </CardTitle>
       </CardHeader>
-      <CardContent className="max-w-2xl">
-        Не ждите идеального момента или подходящего времени — начинайте прямо
-        сейчас! Свяжитесь со мной, и я помогу воплотить ваши идеи в реальность.
+      <CardContent>
+        <p className="max-w-2xl">
+          Не ждите идеального момента или подходящего времени — начинайте прямо
+          сейчас! Свяжитесь со мной, и я помогу воплотить ваши идеи в
+          реальность.
+        </p>
       </CardContent>
-      <CardFooter className="md:w-1/4">
-        <ContactForm />
+      <CardFooter>
+        <ContactForm trigger="Начать проект" />
       </CardFooter>
     </Card>
   );

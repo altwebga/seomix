@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import * as z from "zod";
 import { YandexCaptcha } from "./smart-captcha";
 import { submitContactForm } from "@/actions/send-form";
+import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
 
@@ -28,6 +29,11 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
+interface ContactFormProps {
+  trigger: string;
+  className?: string;
+}
+
 const formSchema = z.object({
   yourName: z.string().min(2, "Имя должно содержать не менее 2 символов."),
   yourPhone: z
@@ -36,7 +42,7 @@ const formSchema = z.object({
   captchaToken: z.string().min(1, "Необходимо пройти проверку капчи."),
 });
 
-export function ContactForm() {
+export function ContactForm({ trigger, className }: ContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [resetCaptcha, setResetCaptcha] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -112,12 +118,8 @@ export function ContactForm() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild onClick={() => setIsOpen(true)}>
-        <Button
-          variant={"default"}
-          size={"lg"}
-          className="w-full h-12 bg-red-500"
-        >
-          Начать проект
+        <Button variant={"default"} size={"lg"} className={cn(className)}>
+          {trigger}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

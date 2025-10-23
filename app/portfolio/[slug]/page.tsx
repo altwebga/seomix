@@ -6,6 +6,7 @@ import { RuTubeFrame } from "@/components/handlers/rutube-frame";
 import { Button } from "@/components/ui/button";
 import { ClientCard } from "@/components/card/client-card";
 import { SquareArrowOutUpRightIcon } from "lucide-react";
+import { CallAction } from "@/components/layout/call-action";
 
 const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 
@@ -37,8 +38,8 @@ export default async function PortfolioSinglePage({
           <Markdown markdown={project.content} />
           <RuTubeFrame videoId={project.video_url} title={project.title} />
         </div>
-        <div className="md:w-1/4">
-          <div className="md:fixed md:top-24 space-y-4">
+        <div>
+          <div className="md:fixed md:top-24 space-y-4 md:w-1/4">
             <ClientCard
               title={project.client.title}
               direction={project.client.direction}
@@ -54,6 +55,7 @@ export default async function PortfolioSinglePage({
               </a>
               <SquareArrowOutUpRightIcon />
             </Button>
+            <CallAction className="md:w-xs" />
           </div>
         </div>
       </div>

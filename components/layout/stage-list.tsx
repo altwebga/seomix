@@ -3,6 +3,7 @@ import { GET_STAGE } from "@/config/queries";
 import { IStageData, IStageItem } from "@/config/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Markdown } from "../handlers/markdown";
+import { ContactForm } from "../form/contact-form";
 
 export async function StageList() {
   const data = await getContent(GET_STAGE, {
@@ -13,22 +14,34 @@ export async function StageList() {
 
   return (
     <section className="container mx-auto p-4">
+      <h2 className="md:text-5xl flex flex-col gap-2 uppercase justify-center py-8">
+        Этапы разработки
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {stages.map((stage, index) => (
-          <Card key={index} className="relative">
-            <CardHeader className="z-10">
-              <CardTitle>
-                <h3>{stage.title}</h3>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="z-10">
-              <Markdown markdown={stage.content} />
-            </CardContent>
-            <p className="absolute right-1/2 text-[300px] z-0 opacity-5">
+          <Card key={index} className="relative overflow-hidden">
+            <span className="absolute inset-0 flex items-center justify-center text-[200px] opacity-5 z-0">
               {stage.step}
-            </p>
+            </span>
+
+            <div className="relative z-10">
+              <CardHeader>
+                <CardTitle>
+                  <h3>{stage.title}</h3>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Markdown markdown={stage.content} />
+              </CardContent>
+            </div>
           </Card>
         ))}
+      </div>
+      <div className="flex justify-center py-8">
+        <ContactForm
+          trigger="Отлично, давайте поработаем"
+          className="h-14 bg-red-500"
+        />
       </div>
     </section>
   );

@@ -19,8 +19,10 @@ export async function ClientsList() {
   return (
     <section>
       <div className="container mx-auto p-4">
-        <h2 className="py-8">Среди наших клиентов</h2>
-        <div className="grid grid-cols-4 gap-4">
+        <h2 className="md:text-5xl flex flex-col gap-2 uppercase justify-center py-8">
+          Среди наших клиентов
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {clients.slice(0, 8).map((client) => (
             <ClientCard
               key={client.id}
