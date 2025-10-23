@@ -15,9 +15,15 @@ export default async function PortfolioSinglePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const res = await getContentParams<{ projects: IProject[] }>(GET_PROJECT, {
-    slug,
-  });
+  const res = await getContentParams<{ projects: IProject[] }>(
+    GET_PROJECT,
+    {
+      slug,
+    },
+    {
+      revalidate: 3600 * 24,
+    }
+  );
   const project = res?.projects[0];
 
   if (!project) {

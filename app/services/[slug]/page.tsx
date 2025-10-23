@@ -14,9 +14,15 @@ export default async function ServiceSinglePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const res = await getContentParams<{ services: IService[] }>(GET_SERVICE, {
-    slug,
-  });
+  const res = await getContentParams<{ services: IService[] }>(
+    GET_SERVICE,
+    {
+      slug,
+    },
+    {
+      revalidate: 3600 * 24,
+    }
+  );
   const service = res?.services[0];
 
   if (!service) {

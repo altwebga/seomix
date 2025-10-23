@@ -5,7 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Markdown } from "../handlers/markdown";
 
 export async function StageList() {
-  const data = await getContent(GET_STAGE);
+  const data = await getContent(GET_STAGE, {
+    revalidate: 3600 * 24,
+  });
 
   const stages: IStageItem[] = (data as IStageData)?.stage?.phase ?? [];
 

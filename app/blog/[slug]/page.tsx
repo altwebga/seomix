@@ -9,9 +9,15 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const result = await getContentParams<{ articles: IArticle[] }>(GET_ARTICLE, {
-    slug,
-  });
+  const result = await getContentParams<{ articles: IArticle[] }>(
+    GET_ARTICLE,
+    {
+      slug,
+    },
+    {
+      revalidate: 3600 * 24,
+    }
+  );
   if (!result || !result.articles || result.articles.length === 0) {
     return <p>Нет контента</p>;
   }
