@@ -12,6 +12,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
   DialogTrigger,
 } from "@/components/ui/dialog";
 
@@ -75,24 +76,28 @@ export function TeamCard({
                 <CarouselItem key={index} className="md:basis-1/2">
                   <Dialog>
                     <DialogTrigger asChild>
-                      <div className="relative w-full h-48 rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity">
+                      <div className="relative w-full h-60 rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity">
                         <Image
                           src={`${imageUrl}/${src}`}
                           alt={`certificate-${index}`}
-                          className="object-cover"
-                          fill
+                          className="aspect-video w-full h-full"
+                          priority={false}
+                          width={300}
+                          height={300}
                         />
                       </div>
                     </DialogTrigger>
                     <DialogContent className="md:min-w-[1100px]">
                       <DialogHeader>
                         <DialogTitle>Сертификат</DialogTitle>
+                        <DialogDescription></DialogDescription>
                       </DialogHeader>
-                      <div className="relative w-full h-[70vh] md:min-w-[1024px]">
+                      <div className="relative w-full md:min-w-[1024px]">
                         <Image
                           src={`${imageUrl}/${src}`}
                           alt={`certificate-full-${index}`}
                           className="object-contain w-full h-full"
+                          priority={false}
                           width={1024}
                           height={1024}
                         />

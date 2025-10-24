@@ -10,11 +10,9 @@ export default async function AboutPage() {
 
   if (!res?.team) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">О команде</h1>
-        <p className="text-muted-foreground">
-          Информация о команде недоступна.
-        </p>
+      <div className="container mx-auto p-4">
+        <h1>О нас</h1>
+        <p>Информация о команде недоступна.</p>
       </div>
     );
   }
@@ -22,10 +20,10 @@ export default async function AboutPage() {
   const teamData = res.team.slice().sort((a, b) => a.id.localeCompare(b.id));
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <section className="container mx-auto p-4">
       <div className="mb-12">
-        <h1 className="text-4xl font-bold mb-4">О команде</h1>
-        <p className="text-lg text-muted-foreground max-w-3xl">
+        <h1>О нас</h1>
+        <p>
           Познакомьтесь с нашими экспертами, которые помогут вам достичь успеха
           в цифровом мире.
         </p>
@@ -45,6 +43,6 @@ export default async function AboutPage() {
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 }

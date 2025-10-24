@@ -4,7 +4,7 @@ export default function ContactPage() {
     <section className="container mx-auto p-4">
       <h1>Наши контакты</h1>
       <div className="pt-4">
-        <ContactForm />
+        <ContactForm trigger="Начнем проект?" />
       </div>
     </section>
   );

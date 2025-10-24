@@ -21,8 +21,8 @@ export function ProjectCard({ slug, title, imageId }: ProjectCardProps) {
             alt={title}
             width={300}
             height={300}
-            priority={false}
-            className="object-fill rounded-md"
+            priority={true}
+            className="object-fill rounded-md w-full h-full"
           />
           <CardTitle>
             <h3>{title}</h3>
