@@ -25,7 +25,7 @@ export function ServiceCard({
     <Link href={slug}>
       <Card className="max-w-2xl relative p-0 hover:scale-102 transition duration-150 ease-in-out">
         {price ? (
-          <p className="absolute top-2 right-2 z-10 text-sm px-4 py-2 backdrop-blur-sm rounded-md bg-background/50">
+          <p className="absolute top-2 right-2 z-10 text-sm text-green-500 px-4 py-2 backdrop-blur-sm rounded-md bg-background/50">
             {price}
           </p>
         ) : null}

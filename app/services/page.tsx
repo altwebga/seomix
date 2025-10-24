@@ -29,7 +29,10 @@ export default async function ServicesPage() {
   return (
     <section className="container mx-auto p-4">
       <h1>Услуги</h1>
-      <p>Побеждаем демонов бизнеса</p>
+      <p>
+        Разработка, SEO и digital-маркетинг. Комплексный подход к созданию и
+        продвижению сайтов.
+      </p>
 
       <Carousel
         opts={{

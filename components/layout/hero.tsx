@@ -22,8 +22,8 @@ export async function Hero() {
   const { hero } = data;
 
   return (
-    <section className="h-screen flex items-center bg-[url(/images/hero_bg.png)] bg-no-repeat bg-cover bg-fixed">
-      <div className="container mx-auto p-4 bg-[url(/images/hero-bg.min.svg)] bg-left">
+    <section className="h-screen flex items-center bg-[url(/images/bg_grid.min.svg)] bg-no-repeat bg-bottom bg-contain">
+      <div className="container mx-auto p-4">
         <div className="flex flex-col-reverse md:flex-row gap-8 items-center">
           <div className="md:w-1/3 flex justify-center">
             <Image

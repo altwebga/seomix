@@ -21,7 +21,10 @@ export default async function PortfolioPage() {
   return (
     <section className="container mx-auto p-4">
       <h1>Портфолио</h1>
-      <p>Наши работы</p>
+      <p>
+        Реализованные проекты в сфере разработки и продвижения. Решения,
+        доказавшие эффективность цифрами.
+      </p>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {projects.map((project) => (
           <ProjectCard
