@@ -69,3 +69,19 @@ export interface IClientsData {
   direction: string;
   logo: Image;
 }
+
+export interface ITeam {
+  id: string;
+  title: string;
+  position: string;
+  content: string;
+  slug: string;
+  photo: Image;
+  certificates: {
+    id: string;
+    directus_files_id: {
+      id: string;
+      title: string;
+    };
+  }[];
+}

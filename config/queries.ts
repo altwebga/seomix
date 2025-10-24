@@ -155,3 +155,26 @@ query GetClients {
     }
   }
 `;
+
+export const GET_TEAM = `
+query GetTeam {
+  team {
+    id
+    title
+    position
+    content
+    slug
+    photo {
+      id
+      title
+    }
+    certificates {
+      directus_files_id {
+        id
+        title
+      }
+    }
+  }
+}
+
+`;
