@@ -18,6 +18,7 @@ export default async function PostPage() {
   return (
     <section className="container mx-auto p-4">
       <h1>Блог</h1>
+      <p>Коротко о важном, чтобы потом не забыть.</p>
       <div className="grid grid-cols-1 gap-4">
         {articles.map((article) => (
           <BlogCard

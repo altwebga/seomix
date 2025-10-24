@@ -44,7 +44,7 @@ export function TeamCard({
       {/* Заголовок карточки */}
       <CardHeader>
         <div className="flex items-center gap-3">
-          <Avatar className="h-24 w-24 rounded-lg">
+          <Avatar className="h-32 w-32 rounded-lg bg-violet-500">
             <AvatarImage
               src={`${imageUrl}/${photo}`}
               alt={title}
