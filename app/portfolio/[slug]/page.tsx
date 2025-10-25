@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getContentParams } from "@/actions/fetch-data";
 import { GET_PROJECT } from "@/config/queries";
 import { IProject } from "@/config/types";
@@ -5,8 +6,9 @@ import { Markdown } from "@/components/handlers/markdown";
 import { RuTubeFrame } from "@/components/handlers/rutube-frame";
 import { Button } from "@/components/ui/button";
 import { ClientCard } from "@/components/card/client-card";
-import { SquareArrowOutUpRightIcon } from "lucide-react";
+import { ArrowLeft, SquareArrowOutUpRightIcon } from "lucide-react";
 import { CallAction } from "@/components/layout/call-action";
+import { SplitContainerFixed } from "@/components/layout/split-container-fixed";
 
 const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 
@@ -32,20 +34,18 @@ export default async function PortfolioSinglePage({
   }
 
   return (
-    <section className="container mx-auto p-4 gap-4">
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="md:w-3/4 md:border-r md:pr-4">
+    <SplitContainerFixed
+      main={
+        <div className="space-y-8">
           <Markdown markdown={project.content} />
           <RuTubeFrame videoId={project.video_url} title={project.title} />
-        </div>
-        <div>
-          <div className="md:fixed md:top-24 space-y-4 md:w-1/4">
+          <div className="flex flex-row gap-4 justify-between items-center">
             <ClientCard
               title={project.client.title}
               direction={project.client.direction}
               logo={`${imageUrl}/${project.client.logo.id}`}
             />
-            <Button variant={"outline"}>
+            <Button>
               <a
                 href={project.site}
                 target="_blank"
@@ -55,10 +55,18 @@ export default async function PortfolioSinglePage({
               </a>
               <SquareArrowOutUpRightIcon />
             </Button>
-            <CallAction className="md:w-xs" />
           </div>
         </div>
-      </div>
-    </section>
+      }
+      sidebar={
+        <div className="md:w-xs space-y-4">
+          <CallAction />
+          <Button className="w-full" variant={"outline"}>
+            <ArrowLeft />
+            <Link href={"/portfolio"}>Назад к портфолио</Link>
+          </Button>
+        </div>
+      }
+    />
   );
 }

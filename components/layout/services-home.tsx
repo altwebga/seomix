@@ -21,7 +21,7 @@ export async function ServicesHome() {
   }
 
   return (
-    <section className="bg-[url(/images/fog.png)] bg-no-repeat bg-cover">
+    <section className="bg-[url(/images/fog.png)] bg-no-repeat bg-cover min-h-screen">
       <div className="container mx-auto p-4">
         <div className="flex flex-col md:flex-row gap-2 justify-between">
           <h2 className="md:text-5xl flex flex-col gap-2 uppercase justify-center py-8">

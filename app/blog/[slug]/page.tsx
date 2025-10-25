@@ -6,6 +6,7 @@ import { CallAction } from "@/components/layout/call-action";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowBigLeft } from "lucide-react";
+import { SplitContainerFixed } from "@/components/layout/split-container-fixed";
 
 export default async function BlogPostPage({
   params,
@@ -28,22 +29,24 @@ export default async function BlogPostPage({
 
   const article = result.articles[0];
   return (
-    <section className="container mx-auto p-4">
-      <div className="flex flex-col md:flex-row gap-2">
-        <div className="md:w-3/4 md:border-r md:pr-4">
+    <SplitContainerFixed
+      main={
+        <>
           <h1>{article.title}</h1>
           <Markdown markdown={article.content} />
+        </>
+      }
+      sidebar={
+        <div className="w-full md:max-w-xs space-y-4">
+          <Button variant="outline" asChild className="w-full">
+            <Link href="/blog">
+              <ArrowBigLeft className="mr-2" />
+              Назад к блогу
+            </Link>
+          </Button>
+          <CallAction />
         </div>
-        <div className="md:w-1/4">
-          <div className="md:fixed md:top-20 md:p-4">
-            <Button variant={"outline"} className="md:w-xs">
-              <ArrowBigLeft />
-              <Link href={"/blog"}>Назад к блогу</Link>
-            </Button>
-            <CallAction className="md:w-xs" />
-          </div>
-        </div>
-      </div>
-    </section>
+      }
+    />
   );
 }

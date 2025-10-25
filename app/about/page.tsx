@@ -2,6 +2,7 @@ import { getContent } from "@/actions/fetch-data";
 import { GET_TEAM } from "@/config/queries";
 import { ITeam } from "@/config/types";
 import { TeamCard } from "@/components/card/team-card";
+import { SectionContainer } from "@/components/layout/section-container";
 
 export default async function AboutPage() {
   const res = await getContent<{ team: ITeam[] }>(GET_TEAM, {
@@ -20,7 +21,7 @@ export default async function AboutPage() {
   const teamData = res.team.slice().sort((a, b) => a.id.localeCompare(b.id));
 
   return (
-    <section className="container mx-auto p-4">
+    <SectionContainer>
       <div className="mb-12">
         <h1>О нас</h1>
         <p>
@@ -43,6 +44,6 @@ export default async function AboutPage() {
           />
         ))}
       </div>
-    </section>
+    </SectionContainer>
   );
 }

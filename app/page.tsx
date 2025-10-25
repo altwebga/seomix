@@ -6,12 +6,12 @@ import { StageList } from "@/components/layout/stage-list";
 
 export default function Home() {
   return (
-    <>
+    <div>
       <Hero />
       <ServicesHome />
       <StageList />
       <ClientsList />
       <CallAction className="container mx-auto px-4" />
-    </>
+    </div>
   );
 }

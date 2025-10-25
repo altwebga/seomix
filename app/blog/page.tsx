@@ -2,6 +2,7 @@ import { getContent } from "@/actions/fetch-data";
 import { BlogCard } from "@/components/card/blog-card";
 import { GET_ARTICLES } from "@/config/queries";
 import { IArticle } from "@/config/types";
+import { SectionContainer } from "@/components/layout/section-container";
 
 interface GraphQLResponse {
   articles?: IArticle[];
@@ -16,13 +17,13 @@ export default async function PostPage() {
     return <p>постов нет</p>;
   }
   return (
-    <section className="container mx-auto p-4">
+    <SectionContainer>
       <h1>Блог</h1>
       <p>
         Практика, аналитика и тенденции digital-маркетинга. Коротко и по
         существу о том, что работает.
       </p>
-      <div className="grid grid-cols-1 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {articles.map((article) => (
           <BlogCard
             key={article.id}
@@ -33,6 +34,6 @@ export default async function PostPage() {
           />
         ))}
       </div>
-    </section>
+    </SectionContainer>
   );
 }

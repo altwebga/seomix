@@ -14,27 +14,28 @@ interface CallActionProps {
 
 export function CallAction({ className }: CallActionProps) {
   return (
-    <Card
-      className={cn(
-        className,
-        "bg-[url(/images/pattern.min.svg)] bg-no-repeat bg-top min-h-[25vh] my-8 w-full"
-      )}
-    >
-      <CardHeader>
-        <CardTitle>
-          <h3>Обсудим ваш проект?</h3>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="max-w-2xl">
-          Не ждите идеального момента или подходящего времени — начинайте прямо
-          сейчас! Свяжитесь со мной, и я помогу воплотить ваши идеи в
-          реальность.
-        </p>
-      </CardContent>
-      <CardFooter>
-        <ContactForm trigger="Начать проект" />
-      </CardFooter>
-    </Card>
+    <div className={cn(className)}>
+      <Card
+        className={
+          "bg-[url(/images/pattern.min.svg)] bg-no-repeat bg-top min-h-[25vh]"
+        }
+      >
+        <CardHeader>
+          <CardTitle>
+            <h3>Обсудим ваш проект?</h3>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="max-w-2xl">
+            Не ждите идеального момента или подходящего времени — начинайте
+            прямо сейчас! Свяжитесь со мной, и я помогу воплотить ваши идеи в
+            реальность.
+          </p>
+        </CardContent>
+        <CardFooter>
+          <ContactForm trigger="Начать проект" />
+        </CardFooter>
+      </Card>
+    </div>
   );
 }

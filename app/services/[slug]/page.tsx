@@ -5,6 +5,7 @@ import { GET_SERVICE } from "@/config/queries";
 import { IService } from "@/config/types";
 import { Markdown } from "@/components/handlers/markdown";
 import { CallAction } from "@/components/layout/call-action";
+import { SplitContainerFixed } from "@/components/layout/split-container-fixed";
 
 const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 
@@ -16,12 +17,8 @@ export default async function ServiceSinglePage({
   const { slug } = await params;
   const res = await getContentParams<{ services: IService[] }>(
     GET_SERVICE,
-    {
-      slug,
-    },
-    {
-      revalidate: 3600 * 24,
-    }
+    { slug },
+    { revalidate: 3600 * 24 }
   );
   const service = res?.services[0];
 
@@ -30,13 +27,16 @@ export default async function ServiceSinglePage({
   }
 
   return (
-    <section className="container mx-auto p-4 space-y-6">
-      <div className="flex flex-col md:flex-row gap-2">
-        <div className="md:w-2/3 space-y-4">
+    <SplitContainerFixed
+      main={
+        <>
           <h1>{service.title}</h1>
           <Markdown markdown={service.content} />
-        </div>
-        <div className="md:w-1/3">
+          <CallAction />
+        </>
+      }
+      sidebar={
+        <div>
           <Image
             src={`${imageUrl}/${service.cover_image.id}`}
             alt={service.cover_image.title}
@@ -45,8 +45,7 @@ export default async function ServiceSinglePage({
             className="object-contain md:fixed md:top-20"
           />
         </div>
-      </div>
-      <CallAction />
-    </section>
+      }
+    />
   );
 }

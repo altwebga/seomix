@@ -13,7 +13,7 @@ export async function StageList() {
   const stages: IStageItem[] = (data as IStageData)?.stage?.phase ?? [];
 
   return (
-    <section className="h-screen bg-[url(/images/wave.min.svg)] bg-no-repeat bg-center bg-cover">
+    <section className="bg-[url(/images/wave.min.svg)] bg-no-repeat bg-center bg-cover min-h-screen">
       <div className="container mx-auto p-4">
         <h2 className="md:text-5xl flex flex-col gap-2 uppercase justify-center py-8">
           Этапы разработки
