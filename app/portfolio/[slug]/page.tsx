@@ -1,3 +1,4 @@
+import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { getContentParams } from "@/actions/fetch-data";
 import { GET_PROJECT } from "@/config/queries";
@@ -11,6 +12,45 @@ import { CallAction } from "@/components/layout/call-action";
 import { SplitContainerFixed } from "@/components/layout/split-container-fixed";
 
 const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { slug } = await params;
+  const result = await getContentParams<{ projects: IProject[] }>(
+    GET_PROJECT,
+    { slug },
+    { revalidate: 3600 * 24 }
+  );
+
+  if (!result || !result.projects || result.projects.length === 0) {
+    return {
+      title: "Проект не найден",
+    };
+  }
+
+  const project = result.projects[0];
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: project.seo.title,
+    description: project.seo.meta_description,
+    openGraph: {
+      title: project.seo.title,
+      description: project.seo.meta_description,
+      images: [
+        {
+          url: `/portfolio/${slug}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: project.seo.title,
+        },
+        ...previousImages,
+      ],
+    },
+  };
+}
 
 export default async function PortfolioSinglePage({
   params,

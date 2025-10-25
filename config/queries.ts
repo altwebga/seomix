@@ -26,11 +26,11 @@ export const GET_ARTICLE = `
       slug
       title
       content
+      seo
       cover_image {
         title
         id
       }
-      seo
     }
   }
 `;
@@ -111,11 +111,11 @@ query GetService($slug: String!) {
         title
         content
         price
+        seo
         cover_image {
           title
           id
         }
-        seo
       }
     }
 `;
