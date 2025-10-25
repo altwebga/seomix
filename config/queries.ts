@@ -178,3 +178,25 @@ query GetTeam {
 }
 
 `;
+export const GET_ALL = `
+query GetAll {
+    articles(
+      filter: { status: { _eq: "published" } }
+    ) {
+      id
+      slug
+    }
+    projects(
+      filter: { status: { _eq: "published" } }
+    ) {
+      id
+      slug
+    }
+    services(
+      filter: { status: { _eq: "published" } }
+    ) {
+      id
+      slug
+    }
+  }
+`;

@@ -22,15 +22,13 @@ export default async function AboutPage() {
 
   return (
     <SectionContainer>
-      <div className="mb-12">
-        <h1>О нас</h1>
-        <p>
-          SEOMIX — команда специалистов в области IT и digital-маркетинга.
-          Основной фокус — системный подход к развитию бизнеса.
-        </p>
-      </div>
+      <h1>О нас</h1>
+      <p>
+        SEOMIX — команда специалистов в области IT и digital-маркетинга.
+        Основной фокус — системный подход к развитию бизнеса.
+      </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
         {teamData.map((member) => (
           <TeamCard
             key={member.id}

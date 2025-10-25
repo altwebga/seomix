@@ -23,7 +23,7 @@ export default async function PostPage() {
         Практика, аналитика и тенденции digital-маркетинга. Коротко и по
         существу о том, что работает.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
         {articles.map((article) => (
           <BlogCard
             key={article.id}

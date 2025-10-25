@@ -5,7 +5,7 @@ import { Markdown } from "@/components/handlers/markdown";
 import { CallAction } from "@/components/layout/call-action";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowBigLeft } from "lucide-react";
+import { ArrowBigLeft, ArrowLeft } from "lucide-react";
 import { SplitContainerFixed } from "@/components/layout/split-container-fixed";
 
 export default async function BlogPostPage({
@@ -38,13 +38,11 @@ export default async function BlogPostPage({
       }
       sidebar={
         <div className="w-full md:max-w-xs space-y-4">
-          <Button variant="outline" asChild className="w-full">
-            <Link href="/blog">
-              <ArrowBigLeft className="mr-2" />
-              Назад к блогу
-            </Link>
-          </Button>
           <CallAction />
+          <Button className="w-full" variant={"outline"}>
+            <ArrowLeft />
+            <Link href={"/blog"}> Назад к блогу</Link>
+          </Button>
         </div>
       }
     />

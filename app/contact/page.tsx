@@ -12,7 +12,7 @@ export default function ContactPage() {
         Заявка на аудит, консультацию или проект. Подключение экспертов для
         решения задач бизнеса в цифровой среде.
       </p>
-      <div className="flex flex-col md:flex-row gap-4">
+      <div className="flex flex-col md:flex-row gap-4 py-4">
         <div className="space-y-8 md:w-1/2">
           <SocialIcons size="md" />
           <ContactForm trigger="Начнем проект?" />

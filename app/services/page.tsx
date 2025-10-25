@@ -10,6 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { SectionContainer } from "@/components/layout/section-container";
 
 interface GraphQLResponse {
   services?: IService[];
@@ -27,13 +28,12 @@ export default async function ServicesPage() {
   }
 
   return (
-    <section className="container mx-auto p-4">
+    <SectionContainer>
       <h1>Услуги</h1>
       <p>
         Разработка, SEO и digital-маркетинг. Комплексный подход к созданию и
         продвижению сайтов.
       </p>
-
       <Carousel
         opts={{
           align: "start",
@@ -64,6 +64,6 @@ export default async function ServicesPage() {
         <CarouselNext className="hidden md:block" />
       </Carousel>
       <CallAction />
-    </section>
+    </SectionContainer>
   );
 }

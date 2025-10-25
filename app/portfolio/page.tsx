@@ -25,7 +25,7 @@ export default async function PortfolioPage() {
         Реализованные проекты в сфере разработки и продвижения. Решения,
         доказавшие эффективность цифрами.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 py-4">
         {projects.map((project) => (
           <ProjectCard
             key={project.id}
