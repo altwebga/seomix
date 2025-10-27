@@ -1,6 +1,8 @@
 import { getContentParams } from "@/actions/fetch-data";
-import { GET_ARTICLE, GET_SERVICE, GET_PROJECT } from "@/config/queries";
-import { IArticle, IService, IProject } from "@/config/types";
+import { GET_ARTICLE, GET_PROJECT } from "@/config/queries";
+import { IArticle, IProject } from "@/config/types";
+import { getServiceBySlug } from "@/entities/service/api/get-services";
+import type { Service } from "@/entities/service/model/types";
 
 export type ContentType = "article" | "service" | "project";
 
@@ -32,15 +34,11 @@ export async function getContentForOG(
       }
 
       case "service": {
-        const result = await getContentParams<{ services: IService[] }>(
-          GET_SERVICE,
-          { slug },
-          { revalidate: 3600 * 24 }
-        );
+        const result = await getServiceBySlug(slug);
+        const service: Service | undefined = result?.services?.[0];
 
-        if (!result?.services?.length) return null;
+        if (!service) return null;
 
-        const service = result.services[0];
         return {
           title: service.seo.title,
           description: service.seo.meta_description,

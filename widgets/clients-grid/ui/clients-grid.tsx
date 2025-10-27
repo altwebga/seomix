@@ -1,19 +1,15 @@
-import { getContent } from "@/actions/fetch-data";
-import { GET_CLIENTS } from "@/config/queries";
-import { IClientsData } from "@/config/types";
-import { ClientCard } from "../card/client-card";
+import { getClients } from "@/entities/client/api/get-clients";
+import { ClientCard } from "@/entities/client/ui/client-card";
+import { getPublicEnv } from "@/shared/config/public-env";
 
-interface GraphQLResponse {
-  clients?: IClientsData[];
-}
+const { NEXT_PUBLIC_IMAGE_URL } = getPublicEnv();
 
-const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+export async function ClientsGrid() {
+  const data = await getClients();
+  const clients = data?.clients ?? [];
 
-export async function ClientsList() {
-  const res = await getContent<GraphQLResponse>(GET_CLIENTS);
-  const clients = res?.clients ?? [];
   if (clients.length === 0) {
-    return <p>Упс. нет клиентов</p>;
+    return null;
   }
 
   return (
@@ -28,7 +24,7 @@ export async function ClientsList() {
               key={client.id}
               title={client.title}
               direction={client.direction}
-              logo={`${imageUrl}/${client.logo.id}`}
+              logo={`${NEXT_PUBLIC_IMAGE_URL}/${client.logo.id}`}
             />
           ))}
         </div>

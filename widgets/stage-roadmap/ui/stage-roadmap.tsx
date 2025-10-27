@@ -1,16 +1,22 @@
-import { getContent } from "@/actions/fetch-data";
-import { GET_STAGE } from "@/config/queries";
-import { IStageData, IStageItem } from "@/config/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Markdown } from "../handlers/markdown";
-import { ContactForm } from "../form/contact-form";
+import { ContactRequestDialog } from "@/features/contact-request/ui/contact-request-dialog";
+import { getStages } from "@/entities/stage/api/get-stage";
+import type { StagePhase } from "@/entities/stage/model/types";
+import { Markdown } from "@/components/handlers/markdown";
 
-export async function StageList() {
-  const data = await getContent(GET_STAGE, {
-    revalidate: 3600 * 24,
-  });
+function isStagePhaseArray(value: unknown): value is StagePhase[] {
+  return Array.isArray(value);
+}
 
-  const stages: IStageItem[] = (data as IStageData)?.stage?.phase ?? [];
+export async function StageRoadmap() {
+  const data = await getStages();
+  const phases = isStagePhaseArray(data?.stage?.phase)
+    ? data?.stage?.phase ?? []
+    : [];
+
+  if (phases.length === 0) {
+    return null;
+  }
 
   return (
     <section className="bg-[url(/images/wave.min.svg)] bg-no-repeat bg-center bg-cover min-h-screen">
@@ -19,8 +25,8 @@ export async function StageList() {
           Этапы разработки
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {stages.map((stage, index) => (
-            <Card key={index} className="relative overflow-hidden">
+          {phases.map((stage) => (
+            <Card key={stage.step} className="relative overflow-hidden">
               <span className="absolute inset-0 flex items-center justify-center text-[200px] opacity-5 z-0">
                 {stage.step}
               </span>
@@ -39,7 +45,7 @@ export async function StageList() {
           ))}
         </div>
         <div className="flex justify-center py-8">
-          <ContactForm
+          <ContactRequestDialog
             trigger="Отлично, давайте поработаем"
             className="h-14 bg-red-500"
           />

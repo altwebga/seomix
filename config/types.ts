@@ -8,13 +8,6 @@ interface Image {
   title: string;
 }
 
-export interface IHero {
-  hero_title: string;
-  hero_city: string;
-  hero_content: string;
-  hero_image: Image;
-}
-
 interface Base {
   id: string;
   status: "published" | "draft" | "archived";
@@ -42,32 +35,6 @@ export interface IProject extends Base {
   video_url: string;
   seo: SEO;
   cover_image: Image;
-}
-
-export interface IService extends Base {
-  short_content: string | null;
-  price: string;
-  seo: SEO;
-  cover_image: Image;
-}
-
-export interface IStageItem {
-  step: number;
-  title: string;
-  content: string;
-}
-
-export interface IStageData {
-  stage: {
-    phase: IStageItem[];
-  };
-}
-
-export interface IClientsData {
-  id: string;
-  title: string;
-  direction: string;
-  logo: Image;
 }
 
 export interface ITeam {

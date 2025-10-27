@@ -1,17 +1,17 @@
-import { CallAction } from "@/components/layout/call-action";
-import { ClientsList } from "@/components/layout/clients-list";
-import { Hero } from "@/components/layout/hero";
-import { ServicesHome } from "@/components/layout/services-home";
-import { StageList } from "@/components/layout/stage-list";
+import { LandingHero } from "@/widgets/landing-hero/ui/landing-hero";
+import { ServicesOverview } from "@/widgets/services-overview/ui/services-overview";
+import { StageRoadmap } from "@/widgets/stage-roadmap/ui/stage-roadmap";
+import { ClientsGrid } from "@/widgets/clients-grid/ui/clients-grid";
+import { CallToActionCard } from "@/widgets/call-to-action/ui/call-to-action-card";
 
 export default function Home() {
   return (
     <div>
-      <Hero />
-      <ServicesHome />
-      <StageList />
-      <ClientsList />
-      <CallAction className="container mx-auto px-4" />
+      <LandingHero />
+      <ServicesOverview />
+      <StageRoadmap />
+      <ClientsGrid />
+      <CallToActionCard className="container mx-auto px-4" />
     </div>
   );
 }

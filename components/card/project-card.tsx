@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { getPublicEnv } from "@/shared/config/public-env";
 
 interface ProjectCardProps {
   slug: string;
@@ -9,7 +10,7 @@ interface ProjectCardProps {
   imageId: string;
 }
 
-const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+const { NEXT_PUBLIC_IMAGE_URL } = getPublicEnv();
 
 export function ProjectCard({ slug, title, imageId }: ProjectCardProps) {
   return (
@@ -17,7 +18,7 @@ export function ProjectCard({ slug, title, imageId }: ProjectCardProps) {
       <Card>
         <CardHeader>
           <Image
-            src={`${imageUrl}/${imageId}`}
+            src={`${NEXT_PUBLIC_IMAGE_URL}/${imageId}`}
             alt={title}
             width={300}
             height={300}

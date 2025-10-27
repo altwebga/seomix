@@ -1,30 +1,20 @@
-import { getContent } from "@/actions/fetch-data";
-import { ServiceCard } from "@/components/card/service-card";
-import { GET_SERVICES } from "@/config/queries";
-import { IService } from "@/config/types";
-import { CallAction } from "@/components/layout/call-action";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { SectionContainer } from "@/components/layout/section-container";
-
-interface GraphQLResponse {
-  services?: IService[];
-}
+import { ServiceCard } from "@/entities/service/ui/service-card";
+import { getServices } from "@/entities/service/api/get-services";
+import { CallToActionCard } from "@/widgets/call-to-action/ui/call-to-action-card";
 
 export default async function ServicesPage() {
-  const result = await getContent<GraphQLResponse>(GET_SERVICES, {
-    revalidate: 3600 * 24,
-  });
-
+  const result = await getServices();
   const services = result?.services ?? [];
 
   if (services.length === 0) {
-    return <p>услуг нет</p>;
+    return (
+      <SectionContainer>
+        <h1>Услуги</h1>
+        <p>Список услуг временно пуст.</p>
+      </SectionContainer>
+    );
   }
 
   return (
@@ -49,7 +39,6 @@ export default async function ServicesPage() {
               className="md:basis-1/3 lg:basis-1/4"
             >
               <ServiceCard
-                key={service.id}
                 slug={`/services/${service.slug}`}
                 title={service.title}
                 price={service.price}
@@ -63,7 +52,7 @@ export default async function ServicesPage() {
         <CarouselPrevious className="hidden md:block" />
         <CarouselNext className="hidden md:block" />
       </Carousel>
-      <CallAction />
+      <CallToActionCard className="mt-12" />
     </SectionContainer>
   );
 }

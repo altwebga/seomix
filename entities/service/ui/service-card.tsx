@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getPublicEnv } from "@/shared/config/public-env";
 
 interface ServiceCardProps {
   slug: string;
@@ -12,7 +13,7 @@ interface ServiceCardProps {
   imageTitle?: string | null;
 }
 
-const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+const { NEXT_PUBLIC_IMAGE_URL } = getPublicEnv();
 
 export function ServiceCard({
   slug,
@@ -32,7 +33,7 @@ export function ServiceCard({
         <CardHeader className="space-y-2">
           {imageId ? (
             <Image
-              src={`${imageUrl}/${imageId}`}
+              src={`${NEXT_PUBLIC_IMAGE_URL}/${imageId}`}
               alt={title}
               width={300}
               height={300}
