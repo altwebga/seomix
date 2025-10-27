@@ -21,6 +21,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { getPublicEnv } from "@/shared/config/public-env";
 
 export interface TeamCardProps {
   title: string;
@@ -30,7 +31,7 @@ export interface TeamCardProps {
   certificates?: string[]; // массив URL изображений
 }
 
-const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+const { NEXT_PUBLIC_IMAGE_URL } = getPublicEnv();
 
 export function TeamCard({
   title,
@@ -46,7 +47,7 @@ export function TeamCard({
         <div className="flex items-center gap-3">
           <Avatar className="h-32 w-32 rounded-lg bg-primary">
             <AvatarImage
-              src={`${imageUrl}/${photo}`}
+              src={`${NEXT_PUBLIC_IMAGE_URL}/${photo}`}
               alt={title}
               className="object-cover "
             />
@@ -78,7 +79,7 @@ export function TeamCard({
                     <DialogTrigger asChild>
                       <div className="relative w-full h-60 rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity">
                         <Image
-                          src={`${imageUrl}/${src}`}
+                          src={`${NEXT_PUBLIC_IMAGE_URL}/${src}`}
                           alt={`certificate-${index}`}
                           className="aspect-video w-full h-full"
                           priority={false}
@@ -94,7 +95,7 @@ export function TeamCard({
                       </DialogHeader>
                       <div className="relative w-full md:min-w-[1024px]">
                         <Image
-                          src={`${imageUrl}/${src}`}
+                          src={`${NEXT_PUBLIC_IMAGE_URL}/${src}`}
                           alt={`certificate-full-${index}`}
                           className="object-contain w-full h-full"
                           priority={false}

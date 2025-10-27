@@ -3,8 +3,9 @@
 import React from "react";
 import { SmartCaptcha } from "@yandex/smart-captcha";
 
-const sitekey =
-  process.env.NEXT_PUBLIC_YANDEX_SMART_CAPTCHA_CLIENT_KEY || "test";
+import { getPublicEnv } from "@/shared/config/public-env";
+
+const { NEXT_PUBLIC_YANDEX_SMART_CAPTCHA_CLIENT_KEY } = getPublicEnv();
 
 export interface YandexCaptchaProps {
   /** Вернёт одноразовый токен после успешного прохождения капчи */
@@ -38,7 +39,7 @@ export const YandexCaptcha: React.FC<YandexCaptchaProps> = ({
   return (
     <div className="w-full">
       <SmartCaptcha
-        sitekey={sitekey}
+        sitekey={NEXT_PUBLIC_YANDEX_SMART_CAPTCHA_CLIENT_KEY}
         onSuccess={handleSuccess}
         // многие примеры используют onTokenExpired
 

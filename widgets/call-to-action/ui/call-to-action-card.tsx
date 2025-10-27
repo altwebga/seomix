@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import {
   Card,
   CardContent,
@@ -5,21 +6,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ContactForm } from "../form/contact-form";
-import { cn } from "@/lib/utils";
+import { ContactRequestDialog } from "@/features/contact-request/ui/contact-request-dialog";
 
-interface CallActionProps {
+interface CallToActionCardProps {
   className?: string;
 }
 
-export function CallAction({ className }: CallActionProps) {
+export function CallToActionCard({ className }: CallToActionCardProps) {
   return (
     <div className={cn(className)}>
-      <Card
-        className={
-          "bg-[url(/images/pattern.min.svg)] bg-no-repeat bg-top min-h-[25vh]"
-        }
-      >
+      <Card className="bg-[url(/images/pattern.min.svg)] bg-no-repeat bg-top min-h-[25vh]">
         <CardHeader>
           <CardTitle>
             <h3>Обсудим ваш проект?</h3>
@@ -33,7 +29,7 @@ export function CallAction({ className }: CallActionProps) {
           </p>
         </CardContent>
         <CardFooter>
-          <ContactForm trigger="Начать проект" />
+          <ContactRequestDialog trigger="Начать проект" />
         </CardFooter>
       </Card>
     </div>

@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { getPublicEnv } from "@/shared/config/public-env";
 
 interface BlogCardProps {
   slug: string;
@@ -15,8 +16,7 @@ interface BlogCardProps {
   content: string;
   image: string;
 }
-
-const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+const { NEXT_PUBLIC_IMAGE_URL } = getPublicEnv();
 
 export function BlogCard({ slug, title, content, image }: BlogCardProps) {
   return (
@@ -24,7 +24,7 @@ export function BlogCard({ slug, title, content, image }: BlogCardProps) {
       <Card className="max-w-3xl">
         <div className="flex flex-col md:flex-row">
           <Image
-            src={`${imageUrl}/${image}`}
+            src={`${NEXT_PUBLIC_IMAGE_URL}/${image}`}
             alt={title}
             width={300}
             height={300}

@@ -1,12 +1,13 @@
 import type { Metadata, ResolvingMetadata } from "next";
+import Link from "next/link";
+
 import { getContentParams } from "@/actions/fetch-data";
 import { GET_ARTICLE } from "@/config/queries";
 import { IArticle } from "@/config/types";
 import { Markdown } from "@/components/handlers/markdown";
-import { CallAction } from "@/components/layout/call-action";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { CallToActionCard } from "@/widgets/call-to-action/ui/call-to-action-card";
 import { SplitContainerFixed } from "@/components/layout/split-container-fixed";
 
 export async function generateMetadata(
@@ -20,7 +21,7 @@ export async function generateMetadata(
     { revalidate: 3600 * 24 }
   );
 
-  if (!result || !result.articles || result.articles.length === 0) {
+  if (!result?.articles?.length) {
     return {
       title: "Статья не найдена",
     };
@@ -56,14 +57,11 @@ export default async function BlogPostPage({
   const { slug } = await params;
   const result = await getContentParams<{ articles: IArticle[] }>(
     GET_ARTICLE,
-    {
-      slug,
-    },
-    {
-      revalidate: 3600 * 24,
-    }
+    { slug },
+    { revalidate: 3600 * 24 }
   );
-  if (!result || !result.articles || result.articles.length === 0) {
+
+  if (!result?.articles?.length) {
     return <p>Нет контента</p>;
   }
 
@@ -78,10 +76,11 @@ export default async function BlogPostPage({
       }
       sidebar={
         <div className="w-full md:max-w-xs space-y-4">
-          <CallAction />
-          <Button className="w-full" variant={"outline"}>
-            <ArrowLeft />
-            <Link href={"/blog"}> Назад к блогу</Link>
+          <CallToActionCard />
+          <Button className="w-full" variant="outline" asChild>
+            <Link href="/blog" className="flex items-center gap-2">
+              <ArrowLeft className="h-4 w-4" /> Назад к блогу
+            </Link>
           </Button>
         </div>
       }

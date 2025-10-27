@@ -1,25 +1,20 @@
-import { getContent } from "@/actions/fetch-data";
-import { GET_HERO } from "@/config/queries";
-import { IHero } from "@/config/types";
 import Image from "next/image";
-import { ContactForm } from "../form/contact-form";
-import { SocialIcons } from "./social-icons";
 
-interface HeroResponse {
-  hero: IHero;
-}
+import { getHero } from "@/entities/hero/api/get-hero";
+import type { Hero } from "@/entities/hero/model/types";
+import { ContactRequestDialog } from "@/features/contact-request/ui/contact-request-dialog";
+import { getPublicEnv } from "@/shared/config/public-env";
+import { SocialIcons } from "@/components/layout/social-icons";
 
-const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+const { NEXT_PUBLIC_IMAGE_URL } = getPublicEnv();
 
-export async function Hero() {
-  const data = await getContent<HeroResponse>(GET_HERO, {
-    revalidate: 3600 * 24,
-  });
-  if (!data?.hero) {
-    return <p>No hero</p>;
+export async function LandingHero() {
+  const data = await getHero();
+  const hero: Hero | undefined = data?.hero;
+
+  if (!hero) {
+    return null;
   }
-
-  const { hero } = data;
 
   return (
     <section className="h-screen flex items-center bg-[url(/images/bg_grid.min.svg)] bg-no-repeat bg-bottom bg-contain">
@@ -27,11 +22,12 @@ export async function Hero() {
         <div className="flex flex-col-reverse md:flex-row gap-8 items-center">
           <div className="md:w-1/3 flex justify-center">
             <Image
-              src={`${imageUrl}/${hero.hero_image.id}`}
+              src={`${NEXT_PUBLIC_IMAGE_URL}/${hero.hero_image.id}`}
               alt={hero.hero_image.title}
               width={400}
               height={400}
               className="object-contain hidden md:block"
+              priority
             />
           </div>
           <div className="md:w-2/3">
@@ -42,12 +38,11 @@ export async function Hero() {
             <p className="pt-4 text-4xl">{hero.hero_content}</p>
             <div className="flex flex-col md:flex-row gap-8 w-full items-center pt-6">
               <div className="md:w-1/2 w-full">
-                <ContactForm
+                <ContactRequestDialog
                   trigger="Начать проект"
                   className="h-14 bg-red-500 w-full"
                 />
               </div>
-
               <div className="md:w-1/2 flex justify-center">
                 <SocialIcons size="md" />
               </div>
