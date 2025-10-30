@@ -1,3 +1,5 @@
+import { createDirectus, rest, graphql, authentication } from "@directus/sdk";
+
 interface SEO {
   title: string;
   meta_description: string;
@@ -24,6 +26,7 @@ interface Base {
 }
 
 export interface IArticle extends Base {
+  date_created: Date;
   seo: SEO;
   cover_image: Image;
 }
@@ -57,13 +60,13 @@ export interface IStageItem {
   content: string;
 }
 
-export interface IStageData {
+export interface IStage {
   stage: {
     phase: IStageItem[];
   };
 }
 
-export interface IClientsData {
+export interface IClient {
   id: string;
   title: string;
   direction: string;
@@ -85,3 +88,23 @@ export interface ITeam {
     };
   }[];
 }
+
+interface Schema {
+  articles: IArticle[];
+  projects: IProject[];
+  services: IService[];
+  clients: IClient[];
+  hero: IHero;
+  stage: IStage;
+}
+
+const directusUrl = process.env.GRAPHQL_ENDPOINT || "http://localhost:8485";
+const token = process.env.ACCESS_TOKEN || "";
+const directus = createDirectus<Schema>(directusUrl)
+  .with(rest())
+  .with(graphql())
+  .with(authentication());
+
+await directus.setToken(token);
+
+export default directus;
