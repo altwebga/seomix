@@ -94,3 +94,56 @@ export async function getCustomerById(clientId: number) {
   );
   return items[0] ?? null;
 }
+
+// Services
+export async function getPublishedServicesSlugs() {
+  return directus.request(
+    readItems("services", {
+      fields: ["slug"],
+      filter: { status: { _eq: "published" } },
+    })
+  );
+}
+
+export async function getPublishedServicesList() {
+  return directus.request(
+    readItems("services", {
+      fields: [
+        "slug",
+        "title",
+        "date_created",
+        "id",
+        "cover_image",
+        "seo",
+        "short_content",
+        "price",
+      ],
+      sort: ["-date_created"],
+      filter: { status: { _eq: "published" } },
+    })
+  );
+}
+
+export async function getServiceBySlug(slug: string) {
+  try {
+    const services = await directus.request(
+      readItems("services", {
+        fields: [
+          "title",
+          "content",
+          "cover_image",
+          "seo",
+          "short_content",
+          "price",
+        ],
+        filter: {
+          slug: { _eq: slug },
+          status: { _eq: "published" },
+        },
+      })
+    );
+    return services[0] ?? null;
+  } catch {
+    return null;
+  }
+}
