@@ -5,7 +5,7 @@ export interface Image {
 }
 
 export interface Base {
-  id: string;
+  id: number;
   slug: string | null;
   date_created: string;
   date_updated: string | null;
@@ -18,7 +18,7 @@ export interface Base {
 export interface SEO {
   title: string;
   meta_description: string;
-  og_image?: string;
+  og_image: string;
 }
 
 export interface Hero extends Base {
@@ -26,27 +26,27 @@ export interface Hero extends Base {
 }
 
 export interface Article extends Base {
-  seo?: SEO | null;
+  seo: SEO;
 }
 
 export interface Project extends Base {
   release_date: string | null;
-  client: string | null;
+  client: number | null;
   site_url: string | null;
   rutube_id: string | null;
-  seo?: SEO | null;
+  seo: SEO;
 }
 
 export interface Service extends Base {
   short_content: string | null;
   price: string | null;
-  seo?: SEO | null;
+  seo: SEO;
 }
 
 export interface Customer {
-  id: string;
+  id: number;
   title: string;
-  content: string | null;
+  content: string;
   cover_image: Image | string | null;
 }
 

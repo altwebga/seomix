@@ -1,38 +1,28 @@
-import directus from "@/lib/directus";
-import { readItems } from "@directus/sdk";
 import { BlogCard } from "@/components/card/blog-card";
 import { ContainerFixed } from "@/components/layout/container-fixed";
-
-async function getPosts() {
-  return directus.request(
-    readItems("articles", {
-      fields: ["slug", "title", "date_created", "id", "cover_image", "seo"],
-      sort: ["-date_created"],
-      filter: { status: { _eq: "published" } },
-    })
-  );
-}
+import { getPublishedArticlesList } from "@/actions/content";
 
 export default async function DynamicPage() {
-  const posts = await getPosts();
+  const posts = await getPublishedArticlesList();
   return (
     <ContainerFixed
       main={
         <>
           <h1>Blog</h1>
-          <div className="grid grid-cols-1 gap-4 mt-4">
+          <ul className="grid grid-cols-1 gap-4 mt-8 list-none px-0">
             {posts.map((post) => {
               return (
-                <BlogCard
-                  key={post.id}
-                  slug={`blog/${post.slug}` || ""}
-                  title={post.title}
-                  image={post.cover_image || ""}
-                  content={post.seo?.meta_description || ""}
-                />
+                <li key={post.id}>
+                  <BlogCard
+                    slug={`blog/${post.slug}` || ""}
+                    title={post.title}
+                    image={post.cover_image || ""}
+                    content={post.seo?.meta_description || ""}
+                  />
+                </li>
               );
             })}
-          </div>
+          </ul>
         </>
       }
       sidebar={

@@ -1,41 +1,49 @@
-import directus from "@/lib/directus";
-import { readItems } from "@directus/sdk";
+import type { Metadata } from "next";
 import { Markdown } from "@/components/features/markdown";
 import { ContainerFixed } from "@/components/layout/container-fixed";
+import { getArticleBySlug, getPublishedArticlesSlugs } from "@/actions/content";
 
-async function getPosts() {
-  return directus.request(
-    readItems("articles", {
-      fields: ["slug"],
-      filter: { status: { _eq: "published" } },
-    })
-  );
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = (await params).slug;
+
+  const article = await getArticleBySlug(slug);
+
+  const baseImageUrl = process.env.NEXT_PUBLIC_IMAGE_URL || "";
+  const seoTitle = article?.seo?.title || article?.title || undefined;
+  const seoDescription = article?.seo?.meta_description || undefined;
+  const ogImagePath =
+    article?.seo?.og_image || article?.cover_image || undefined;
+  const ogImageUrl =
+    ogImagePath && baseImageUrl ? `${baseImageUrl}/${ogImagePath}` : undefined;
+
+  return {
+    title: seoTitle,
+    description: seoDescription,
+    openGraph: {
+      title: seoTitle,
+      description: seoDescription,
+      images: ogImageUrl ? [{ url: ogImageUrl }] : undefined,
+      type: "article",
+    },
+    twitter: {
+      card: ogImageUrl ? "summary_large_image" : "summary",
+      title: seoTitle,
+      description: seoDescription,
+      images: ogImageUrl ? [ogImageUrl] : undefined,
+    },
+  };
 }
 
 export async function generateStaticParams() {
-  const posts = await getPosts();
+  const posts = await getPublishedArticlesSlugs();
 
   return posts.map((post) => ({
     slug: post.slug,
   }));
-}
-
-async function getPost(slug: string) {
-  try {
-    const posts = await directus.request(
-      readItems("articles", {
-        fields: ["title", "content", "cover_image"],
-        filter: {
-          slug: { _eq: slug },
-          status: { _eq: "published" },
-        },
-      })
-    );
-
-    return posts[0];
-  } catch {
-    return null;
-  }
 }
 
 export default async function BlogPage({
@@ -44,7 +52,7 @@ export default async function BlogPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const article = await getPost(slug);
+  const article = await getArticleBySlug(slug);
 
   return (
     <ContainerFixed
