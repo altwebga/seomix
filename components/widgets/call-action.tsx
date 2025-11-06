@@ -17,7 +17,7 @@ export function CallAction({ className }: CallActionProps) {
     <div className={cn(className)}>
       <Card
         className={
-          "bg-[url(/images/pattern.min.svg)] bg-no-repeat bg-top min-h-[25vh]"
+          "bg-[url(/img/pattern.min.svg)] bg-no-repeat bg-top min-h-[25vh]"
         }
       >
         <CardHeader>

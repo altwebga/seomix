@@ -120,18 +120,26 @@
   body {
     @apply bg-background text-foreground;
   }
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
   h1 {
-    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-2;
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4;
   }
   h2 {
-    @apply scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0 mb-2;
+    @apply scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0 mb-4;
   }
   h3,
   label {
-    @apply scroll-m-20 text-2xl mt-4 font-semibold tracking-tight mb-2;
+    @apply scroll-m-20 text-2xl mt-4 font-semibold tracking-tight mb-4;
   }
   h4 {
-    @apply scroll-m-20 text-xl font-semibold tracking-tight mb-2;
+    @apply scroll-m-20 text-xl font-semibold tracking-tight mb-4;
   }
   p {
     @apply text-lg mb-4;

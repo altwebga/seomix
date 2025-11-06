@@ -8,7 +8,8 @@ export default async function DynamicPage() {
     <ContainerFixed
       main={
         <>
-          <h1>Blog</h1>
+          <h1>Блог</h1>
+          <p>Скорее не блог, а записная книжка. Чтобы не забыть.</p>
           <ul className="grid grid-cols-1 gap-4 mt-8 list-none px-0">
             {posts.map((post) => {
               return (

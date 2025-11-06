@@ -118,7 +118,7 @@ export async function getPublishedServicesList() {
         "short_content",
         "price",
       ],
-      sort: ["-date_created"],
+      sort: ["id"],
       filter: { status: { _eq: "published" } },
     })
   );

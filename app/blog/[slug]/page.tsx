@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Markdown } from "@/components/features/markdown";
 import { ContainerFixed } from "@/components/layout/container-fixed";
 import { getArticleBySlug, getPublishedArticlesSlugs } from "@/actions/content";
+import { BackButton } from "@/components/shared/back-button";
+import { CallAction } from "@/components/widgets/call-action";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -63,8 +65,9 @@ export default async function BlogPage({
         </>
       }
       sidebar={
-        <div>
-          <p>Тут фиксировано</p>
+        <div className="space-y-8 md:max-w-sm">
+          <BackButton href="/blog" title="Назад к блогу" />
+          <CallAction />
         </div>
       }
     />

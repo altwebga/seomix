@@ -10,6 +10,7 @@ export default async function PortfolioPage() {
       main={
         <>
           <h1>Портфолио</h1>
+          <p>Некоторые работы которые нам разрешено показывать договором.</p>
           <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 list-none px-0">
             {projects.map((project) => (
               <li key={project.id}>
