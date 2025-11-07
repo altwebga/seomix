@@ -1,6 +1,7 @@
 import { ContainerFixed } from "@/components/layout/container-fixed";
 import { ProjectCard } from "@/components/card/project-card";
 import { getPublishedProjectsList } from "@/actions/content";
+import { CallAction } from "@/components/widgets/call-action";
 
 export default async function PortfolioPage() {
   const projects = await getPublishedProjectsList();
@@ -25,8 +26,8 @@ export default async function PortfolioPage() {
         </>
       }
       sidebar={
-        <div>
-          <p>Тут фиксировано</p>
+        <div className="md:max-w-sm">
+          <CallAction />
         </div>
       }
     />

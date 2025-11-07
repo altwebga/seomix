@@ -9,6 +9,9 @@ import {
   getProjectBySlug,
   getPublishedProjectsSlugs,
 } from "@/actions/content";
+import { BackButton } from "@/components/shared/back-button";
+import { Button } from "@/components/ui/button";
+import { ExternalLink } from "lucide-react";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -98,6 +101,21 @@ export default async function PortfolioProjectPage({
               logo={clientLogo}
             />
           ) : null}
+          <div className="flex gap-2">
+            <BackButton href="/portfolio" title="Назад к портфолио" />
+            {project?.site_url ? (
+              <Button variant={"secondary"} size={"lg"}>
+                <a
+                  href={project?.site_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Посмотреть сайт
+                </a>
+                <ExternalLink />
+              </Button>
+            ) : null}
+          </div>
           <CallAction />
         </div>
       }
