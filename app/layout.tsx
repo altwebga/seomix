@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { Header } from "@/components/widgets/header";
 import { Toaster } from "@/components/ui/sonner";
-import { Footer } from "@/components/widgets/footer";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const tildaSans = localFont({
+  src: "../public/fonts/TildaSans-VF.woff",
+  variable: "--font-tilda-sans",
+  weight: "400 900",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const brainsMono = localFont({
+  src: "../public/fonts/JetBrainsMono.woff",
+  variable: "--font-brains-mono",
+  weight: "100 400",
 });
 
 export const metadata: Metadata = {
@@ -29,11 +31,11 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen flex flex-col justify-between`}
+        className={`${tildaSans.variable} ${brainsMono.variable} antialiased h-screen flex flex-col`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >

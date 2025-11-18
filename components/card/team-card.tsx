@@ -6,7 +6,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { Markdown } from "../handlers/markdown";
+import { Markdown } from "../markdown/markdown";
 import {
   Dialog,
   DialogContent,

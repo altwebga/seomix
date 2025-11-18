@@ -13,7 +13,7 @@ export interface Schema {
   projects: Project[];
   services: Service[];
   customers: Customer[];
-  hero: Hero;
+  hero: Hero[];
   team: Team[];
 }
 

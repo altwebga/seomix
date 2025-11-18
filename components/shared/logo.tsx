@@ -31,6 +31,6 @@ export const Logo: React.FC<LogoProps> = ({
       />
     </svg>
 
-    <p className="p-0 m-0 hidden md:block text-xl font-bold">seomix.</p>
+    <span className="p-0 m-0 hidden md:block text-xl font-bold">seomix.</span>
   </Link>
 );

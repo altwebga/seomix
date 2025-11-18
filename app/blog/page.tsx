@@ -1,36 +1,21 @@
-import { BlogCard } from "@/components/card/blog-card";
-import { ContainerFixed } from "@/components/layout/container-fixed";
-import { getPublishedArticlesList } from "@/actions/content";
+import { Container } from "@/components/layout/container";
+import { Metadata } from "next";
 
-export default async function DynamicPage() {
-  const posts = await getPublishedArticlesList();
+export const metadata: Metadata = {
+  title: "Блог",
+  description: "Статьи и новости о SEO и веб-разработке",
+};
+
+export default function BlogPage() {
   return (
-    <ContainerFixed
-      main={
-        <>
-          <h1>Блог</h1>
-          <p>Скорее не блог, а записная книжка. Чтобы не забыть.</p>
-          <ul className="grid grid-cols-1 gap-4 mt-8 list-none px-0">
-            {posts.map((post) => {
-              return (
-                <li key={post.id}>
-                  <BlogCard
-                    slug={`blog/${post.slug}` || ""}
-                    title={post.title}
-                    image={post.cover_image || ""}
-                    content={post.seo?.meta_description || ""}
-                  />
-                </li>
-              );
-            })}
-          </ul>
-        </>
-      }
-      sidebar={
-        <div>
-          <p>Тут фиксировано</p>
-        </div>
-      }
-    />
+    <Container>
+      <h1>Блог</h1>
+      <div>
+        <p>
+          Здесь будут размещены статьи и новости о SEO, веб-разработке и
+          цифровом маркетинге.
+        </p>
+      </div>
+    </Container>
   );
 }
