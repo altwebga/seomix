@@ -85,6 +85,16 @@ export async function getPublishedProjectsList() {
 }
 
 // Customers
+
+export async function getCustomersList() {
+  return directus.request(
+    readItems("customers", {
+      fields: ["id", "title", "content", "cover_image"],
+      filter: { status: { _eq: "published" } },
+    })
+  );
+}
+
 export async function getCustomerById(clientId: number) {
   const items = await directus.request(
     readItems("customers", {

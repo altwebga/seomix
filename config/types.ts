@@ -6,13 +6,13 @@ export interface Image {
 
 export interface Base {
   id: number;
-  slug: string | null;
+  slug: string;
   date_created: string;
   date_updated: string | null;
   status: string;
   title: string;
-  content: string | null;
-  cover_image: string | null;
+  content: string;
+  cover_image: string;
 }
 
 export interface SEO {
@@ -38,16 +38,17 @@ export interface Project extends Base {
 }
 
 export interface Service extends Base {
-  short_content: string | null;
-  price: string | null;
+  short_content: string;
+  price: string;
   seo: SEO;
 }
 
 export interface Customer {
   id: number;
+  status:string;
   title: string;
   content: string;
-  cover_image: Image | string | null;
+  cover_image: Image;
 }
 
 export interface Team {
