@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { getPublishedServicesList } from "@/actions/feth-data";
 import { ServiceCard } from "../card/service-card";
 import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
 
 export async function Services() {
   const services = await getPublishedServicesList();
@@ -8,10 +10,15 @@ export async function Services() {
   return (
     <section className="bg-[url(/images/fog.png)] bg-no-repeat bg-cover py-8">
       <div className="px-4 container mx-auto">
-        <h2 className="text-center">Комплексные решения для бизнеса</h2>
-        <p className="text-center">
-          Создаём сайты, продвигаем их в ТОП и сопровождаем на каждом этапе.
-        </p>
+        <div className="text-center mb-16">
+          <Badge className="mb-4">Наши услуги</Badge>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Что мы предлагаем
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Полный спектр услуг для развития вашего бизнеса в интернете
+          </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 py-4 px-2">
           {services.slice(0, 4).map((service) => (
             <ServiceCard
@@ -25,8 +32,8 @@ export async function Services() {
           ))}
         </div>
         <div className="flex justify-end">
-          <Button size={"lg"} className="w-54">
-            Все услуги
+          <Button size={"lg"} className="w-54" asChild>
+            <Link href={"/services"}>Все услуги</Link>
           </Button>
         </div>
       </div>

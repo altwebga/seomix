@@ -1,5 +1,7 @@
-import { Clients } from "@/components/shared/clients";
+import { CallActions } from "@/components/shared/call-actions";
 import { Hero } from "@/components/shared/hero";
+import { Portfolio } from "@/components/shared/portfolio";
+import { Process } from "@/components/shared/process";
 import { Services } from "@/components/shared/services";
 
 export default function Home() {
@@ -7,7 +9,9 @@ export default function Home() {
     <>
       <Hero />
       <Services />
-      <Clients />
+      <Process />
+      <Portfolio />
+      <CallActions textButton="Начать проект" className="my-8 px-4" />
     </>
   );
 }

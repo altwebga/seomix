@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "../ui/button";
+import { Clients } from "./clients";
 
 const text = {
   title: "Разработка и продвижение сайтов ",
@@ -21,9 +23,33 @@ export function Hero() {
           <p className="my-4">{text.subtitle}</p>
           <div className="flex flex-row gap-8">
             <Button size={"lg"}>Начать проект</Button>
-            <Button size={"lg"} variant={"outline"}>
-              Примеры работ
+            <Button asChild size={"lg"} variant={"outline"}>
+              <Link href={"/portfolio"}>Примеры работ</Link>
             </Button>
+          </div>
+          <div className="grid grid-cols-3 gap-8 mt-16 max-w-2xl">
+            <div>
+              <div className="text-4xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                200+
+              </div>
+              <div className="text-sm text-muted-foreground mt-1">Проектов</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                12+
+              </div>
+              <div className="text-sm text-muted-foreground mt-1">
+                Лет опыта
+              </div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold bg-linear-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent">
+                98%
+              </div>
+              <div className="text-sm text-muted-foreground mt-1">
+                Довольных клиентов
+              </div>
+            </div>
           </div>
         </div>
         <div className="md:w-1/3">
@@ -36,6 +62,7 @@ export function Hero() {
           />
         </div>
       </div>
+      <Clients />
     </section>
   );
 }

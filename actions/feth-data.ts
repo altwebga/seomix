@@ -77,8 +77,16 @@ export async function getProjectBySlug(slug: string) {
 export async function getPublishedProjectsList() {
   return directus.request(
     readItems("projects", {
-      fields: ["slug", "title", "date_created", "id", "cover_image", "seo"],
-      sort: ["date_created"],
+      fields: [
+        "slug",
+        "title",
+        "date_created",
+        "id",
+        "cover_image",
+        "seo",
+        "release_date",
+      ],
+      sort: ["-release_date"],
       filter: { status: { _eq: "published" } },
     })
   );
