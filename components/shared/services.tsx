@@ -1,8 +1,7 @@
-import Link from "next/link";
 import { getPublishedServicesList } from "@/actions/feth-data";
 import { ServiceCard } from "../card/service-card";
-import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
+import { LinkButton } from "../layout/link-button";
 
 export async function Services() {
   const services = await getPublishedServicesList();
@@ -32,9 +31,7 @@ export async function Services() {
           ))}
         </div>
         <div className="flex justify-end">
-          <Button size={"lg"} className="w-54" asChild>
-            <Link href={"/services"}>Все услуги</Link>
-          </Button>
+          <LinkButton href="/services" title="Все услуги" />
         </div>
       </div>
     </section>

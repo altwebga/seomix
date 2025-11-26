@@ -1,8 +1,7 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, ExternalLink } from "lucide-react";
 import { ProjectCard } from "../card/project-card";
 import { getPublishedProjectsList } from "@/actions/feth-data";
+import { LinkButton } from "../layout/link-button";
 
 export async function Portfolio() {
   const projects = await getPublishedProjectsList();
@@ -24,7 +23,7 @@ export async function Portfolio() {
           {projects.slice(0, 4).map((project) => (
             <ProjectCard
               key={project.id}
-              slug={project.slug}
+              slug={`portfolio/${project.slug}`}
               title={project.title}
               imageId={project.cover_image}
             />
@@ -33,13 +32,7 @@ export async function Portfolio() {
 
         {/* CTA Button */}
         <div className="text-center">
-          <Button
-            size="lg"
-            className="bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-6 group"
-          >
-            Смотреть все проекты
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <LinkButton href="/portfolio" title="Все проекты" />
           <p className="text-sm text-muted-foreground mt-4">
             200+ успешных проектов за 5 лет работы
           </p>

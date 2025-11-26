@@ -11,7 +11,7 @@ export default function Home() {
       <Services />
       <Process />
       <Portfolio />
-      <CallActions textButton="Начать проект" className="my-8 px-4" />
+      <CallActions textButton="Начать проект" className="" />
     </>
   );
 }

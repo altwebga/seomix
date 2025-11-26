@@ -15,21 +15,23 @@ interface CallActionsProps {
 
 export function CallActions({ className, textButton }: CallActionsProps) {
   return (
-    <Card className={cn("container mx-auto", className)}>
-      <CardHeader>
-        <CardTitle>
-          <h3>Готовы начать проект?</h3>
-        </CardTitle>
-        <CardDescription>
-          <p>
-            Свяжитесь с нами и получите бесплатную консультацию по развитию
-            вашего бизнеса
-          </p>
-        </CardDescription>
-        <CardContent>
-          <Button>{textButton}</Button>
-        </CardContent>
-      </CardHeader>
-    </Card>
+    <div className="container mx-auto px-4">
+      <Card className={cn(className)}>
+        <CardHeader>
+          <CardTitle>
+            <h3>Готовы начать проект?</h3>
+          </CardTitle>
+          <CardDescription>
+            <p>
+              Свяжитесь с нами и получите бесплатную консультацию по развитию
+              вашего бизнеса
+            </p>
+          </CardDescription>
+          <CardContent>
+            <Button>{textButton}</Button>
+          </CardContent>
+        </CardHeader>
+      </Card>
+    </div>
   );
 }
