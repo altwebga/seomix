@@ -47,7 +47,7 @@ export default async function ServicesPage() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious  className="absolute left-0"/>
+        <CarouselPrevious className="absolute left-0" />
         <CarouselNext className="abcolute right-0" />
       </Carousel>
     </Container>

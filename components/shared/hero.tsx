@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { Clients } from "./clients";
 import { Experience } from "./experience";
+import { EncryptedText } from "../ui/encrypted-text";
 
 const text = {
   title: "Разработка и продвижение сайтов ",
@@ -17,9 +18,12 @@ export function Hero() {
         <div className="md:w-2/3 md:pl-40">
           <h1 className="flex flex-col text-4xl">
             {text.title}
-            <span className="text-6xl md:text-8xl bg-[linear-gradient(128deg,#ff1cf7_0%,#00f0ff_100%)] bg-clip-text text-transparent">
-              {text.city}
-            </span>
+
+            <EncryptedText
+              text="в Краснодаре"
+              encryptedClassName="text-6xl md:text-8xl bg-[linear-gradient(128deg,#ff1cf7_0%,#00f0ff_100%)] bg-clip-text text-transparent"
+              revealDelayMs={50}
+            />
           </h1>
           <p className="my-4">{text.subtitle}</p>
           <div className="flex flex-row gap-8">
