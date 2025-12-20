@@ -3,7 +3,7 @@ import { ThemeTogglerButton } from "../animate-ui/components/buttons/theme-toggl
 export function Header() {
   return (
     <header>
-      <ThemeTogglerButton modes={["dark"]} />
+      <ThemeTogglerButton modes={["light", "dark"]} />
     </header>
   );
 }
