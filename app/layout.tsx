@@ -1,21 +1,18 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
-const tildaSans = localFont({
-  src: "../public/fonts/TildaSans-VF.woff",
-  variable: "--font-tilda-sans",
-  weight: "400 900",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
 });
 
-const brainsMono = localFont({
-  src: "../public/fonts/JetBrainsMono.woff",
-  variable: "--font-brains-mono",
-  weight: "100 400",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -31,17 +28,16 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body
-        className={`${tildaSans.variable} ${brainsMono.variable} antialiased h-screen flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
           <Header />
           <main className="basis-full">{children}</main>
-          <Toaster />
           <Footer />
         </ThemeProvider>
       </body>

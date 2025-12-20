@@ -15,10 +15,17 @@ import { buttonVariants } from "@/components/animate-ui/components/buttons/icon"
 import { cn } from "@/lib/utils";
 
 const getIcon = (
-  effective: ThemeSelection,
-  resolved: Resolved,
-  modes: ThemeSelection[]
+  effective: ThemeSelection | undefined,
+  resolved: Resolved | undefined,
+  modes: ThemeSelection[],
+  mounted: boolean
 ) => {
+  // During SSR or before mount, show a consistent icon based on default theme
+  if (!mounted || effective === undefined || resolved === undefined) {
+    // Default to dark theme icon during SSR to match defaultTheme="dark"
+    return <Moon />;
+  }
+
   const theme = modes.includes("system") ? effective : resolved;
   return theme === "system" ? (
     <Monitor />
@@ -58,22 +65,10 @@ function ThemeTogglerButton({
   const { theme, resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
+  // Ensure we only render theme-dependent content after hydration
   React.useEffect(() => {
     setMounted(true);
   }, []);
-
-  // Предотвращаем ошибку гидрации, показывая placeholder до монтирования
-  if (!mounted || !theme || !resolvedTheme) {
-    return (
-      <button
-        data-slot="theme-toggler-button"
-        className={cn(buttonVariants({ variant, size, className }))}
-        {...props}
-      >
-        <Sun />
-      </button>
-    );
-  }
 
   return (
     <ThemeTogglerPrimitive
@@ -93,7 +88,7 @@ function ThemeTogglerButton({
           }}
           {...props}
         >
-          {getIcon(effective, resolved, modes)}
+          {getIcon(effective, resolved, modes, mounted)}
         </button>
       )}
     </ThemeTogglerPrimitive>
