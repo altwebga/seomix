@@ -140,7 +140,187 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  html {
+    @apply scroll-smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    @apply text-[15px] sm:text-base leading-relaxed;
+  }
+
+  /* -------------------- */
+  /* Headings */
+  /* -------------------- */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight text-foreground;
+  }
+
+  h1 {
+    @apply text-3xl sm:text-4xl lg:text-5xl;
+    @apply mt-10 mb-6 leading-tight;
+  }
+
+  h2 {
+    @apply text-2xl sm:text-3xl;
+    @apply mt-10 mb-5 leading-tight;
+  }
+
+  h3 {
+    @apply text-xl sm:text-2xl;
+    @apply mt-8 mb-4 leading-snug;
+  }
+
+  h4 {
+    @apply text-lg sm:text-xl;
+    @apply mt-6 mb-3;
+  }
+
+  h5 {
+    @apply text-base sm:text-lg;
+    @apply mt-6 mb-2;
+  }
+
+  h6 {
+    @apply text-sm uppercase tracking-wide;
+    @apply mt-4 mb-2 text-muted-foreground;
+  }
+
+  /* -------------------- */
+  /* Text elements */
+  /* -------------------- */
+
+  p {
+    @apply my-4 leading-relaxed;
+  }
+
+  strong {
+    @apply font-semibold;
+  }
+
+  em {
+    @apply italic;
+  }
+
+  small {
+    @apply text-sm text-muted-foreground;
+  }
+
+  /* -------------------- */
+  /* Links */
+  /* -------------------- */
+
+  a {
+    @apply text-primary underline underline-offset-4;
+    @apply transition-colors hover:text-primary/80;
+  }
+
+  /* -------------------- */
+  /* Lists */
+  /* -------------------- */
+
+  ul,
+  ol {
+    @apply my-4 pl-6;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  li {
+    @apply my-1;
+  }
+
+  li > ul,
+  li > ol {
+    @apply my-2;
+  }
+
+  /* -------------------- */
+  /* Blockquote */
+  /* -------------------- */
+
+  blockquote {
+    @apply my-6 pl-4 border-l-4 border-border;
+    @apply italic text-muted-foreground;
+  }
+
+  /* -------------------- */
+  /* Code */
+  /* -------------------- */
+
+  code {
+    @apply rounded bg-muted px-1.5 py-0.5 font-mono text-sm;
+  }
+
+  pre {
+    @apply my-6 rounded-lg bg-muted p-4 overflow-x-auto;
+  }
+
+  pre code {
+    @apply bg-transparent p-0 text-sm;
+  }
+
+  /* -------------------- */
+  /* Tables */
+  /* -------------------- */
+
+  table {
+    @apply w-full my-6 border-collapse text-sm;
+  }
+
+  thead {
+    @apply bg-muted;
+  }
+
+  th {
+    @apply border border-border px-3 py-2 text-left font-medium;
+  }
+
+  td {
+    @apply border border-border px-3 py-2 align-top;
+  }
+
+  /* -------------------- */
+  /* Horizontal rule */
+  /* -------------------- */
+
+  hr {
+    @apply my-10 border-border;
+  }
+
+  /* -------------------- */
+  /* Media */
+  /* -------------------- */
+
+  img,
+  video {
+    @apply max-w-full rounded-lg;
+  }
+
+  /* -------------------- */
+  /* Forms (minimal, shadcn-safe) */
+  /* -------------------- */
+
+  label {
+    @apply text-sm font-medium;
+  }
+
+  input,
+  textarea,
+  select {
+    @apply text-sm;
   }
 }
