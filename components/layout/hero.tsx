@@ -22,7 +22,7 @@ export function Hero() {
               className="w-auto object-cover"
             />
           </div>
-          <div className="md:w-2/3 space-y-4 flex flex-col justify-center">
+          <div className="md:w-2/3 space-y-8 flex flex-col justify-center">
             <h1 className="flex flex-col md:text-4xl">
               Разработка и продвижение сайтов{" "}
               <span className="text-5xl md:text-8xl font-extrabold">
@@ -34,11 +34,15 @@ export function Hero() {
               аналитику и помогаем бизнесу расти. Работаем на результат — если
               не понравится, вернем деньги.
             </TextEffect>
-            <div className="flex gap-4">
-              <RainbowButton className="hover:translate-1">
+            <div className="flex gap-6">
+              <RainbowButton className="hover:translate-1" size={"lg"}>
                 Начать проект
               </RainbowButton>
-              <Button variant={"outline"} className="hover:translate-1">
+              <Button
+                variant={"outline"}
+                className="hover:translate-1"
+                size={"lg"}
+              >
                 Приметры работ
               </Button>
             </div>
