@@ -7,6 +7,7 @@ import {
   Hero,
   Team,
   PrivacyPolicy,
+  RequestWebsite,
 } from "@/config/types";
 
 export interface Schema {
@@ -17,6 +18,7 @@ export interface Schema {
   hero: Hero;
   team: Team[];
   privacy_policy: PrivacyPolicy;
+  requests_website: RequestWebsite[];
 }
 
 const directusUrl = process.env.ENDPOINT ?? "http://localhost:8055";
@@ -26,7 +28,13 @@ const directus = createDirectus<Schema>(directusUrl)
   .with(authentication())
   .with(
     rest({
-      onRequest: (options) => ({ ...options, revalidate: 86400 }),
+      onRequest: (options) => {
+        const method = (options.method ?? "GET").toUpperCase();
+        if (method === "GET") {
+          return { ...options, revalidate: 86400 };
+        }
+        return options;
+      },
     })
   );
 

@@ -63,3 +63,12 @@ export interface PrivacyPolicy {
   title: string;
   content: string;
 }
+
+export type RequestWebsite = {
+  id: string;
+  client: string;
+  phone: string;
+  agreement: boolean;
+  created_at?: string;
+  page_url?: string;
+};

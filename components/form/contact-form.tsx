@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
-
+import { createRequestWebsite } from "@/actions/request-website";
 import {
   Dialog,
   DialogContent,
@@ -50,11 +50,19 @@ export function ContactForm() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    toast.success("Заявка отправлена");
-    console.log(data);
-    setOpen(false);
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      await createRequestWebsite({
+        ...values,
+        page_url: window.location.href,
+      });
+
+      toast.success("Заявка отправлена");
+      setOpen(false);
+      form.reset();
+    } catch (e) {
+      toast.error("Не удалось отправить заявку");
+    }
   }
 
   return (
