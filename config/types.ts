@@ -47,7 +47,7 @@ export interface Customer {
   id: number;
   title: string;
   content: string;
-  cover_image: Image | string | null;
+  cover_image: string;
 }
 
 export interface Team {

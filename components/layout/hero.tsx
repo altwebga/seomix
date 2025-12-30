@@ -1,54 +1,63 @@
-import { BackgroundImageTexture } from "../ui/background-image";
 import { Button } from "../ui/button";
-import { RainbowButton } from "../ui/rainbow-button";
-import { TextEffect } from "../ui/text-effect";
-import Image from "next/image";
+import { socialLinks } from "@/config/social-links";
+import { ArrowDown } from "lucide-react";
+
+const text = {
+  title: "Разработка и продвижение сайтов",
+  city: "в Горно-Алтайске",
+  content:
+    "Создаем эффективные сайты, запускаем SEO и рекламу, настраиваем аналитику и помогаем бизнесу расти. Работаем на результат — если не понравится, вернем деньги.",
+};
 
 export function Hero() {
   return (
-    <section className="h-[80vh]">
-      <BackgroundImageTexture
-        variant="debut-light"
-        opacity={0.4}
-        className="h-[80vh] flex flex-col justify-center"
-      >
-        <div className="container mx-auto px-4 flex flex-col md:flex-row">
-          <div className="w-1/3 hidden md:flex justify-center">
-            <Image
-              src={"/img/hero_image.png"}
-              alt="hero image"
-              width={350}
-              height={400}
-              className="w-auto object-cover"
-            />
-          </div>
-          <div className="md:w-2/3 space-y-8 flex flex-col justify-center">
-            <h1 className="flex flex-col md:text-4xl">
-              Разработка и продвижение сайтов{" "}
-              <span className="text-5xl md:text-8xl font-extrabold">
-                в Краснодаре
-              </span>
-            </h1>
-            <TextEffect className="max-w-2xl">
-              Создаем эффективные сайты, запускаем SEO и рекламу, настраиваем
-              аналитику и помогаем бизнесу расти. Работаем на результат — если
-              не понравится, вернем деньги.
-            </TextEffect>
-            <div className="flex gap-6">
-              <RainbowButton className="hover:translate-1" size={"lg"}>
-                Начать проект
-              </RainbowButton>
-              <Button
-                variant={"outline"}
-                className="hover:translate-1"
-                size={"lg"}
-              >
-                Приметры работ
-              </Button>
-            </div>
+    <section
+      className="
+        relative h-screen overflow-hidden
+        bg-[url(/img/hero_bg.svg)] bg-cover bg-no-repeat bg-center
+        before:absolute before:inset-0 before:content-['']
+        before:bg-[radial-gradient(ellipse_90%_90%_at_0%_100%,#1291f34d_0%,#1291f33d_35%,transparent_70%)]
+      "
+    >
+      {/* контент всегда выше псевдо-элемента */}
+      <div className="relative container mx-auto flex h-full flex-col justify-between px-4">
+        <div className="mt-80 flex max-w-5xl flex-col space-y-8 md:ml-54">
+          <h1 className="flex flex-col font-extrabold text-2xl md:text-5xl">
+            {text.title}
+            <span className="text-4xl md:text-8xl"> {text.city}</span>
+          </h1>
+
+          <p className="max-w-2xl">{text.content}</p>
+
+          <div className="flex flex-wrap gap-3">
+            <Button size="lg">Начать проект</Button>
+            <Button size="lg" variant={"outline"}>
+              Примеры работ
+            </Button>
           </div>
         </div>
-      </BackgroundImageTexture>
+
+        <div className="flex items-end justify-between pb-8">
+          <div className="grid grid-cols-3 gap-8">
+            {socialLinks.map((item) => (
+              <a
+                key={item.url}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="opacity-70 transition hover:opacity-100"
+              >
+                {item.title}
+              </a>
+            ))}
+          </div>
+
+          <div className="text-muted-foreground hidden md:flex flex-row gap-2 items-center">
+            <p>скрольте вниз</p>
+            <ArrowDown />
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

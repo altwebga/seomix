@@ -1,18 +1,61 @@
-import type { Metadata } from "next";
+import { getPublishedServicesList } from "@/actions/get-content";
+import { Container } from "@/components/container/container";
+import { DirectusImage } from "@/components/shared/directus-image";
+import { MagicCard } from "@/components/ui/magic-card";
+import { TextAnimate } from "@/components/ui/text-animate";
+import Link from "next/link";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
-import { PagePlaceholder } from "@/components/layout/page-placeholder";
-
-export const metadata: Metadata = {
-  title: "Услуги | Seomix",
-  description: "Раздел с описанием услуг Seomix — скоро здесь будет контент.",
+const text = {
+  title: "Наши услуги",
+  subTitle:
+    "Полный комплкс услуг для быстрого старта ваше бизнеса в интернете.",
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services = await getPublishedServicesList();
   return (
-    <PagePlaceholder
-      title="Услуги"
-      description="Здесь появится описание наших услуг, стоимости и формата работы. Мы готовим подробные предложения и кейсы, чтобы вам было проще выбрать подходящее решение."
-    />
+    <Container className="mt-20">
+      <h1>{text.title}</h1>
+      <TextAnimate animation="blurIn" as="p">
+        {text.subTitle}
+      </TextAnimate>
+      <Carousel className="w-full">
+        <CarouselContent className="p-4">
+          {services.map((service) => (
+            <CarouselItem
+              key={service.id}
+              className="pl-1 md:basis-1/3 lg:basis-1/4 transition delay-50 duration-150 hover:-translate-2"
+            >
+              <Link href={`/services/${service.slug}`}>
+                <MagicCard className="p-4 rounded-md shadow-md min-h-full">
+                  <DirectusImage
+                    url={service.cover_image || "/img/no-image.png"}
+                    alt={service.title}
+                    width={600}
+                    height={600}
+                    loading="lazy"
+                  />
+                  <div className="px-4">
+                    <h3>{service.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-5">
+                      {service.short_content || ""}
+                    </p>
+                  </div>
+                </MagicCard>
+              </Link>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="absolute left-0" />
+        <CarouselNext className="absolute right-0" />
+      </Carousel>
+    </Container>
   );
 }
-
