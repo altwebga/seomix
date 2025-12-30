@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { CookieNotification } from "@/components/shared/cookie-notification";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,6 +43,7 @@ export default function RootLayout({
           <ScrollProgress className="top-[65px]" />
           <main className="basis-full">{children}</main>
           <Footer />
+          <Toaster />
           <CookieNotification />
         </ThemeProvider>
       </body>

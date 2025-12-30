@@ -1,6 +1,7 @@
 import { Button } from "../ui/button";
 import { socialLinks } from "@/config/social-links";
 import { ArrowDown } from "lucide-react";
+import { ContactForm } from "../form/contact-form";
 
 const text = {
   title: "Разработка и продвижение сайтов",
@@ -30,7 +31,7 @@ export function Hero() {
           <p className="max-w-2xl">{text.content}</p>
 
           <div className="flex flex-wrap gap-3">
-            <Button size="lg">Начать проект</Button>
+            <ContactForm />
             <Button size="lg" variant={"outline"}>
               Примеры работ
             </Button>

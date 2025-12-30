@@ -4,6 +4,8 @@ import { getProjectBySlug, getCustomerById } from "@/actions/get-content";
 import { Markdown } from "@/components/shared/markdown";
 import { DirectusImage } from "@/components/shared/directus-image";
 import { RuTubeFrame } from "@/components/shared/rutube-frame";
+import { Button } from "@/components/ui/button";
+import { ExternalLink } from "lucide-react";
 
 export async function generateMetadata(
   props: PageProps<"/portfolio/[slug]">
@@ -52,8 +54,8 @@ export default async function PortfolioPage(
             />
           </div>
           {customer && (
-            <aside className="md:w-1/3 md:border-l">
-              <div className="pointer-events-none px-4 py-3 mx-4">
+            <aside className="md:w-1/3 md:border-l md:px-4">
+              <div className="pointer-events-none py-3">
                 <div className="flex items-center gap-3">
                   <DirectusImage
                     url={customer.cover_image}
@@ -72,6 +74,20 @@ export default async function PortfolioPage(
                     </p>
                   </div>
                 </div>
+              </div>
+
+              <div className="w-full flex">
+                {project.site_url ? (
+                  <Button size={"lg"} asChild>
+                    <a
+                      href={project.site_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Посмотреть сайт <ExternalLink />
+                    </a>
+                  </Button>
+                ) : null}
               </div>
             </aside>
           )}
