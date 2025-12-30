@@ -22,13 +22,13 @@ export default async function BlogPage() {
         <div className="grid grid-cols-1 gap-4 md:w-2/3">
           {articles.map((article) => (
             <Link key={article.id} href={`blog/${article.slug}`}>
-              <MagicCard className="min-h-60 p-4 bg-background">
+              <MagicCard className="min-h-60 p-4">
                 <div className="flex flex-col md:flex-row gap-8">
                   <DirectusImage
                     url={article.cover_image || ""}
                     width={320}
                     height={320}
-                    className="object-cover w-80 h-80"
+                    className="object-cover w-80 h-80 bg-white"
                   />
 
                   <div>

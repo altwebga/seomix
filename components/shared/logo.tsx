@@ -7,8 +7,8 @@ type LogoProps = {
   className?: string;
 };
 export const Logo: React.FC<LogoProps> = ({
-  width = "32px",
-  height = "32px",
+  width = "28px",
+  height = "28px",
   fill = "currentColor",
   className,
 }) => (

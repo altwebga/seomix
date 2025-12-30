@@ -4,7 +4,7 @@ import { ArrowDown } from "lucide-react";
 
 const text = {
   title: "Разработка и продвижение сайтов",
-  city: "в Горно-Алтайске",
+  city: "в Краснодаре",
   content:
     "Создаем эффективные сайты, запускаем SEO и рекламу, настраиваем аналитику и помогаем бизнесу расти. Работаем на результат — если не понравится, вернем деньги.",
 };
@@ -24,7 +24,7 @@ export function Hero() {
         <div className="mt-80 flex max-w-5xl flex-col space-y-8 md:ml-54">
           <h1 className="flex flex-col font-extrabold text-2xl md:text-5xl">
             {text.title}
-            <span className="text-4xl md:text-8xl"> {text.city}</span>
+            <span className="text-4xl md:text-9xl"> {text.city}</span>
           </h1>
 
           <p className="max-w-2xl">{text.content}</p>

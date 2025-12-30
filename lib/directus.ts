@@ -6,6 +6,7 @@ import {
   Customer,
   Hero,
   Team,
+  PrivacyPolicy,
 } from "@/config/types";
 
 export interface Schema {
@@ -15,6 +16,7 @@ export interface Schema {
   customers: Customer[];
   hero: Hero;
   team: Team[];
+  privacy_policy: PrivacyPolicy;
 }
 
 const directusUrl = process.env.ENDPOINT ?? "http://localhost:8055";

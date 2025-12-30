@@ -58,3 +58,8 @@ export interface Team {
   slug: string | null;
   photo: Image | string | null;
 }
+
+export interface PrivacyPolicy {
+  title: string;
+  content: string;
+}

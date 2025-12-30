@@ -2,7 +2,7 @@
 
 import { cache } from "react";
 import directus from "@/lib/directus";
-import { readItems } from "@directus/sdk";
+import { readItems, readSingleton } from "@directus/sdk";
 
 // -------------------------
 // Articles
@@ -164,4 +164,12 @@ export const getServiceBySlug = cache(async (slug: string) => {
   );
 
   return services?.[0] ?? null;
+});
+
+export const getPrivacyPolicy = cache(async () => {
+  return directus.request(
+    readSingleton("privacy_policy", {
+      fields: ["title", "content"],
+    })
+  );
 });

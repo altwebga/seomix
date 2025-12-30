@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { CookieNotification } from "@/components/shared/cookie-notification";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +34,7 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
@@ -41,6 +42,7 @@ export default function RootLayout({
           <ScrollProgress className="top-[65px]" />
           <main className="basis-full">{children}</main>
           <Footer />
+          <CookieNotification />
         </ThemeProvider>
       </body>
     </html>

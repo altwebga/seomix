@@ -20,9 +20,9 @@ export function DesktopNav() {
                 href={item.href}
                 className={cn(
                   "relative pb-1 text-sm font-medium transition-colors",
-                  "after:absolute after:left-0 after:bottom-0 after:h-px after:w-full after:scale-x-0 after:bg-current after:transition-transform after:duration-200",
+                  "after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-blue-500 after:transition-transform after:duration-200",
                   "hover:after:scale-x-100",
-                  isActive && "after:scale-x-100"
+                  isActive && "after:scale-x-100 text-muted-foreground"
                 )}
               >
                 {item.title}
