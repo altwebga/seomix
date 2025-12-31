@@ -6,6 +6,7 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 import { createRequestWebsite } from "@/actions/request-website";
+
 import {
   Dialog,
   DialogContent,
@@ -15,17 +16,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
 import { Button } from "@/components/ui/button";
 import {
   Field,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+
+import { SmartCaptchaWidget } from "../shared/smart-captcha";
 
 const formSchema = z.object({
   client: z.string().trim().min(1, "Укажите ваше имя"),
@@ -39,34 +40,59 @@ const formSchema = z.object({
   }),
 });
 
+type FormValues = z.infer<typeof formSchema>;
+
 export function ContactForm() {
   const [open, setOpen] = React.useState(false);
-  const form = useForm<z.infer<typeof formSchema>>({
+  const [captchaToken, setCaptchaToken] = React.useState("");
+
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      client: "",
-      phone: "",
-      agreement: false,
-    },
+    defaultValues: { client: "", phone: "", agreement: false },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  const isSubmitting = form.formState.isSubmitting;
+
+  async function onSubmit(values: FormValues) {
+    if (!captchaToken) {
+      toast.error("Пройдите капчу");
+      return;
+    }
+
     try {
-      await createRequestWebsite({
+      const res = await createRequestWebsite({
         ...values,
         page_url: window.location.href,
+        captcha_token: captchaToken,
       });
+
+      if (!res?.ok) {
+        toast.error("Не удалось отправить заявку");
+        setCaptchaToken(""); // заставим пройти капчу заново
+        return;
+      }
 
       toast.success("Заявка отправлена");
       setOpen(false);
       form.reset();
-    } catch (e) {
+      setCaptchaToken("");
+    } catch {
       toast.error("Не удалось отправить заявку");
+      setCaptchaToken("");
     }
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(v) => {
+        setOpen(v);
+        if (!v) {
+          form.reset();
+          setCaptchaToken("");
+        }
+      }}
+    >
       <DialogTrigger asChild>
         <Button size="lg" type="button">
           Начать проект
@@ -83,7 +109,6 @@ export function ContactForm() {
           </DialogHeader>
 
           <FieldGroup className="flex flex-col gap-4">
-            {/* Имя */}
             <Controller
               name="client"
               control={form.control}
@@ -98,7 +123,6 @@ export function ContactForm() {
               )}
             />
 
-            {/* Телефон */}
             <Controller
               name="phone"
               control={form.control}
@@ -113,7 +137,6 @@ export function ContactForm() {
               )}
             />
 
-            {/* Согласие */}
             <Controller
               name="agreement"
               control={form.control}
@@ -134,11 +157,18 @@ export function ContactForm() {
                 </Field>
               )}
             />
+
+            {/* капча */}
+            <SmartCaptchaWidget onToken={setCaptchaToken} language="ru" />
           </FieldGroup>
 
           <DialogFooter className="mt-4">
-            <Button type="submit" className="w-full">
-              Отправить
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={isSubmitting || !captchaToken}
+            >
+              {isSubmitting ? "Отправка..." : "Отправить"}
             </Button>
           </DialogFooter>
         </form>
