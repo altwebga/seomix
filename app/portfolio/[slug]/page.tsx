@@ -48,6 +48,19 @@ export default async function PortfolioPage(
         <div className="flex flex-col md:flex-row gap-4">
           <div className="md:w-2/3">
             <Markdown markdown={project.content || ""} />
+            <div className="w-full flex justify-end">
+              {project.site_url ? (
+                <Button size={"lg"} asChild>
+                  <a
+                    href={project.site_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Посмотреть сайт <ExternalLink />
+                  </a>
+                </Button>
+              ) : null}
+            </div>
             <RuTubeFrame
               videoId={project.rutube_id || ""}
               title={project.title}
@@ -74,20 +87,6 @@ export default async function PortfolioPage(
                     </p>
                   </div>
                 </div>
-              </div>
-
-              <div className="w-full flex">
-                {project.site_url ? (
-                  <Button size={"lg"} asChild>
-                    <a
-                      href={project.site_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Посмотреть сайт <ExternalLink />
-                    </a>
-                  </Button>
-                ) : null}
               </div>
             </aside>
           )}

@@ -40,7 +40,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <ScrollProgress className="top-[65px]" />
+          <ScrollProgress className="top-[64px]" />
           <main className="basis-full">{children}</main>
           <Footer />
           <Toaster />

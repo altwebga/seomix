@@ -1,4 +1,3 @@
-import { TextAnimate } from "../ui/text-animate";
 import directus from "@/lib/directus";
 import { readItems } from "@directus/sdk";
 import { Button } from "../ui/button";
@@ -6,6 +5,12 @@ import { MagicCard } from "../ui/magic-card";
 import { DirectusImage } from "../shared/directus-image";
 import Link from "next/link";
 import { Container } from "../container/container";
+import {
+  SectionHeading,
+  SectionHeadingBody,
+  SectionHeadingContentType,
+  SectionHeadingTitle,
+} from "../ui/section-heading";
 
 const text = {
   subTitle: "Наши услуги",
@@ -29,22 +34,11 @@ export async function OurServices() {
 
   return (
     <Container className="my-32">
-      <div className="flex flex-col gap-4 md:flex-row items-start">
-        <div className="md:w-1/3">
-          <p className="text-xl text-muted-foreground">{text.subTitle}</p>
-        </div>
-        <div className="md:w-2/3">
-          <TextAnimate
-            animation="blurIn"
-            as="h2"
-            className="text-4xl md:text-6xl leading-10 md:leading-14"
-          >
-            {text.title}
-          </TextAnimate>
-
-          <p className="max-w-4xl">{text.description}</p>
-        </div>
-      </div>
+      <SectionHeading alignment="left" className="md:ml-40">
+        <SectionHeadingContentType>{text.subTitle}</SectionHeadingContentType>
+        <SectionHeadingTitle>{text.title}</SectionHeadingTitle>
+        <SectionHeadingBody>{text.description}</SectionHeadingBody>
+      </SectionHeading>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 my-8">
         {services.slice(0, 4).map((service) => (
           <Link

@@ -1,6 +1,6 @@
 import { Hero } from "@/components/layout/hero";
 import { OurAvantage } from "@/components/layout/our-advantage";
-import { OurClients } from "@/components/layout/our-clients";
+import { OurExperience } from "@/components/layout/our-experience";
 import { OurServices } from "@/components/layout/our-services";
 
 export default function Home() {
@@ -8,8 +8,8 @@ export default function Home() {
     <>
       <Hero />
       <OurServices />
+      <OurExperience />
       <OurAvantage />
-      <OurClients />
     </>
   );
 }
