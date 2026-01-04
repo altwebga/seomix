@@ -1,6 +1,7 @@
 import { Container } from "../container/container";
 import { TextAnimate } from "../ui/text-animate";
 import { Button } from "../ui/button";
+import { ContactForm } from "../form/contact-form";
 
 const text = {
   title: "Мы точно знаем, что нужно делать, и не ведем долгих переговоров.",
@@ -26,7 +27,7 @@ export function OurAvantage() {
           </TextAnimate>
           <p>{text.description}</p>
           <div className="flex flex-row gap-4 mt-8">
-            <Button size={"lg"}>Начать проект</Button>
+            <ContactForm />
             <Button
               size={"lg"}
               disabled

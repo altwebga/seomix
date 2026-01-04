@@ -70,7 +70,7 @@ export function ContactForm() {
       });
 
       if (!res?.ok) {
-        toast.error("Не удалось отправить заявку");
+        toast.error(res?.error || "Не удалось отправить заявку");
         setCaptchaToken("");
         return;
       }
