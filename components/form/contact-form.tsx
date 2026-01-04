@@ -27,6 +27,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 
 import { SmartCaptchaWidget } from "../shared/smart-captcha";
+import Link from "next/link";
 
 const formSchema = z.object({
   client: z.string().trim().min(1, "Укажите ваше имя"),
@@ -35,9 +36,6 @@ const formSchema = z.object({
     .trim()
     .min(1, "Укажите номер телефона")
     .regex(/^\+?[\d\s()-]{7,20}$/, "Некорректный номер телефона"),
-  agreement: z.boolean().refine(Boolean, {
-    message: "Нужно согласиться на обработку данных",
-  }),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -45,10 +43,11 @@ type FormValues = z.infer<typeof formSchema>;
 export function ContactForm() {
   const [open, setOpen] = React.useState(false);
   const [captchaToken, setCaptchaToken] = React.useState("");
+  const [agreement, setAgreement] = React.useState(true);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: { client: "", phone: "", agreement: false },
+    defaultValues: { client: "", phone: "" },
   });
 
   const isSubmitting = form.formState.isSubmitting;
@@ -56,6 +55,10 @@ export function ContactForm() {
   async function onSubmit(values: FormValues) {
     if (!captchaToken) {
       toast.error("Пройдите капчу");
+      return;
+    }
+    if (!agreement) {
+      toast.error("Нужно согласиться на обработку данных");
       return;
     }
 
@@ -68,7 +71,7 @@ export function ContactForm() {
 
       if (!res?.ok) {
         toast.error("Не удалось отправить заявку");
-        setCaptchaToken(""); // заставим пройти капчу заново
+        setCaptchaToken("");
         return;
       }
 
@@ -76,11 +79,14 @@ export function ContactForm() {
       setOpen(false);
       form.reset();
       setCaptchaToken("");
+      setAgreement(true);
     } catch {
       toast.error("Не удалось отправить заявку");
       setCaptchaToken("");
     }
   }
+
+  const canSubmit = agreement && Boolean(captchaToken) && !isSubmitting;
 
   return (
     <Dialog
@@ -90,6 +96,7 @@ export function ContactForm() {
         if (!v) {
           form.reset();
           setCaptchaToken("");
+          setAgreement(true);
         }
       }}
     >
@@ -136,38 +143,25 @@ export function ContactForm() {
                 </Field>
               )}
             />
-
-            <Controller
-              name="agreement"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <div className="flex items-center gap-3">
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={(v) => field.onChange(Boolean(v))}
-                    />
-                    <FieldLabel className="m-0">
-                      Я согласен(а) на обработку персональных данных
-                    </FieldLabel>
-                  </div>
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
-            />
-
-            {/* капча */}
             <SmartCaptchaWidget onToken={setCaptchaToken} language="ru" />
+            {/* ✅ чекбокс отдельно от RHF */}
+            <Field>
+              <div className="flex items-center gap-3">
+                <Checkbox
+                  checked={agreement}
+                  onCheckedChange={(v) => setAgreement(Boolean(v))}
+                />
+                <FieldLabel className="m-0">
+                  <Link href="/privacy-policy">
+                    Я согласен(а) на обработку персональных данных
+                  </Link>
+                </FieldLabel>
+              </div>
+            </Field>
           </FieldGroup>
 
           <DialogFooter className="mt-4">
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={isSubmitting || !captchaToken}
-            >
+            <Button type="submit" className="w-full" disabled={!canSubmit}>
               {isSubmitting ? "Отправка..." : "Отправить"}
             </Button>
           </DialogFooter>

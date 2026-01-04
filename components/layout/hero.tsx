@@ -2,6 +2,7 @@ import { Button } from "../ui/button";
 import { socialLinks } from "@/config/social-links";
 import { ArrowDown } from "lucide-react";
 import { ContactForm } from "../form/contact-form";
+import Link from "next/link";
 
 const text = {
   title: "Разработка и продвижение сайтов",
@@ -32,8 +33,8 @@ export function Hero() {
 
           <div className="flex flex-wrap gap-3">
             <ContactForm />
-            <Button size="lg" variant={"outline"}>
-              Примеры работ
+            <Button size="lg" variant={"outline"} asChild>
+              <Link href={"/portfolio"}>Примеры работ</Link>
             </Button>
           </div>
         </div>
