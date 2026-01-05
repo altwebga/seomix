@@ -16,7 +16,7 @@ export interface Schema {
   services: Service[];
   customers: Customer[];
   hero: Hero;
-  team: Team[];
+  teams: Team[];
   privacy_policy: PrivacyPolicy;
   requests_website: RequestWebsite[];
 }

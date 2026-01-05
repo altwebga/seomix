@@ -50,13 +50,24 @@ export interface Customer {
   cover_image: string;
 }
 
-export interface Team {
+export interface File {
   id: string;
+  filename_disk: string;
+  title?: string;
+}
+
+export interface TeamCertificate {
+  directus_files_id: File;
+}
+
+export interface Team {
+  id: number;
   title: string;
   position: string;
-  content: string | null;
-  slug: string | null;
-  photo: Image | string | null;
+  content: string;
+  photo: string;
+  certificates: TeamCertificate[];
+  status: string;
 }
 
 export interface PrivacyPolicy {
