@@ -50,14 +50,10 @@ export interface Customer {
   cover_image: string;
 }
 
-export interface File {
-  id: string;
-  filename_disk: string;
-  title?: string;
-}
-
-export interface TeamCertificate {
-  directus_files_id: File;
+export interface TeamFile {
+  id: number;
+  teams_id: number;
+  directus_files_id: string;
 }
 
 export interface Team {
@@ -66,7 +62,7 @@ export interface Team {
   position: string;
   content: string;
   photo: string;
-  certificates: TeamCertificate[];
+  certificates: TeamFile[] | [];
   status: string;
 }
 
@@ -75,11 +71,11 @@ export interface PrivacyPolicy {
   content: string;
 }
 
-export type RequestWebsite = {
+export interface RequestWebsite {
   id: string;
   client: string;
   phone: string;
   agreement: boolean;
   created_at?: string;
   page_url?: string;
-};
+}

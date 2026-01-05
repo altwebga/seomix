@@ -8,6 +8,7 @@ import {
   Team,
   PrivacyPolicy,
   RequestWebsite,
+  TeamFile,
 } from "@/config/types";
 
 export interface Schema {
@@ -17,6 +18,7 @@ export interface Schema {
   customers: Customer[];
   hero: Hero;
   teams: Team[];
+  teams_files: TeamFile[];
   privacy_policy: PrivacyPolicy;
   requests_website: RequestWebsite[];
 }

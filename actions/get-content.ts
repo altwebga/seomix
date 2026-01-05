@@ -177,7 +177,16 @@ export const getPrivacyPolicy = cache(async () => {
 export const getTeams = cache(async () => {
   return directus.request(
     readItems("teams", {
-      fields: ["title", "id", "content", "position", "certificates", "photo"],
+      fields: [
+        "title",
+        "id",
+        "content",
+        "position",
+        "photo",
+        {
+          certificates: ["directus_files_id"],
+        },
+      ],
       sort: ["id"],
       filter: { status: { _eq: "published" } },
     })
