@@ -6,9 +6,16 @@ import { Markdown } from "@/components/shared/markdown";
 import { CertificatesGallery } from "@/components/shared/certificates-gallery";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { LightRays } from "@/components/ui/light-rays";
+import {
+  SectionHeading,
+  SectionHeadingBody,
+  SectionHeadingTitle,
+} from "@/components/ui/section-heading";
+
 const text = {
   title: "О нас",
-  subTitle: "Наша команда",
+  subTitle:
+    "SEOMIX — веб-студия полного цикла, выросшая из хобби в профессиональную деятельность",
 };
 
 export default async function AboutPage() {
@@ -25,9 +32,9 @@ export default async function AboutPage() {
             <CardHeader className="flex flex-col md:flex-row gap-4">
               <DirectusImage
                 url={team.photo}
-                width={200}
-                height={200}
-                className="object-cover w-50 h-50 bg-white rounded-2xl"
+                width={120}
+                height={120}
+                className="object-cover w-30 h-30 bg-white rounded-2xl"
               />
               <div>
                 <h3>{team.title}</h3>
@@ -46,6 +53,21 @@ export default async function AboutPage() {
           </Card>
         ))}
       </div>
+      <SectionHeading className="mt-4">
+        <SectionHeadingTitle>Предыстория</SectionHeadingTitle>
+        <SectionHeadingBody>
+          Всё началось в 2012 году с веб-разработки и интереса к тому, как
+          создаются сайты. Со временем опыт, технологии и подходы позволили
+          перейти к созданию современных, удобных и производительных
+          веб-решений.
+        </SectionHeadingBody>
+        <SectionHeadingBody>
+          Сегодня мы разрабатываем сайты и веб-приложения, продумывая
+          архитектуру, интерфейсы и SEO с самого начала. Работаем компактно,
+          внимательно относясь к деталям и задачам бизнеса, чтобы каждый проект
+          приносил реальный результат.
+        </SectionHeadingBody>
+      </SectionHeading>
       <LightRays />
     </Container>
   );
