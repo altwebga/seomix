@@ -154,8 +154,7 @@
   h2 {
     @apply scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0 mb-2;
   }
-  h3,
-  label {
+  h3 {
     @apply scroll-m-20 text-2xl mt-4 font-semibold tracking-tight mb-2;
   }
   h4 {

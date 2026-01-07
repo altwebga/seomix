@@ -103,35 +103,6 @@ export function Quiz() {
 
   const steps: Step[] = [
     {
-      title: "Контакты",
-      fields: ["name", "email", "phone"],
-      content: (
-        <FieldGroup>
-          <Field>
-            <FieldLabel>Имя</FieldLabel>
-            <Input placeholder="Константин" {...register("name")} />
-            <FieldError>{errors.name?.message}</FieldError>
-          </Field>
-
-          <Field>
-            <FieldLabel>Email</FieldLabel>
-            <Input placeholder="you@mail.com" {...register("email")} />
-            <FieldError>{errors.email?.message}</FieldError>
-          </Field>
-
-          <Field>
-            <FieldLabel>Телефон</FieldLabel>
-            <Input
-              placeholder="+371 29 123 456"
-              inputMode="tel"
-              {...register("phone")}
-            />
-            <FieldError>{errors.phone?.message}</FieldError>
-          </Field>
-        </FieldGroup>
-      ),
-    },
-    {
       title: "Услуги",
       fields: ["services"],
       content: (
@@ -142,7 +113,7 @@ export function Quiz() {
             control={control}
             name="services"
             render={({ field }) => (
-              <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-4">
                 {SERVICES.map((s) => {
                   const checked = field.value.includes(s.id);
                   return (
@@ -175,15 +146,47 @@ export function Quiz() {
     },
     {
       title: "Бюджет",
-      fields: ["budget", "agree"],
+      fields: ["budget"],
       content: (
         <FieldGroup>
           <Field>
             <FieldLabel>Бюджет</FieldLabel>
-            <Input placeholder="Например: 1000–2000€" {...register("budget")} />
+            <Input
+              placeholder="Например: 100 000 - 150 000 руб"
+              {...register("budget")}
+            />
             <FieldError>{errors.budget?.message}</FieldError>
           </Field>
+        </FieldGroup>
+      ),
+    },
+    {
+      title: "Контакты",
+      fields: ["name", "email", "phone", "agree"],
+      content: (
+        <FieldGroup>
+          <Field className="max-w-xs">
+            <FieldLabel>Имя</FieldLabel>
+            <Input placeholder="Тони Старк" {...register("name")} />
+            <FieldError>{errors.name?.message}</FieldError>
+          </Field>
+          <div className="flex flex-col md:flex-row gap-4">
+            <Field className="max-w-xs">
+              <FieldLabel>Email</FieldLabel>
+              <Input placeholder="you@mail.com" {...register("email")} />
+              <FieldError>{errors.email?.message}</FieldError>
+            </Field>
 
+            <Field className="max-w-xs">
+              <FieldLabel>Телефон</FieldLabel>
+              <Input
+                placeholder="+7 123 456 7890"
+                inputMode="tel"
+                {...register("phone")}
+              />
+              <FieldError>{errors.phone?.message}</FieldError>
+            </Field>
+          </div>
           <Field>
             <Controller
               control={control}
@@ -194,7 +197,9 @@ export function Quiz() {
                     checked={field.value}
                     onCheckedChange={(v) => field.onChange(v === true)}
                   />
-                  <span>Согласен(на) на обработку данных</span>
+                  <span className="text-sm">
+                    Согласен(на) на обработку данных
+                  </span>
                 </label>
               )}
             />

@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getProjectBySlug, getCustomerById } from "@/actions/get-content";
 import { Markdown } from "@/components/shared/markdown";
-import { DirectusImage } from "@/components/shared/directus-image";
 import { RuTubeFrame } from "@/components/shared/rutube-frame";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
+import { CustomerCard } from "@/components/shared/customer-card";
 
 export async function generateMetadata(
   props: PageProps<"/portfolio/[slug]">
@@ -66,30 +66,18 @@ export default async function PortfolioPage(
               title={project.title}
             />
           </div>
-          {customer && (
-            <aside className="md:w-1/3 md:border-l md:px-4">
-              <div className="pointer-events-none py-3">
-                <div className="flex items-center gap-3">
-                  <DirectusImage
-                    url={customer.cover_image}
-                    alt={customer.title}
-                    width={48}
-                    height={48}
-                    className="rounded-full"
-                  />
 
-                  <div>
-                    <h3 className="text-base font-medium m-0">
-                      {customer.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground m-0">
-                      {customer.content}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </aside>
-          )}
+          <aside className="md:w-1/3 md:border-l md:px-4">
+            <div className="md:fixed md:top-20 space-y-8">
+              {customer && (
+                <CustomerCard
+                  cover_image={customer.cover_image}
+                  title={customer.title}
+                  content={customer.content}
+                />
+              )}
+            </div>
+          </aside>
         </div>
       </div>
     </article>

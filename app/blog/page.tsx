@@ -1,5 +1,6 @@
 import { getPublishedArticlesList } from "@/actions/get-content";
 import { Container } from "@/components/container/container";
+import { CallActions } from "@/components/shared/call-actions";
 import { DirectusImage } from "@/components/shared/directus-image";
 import { MagicCard } from "@/components/ui/magic-card";
 import { TextAnimate } from "@/components/ui/text-animate";
@@ -40,7 +41,11 @@ export default async function BlogPage() {
             </Link>
           ))}
         </div>
-        <aside className="w-1/3"></aside>
+        <aside className="md:w-1/3">
+          <div className="md:fixed md:top-20">
+            <CallActions />
+          </div>
+        </aside>
       </div>
     </Container>
   );

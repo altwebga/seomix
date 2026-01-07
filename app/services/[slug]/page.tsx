@@ -3,6 +3,15 @@ import { notFound } from "next/navigation";
 import { getServiceBySlug } from "@/actions/get-content";
 import { Markdown } from "@/components/shared/markdown";
 import { DirectusImage } from "@/components/shared/directus-image";
+import { ContactForm } from "@/components/form/contact-form";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export async function generateMetadata(
   props: PageProps<"/services/[slug]">
@@ -40,9 +49,27 @@ export default async function ServicePage(
     <article className="mt-20">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-4">
-          <div className="md:w-2/3">
+          <div className="md:w-2/3 space-y-8">
             <h1>{service.title}</h1>
             <Markdown markdown={service.content || ""} />
+            <Card className="my-8">
+              <CardHeader>
+                <CardTitle>
+                  <h3>Есть вопросы по услуге?</h3>
+                </CardTitle>
+                <CardDescription>
+                  <p className="max-w-2xl">
+                    Оставьте заявку, и мы свяжемся с вами, чтобы
+                    проконсультировать, уточнить детали задачи и предложить
+                    оптимальное решение под ваши цели.
+                  </p>
+                </CardDescription>
+              </CardHeader>
+
+              <CardFooter>
+                <ContactForm textAction="Получить консультацию" />
+              </CardFooter>
+            </Card>
           </div>
           <aside className="md:w-1/3 md:border-l">
             <DirectusImage

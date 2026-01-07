@@ -2,27 +2,20 @@ import { Marquee } from "../ui/marquee";
 import { Container } from "../container/container";
 import directus from "@/lib/directus";
 import { readItems } from "@directus/sdk";
-import { DirectusImage } from "../shared/directus-image";
-import { Card } from "../ui/card";
 import {
   SectionHeading,
   SectionHeadingTitle,
   SectionHeadingBody,
   SectionHeadingContentType,
 } from "../ui/section-heading";
+import { CustomerCard } from "../shared/customer-card";
+import { Customer } from "@/config/types";
 
 const text = {
   subTitle: "Опыт",
   title: "Мы уже работали с проектами из вашей сферы",
   description:
     "Мы работали с проектами в туризме и гостиничном бизнесе, медицине и частных клиниках, торговле, строительстве и девелопменте, а также с образовательными платформами, корпоративными системами и цифровыми сервисами для бизнеса.",
-};
-
-type Customer = {
-  id: string | number;
-  title: string;
-  content: string;
-  cover_image: string;
 };
 
 async function getClients(): Promise<Customer[]> {
@@ -48,16 +41,26 @@ export async function OurExperience() {
         <SectionHeadingTitle>{text.title}</SectionHeadingTitle>
         <SectionHeadingBody>{text.description}</SectionHeadingBody>
       </SectionHeading>
-      <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+      <div className="relative flex w-full flex-col items-center justify-center overflow-hidden gap-4">
         <Marquee pauseOnHover className="[--duration:50s]">
           {firstRow.map((customer) => (
-            <CustomerCard key={customer.id} customer={customer} />
+            <CustomerCard
+              key={customer.id}
+              cover_image={customer.cover_image}
+              title={customer.title}
+              content={customer.content}
+            />
           ))}
         </Marquee>
 
         <Marquee reverse pauseOnHover className="[--duration:50s]">
           {secondRow.map((customer) => (
-            <CustomerCard key={customer.id} customer={customer} />
+            <CustomerCard
+              key={customer.id}
+              cover_image={customer.cover_image}
+              title={customer.title}
+              content={customer.content}
+            />
           ))}
         </Marquee>
 
@@ -65,28 +68,5 @@ export async function OurExperience() {
         <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l" />
       </div>
     </Container>
-  );
-}
-
-function CustomerCard({ customer }: { customer: Customer }) {
-  return (
-    <Card className="pointer-events-none px-4 py-3">
-      <div className="flex items-center gap-3">
-        <DirectusImage
-          url={customer.cover_image}
-          alt={customer.title}
-          width={48}
-          height={48}
-          className="rounded-full"
-        />
-
-        <div>
-          <h3 className="text-base font-medium m-0">{customer.title}</h3>
-          <p className="text-sm text-muted-foreground m-0">
-            {customer.content}
-          </p>
-        </div>
-      </div>
-    </Card>
   );
 }

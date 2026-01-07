@@ -40,7 +40,11 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export function ContactForm() {
+interface ContactFormProp {
+  textAction?: string;
+}
+
+export function ContactForm({ textAction = "Начать проект" }: ContactFormProp) {
   const [open, setOpen] = React.useState(false);
   const [captchaToken, setCaptchaToken] = React.useState("");
   const [agreement, setAgreement] = React.useState(true);
@@ -102,7 +106,7 @@ export function ContactForm() {
     >
       <DialogTrigger asChild>
         <Button size="lg" type="button">
-          Начать проект
+          {textAction}
         </Button>
       </DialogTrigger>
 
