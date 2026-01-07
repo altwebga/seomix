@@ -6,7 +6,7 @@ export interface Image {
 
 export interface Base {
   id: number;
-  slug: string | null;
+  slug: string;
   date_created: string;
   date_updated: string | null;
   status: string;
@@ -18,7 +18,18 @@ export interface Base {
 export interface SEO {
   title: string;
   meta_description: string;
-  og_image: string;
+  og_image?: string;
+  focus_keyphrase?: string;
+  additional_fields?: {
+    canonical_url?: string;
+    custom_meta_tag?: string;
+  };
+  sitemap?: {
+    change_frequency?: string;
+    priority?: string;
+  };
+  no_index?: boolean;
+  no_follow?: boolean;
 }
 
 export interface Hero extends Base {

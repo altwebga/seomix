@@ -8,10 +8,10 @@ import { readItems, readSingleton } from "@directus/sdk";
 // Articles
 // -------------------------
 
-export const getPublishedArticlesSlugs = cache(async () => {
+export const getArticlesSEO = cache(async () => {
   return directus.request(
     readItems("articles", {
-      fields: ["slug"],
+      fields: ["slug", "seo", "date_created", "date_updated"],
       filter: { status: { _eq: "published" } },
     })
   );
@@ -46,10 +46,10 @@ export const getPublishedArticlesList = cache(async () => {
 // Projects
 // -------------------------
 
-export const getPublishedProjectsSlugs = cache(async () => {
+export const getProjectsSEO = cache(async () => {
   return directus.request(
     readItems("projects", {
-      fields: ["slug"],
+      fields: ["slug", "seo", "date_created", "date_updated"],
       filter: { status: { _eq: "published" } },
     })
   );
@@ -116,10 +116,10 @@ export const getCustomerById = cache(async (clientId: number) => {
 // Services
 // -------------------------
 
-export const getPublishedServicesSlugs = cache(async () => {
+export const getServicesSEO = cache(async () => {
   return directus.request(
     readItems("services", {
-      fields: ["slug"],
+      fields: ["slug", "seo", "date_created", "date_updated"],
       filter: { status: { _eq: "published" } },
     })
   );

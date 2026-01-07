@@ -1,5 +1,4 @@
 import { Container } from "@/components/container/container";
-import { Quiz } from "@/components/form/quiz";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { socialLinks } from "@/config/social-links";
 import Image from "next/image";
@@ -13,12 +12,12 @@ const text = {
 export default function ContactPage() {
   return (
     <Container className="mt-20">
-      <h1>Контакты</h1>
+      <h1>{text.title}</h1>
       <TextAnimate animation="blurIn" as="p">
         {text.subTitle}
       </TextAnimate>
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="w-full md:w1/2">
+      <div className="flex flex-col md:flex-row gap-4 my-8">
+        <div className="w-full md:w1/2 space-y-8">
           <div className="grid grid-cols-3 gap-8">
             {socialLinks.map((item) => (
               <a
@@ -43,7 +42,7 @@ export default function ContactPage() {
           </div>
         </div>
         <div className="w-full md:w1/2">
-          <Quiz />
+          <h3></h3>
         </div>
       </div>
     </Container>
