@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Container } from "@/components/container/container";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { getTeams } from "@/actions/get-content";
@@ -11,6 +12,25 @@ import {
   SectionHeadingBody,
   SectionHeadingTitle,
 } from "@/components/ui/section-heading";
+
+export const metadata: Metadata = {
+  title: "О веб-студии",
+  description:
+    "Команда специалистов по разработке, дизайну и SEO. Работаем на результат.",
+  openGraph: {
+    title: "О веб-студии",
+    description:
+      "Команда специалистов по разработке, дизайну и SEO. Работаем на результат.",
+    images: [
+      {
+        url: "/img/og/about.png",
+        width: 1200,
+        height: 630,
+        alt: "О веб-студии",
+      },
+    ],
+  },
+};
 
 const text = {
   title: "О нас",

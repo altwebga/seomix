@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getPublishedServicesList } from "@/actions/get-content";
 import { Container } from "@/components/container/container";
 import { DirectusImage } from "@/components/shared/directus-image";
@@ -11,6 +12,25 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+
+export const metadata: Metadata = {
+  title: "Услуги веб-студии",
+  description:
+    "Разработка сайтов, SEO, дизайн интерфейсов и поддержка проектов.",
+  openGraph: {
+    title: "Услуги веб-студии",
+    description:
+      "Разработка сайтов, SEO, дизайн интерфейсов и поддержка проектов.",
+    images: [
+      {
+        url: "/img/og/services.png",
+        width: 1200,
+        height: 630,
+        alt: "Услуги веб-студии",
+      },
+    ],
+  },
+};
 
 const text = {
   title: "Наши услуги",

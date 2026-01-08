@@ -1,7 +1,25 @@
+import Image from "next/image";
+import type { Metadata } from "next";
 import { Container } from "@/components/container/container";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { socialLinks } from "@/config/social-links";
-import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Контакты",
+  description: "Свяжитесь с нами для обсуждения проекта и оценки стоимости.",
+  openGraph: {
+    title: "Контакты",
+    description: "Свяжитесь с нами для обсуждения проекта и оценки стоимости.",
+    images: [
+      {
+        url: "/img/og/contact.png",
+        width: 1200,
+        height: 630,
+        alt: "Контакты",
+      },
+    ],
+  },
+};
 
 const text = {
   title: "Контакты",

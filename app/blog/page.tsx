@@ -1,10 +1,30 @@
+import Link from "next/link";
+import type { Metadata } from "next";
 import { getPublishedArticlesList } from "@/actions/get-content";
 import { Container } from "@/components/container/container";
 import { CallActions } from "@/components/shared/call-actions";
 import { DirectusImage } from "@/components/shared/directus-image";
 import { MagicCard } from "@/components/ui/magic-card";
 import { TextAnimate } from "@/components/ui/text-animate";
-import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Блог о разработке и SEO",
+  description:
+    "Статьи о веб-разработке, SEO-продвижении и цифровом маркетинге.",
+  openGraph: {
+    title: "Блог о разработке и SEO",
+    description:
+      "Статьи о веб-разработке, SEO-продвижении и цифровом маркетинге.",
+    images: [
+      {
+        url: "/img/og/blog.png",
+        width: 1200,
+        height: 630,
+        alt: "Блог о разработке и SEO",
+      },
+    ],
+  },
+};
 
 const text = {
   title: "Блог",

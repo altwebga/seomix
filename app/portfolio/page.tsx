@@ -1,9 +1,29 @@
+import Link from "next/link";
+import type { Metadata } from "next";
 import { getPublishedProjectsList } from "@/actions/get-content";
 import { Container } from "@/components/container/container";
 import { DirectusImage } from "@/components/shared/directus-image";
 import { MagicCard } from "@/components/ui/magic-card";
 import { TextAnimate } from "@/components/ui/text-animate";
-import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Портфолио проектов",
+  description:
+    "Примеры реализованных сайтов и digital-проектов нашей веб-студии.",
+  openGraph: {
+    title: "Портфолио проектов",
+    description:
+      "Примеры реализованных сайтов и digital-проектов нашей веб-студии.",
+    images: [
+      {
+        url: "/img/og/portfolio.png",
+        width: 1200,
+        height: 630,
+        alt: "Портфолио проектов",
+      },
+    ],
+  },
+};
 
 const text = {
   title: "Наши работы",
