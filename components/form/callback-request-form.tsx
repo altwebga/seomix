@@ -158,7 +158,7 @@ export function CallbackRequestForm({
                   onCheckedChange={(v) => setAgreement(Boolean(v))}
                 />
                 <FieldLabel className="m-0">
-                  <Link href="/privacy-policy">
+                  <Link href="/privacy-policy" target="_blank" rel="noopener">
                     Я согласен(а) на обработку персональных данных
                   </Link>
                 </FieldLabel>

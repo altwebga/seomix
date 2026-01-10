@@ -20,13 +20,6 @@ import { Textarea } from "@/components/ui/textarea";
 
 import { SmartCaptchaWidget } from "../shared/smart-captcha";
 import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
 
 const formSchema = z.object({
   client: z.string().trim().min(1, "Укажите ваше имя"),
@@ -154,7 +147,7 @@ export function ContactForm() {
               onCheckedChange={(v) => setAgreement(Boolean(v))}
             />
             <FieldLabel className="m-0">
-              <Link href="/privacy-policy">
+              <Link href="/privacy-policy" target="_blank" rel="noopener">
                 Я согласен(а) на обработку персональных данных
               </Link>
             </FieldLabel>

@@ -51,7 +51,7 @@ export default async function ServicePage(
           <div className="md:w-2/3 space-y-8">
             <h1>{service.title}</h1>
             <Markdown markdown={service.content || ""} />
-            <Card className="my-8 bg-[url(/textures/groovepaper.png)]">
+            <Card className="my-8">
               <CardHeader>
                 <CardTitle>
                   <h3>Есть вопросы по услуге?</h3>

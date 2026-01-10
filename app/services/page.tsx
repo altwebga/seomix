@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 const text = {
   title: "Наши услуги",
   subTitle:
-    "Полный комплкс услуг для быстрого старта ваше бизнеса в интернете.",
+    "Полный комплекс услуг для быстрого старта вашего бизнеса в интернете.",
 };
 
 export default async function ServicesPage() {

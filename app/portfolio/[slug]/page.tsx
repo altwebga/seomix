@@ -4,8 +4,17 @@ import { getProjectBySlug, getCustomerById } from "@/actions/get-content";
 import { Markdown } from "@/components/shared/markdown";
 import { RuTubeFrame } from "@/components/shared/rutube-frame";
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, MoveLeft } from "lucide-react";
 import { CustomerCard } from "@/components/shared/customer-card";
+import Link from "next/link";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { CallbackRequestForm } from "@/components/form/callback-request-form";
 
 export async function generateMetadata(
   props: PageProps<"/portfolio/[slug]">
@@ -76,6 +85,26 @@ export default async function PortfolioPage(
                   content={customer.content}
                 />
               )}
+              <Card className="min-w-xs">
+                <CardHeader>
+                  <CardTitle>
+                    <h3>Понравился сайт?</h3>
+                  </CardTitle>
+                  <CardDescription>
+                    <p className="m-0 text-sm">
+                      Оставьте заявку — обсудим задачу и сделаем для вас сайт
+                      ещё лучше.
+                    </p>
+                  </CardDescription>
+                  <CardFooter className="p-0 mt-4">
+                    <CallbackRequestForm textAction="Хочу такой же сайт" />
+                  </CardFooter>
+                </CardHeader>
+              </Card>
+              <Button variant={"ghost"}>
+                <MoveLeft />
+                <Link href={"/portfolio"}>Назад к кейсам</Link>
+              </Button>
             </div>
           </aside>
         </div>

@@ -43,7 +43,7 @@ export default async function BlogPage() {
         <div className="grid grid-cols-1 gap-4 md:w-2/3">
           {articles.map((article) => (
             <Link key={article.id} href={`blog/${article.slug}`}>
-              <MagicCard className="min-h-60 p-4">
+              <MagicCard className="min-h-60 p-4 rounded-md">
                 <div className="flex flex-col md:flex-row gap-8">
                   <DirectusImage
                     url={article.cover_image || ""}
@@ -54,15 +54,17 @@ export default async function BlogPage() {
 
                   <div>
                     <h3>{article.title}</h3>
-                    <p>{article.seo.meta_description}</p>
+                    <p className="text-muted-foreground">
+                      {article.seo.meta_description}
+                    </p>
                   </div>
                 </div>
               </MagicCard>
             </Link>
           ))}
         </div>
-        <aside className="md:w-1/3">
-          <div className="md:fixed md:top-20">
+        <aside className="md:w-1/3 md:border-l md:pl-4">
+          <div className="md:fixed md:top-48">
             <CallActions />
           </div>
         </aside>
