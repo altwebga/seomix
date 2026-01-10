@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/container/container";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { socialLinks } from "@/config/social-links";
+import { ContactForm } from "@/components/form/contact-form";
 
 export const metadata: Metadata = {
   title: "Контакты",
@@ -36,7 +37,7 @@ export default function ContactPage() {
       </TextAnimate>
       <div className="flex flex-col md:flex-row gap-4 my-8">
         <div className="w-full md:w1/2 space-y-8">
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-3 gap-2">
             {socialLinks.map((item) => (
               <a
                 key={item.url}
@@ -58,9 +59,22 @@ export default function ContactPage() {
               </a>
             ))}
           </div>
+          <ContactForm />
         </div>
         <div className="w-full md:w1/2">
-          <h3></h3>
+          <figure>
+            <Image
+              src={"/img/qrcode.min.svg"}
+              alt="qrcode"
+              width={460}
+              height={460}
+              className="aspect-square"
+              loading="eager"
+            />
+            <figcaption className="mt-2">
+              Отсканируйте QR-код, что бы добавить нас в контакты
+            </figcaption>
+          </figure>
         </div>
       </div>
     </Container>

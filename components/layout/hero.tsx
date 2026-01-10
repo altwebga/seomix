@@ -1,7 +1,7 @@
 import { Button } from "../ui/button";
 import { socialLinks } from "@/config/social-links";
 import { ArrowDown } from "lucide-react";
-import { ContactForm } from "../form/contact-form";
+import { CallbackRequestForm } from "../form/callback-request-form";
 import Link from "next/link";
 
 const text = {
@@ -32,7 +32,7 @@ export function Hero() {
           <p className="max-w-2xl">{text.content}</p>
 
           <div className="flex flex-wrap gap-3">
-            <ContactForm />
+            <CallbackRequestForm />
             <Button size="lg" variant={"outline"} asChild>
               <Link href={"/portfolio"}>Примеры работ</Link>
             </Button>

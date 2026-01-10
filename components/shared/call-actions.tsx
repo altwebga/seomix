@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { ContactForm } from "../form/contact-form";
+import { CallbackRequestForm } from "../form/callback-request-form";
 import { Lightbulb } from "lucide-react";
 
 export function CallActions() {
@@ -26,7 +26,7 @@ export function CallActions() {
       </CardContent>
 
       <CardFooter>
-        <ContactForm />
+        <CallbackRequestForm />
       </CardFooter>
     </Card>
   );

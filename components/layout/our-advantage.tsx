@@ -6,7 +6,7 @@ import {
   SectionHeadingContentType,
 } from "../ui/section-heading";
 import { Button } from "../ui/button";
-import { ContactForm } from "../form/contact-form";
+import { CallbackRequestForm } from "../form/callback-request-form";
 
 const text = {
   subTitle: "Наши преимущества",
@@ -28,7 +28,7 @@ export function OurAvantage() {
             <SectionHeadingBody>{text.description}</SectionHeadingBody>
           </SectionHeading>
           <div className="flex flex-row gap-4 mt-8">
-            <ContactForm />
+            <CallbackRequestForm />
             <Button
               size={"lg"}
               disabled

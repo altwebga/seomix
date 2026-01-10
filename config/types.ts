@@ -89,4 +89,5 @@ export interface RequestWebsite {
   agreement: boolean;
   created_at?: string;
   page_url?: string;
+  message?: string | null;
 }

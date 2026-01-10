@@ -3,10 +3,9 @@ import { notFound } from "next/navigation";
 import { getServiceBySlug } from "@/actions/get-content";
 import { Markdown } from "@/components/shared/markdown";
 import { DirectusImage } from "@/components/shared/directus-image";
-import { ContactForm } from "@/components/form/contact-form";
+import { CallbackRequestForm } from "@/components/form/callback-request-form";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -52,7 +51,7 @@ export default async function ServicePage(
           <div className="md:w-2/3 space-y-8">
             <h1>{service.title}</h1>
             <Markdown markdown={service.content || ""} />
-            <Card className="my-8">
+            <Card className="my-8 bg-[url(/textures/groovepaper.png)]">
               <CardHeader>
                 <CardTitle>
                   <h3>Есть вопросы по услуге?</h3>
@@ -67,7 +66,7 @@ export default async function ServicePage(
               </CardHeader>
 
               <CardFooter>
-                <ContactForm textAction="Получить консультацию" />
+                <CallbackRequestForm textAction="Получить консультацию" />
               </CardFooter>
             </Card>
           </div>
