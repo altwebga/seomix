@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/footer";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { CookieNotification } from "@/components/shared/cookie-notification";
 import { Toaster } from "@/components/ui/sonner";
+import { YandexMetrikaContainer } from "@/components/shared/yandex-metrika";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,6 +51,7 @@ export default function RootLayout({
           <Footer />
           <Toaster />
           <CookieNotification />
+          <YandexMetrikaContainer />
         </ThemeProvider>
       </body>
     </html>
