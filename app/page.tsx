@@ -1,7 +1,10 @@
-export default function Home() {
+import { ComponentExample } from "@/components/component-example";
+
+export default function Page() {
   return (
-    <div>
-      <h1>Hello, World!</h1>
-    </div>
+    <>
+      <h1>Welcome to My App</h1>
+      <ComponentExample />
+    </>
   );
 }
