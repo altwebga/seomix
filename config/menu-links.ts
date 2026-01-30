@@ -1,9 +1,9 @@
-interface MenuLinks {
+export interface MenuLink {
   title: string;
   href: string;
 }
 
-export const menuLinks: MenuLinks[] = [
+export const menuLinks: MenuLink[] = [
   {
     title: "Главная",
     href: "/",

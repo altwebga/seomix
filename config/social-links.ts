@@ -1,10 +1,10 @@
-interface SocialLinks {
+interface SocialLink {
   title: string;
   url: string;
   icon: string;
 }
 
-export const socialLinks: SocialLinks[] = [
+export const socialLinks: SocialLink[] = [
   {
     title: "WhatsApp",
     url: "https://wa.me/79236609500",
