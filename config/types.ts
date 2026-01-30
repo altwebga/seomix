@@ -55,3 +55,11 @@ export interface ICustomers {
   description: string;
   logo: string;
 }
+
+export interface IRequest {
+  id: string;
+  name: string;
+  phone: string;
+  message?: string;
+  date_created: string;
+}

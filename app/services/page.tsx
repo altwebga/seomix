@@ -1,32 +1,51 @@
 import { SectionContainer } from "@/components/containers/section-container";
-import directus from "@/lib/directus";
-import { readItems } from "@directus/sdk";
-
-async function fetchServices() {
-  const content = await directus.request(
-    readItems("content", {
-      filter: {
-        content_type: { _eq: "service" },
-        status: { _eq: "published" },
-      },
-      fields: ["id", "title", "description"],
-    }),
-  );
-  return content;
-}
+import { getContent } from "@/actions/get-content";
+import { Heading } from "@/components/ui/heading";
+import { MagicCard } from "@/components/ui/magic-card";
+import { DirectusImage } from "@/components/shared/directus-image";
 
 export default async function ServicesPage() {
-  const content = await fetchServices();
+  const services = await getContent({
+    content_type: "service",
+    status: "published",
+    fields: [
+      "id",
+      "title",
+      "description",
+      "short_description",
+      "cover_image",
+      "slug",
+      "sort",
+    ],
+  });
+
   return (
     <SectionContainer>
-      <h1 className="text-3xl font-bold">Services Page</h1>
-      <ul className="mt-6 space-y-4">
-        {content.map((service) => (
-          <li key={service.id} className="p-4 border rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold">{service.title}</h2>
-            <p className="mt-2 text-gray-600">{service.description}</p>
-          </li>
-        ))}
+      <Heading
+        title="Наши услуги"
+        subtitle="Полный комплекс услуг для быстрого старта вашего бизнеса в интернете."
+        level="h1"
+      />
+      <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 my-8">
+        {services
+          .sort((a, b) => (a.sort || 0) - (b.sort || 0))
+          .map((service) => (
+            <li key={service.id} className="list-none h-full">
+              <MagicCard className="rounded-md p-4 hover:-translate-y-2 transition-transform ease-linear duration-100 h-full">
+                <DirectusImage
+                  url={service.cover_image}
+                  alt={service.title}
+                  width={600}
+                  height={600}
+                  className="rounded-t-md aspect-square object-cover"
+                />
+                <h2 className="text-xl font-semibold mt-4">{service.title}</h2>
+                <p className="mt-2 text-sm text-muted-foreground leading-5">
+                  {service.short_description}
+                </p>
+              </MagicCard>
+            </li>
+          ))}
       </ul>
     </SectionContainer>
   );

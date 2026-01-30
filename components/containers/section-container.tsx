@@ -8,7 +8,7 @@ export function SectionContainer({
   className,
 }: SectionContainerProps) {
   return (
-    <section className="container mx-auto px-4">
+    <section className="container mx-auto px-4 mt-20">
       <div className={className}>{children}</div>
     </section>
   );

@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
 
 const inter = localFont({
   src: "../public/fonts/Inter.woff2",
@@ -31,7 +32,9 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <head />
-      <body className={`${inter.variable} ${tilda.variable} antialiased`}>
+      <body
+        className={`${inter.variable} ${tilda.variable} antialiased flex flex-col justify-between min-h-screen`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -39,7 +42,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          {children}
+          <main className="basis-full">{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
