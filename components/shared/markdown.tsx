@@ -27,6 +27,8 @@ export function Markdown({ markdown, className }: Props) {
               />
             );
           },
+          ul: ({ children }) => <ul className="list-disc ml-4">{children}</ul>,
+          li: ({ children }) => <li className="list-disc ml-4">{children}</li>,
         }}
       >
         {markdown}
