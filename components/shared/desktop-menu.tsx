@@ -24,7 +24,7 @@ export function DesktopMenu({ links }: DesktopMenuProps) {
               <Link
                 href={link.href}
                 className={cn(
-                  "relative font-bold text-xl transition-colors",
+                  "relative font-bold transition-colors",
                   isActive ? "text-primary" : "hover:text-primary",
                 )}
               >

@@ -2,11 +2,11 @@ import { SectionContainer } from "@/components/containers/section-container";
 import { Heading } from "@/components/ui/heading";
 
 const text = {
-  title: "Контакты",
-  subtitle: "Свяжитесь с нами",
+  title: "О нас",
+  subtitle: "О нас",
 };
 
-export default function ContactPage() {
+export default function AboutPage() {
   return (
     <SectionContainer>
       <Heading title={text.title} subtitle={text.subtitle} level="h1" />
