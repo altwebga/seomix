@@ -17,7 +17,9 @@ export function DesktopMenu({ links }: DesktopMenuProps) {
     <nav className="hidden md:block">
       <ul className="flex gap-10 relative">
         {links.map((link) => {
-          const isActive = pathname === link.href;
+          const isActive =
+            pathname === link.href ||
+            (link.href !== "/" && pathname?.startsWith(`${link.href}/`));
 
           return (
             <li key={link.href} className="relative">

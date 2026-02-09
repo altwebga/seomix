@@ -88,7 +88,11 @@ export function MobileMenu({ links }: MobileMenuProps) {
                 <svg
                   className={cn(
                     "h-8 w-8 text-primary transition-opacity",
-                    pathname === link.href ? "opacity-100" : "opacity-0",
+                    pathname === link.href ||
+                      (link.href !== "/" &&
+                        pathname?.startsWith(`${link.href}/`))
+                      ? "opacity-100"
+                      : "opacity-0",
                   )}
                   viewBox="0 0 24 24"
                   fill="currentColor"

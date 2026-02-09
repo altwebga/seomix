@@ -29,6 +29,24 @@ export function Markdown({ markdown, className }: Props) {
           },
           ul: ({ children }) => <ul className="list-disc ml-4">{children}</ul>,
           li: ({ children }) => <li className="list-disc ml-4">{children}</li>,
+          h1: ({ children }) => (
+            <h1 className="text-4xl mt-4 mb-2">{children}</h1>
+          ),
+          h2: ({ children }) => (
+            <h2 className="text-3xl mt-4 mb-2">{children}</h2>
+          ),
+          h3: ({ children }) => (
+            <h3 className="text-2xl mt-4 mb-2">{children}</h3>
+          ),
+          h4: ({ children }) => (
+            <h4 className="text-xl mt-4 mb-2">{children}</h4>
+          ),
+          h5: ({ children }) => (
+            <h5 className="text-lg mt-4 mb-2">{children}</h5>
+          ),
+          h6: ({ children }) => (
+            <h6 className="text-base mt-4 mb-2">{children}</h6>
+          ),
         }}
       >
         {markdown}

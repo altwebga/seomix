@@ -12,7 +12,7 @@ export function SidebarContainer({
   return (
     <div
       className={cn(
-        `container mx-auto my-20 flex flex-col md:flex-row gap-4`,
+        `container mx-auto my-20 flex flex-col md:flex-row gap-4 px-4`,
         className,
       )}
     >
