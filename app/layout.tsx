@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
 
 const inter = localFont({
   src: "../public/fonts/Inter.woff2",
@@ -42,6 +43,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
+          <ScrollProgress className="top-16" />
           <main className="basis-full">{children}</main>
           <Footer />
         </ThemeProvider>

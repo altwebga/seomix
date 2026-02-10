@@ -15,24 +15,26 @@ export default async function PortfolioPage() {
   return (
     <SectionContainer>
       <Heading title={text.title} subtitle={text.subtitle} level="h1" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-8">
         {portfolio.map((item) => (
-          <MagicCard key={item.id} className="rounded-md p-4">
-            <Link href={`/portfolio/${item.slug}`} className="flex flex-col">
-              <div className="relative">
-                <DirectusImage
-                  url={item.cover_image}
-                  alt={item.title}
-                  width={300}
-                  height={300}
-                  className="w-full object-cover"
-                />
-                <h3 className="my-2">{item.title}</h3>
-              </div>
+          <li key={item.id} className="list-none h-full">
+            <Link href={`/portfolio/${item.slug}`}>
+              <MagicCard className="rounded-md p-4">
+                <div className="flex flex-col gap-4">
+                  <DirectusImage
+                    url={item.cover_image}
+                    alt={item.title}
+                    width={300}
+                    height={300}
+                    className="w-full object-cover"
+                  />
+                  <h3>{item.title}</h3>
+                </div>
+              </MagicCard>
             </Link>
-          </MagicCard>
+          </li>
         ))}
-      </div>
+      </ul>
     </SectionContainer>
   );
 }
