@@ -57,9 +57,7 @@ export interface ICustomers {
 }
 
 export interface IRequest {
-  id: string;
   name: string;
   phone: string;
   message?: string;
-  date_created: string;
 }

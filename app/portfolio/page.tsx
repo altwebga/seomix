@@ -15,7 +15,7 @@ export default async function PortfolioPage() {
   return (
     <SectionContainer>
       <Heading title={text.title} subtitle={text.subtitle} level="h1" />
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-8">
+      <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 my-8">
         {portfolio.map((item) => (
           <li key={item.id} className="list-none h-full">
             <Link href={`/portfolio/${item.slug}`}>

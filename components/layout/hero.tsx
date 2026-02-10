@@ -3,6 +3,7 @@ import { socialLinks } from "@/config/social-links";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ScrollDown } from "../shared/scroll-down";
+import { PopupContactForm } from "../form/popup-contact-form";
 
 const text = {
   title: "Разработка и продвижение сайтов ",
@@ -24,9 +25,7 @@ export function Hero() {
           </h1>
           <p className="mt-4 max-w-2xl">{text.subtitle}</p>
           <div className="flex flex-col md:flex-row gap-4 mt-4">
-            <Button asChild size="lg" className="w-full md:w-60">
-              <Link href="/contacts">Связаться</Link>
-            </Button>
+            <PopupContactForm />
             <Button
               asChild
               variant="outline"
