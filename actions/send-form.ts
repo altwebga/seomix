@@ -18,10 +18,15 @@ export async function sendForm(data: IRequest) {
 
     // если пустой ответ — просто выходим
     const text = await res.text();
+    if (!res.ok) {
+      throw new Error(text || "Ошибка при отправке формы");
+    }
+
     if (!text) return true;
 
     return JSON.parse(text);
   } catch (error) {
-    console.log(error);
+    console.error("sendForm error:", error);
+    throw error;
   }
 }

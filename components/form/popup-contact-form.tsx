@@ -24,6 +24,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { sendForm } from "@/actions/send-form";
+import { YandexSmartCaptcha } from "@/components/form/smart-captcha";
 
 const formSchema = z.object({
   name: z.string().min(2, "Имя должно содержать не менее 2 символов"),
@@ -31,9 +32,6 @@ const formSchema = z.object({
     .string()
     .min(10, "Телефон должен содержать не менее 10 символов")
     .max(15, "Телефон должен содержать не более 15 символов"),
-  agreement: z.boolean().refine((value) => value, {
-    message: "Вы должны согласиться с условиями обработки персональных данных",
-  }),
 });
 
 type PopupContactFormProps = {
@@ -46,6 +44,8 @@ export function PopupContactForm({
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [checked, setChecked] = useState(true);
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaReset, setCaptchaReset] = useState(0);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -55,12 +55,18 @@ export function PopupContactForm({
     },
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
+  function resetCaptcha() {
+    setCaptchaReset((prev) => prev + 1);
+    setCaptchaToken("");
+  }
+
+  async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
       setIsLoading(true);
-      sendForm(data);
+      await sendForm(data);
       toast.success("Заявка отправлена!");
       setIsOpen(false);
+      resetCaptcha();
       form.reset();
     } catch (error) {
       toast.error("Ошибка отправки заявки!");
@@ -68,6 +74,7 @@ export function PopupContactForm({
       setIsLoading(false);
     }
   }
+
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
@@ -123,6 +130,12 @@ export function PopupContactForm({
                 </Field>
               )}
             />
+            <div className="pt-2">
+              <YandexSmartCaptcha
+                onToken={setCaptchaToken}
+                resetKey={captchaReset}
+              />
+            </div>
             <Field orientation="horizontal">
               <Checkbox
                 checked={checked}
@@ -143,7 +156,7 @@ export function PopupContactForm({
           <DialogFooter className="mt-4">
             <Button
               type="submit"
-              disabled={isLoading || !checked}
+              disabled={isLoading || !checked || !captchaToken}
               className="w-full"
             >
               {isLoading ? "Отправка..." : "Отправить"}
