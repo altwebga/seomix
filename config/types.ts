@@ -61,3 +61,10 @@ export interface IRequest {
   phone: string;
   message?: string;
 }
+
+export interface IPrivacyPolicy {
+  data: {
+    title: string;
+    description: string;
+  };
+}

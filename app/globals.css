@@ -192,4 +192,13 @@
   small {
     @apply text-sm;
   }
+  table {
+    @apply w-full border-collapse border p-2;
+  }
+  th {
+    @apply text-left border p-2;
+  }
+  td {
+    @apply text-left border p-2;
+  }
 }

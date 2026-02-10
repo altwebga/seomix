@@ -16,7 +16,7 @@ export function Hero() {
   return (
     <section className="h-screen bg-hero bg-cover bg-center flex flex-col justify-between">
       <div className="container mx-auto px-4 mt-20 flex flex-col">
-        <div className="md:pl-80 mt-44">
+        <div className="md:pl-60 mt-44">
           <h1 className="text-2xl md:text-5xl">
             {text.title}
             <AuroraText className="md:text-9xl text-5xl font-extrabold">
@@ -24,14 +24,9 @@ export function Hero() {
             </AuroraText>
           </h1>
           <p className="mt-4 max-w-2xl">{text.subtitle}</p>
-          <div className="flex flex-col md:flex-row gap-4 mt-4">
+          <div className="flex flex-row gap-4 mt-4">
             <PopupContactForm />
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="w-full md:w-60"
-            >
+            <Button asChild variant="outline" size="lg" className="w-40">
               <Link href="/portfolio">Портфолио</Link>
             </Button>
           </div>
