@@ -62,14 +62,28 @@ export function Heading({
 
   return (
     <motion.div
-      className={cn(className)}
       variants={container}
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
     >
-      <TitleTag variants={titleBlurIn}>{title}</TitleTag>
-      {subtitle && <motion.p variants={subtitleSlideUp}>{subtitle}</motion.p>}
+      <TitleTag
+        variants={titleBlurIn}
+        className={cn("text-4xl md:text-6xl font-bold leading-none", className)}
+      >
+        {title}
+      </TitleTag>
+      {subtitle && (
+        <motion.p
+          variants={subtitleSlideUp}
+          className={cn(
+            "text-lg text-muted-foreground max-w-3xl mt-4",
+            className,
+          )}
+        >
+          {subtitle}
+        </motion.p>
+      )}
     </motion.div>
   );
 }

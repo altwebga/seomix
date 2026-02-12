@@ -22,7 +22,6 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
 import { sendForm } from "@/actions/send-form";
 import { YandexSmartCaptcha } from "@/components/form/smart-captcha";
 
@@ -136,22 +135,21 @@ export function PopupContactForm({
                 resetKey={captchaReset}
               />
             </div>
-            <Field orientation="horizontal">
-              <Checkbox
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
                 checked={checked}
-                onCheckedChange={() => setChecked(!checked)}
-                id="contact-form-agreement"
-                name="contact-form-agreement"
+                onChange={() => setChecked(!checked)}
+                className="w-4 h-4 accent-primary p-1"
               />
-              <FieldLabel htmlFor="contact-form-agreement">
-                <Link
-                  href="/privacy-policy"
-                  className="text-sm text-muted-foreground hover:underline"
-                >
-                  Я согласен с условиямиобработки персональных данных
-                </Link>
-              </FieldLabel>
-            </Field>
+              <Link
+                href="/privacy-policy"
+                className="text-sm text-muted-foreground hover:underline"
+                target="_blank"
+              >
+                Я согласен с условиями обработки персональных данных
+              </Link>
+            </label>
           </FieldGroup>
           <DialogFooter className="mt-4">
             <Button
