@@ -8,7 +8,7 @@ export interface IContent {
   date_updated: string;
   title: string;
   slug: string;
-  content_type: "article" | "project" | "service";
+  content_type: "article" | "project" | "service" | "customers";
   description: string;
   short_description: string | null;
   cover_image: string;
@@ -19,6 +19,7 @@ export interface IContent {
   tags: string[] | null;
   price: string | null;
   seo: ISeo;
+  logo: string;
 }
 
 export interface ISeo {
@@ -44,7 +45,7 @@ export interface ISeo {
   no_follow: boolean;
 }
 
-export interface ICustomers {
+export interface ICustomer {
   id: string;
   sort: number | null;
   user_created: string;

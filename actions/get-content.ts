@@ -6,7 +6,7 @@ const API_URL = process.env.API_URL || "https://localhost:8055";
 const TOKEN = process.env.TOKEN || "";
 
 type getContentProps = {
-  content_type?: "service" | "article" | "project";
+  content_type?: "service" | "article" | "project" | "customers";
   status?: "draft" | "published" | "archived";
   fields?: string[];
   slug?: string;
@@ -64,6 +64,27 @@ export async function getContentItem({
     return json.data[0];
   } catch (error) {
     console.error("getContent error:", error);
+    return [];
+  }
+}
+
+export async function getCustomers() {
+  try {
+    const res = await fetch(`${API_URL}/items/customers`, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+      next: { revalidate: 3600 },
+    });
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch content: ${res.status}`);
+    }
+
+    const json = await res.json();
+    return json.data;
+  } catch (error) {
+    console.error("getCustomers error:", error);
     return [];
   }
 }
