@@ -1,5 +1,6 @@
 import { Heading } from "../ui/heading";
 import { SectionContainer } from "../containers/section-container";
+import { Button } from "../ui/button";
 
 const text = {
   title: "Берём задачи на себя, без лишних вопросов и затянутых согласований.",
@@ -16,6 +17,12 @@ export function Advantage() {
         level="h2"
         className="max-w-4xl md:ml-20"
       />
+      <div>
+        <Button>Получить консультацию</Button>
+        <Button variant={"destructive"} disabled={true} className="">
+          Заполнить бриф
+        </Button>
+      </div>
     </SectionContainer>
   );
 }
