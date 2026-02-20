@@ -1,24 +1,19 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { ScrollProgress } from "@/components/ui/scroll-progress";
-import { Toaster } from "@/components/ui/sonner";
 
-const inter = localFont({
-  src: "../public/fonts/Inter.woff2",
-  variable: "--font-inter",
-  weight: "100 900",
-  display: "swap",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
 });
 
-const tilda = localFont({
-  src: "../public/fonts/Tilda.woff2",
-  variable: "--font-tilda",
-  weight: "100 900",
-  display: "swap",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -33,9 +28,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" suppressHydrationWarning>
-      <head />
       <body
-        className={`${inter.variable} ${tilda.variable} antialiased flex flex-col justify-between min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <ThemeProvider
           attribute="class"
@@ -44,8 +38,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <ScrollProgress className="top-16" />
-          <main className="basis-full">{children}</main>
+          <main className="grow">{children}</main>
           <Toaster />
           <Footer />
         </ThemeProvider>
