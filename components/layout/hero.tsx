@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { ScrollDown } from "../shared/scroll-down";
 import { PopupContactForm } from "../form/popup-contact-form";
+import HeroImage from "@/public/img/hero_1.png";
+import Image from "next/image";
 
 const text = {
   title: "Разработка и продвижение сайтов ",
@@ -15,8 +17,15 @@ const text = {
 export function Hero() {
   return (
     <section className="h-screen bg-hero bg-cover bg-center flex flex-col justify-between">
-      <div className="container mx-auto px-4 mt-20 flex flex-col">
-        <div className="md:pl-60 mt-44">
+      <div className="container mx-auto px-4 flex flex-row items-center justify-center mt-20">
+        <Image
+          src={HeroImage}
+          alt="Hero"
+          width={600}
+          height={600}
+          className="h-auto w-1/3"
+        />
+        <div className="flex flex-col w-2/3">
           <h1 className="text-2xl md:text-5xl">
             {text.title}
             <AuroraText className="md:text-9xl text-5xl font-extrabold">

@@ -39,7 +39,7 @@ export default async function ServicesPage() {
                     alt={service.title}
                     width={600}
                     height={600}
-                    className="rounded-t-md aspect-square object-cover"
+                    className="rounded-t-md object-cover"
                   />
                   <h2 className="text-xl font-semibold mt-4">
                     {service.title}
