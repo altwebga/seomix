@@ -1,3 +1,9 @@
+import { Hero } from "@/components/layout/hero";
+
 export default function Page() {
-  return <div>Page</div>;
+  return (
+    <>
+      <Hero />
+    </>
+  );
 }

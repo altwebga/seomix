@@ -1,10 +1,16 @@
+import { Logo } from "../shared/logo";
 import { AnimatedThemeToggler } from "../ui/theme-toggler";
+import { AppNav } from "../shared/app-nav";
 
 export function Header() {
   return (
     <header className="bg-background/50 backdrop-blur-md border-b z-50 fixed w-full">
       <div className="container mx-auto px-4 flex flex-row justify-between items-center py-4">
-        <AnimatedThemeToggler />
+        <Logo className="h-4 w-auto" />
+        <div className="flex md:flex-row flex-row-reverse gap-8 md:w-full">
+          <AppNav />
+          <AnimatedThemeToggler />
+        </div>
       </div>
     </header>
   );
