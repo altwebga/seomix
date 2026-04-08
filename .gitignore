@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# registry testing
+/__registry-test__/
+
+references
+
+public/r
+# Auto-generated component dates
+src/lib/component-dates.generated.ts
