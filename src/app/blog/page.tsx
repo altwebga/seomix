@@ -1,4 +1,4 @@
-import { AgentAvatar } from "@/components/thegridcn";
+import Link from "next/link";
 import { getContent } from "@/actions/get-content";
 import { DirectusImage } from "@/components/shared/directus-image";
 import {
@@ -16,6 +16,7 @@ export default async function BlogPage() {
     content_type: "article",
     fields: [
       "id",
+      "slug",
       "sort",
       "status",
       "date_created",
@@ -36,24 +37,26 @@ export default async function BlogPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {posts.map((post) => (
           <TronCard key={post.id}>
-            <TronCardHeader>
-              <DirectusImage
-                url={post.cover_image}
-                alt={post.title}
-                width={500}
-                height={500}
-                className="w-full h-48 object-cover"
-              />
-              <TronCardTitle>{post.title}</TronCardTitle>
-            </TronCardHeader>
-            <TronCardContent>
-              <p className="line-clamp-3">{post.short_description}</p>
-            </TronCardContent>
-            <TronCardFooter>
-              <TronCardDescription>
-                {new Date(post.date_created).toLocaleDateString()}
-              </TronCardDescription>
-            </TronCardFooter>
+            <Link href={`/blog/${post.slug}`}>
+              <TronCardHeader>
+                <DirectusImage
+                  url={post.cover_image}
+                  alt={post.title}
+                  width={500}
+                  height={500}
+                  className="w-full h-48 object-cover"
+                />
+                <TronCardTitle>{post.title}</TronCardTitle>
+              </TronCardHeader>
+              <TronCardContent>
+                <p className="line-clamp-3">{post.short_description}</p>
+              </TronCardContent>
+              <TronCardFooter>
+                <TronCardDescription>
+                  {new Date(post.date_created).toLocaleDateString()}
+                </TronCardDescription>
+              </TronCardFooter>
+            </Link>
           </TronCard>
         ))}
       </div>
