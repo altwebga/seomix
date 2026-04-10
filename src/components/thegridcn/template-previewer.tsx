@@ -1,63 +1,81 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
-import { ArrowLeft, Smartphone, Tablet, Monitor, ExternalLink, Eye, Code } from "lucide-react"
-import { ThemeSwitcherCompact } from "@/components/theme"
-import { useTheme } from "@/components/theme"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import Link from "next/link";
+import {
+  ArrowLeft,
+  Smartphone,
+  Tablet,
+  Monitor,
+  ExternalLink,
+  Eye,
+  Code,
+} from "lucide-react";
+import { ThemeSwitcherCompact } from "@/components/theme";
+import { useTheme } from "@/components/theme";
+import { cn } from "@/lib/utils";
 import {
   CodeBlock,
   CodeBlockHeader,
   CodeBlockIcon,
   CodeBlockGroup,
   CodeBlockContent,
-} from "@/components/code-block/code-block"
-import { CopyButton } from "@/components/code-block/copy-button"
-import { CodeBlockShiki } from "@/components/code-block/shiki"
+} from "@/components/code-block/code-block";
+import { CopyButton } from "@/components/code-block/copy-button";
+import { CodeBlockShiki } from "@/components/code-block/shiki";
 
-type DeviceSize = "mobile" | "tablet" | "desktop"
-type ViewMode = "preview" | "code"
+type DeviceSize = "mobile" | "tablet" | "desktop";
+type ViewMode = "preview" | "code";
 
-const DEVICE_CONFIG: { id: DeviceSize; icon: typeof Monitor; label: string; maxWidth: string }[] = [
-  { id: "mobile", icon: Smartphone, label: "Mobile", maxWidth: "max-w-[375px]" },
+const DEVICE_CONFIG: {
+  id: DeviceSize;
+  icon: typeof Monitor;
+  label: string;
+  maxWidth: string;
+}[] = [
+  {
+    id: "mobile",
+    icon: Smartphone,
+    label: "Mobile",
+    maxWidth: "max-w-[375px]",
+  },
   { id: "tablet", icon: Tablet, label: "Tablet", maxWidth: "max-w-[768px]" },
   { id: "desktop", icon: Monitor, label: "Desktop", maxWidth: "max-w-full" },
-]
+];
 
 interface TemplatePreviewerProps {
-  name: string
-  slug: string
+  name: string;
+  slug: string;
 }
 
 function TemplateCodeViewer({ slug }: { slug: string }) {
-  const [code, setCode] = React.useState<string | null>(null)
-  const [fileName, setFileName] = React.useState("template.tsx")
-  const [loading, setLoading] = React.useState(true)
-  const [error, setError] = React.useState<string | null>(null)
+  const [code, setCode] = React.useState<string | null>(null);
+  const [fileName, setFileName] = React.useState("template.tsx");
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    setLoading(true)
-    setError(null)
-    setCode(null)
+    setLoading(true);
+    setError(null);
+    setCode(null);
 
     fetch(`/api/template-source/${slug}`)
       .then((res) => {
-        if (!res.ok) throw new Error("Template not found")
-        return res.json()
+        if (!res.ok) throw new Error("Template not found");
+        return res.json();
       })
       .then((data) => {
-        setCode(data.content)
-        setFileName(data.fileName)
+        setCode(data.content);
+        setFileName(data.fileName);
       })
       .catch((err) => {
-        console.error("Failed to load template source:", err)
-        setError("Failed to load source code")
+        console.error("Failed to load template source:", err);
+        setError("Failed to load source code");
       })
       .finally(() => {
-        setLoading(false)
-      })
-  }, [slug])
+        setLoading(false);
+      });
+  }, [slug]);
 
   if (loading) {
     return (
@@ -67,7 +85,7 @@ function TemplateCodeViewer({ slug }: { slug: string }) {
           LOADING SOURCE...
         </div>
       </div>
-    )
+    );
   }
 
   if (error || !code) {
@@ -77,10 +95,10 @@ function TemplateCodeViewer({ slug }: { slug: string }) {
           {error || "No source code available"}
         </div>
       </div>
-    )
+    );
   }
 
-  const lineCount = code.split("\n").length
+  const lineCount = code.split("\n").length;
 
   return (
     <CodeBlock className="h-full rounded-none border-0">
@@ -100,33 +118,33 @@ function TemplateCodeViewer({ slug }: { slug: string }) {
         <CodeBlockShiki code={code} language="tsx" lineNumbers />
       </CodeBlockContent>
     </CodeBlock>
-  )
+  );
 }
 
 export function TemplatePreviewer({ name, slug }: TemplatePreviewerProps) {
-  const [device, setDevice] = React.useState<DeviceSize>("desktop")
-  const [viewMode, setViewMode] = React.useState<ViewMode>("preview")
-  const iframeRef = React.useRef<HTMLIFrameElement>(null)
-  const { theme } = useTheme()
+  const [device, setDevice] = React.useState<DeviceSize>("desktop");
+  const [viewMode, setViewMode] = React.useState<ViewMode>("preview");
+  const iframeRef = React.useRef<HTMLIFrameElement>(null);
+  const { theme } = useTheme();
 
   // Sync theme to iframe via postMessage whenever theme changes
   React.useEffect(() => {
-    const iframe = iframeRef.current
+    const iframe = iframeRef.current;
     if (iframe?.contentWindow) {
-      iframe.contentWindow.postMessage({ type: "theme-sync", theme }, "*")
+      iframe.contentWindow.postMessage({ type: "theme-sync", theme }, "*");
     }
-  }, [theme])
+  }, [theme]);
 
   // Also sync on iframe load
   const handleIframeLoad = React.useCallback(() => {
-    const iframe = iframeRef.current
+    const iframe = iframeRef.current;
     if (iframe?.contentWindow) {
-      iframe.contentWindow.postMessage({ type: "theme-sync", theme }, "*")
+      iframe.contentWindow.postMessage({ type: "theme-sync", theme }, "*");
     }
-  }, [theme])
+  }, [theme]);
 
-  const embedUrl = `/templates/embed/${slug}`
-  const activeConfig = DEVICE_CONFIG.find((d) => d.id === device)!
+  const embedUrl = `/templates/embed/${slug}`;
+  const activeConfig = DEVICE_CONFIG.find((d) => d.id === device)!;
 
   return (
     <div className="flex h-screen flex-col bg-background">
@@ -143,7 +161,7 @@ export function TemplatePreviewer({ name, slug }: TemplatePreviewerProps) {
           </Link>
 
           <div className="flex items-center gap-2">
-            <h1 className="font-[family-name:var(--font-orbitron)] text-sm font-semibold tracking-wider text-primary">
+            <h1 className="font-[family-name:var(--font-inter)] text-sm font-semibold tracking-wider text-primary">
               {name}
             </h1>
             <span className="hidden font-mono text-xs text-foreground/40 sm:inline">
@@ -165,7 +183,7 @@ export function TemplatePreviewer({ name, slug }: TemplatePreviewerProps) {
                     "rounded-md p-1.5 transition-all",
                     device === d.id
                       ? "bg-primary/15 text-primary [box-shadow:0_0_8px_oklch(from_var(--primary)_l_c_h/0.3)]"
-                      : "text-foreground/40 hover:text-foreground/70"
+                      : "text-foreground/40 hover:text-foreground/70",
                   )}
                 >
                   <d.icon className="h-4 w-4" />
@@ -190,7 +208,7 @@ export function TemplatePreviewer({ name, slug }: TemplatePreviewerProps) {
                 "flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-[10px] uppercase tracking-wider transition-all",
                 viewMode === "preview"
                   ? "bg-primary/15 text-primary [box-shadow:0_0_8px_oklch(from_var(--primary)_l_c_h/0.3)]"
-                  : "text-foreground/40 hover:text-foreground/70"
+                  : "text-foreground/40 hover:text-foreground/70",
               )}
             >
               <Eye className="h-3.5 w-3.5" />
@@ -203,7 +221,7 @@ export function TemplatePreviewer({ name, slug }: TemplatePreviewerProps) {
                 "flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-[10px] uppercase tracking-wider transition-all",
                 viewMode === "code"
                   ? "bg-primary/15 text-primary [box-shadow:0_0_8px_oklch(from_var(--primary)_l_c_h/0.3)]"
-                  : "text-foreground/40 hover:text-foreground/70"
+                  : "text-foreground/40 hover:text-foreground/70",
               )}
             >
               <Code className="h-3.5 w-3.5" />
@@ -235,7 +253,7 @@ export function TemplatePreviewer({ name, slug }: TemplatePreviewerProps) {
               className={cn(
                 "h-full w-full transition-all duration-500 ease-in-out",
                 activeConfig.maxWidth,
-                device !== "desktop" && "mx-auto"
+                device !== "desktop" && "mx-auto",
               )}
             >
               <iframe
@@ -244,7 +262,7 @@ export function TemplatePreviewer({ name, slug }: TemplatePreviewerProps) {
                 onLoad={handleIframeLoad}
                 className={cn(
                   "h-full w-full border border-border bg-background",
-                  device !== "desktop" ? "rounded-xl" : "rounded-lg"
+                  device !== "desktop" ? "rounded-xl" : "rounded-lg",
                 )}
                 title={`${name} template preview`}
               />
@@ -258,5 +276,5 @@ export function TemplatePreviewer({ name, slug }: TemplatePreviewerProps) {
         )}
       </div>
     </div>
-  )
+  );
 }

@@ -214,7 +214,7 @@ The theme system uses CSS custom properties (CSS variables) defined in `src/app/
 
 - Color schemes by modifying the theme CSS variables
 - Border radius by adjusting `--radius` values
-- Font families via `--font-orbitron` and `--font-rajdhani`
+- Font families via `--font-inter` and `--font-roboto`
 - Glow effects through `--glow` and `--glow-muted` variables
 
 ## 🛠️ Tech Stack

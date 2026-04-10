@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Orbitron, Rajdhani } from "next/font/google";
+import { Geist_Mono, Inter, Roboto } from "next/font/google";
 import { ThemeProvider } from "@/components/theme";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
@@ -14,15 +14,15 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const orbitron = Orbitron({
-  variable: "--font-orbitron",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const rajdhani = Rajdhani({
-  variable: "--font-rajdhani",
+const roboto = Roboto({
+  variable: "--font-roboto",
   subsets: ["latin"],
   display: "swap",
   weight: ["300", "400", "500", "600", "700"],
@@ -88,7 +88,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${orbitron.variable} ${rajdhani.variable} ${geistMono.variable}`}
+      className={`${inter.variable} ${roboto.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
       <head>

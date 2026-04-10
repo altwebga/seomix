@@ -10,6 +10,7 @@ type getContentProps = {
   status?: "draft" | "published" | "archived";
   fields?: string[];
   slug?: string;
+  limit?: number;
 };
 
 export async function getContent({
@@ -23,10 +24,11 @@ export async function getContent({
     "short_description",
     "cover_image",
   ],
+  limit,
 }: getContentProps): Promise<IContent[]> {
   try {
     const res = await fetch(
-      `${API_URL}/items/content?filter[content_type][_eq]=${content_type}&filter[status][_eq]=${status}&fields=${fields.join(",")}`,
+      `${API_URL}/items/content?filter[content_type][_eq]=${content_type}&filter[status][_eq]=${status}&fields=${fields.join(",")}&limit=${limit}`,
       {
         headers: {
           Authorization: `Bearer ${TOKEN}`,

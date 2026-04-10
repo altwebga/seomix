@@ -24,6 +24,7 @@ export default async function BlogPage() {
       "short_description",
       "cover_image",
     ],
+    limit: 100,
   });
 
   return (

@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   LayoutDashboard,
   BarChart3,
@@ -11,7 +11,7 @@ import {
   Server,
   Activity,
   Zap,
-} from "lucide-react"
+} from "lucide-react";
 import {
   AreaChart,
   Area,
@@ -20,53 +20,82 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-} from "recharts"
+} from "recharts";
 
-import { DashboardLayout } from "@/components/thegridcn/templates/dashboard-layout"
-import { SidebarNav } from "@/components/thegridcn/sidebar-nav"
-import { UplinkHeader } from "@/components/thegridcn/uplink-header"
-import { BreadcrumbNav } from "@/components/thegridcn/breadcrumb-nav"
-import { SearchInput } from "@/components/thegridcn/search-input"
-import { MetricRow } from "@/components/thegridcn/metric-row"
-import { StatCard } from "@/components/thegridcn/stat-card"
-import { DataTable } from "@/components/thegridcn/data-table"
-import { ActivityFeed } from "@/components/thegridcn/activity-feed"
-import { Gauge } from "@/components/thegridcn/gauge"
-import { ProgressBar } from "@/components/thegridcn/progress-bar"
-import { Heatmap } from "@/components/thegridcn/heatmap"
-import { StatusDot } from "@/components/thegridcn/status-dot"
+import { DashboardLayout } from "@/components/thegridcn/templates/dashboard-layout";
+import { SidebarNav } from "@/components/thegridcn/sidebar-nav";
+import { UplinkHeader } from "@/components/thegridcn/uplink-header";
+import { BreadcrumbNav } from "@/components/thegridcn/breadcrumb-nav";
+import { SearchInput } from "@/components/thegridcn/search-input";
+import { MetricRow } from "@/components/thegridcn/metric-row";
+import { StatCard } from "@/components/thegridcn/stat-card";
+import { DataTable } from "@/components/thegridcn/data-table";
+import { ActivityFeed } from "@/components/thegridcn/activity-feed";
+import { Gauge } from "@/components/thegridcn/gauge";
+import { ProgressBar } from "@/components/thegridcn/progress-bar";
+import { Heatmap } from "@/components/thegridcn/heatmap";
+import { StatusDot } from "@/components/thegridcn/status-dot";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
-import type { ChartConfig } from "@/components/ui/chart"
+} from "@/components/ui/chart";
+import type { ChartConfig } from "@/components/ui/chart";
 
 /* ─────────────────────────────────────────────
    MOCK DATA
    ───────────────────────────────────────────── */
 
 const DASHBOARD_NAV_ITEMS = [
-  { label: "Dashboard", href: "#", icon: <LayoutDashboard size={16} />, active: true },
+  {
+    label: "Dashboard",
+    href: "#",
+    icon: <LayoutDashboard size={16} />,
+    active: true,
+  },
   { label: "Analytics", href: "#analytics", icon: <BarChart3 size={16} /> },
   { label: "Users", href: "#users", icon: <Users size={16} /> },
   { label: "Network", href: "#network", icon: <Network size={16} /> },
   { label: "Alerts", href: "#alerts", icon: <Bell size={16} /> },
   { label: "Systems", href: "#systems", icon: <Server size={16} /> },
   { label: "Settings", href: "#settings", icon: <Settings size={16} /> },
-]
+];
 
 const DASHBOARD_BREADCRUMBS = [
   { label: "Home", href: "#" },
   { label: "Dashboard", active: true },
-]
+];
 
 const DASHBOARD_METRICS = [
-  { label: "Active Users", value: "12,847", change: "+14.2%", changeType: "up" as const, icon: <Users size={16} /> },
-  { label: "Revenue", value: "$284.5K", change: "+8.7%", changeType: "up" as const, icon: <BarChart3 size={16} /> },
-  { label: "System Load", value: "67.3%", change: "+2.1%", changeType: "up" as const, icon: <Activity size={16} /> },
-  { label: "Error Rate", value: "0.12%", change: "-23.5%", changeType: "down" as const, icon: <Bell size={16} /> },
-]
+  {
+    label: "Active Users",
+    value: "12,847",
+    change: "+14.2%",
+    changeType: "up" as const,
+    icon: <Users size={16} />,
+  },
+  {
+    label: "Revenue",
+    value: "$284.5K",
+    change: "+8.7%",
+    changeType: "up" as const,
+    icon: <BarChart3 size={16} />,
+  },
+  {
+    label: "System Load",
+    value: "67.3%",
+    change: "+2.1%",
+    changeType: "up" as const,
+    icon: <Activity size={16} />,
+  },
+  {
+    label: "Error Rate",
+    value: "0.12%",
+    change: "-23.5%",
+    changeType: "down" as const,
+    icon: <Bell size={16} />,
+  },
+];
 
 const DASHBOARD_STAT_CARDS = [
   {
@@ -101,7 +130,7 @@ const DASHBOARD_STAT_CARDS = [
     unit: "%",
     sparkline: [99, 99, 100, 99, 100, 100, 99, 100, 100, 100, 99, 100],
   },
-]
+];
 
 const DASHBOARD_CHART_DATA = [
   { month: "Jan", users: 4200, revenue: 18400 },
@@ -116,26 +145,26 @@ const DASHBOARD_CHART_DATA = [
   { month: "Oct", users: 8200, revenue: 42500 },
   { month: "Nov", users: 9100, revenue: 47200 },
   { month: "Dec", users: 9800, revenue: 51800 },
-]
+];
 
 const AREA_CHART_CONFIG: ChartConfig = {
   revenue: { label: "Revenue ($)", color: "var(--chart-1)" },
-}
+};
 
 const BAR_CHART_CONFIG: ChartConfig = {
   users: { label: "Active Users", color: "var(--chart-2)" },
-}
+};
 
 type TableRow = {
-  id: string
-  node: string
-  status: string
-  cpu: number
-  memory: number
-  region: string
-  uptime: string
-  lastPing: string
-}
+  id: string;
+  node: string;
+  status: string;
+  cpu: number;
+  memory: number;
+  region: string;
+  uptime: string;
+  lastPing: string;
+};
 
 const DASHBOARD_TABLE_COLUMNS = [
   { key: "node" as const, label: "Node", sortable: true },
@@ -144,14 +173,30 @@ const DASHBOARD_TABLE_COLUMNS = [
     label: "Status",
     sortable: true,
     render: (value: unknown) => {
-      const v = value as string
-      const variant = v === "Online" ? "success" : v === "Warning" ? "warning" : v === "Degraded" ? "warning" : "danger"
+      const v = value as string;
+      const variant =
+        v === "Online"
+          ? "success"
+          : v === "Warning"
+            ? "warning"
+            : v === "Degraded"
+              ? "warning"
+              : "danger";
       return (
         <span className="inline-flex items-center gap-1.5">
-          <StatusDot status={variant === "success" ? "online" : variant === "warning" ? "busy" : "error"} size="sm" />
+          <StatusDot
+            status={
+              variant === "success"
+                ? "online"
+                : variant === "warning"
+                  ? "busy"
+                  : "error"
+            }
+            size="sm"
+          />
           <span className="font-mono text-xs">{v}</span>
         </span>
-      )
+      );
     },
   },
   {
@@ -160,12 +205,14 @@ const DASHBOARD_TABLE_COLUMNS = [
     sortable: true,
     align: "right" as const,
     render: (value: unknown) => {
-      const v = value as number
+      const v = value as number;
       return (
-        <span className={`font-mono text-xs ${v > 80 ? "text-red-400" : v > 60 ? "text-amber-400" : "text-green-400"}`}>
+        <span
+          className={`font-mono text-xs ${v > 80 ? "text-red-400" : v > 60 ? "text-amber-400" : "text-green-400"}`}
+        >
           {v}%
         </span>
-      )
+      );
     },
   },
   {
@@ -174,41 +221,185 @@ const DASHBOARD_TABLE_COLUMNS = [
     sortable: true,
     align: "right" as const,
     render: (value: unknown) => {
-      const v = value as number
+      const v = value as number;
       return (
-        <span className={`font-mono text-xs ${v > 80 ? "text-red-400" : v > 60 ? "text-amber-400" : "text-green-400"}`}>
+        <span
+          className={`font-mono text-xs ${v > 80 ? "text-red-400" : v > 60 ? "text-amber-400" : "text-green-400"}`}
+        >
           {v}%
         </span>
-      )
+      );
     },
   },
   { key: "region" as const, label: "Region", sortable: true },
-  { key: "uptime" as const, label: "Uptime", sortable: true, align: "right" as const },
-  { key: "lastPing" as const, label: "Last Ping", sortable: false, align: "right" as const },
-]
+  {
+    key: "uptime" as const,
+    label: "Uptime",
+    sortable: true,
+    align: "right" as const,
+  },
+  {
+    key: "lastPing" as const,
+    label: "Last Ping",
+    sortable: false,
+    align: "right" as const,
+  },
+];
 
 const DASHBOARD_TABLE_DATA: TableRow[] = [
-  { id: "n-001", node: "GRID-ALPHA-01", status: "Online", cpu: 42, memory: 58, region: "US-East", uptime: "47d 12h", lastPing: "2ms" },
-  { id: "n-002", node: "GRID-ALPHA-02", status: "Online", cpu: 67, memory: 72, region: "US-East", uptime: "47d 12h", lastPing: "3ms" },
-  { id: "n-003", node: "GRID-BETA-01", status: "Warning", cpu: 89, memory: 85, region: "EU-West", uptime: "12d 6h", lastPing: "45ms" },
-  { id: "n-004", node: "GRID-BETA-02", status: "Online", cpu: 35, memory: 41, region: "EU-West", uptime: "33d 1h", lastPing: "42ms" },
-  { id: "n-005", node: "GRID-GAMMA-01", status: "Online", cpu: 51, memory: 63, region: "AP-South", uptime: "89d 4h", lastPing: "128ms" },
-  { id: "n-006", node: "GRID-GAMMA-02", status: "Degraded", cpu: 78, memory: 91, region: "AP-South", uptime: "5d 18h", lastPing: "156ms" },
-  { id: "n-007", node: "GRID-DELTA-01", status: "Online", cpu: 28, memory: 34, region: "US-West", uptime: "102d 9h", lastPing: "8ms" },
-  { id: "n-008", node: "GRID-DELTA-02", status: "Online", cpu: 44, memory: 52, region: "US-West", uptime: "102d 9h", lastPing: "7ms" },
-  { id: "n-009", node: "GRID-EPSILON-01", status: "Offline", cpu: 0, memory: 0, region: "SA-East", uptime: "0d 0h", lastPing: "—" },
-  { id: "n-010", node: "GRID-ZETA-01", status: "Online", cpu: 56, memory: 48, region: "EU-North", uptime: "67d 22h", lastPing: "38ms" },
-]
+  {
+    id: "n-001",
+    node: "GRID-ALPHA-01",
+    status: "Online",
+    cpu: 42,
+    memory: 58,
+    region: "US-East",
+    uptime: "47d 12h",
+    lastPing: "2ms",
+  },
+  {
+    id: "n-002",
+    node: "GRID-ALPHA-02",
+    status: "Online",
+    cpu: 67,
+    memory: 72,
+    region: "US-East",
+    uptime: "47d 12h",
+    lastPing: "3ms",
+  },
+  {
+    id: "n-003",
+    node: "GRID-BETA-01",
+    status: "Warning",
+    cpu: 89,
+    memory: 85,
+    region: "EU-West",
+    uptime: "12d 6h",
+    lastPing: "45ms",
+  },
+  {
+    id: "n-004",
+    node: "GRID-BETA-02",
+    status: "Online",
+    cpu: 35,
+    memory: 41,
+    region: "EU-West",
+    uptime: "33d 1h",
+    lastPing: "42ms",
+  },
+  {
+    id: "n-005",
+    node: "GRID-GAMMA-01",
+    status: "Online",
+    cpu: 51,
+    memory: 63,
+    region: "AP-South",
+    uptime: "89d 4h",
+    lastPing: "128ms",
+  },
+  {
+    id: "n-006",
+    node: "GRID-GAMMA-02",
+    status: "Degraded",
+    cpu: 78,
+    memory: 91,
+    region: "AP-South",
+    uptime: "5d 18h",
+    lastPing: "156ms",
+  },
+  {
+    id: "n-007",
+    node: "GRID-DELTA-01",
+    status: "Online",
+    cpu: 28,
+    memory: 34,
+    region: "US-West",
+    uptime: "102d 9h",
+    lastPing: "8ms",
+  },
+  {
+    id: "n-008",
+    node: "GRID-DELTA-02",
+    status: "Online",
+    cpu: 44,
+    memory: 52,
+    region: "US-West",
+    uptime: "102d 9h",
+    lastPing: "7ms",
+  },
+  {
+    id: "n-009",
+    node: "GRID-EPSILON-01",
+    status: "Offline",
+    cpu: 0,
+    memory: 0,
+    region: "SA-East",
+    uptime: "0d 0h",
+    lastPing: "—",
+  },
+  {
+    id: "n-010",
+    node: "GRID-ZETA-01",
+    status: "Online",
+    cpu: 56,
+    memory: 48,
+    region: "EU-North",
+    uptime: "67d 22h",
+    lastPing: "38ms",
+  },
+];
 
 const DASHBOARD_ACTIVITIES = [
-  { id: "a-1", title: "Node GRID-BETA-01 CPU threshold exceeded", description: "CPU usage reached 89%, auto-scaling initiated", timestamp: "2 min ago", type: "warning" as const },
-  { id: "a-2", title: "Deployment v4.2.1 completed successfully", description: "All 8 nodes updated to latest firmware", timestamp: "14 min ago", type: "success" as const },
-  { id: "a-3", title: "Node GRID-EPSILON-01 went offline", description: "Connection lost — automatic failover engaged", timestamp: "28 min ago", type: "error" as const },
-  { id: "a-4", title: "Security scan completed", description: "No vulnerabilities detected across 10 nodes", timestamp: "1 hour ago", type: "info" as const },
-  { id: "a-5", title: "Backup cycle completed", description: "Incremental backup: 2.4TB synced to cold storage", timestamp: "2 hours ago", type: "success" as const },
-  { id: "a-6", title: "New user provisioned", description: "User operator-7G granted Level-3 access", timestamp: "3 hours ago", type: "info" as const },
-  { id: "a-7", title: "Memory optimization applied", description: "GRID-GAMMA-02 memory reclaimed: 12GB freed", timestamp: "4 hours ago", type: "success" as const },
-]
+  {
+    id: "a-1",
+    title: "Node GRID-BETA-01 CPU threshold exceeded",
+    description: "CPU usage reached 89%, auto-scaling initiated",
+    timestamp: "2 min ago",
+    type: "warning" as const,
+  },
+  {
+    id: "a-2",
+    title: "Deployment v4.2.1 completed successfully",
+    description: "All 8 nodes updated to latest firmware",
+    timestamp: "14 min ago",
+    type: "success" as const,
+  },
+  {
+    id: "a-3",
+    title: "Node GRID-EPSILON-01 went offline",
+    description: "Connection lost — automatic failover engaged",
+    timestamp: "28 min ago",
+    type: "error" as const,
+  },
+  {
+    id: "a-4",
+    title: "Security scan completed",
+    description: "No vulnerabilities detected across 10 nodes",
+    timestamp: "1 hour ago",
+    type: "info" as const,
+  },
+  {
+    id: "a-5",
+    title: "Backup cycle completed",
+    description: "Incremental backup: 2.4TB synced to cold storage",
+    timestamp: "2 hours ago",
+    type: "success" as const,
+  },
+  {
+    id: "a-6",
+    title: "New user provisioned",
+    description: "User operator-7G granted Level-3 access",
+    timestamp: "3 hours ago",
+    type: "info" as const,
+  },
+  {
+    id: "a-7",
+    title: "Memory optimization applied",
+    description: "GRID-GAMMA-02 memory reclaimed: 12GB freed",
+    timestamp: "4 hours ago",
+    type: "success" as const,
+  },
+];
 
 const DASHBOARD_HEATMAP_DATA = [
   [2, 5, 8, 12, 15, 18, 14, 10, 7, 4, 3, 2],
@@ -218,18 +409,31 @@ const DASHBOARD_HEATMAP_DATA = [
   [2, 5, 9, 13, 17, 22, 20, 15, 10, 7, 4, 2],
   [3, 7, 11, 16, 22, 28, 25, 18, 13, 9, 5, 3],
   [1, 3, 6, 9, 12, 15, 13, 10, 7, 5, 3, 1],
-]
+];
 
-const HEATMAP_ROW_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-const HEATMAP_COL_LABELS = ["00", "02", "04", "06", "08", "10", "12", "14", "16", "18", "20", "22"]
+const HEATMAP_ROW_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const HEATMAP_COL_LABELS = [
+  "00",
+  "02",
+  "04",
+  "06",
+  "08",
+  "10",
+  "12",
+  "14",
+  "16",
+  "18",
+  "20",
+  "22",
+];
 
 /* ─────────────────────────────────────────────
    COMPONENT
    ───────────────────────────────────────────── */
 
 export function DashboardTemplate() {
-  const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+  const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   return (
     <DashboardLayout
@@ -247,7 +451,7 @@ export function DashboardTemplate() {
                     <Zap className="h-3.5 w-3.5 text-primary" />
                   </div>
                   {!sidebarCollapsed && (
-                    <span className="font-[family-name:var(--font-orbitron)] text-[11px] font-semibold uppercase tracking-wider text-primary">
+                    <span className="font-[family-name:var(--font-inter)] text-[11px] font-semibold uppercase tracking-wider text-primary">
                       Gridcn
                     </span>
                   )}
@@ -289,7 +493,12 @@ export function DashboardTemplate() {
               aria-label="Open menu"
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <path
+                  d="M2 4h12M2 8h12M2 12h12"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
               </svg>
             </button>
             <span className="font-mono text-[10px] uppercase tracking-widest text-primary/60">
@@ -301,7 +510,6 @@ export function DashboardTemplate() {
     >
       {/* ── Content Area ── */}
       <div className="space-y-6">
-
         {/* Breadcrumbs + Search */}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <BreadcrumbNav items={DASHBOARD_BREADCRUMBS} />
@@ -328,23 +536,57 @@ export function DashboardTemplate() {
             <h3 className="mb-4 font-mono text-[10px] uppercase tracking-widest text-foreground/50">
               Revenue Trend
             </h3>
-            <ChartContainer config={AREA_CHART_CONFIG} className="h-[250px] w-full">
-              <AreaChart data={DASHBOARD_CHART_DATA} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
+            <ChartContainer
+              config={AREA_CHART_CONFIG}
+              className="h-[250px] w-full"
+            >
+              <AreaChart
+                data={DASHBOARD_CHART_DATA}
+                margin={{ top: 5, right: 10, left: 0, bottom: 0 }}
+              >
                 <defs>
-                  <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="var(--color-revenue)" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="var(--color-revenue)" stopOpacity={0} />
+                  <linearGradient
+                    id="revenueGradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
+                    <stop
+                      offset="5%"
+                      stopColor="var(--color-revenue)"
+                      stopOpacity={0.3}
+                    />
+                    <stop
+                      offset="95%"
+                      stopColor="var(--color-revenue)"
+                      stopOpacity={0}
+                    />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" strokeOpacity={0.3} />
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke="var(--border)"
+                  strokeOpacity={0.3}
+                />
                 <XAxis
                   dataKey="month"
-                  tick={{ fill: "var(--foreground)", opacity: 0.5, fontSize: 10, fontFamily: "monospace" }}
+                  tick={{
+                    fill: "var(--foreground)",
+                    opacity: 0.5,
+                    fontSize: 10,
+                    fontFamily: "monospace",
+                  }}
                   axisLine={{ stroke: "var(--border)", strokeOpacity: 0.3 }}
                   tickLine={false}
                 />
                 <YAxis
-                  tick={{ fill: "var(--foreground)", opacity: 0.5, fontSize: 10, fontFamily: "monospace" }}
+                  tick={{
+                    fill: "var(--foreground)",
+                    opacity: 0.5,
+                    fontSize: 10,
+                    fontFamily: "monospace",
+                  }}
                   axisLine={false}
                   tickLine={false}
                   tickFormatter={(v) => `$${(v / 1000).toFixed(0)}K`}
@@ -367,17 +609,37 @@ export function DashboardTemplate() {
             <h3 className="mb-4 font-mono text-[10px] uppercase tracking-widest text-foreground/50">
               Active Users by Month
             </h3>
-            <ChartContainer config={BAR_CHART_CONFIG} className="h-[250px] w-full">
-              <BarChart data={DASHBOARD_CHART_DATA} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" strokeOpacity={0.3} />
+            <ChartContainer
+              config={BAR_CHART_CONFIG}
+              className="h-[250px] w-full"
+            >
+              <BarChart
+                data={DASHBOARD_CHART_DATA}
+                margin={{ top: 5, right: 10, left: 0, bottom: 0 }}
+              >
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke="var(--border)"
+                  strokeOpacity={0.3}
+                />
                 <XAxis
                   dataKey="month"
-                  tick={{ fill: "var(--foreground)", opacity: 0.5, fontSize: 10, fontFamily: "monospace" }}
+                  tick={{
+                    fill: "var(--foreground)",
+                    opacity: 0.5,
+                    fontSize: 10,
+                    fontFamily: "monospace",
+                  }}
                   axisLine={{ stroke: "var(--border)", strokeOpacity: 0.3 }}
                   tickLine={false}
                 />
                 <YAxis
-                  tick={{ fill: "var(--foreground)", opacity: 0.5, fontSize: 10, fontFamily: "monospace" }}
+                  tick={{
+                    fill: "var(--foreground)",
+                    opacity: 0.5,
+                    fontSize: 10,
+                    fontFamily: "monospace",
+                  }}
                   axisLine={false}
                   tickLine={false}
                   tickFormatter={(v) => `${(v / 1000).toFixed(0)}K`}
@@ -436,10 +698,37 @@ export function DashboardTemplate() {
               Resource Usage
             </div>
             <div className="space-y-3">
-              <ProgressBar value={67} label="CPU" showValue size="md" animated />
-              <ProgressBar value={72} label="Memory" showValue size="md" variant="warning" animated />
-              <ProgressBar value={45} label="Disk" showValue size="md" variant="success" animated />
-              <ProgressBar value={89} label="Network" showValue size="md" variant="danger" animated />
+              <ProgressBar
+                value={67}
+                label="CPU"
+                showValue
+                size="md"
+                animated
+              />
+              <ProgressBar
+                value={72}
+                label="Memory"
+                showValue
+                size="md"
+                variant="warning"
+                animated
+              />
+              <ProgressBar
+                value={45}
+                label="Disk"
+                showValue
+                size="md"
+                variant="success"
+                animated
+              />
+              <ProgressBar
+                value={89}
+                label="Network"
+                showValue
+                size="md"
+                variant="danger"
+                animated
+              />
             </div>
           </div>
 
@@ -476,8 +765,7 @@ export function DashboardTemplate() {
           columnLabels={HEATMAP_COL_LABELS}
           label="Network Traffic (requests/sec)"
         />
-
       </div>
     </DashboardLayout>
-  )
+  );
 }

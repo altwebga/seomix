@@ -32,6 +32,7 @@ Package manager: **pnpm**
 ### Theme System
 
 Six Greek god-inspired themes with oklch() color space:
+
 - **Ares** (red, default), **Tron** (cyan), **Clu** (orange), **Athena** (gold), **Aphrodite** (pink), **Poseidon** (blue)
 
 Themes use CSS variables via `data-theme` attribute on `<html>`. Theme state persists in localStorage under key `project-ares-theme`.
@@ -49,6 +50,6 @@ No environment variables are required. The `/components` route is always accessi
 
 ### Fonts
 
-- **Orbitron** - Display/heading font (Tron-style)
-- **Rajdhani** - Body text
+- **Inter** - Display/heading font (Tron-style)
+- **Roboto** - Body text
 - **Geist Mono** - Monospace/code
