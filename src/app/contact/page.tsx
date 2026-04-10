@@ -5,7 +5,7 @@ export default function ContactPage() {
     <div className="container mx-auto px-4 my-8">
       <PageHeading
         title="Контакты"
-        description="Контакты"
+        description="Свяжитесь с нами — обсудим ваш проект и подберём оптимальное решение."
         hue={180}
         size={60}
       />

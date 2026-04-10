@@ -5,7 +5,7 @@ export default function PortfolioPage() {
     <div className="container mx-auto px-4 my-8">
       <PageHeading
         title="Портфолио"
-        description="Портфолио"
+        description="Некоторые наши проекты которые нам разрешено показывать условиями договора"
         hue={180}
         size={60}
       />
