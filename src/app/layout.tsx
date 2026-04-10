@@ -4,7 +4,7 @@ import { ThemeProvider } from "@/components/theme";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import "@/styles/tron-style.css";
-import { TronHeader } from "@/components/layout";
+import { TronHeader } from "@/components/layout/tron-header";
 import { TronFooter } from "@/components/layout/tron-footer";
 
 // Optimize font loading with next/font — self-hosted, no external requests

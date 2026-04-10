@@ -3,14 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "tsx scripts/generate-component-dates.ts",
     "dev": "next dev",
-    "prebuild": "tsx scripts/generate-component-dates.ts",
-    "build": "pnpm registry:build && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "registry:update": "tsx scripts/update-registry.ts",
-    "registry:build": "shadcn build && tsx scripts/enhance-registry-files.ts && tsx scripts/build-registry-styles.ts"
+    "lint": "eslint"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

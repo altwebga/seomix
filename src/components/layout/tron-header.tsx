@@ -253,7 +253,7 @@ export function TronHeader() {
           <div className="mt-auto pt-6">
             <div className="rounded border border-primary/30 bg-primary/5 p-3">
               <div className="font-mono text-[10px] tracking-widest text-foreground uppercase">
-                Ситемный статус
+                system status
               </div>
               <div className="mt-1 font-mono text-xs text-primary uppercase">
                 Все системы в норме

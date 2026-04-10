@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
 interface CTABannerProps extends React.HTMLAttributes<HTMLDivElement> {
-  title: string
-  description?: string
-  primaryAction?: { label: string; onClick?: () => void }
-  secondaryAction?: { label: string; onClick?: () => void }
-  variant?: "default" | "highlight"
+  title: string;
+  description?: string;
+  primaryAction?: { label: string; onClick?: () => void };
+  secondaryAction?: { label: string; onClick?: () => void };
+  variant?: "default" | "highlight";
 }
 
 export function CTABanner({
@@ -28,7 +28,7 @@ export function CTABanner({
         variant === "highlight"
           ? "border-primary/50 shadow-[0_0_40px_rgba(var(--primary-rgb,0,180,255),0.08)]"
           : "border-primary/20",
-        className
+        className,
       )}
       {...props}
     >
@@ -38,15 +38,20 @@ export function CTABanner({
       {/* Animated top border glow */}
       <div className="pointer-events-none absolute left-0 right-0 top-0 h-px">
         <div
-          className="h-full w-1/3 bg-gradient-to-r from-transparent via-primary/60 to-transparent"
+          className="h-full w-1/3 bg-linear-to-r from-transparent via-primary/60 to-transparent"
           style={{ animation: "ctaSweep 4s ease-in-out infinite" }}
         />
       </div>
 
       <style jsx>{`
         @keyframes ctaSweep {
-          0%, 100% { margin-left: -10%; }
-          50% { margin-left: 77%; }
+          0%,
+          100% {
+            margin-left: -10%;
+          }
+          50% {
+            margin-left: 77%;
+          }
         }
       `}</style>
 
@@ -90,5 +95,5 @@ export function CTABanner({
       <div className="pointer-events-none absolute bottom-0 left-0 h-5 w-5 border-b-2 border-l-2 border-primary/40" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-5 w-5 border-b-2 border-r-2 border-primary/40" />
     </div>
-  )
+  );
 }

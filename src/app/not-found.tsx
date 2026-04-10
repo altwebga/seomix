@@ -1,4 +1,5 @@
-import Link from "next/link"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
@@ -10,22 +11,20 @@ export default function NotFound() {
         404
       </h1>
       <p className="mt-4 font-display text-lg tracking-wider text-foreground/80">
-        This sector does not exist on The Grid
+        Упс!!! Сраница не существует.
       </p>
       <div className="mt-8 flex gap-4">
-        <Link
-          href="/"
-          className="border border-primary/30 bg-primary/10 px-6 py-2 font-mono text-xs uppercase tracking-widest text-primary transition-colors hover:bg-primary/20"
-        >
-          Return Home
+        <Link href="/">
+          <Button variant="default" size="lg" className="rounded-md">
+            Вернуться на главную
+          </Button>
         </Link>
-        <Link
-          href="/components"
-          className="border border-foreground/20 px-6 py-2 font-mono text-xs uppercase tracking-widest text-foreground/60 transition-colors hover:border-primary/30 hover:text-primary"
-        >
-          Browse Components
+        <Link href="/contact">
+          <Button variant="outline" size="lg" className="rounded-md">
+            Посмотреть контакты
+          </Button>
         </Link>
       </div>
     </div>
-  )
+  );
 }
