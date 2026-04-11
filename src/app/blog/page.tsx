@@ -26,7 +26,10 @@ export default async function BlogPage() {
     ],
     limit: 100,
   });
-
+  const sort_posts = posts.sort(
+    (a, b) =>
+      new Date(b.date_created).getTime() - new Date(a.date_created).getTime(),
+  );
   return (
     <div className="container mx-auto px-4 my-8">
       <PageHeading
@@ -35,8 +38,8 @@ export default async function BlogPage() {
         hue={180}
         size={60}
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {posts.map((post) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-4">
+        {sort_posts.map((post) => (
           <TronCard key={post.id}>
             <Link href={`/blog/${post.slug}`}>
               <TronCardHeader>

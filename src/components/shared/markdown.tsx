@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { DirectusImage } from "./directus-image";
-import { TronCodeBlock, CopyButton } from "../thegridcn";
+import { TronCodeBlock, InstallCommand } from "../thegridcn";
 
 type Props = {
   markdown: string;
@@ -98,10 +98,11 @@ export function Markdown({ markdown, className, headings }: Props) {
               if (["bash", "sh", "shell"].includes(language)) {
                 const text = extractText(codeProps.children).replace(/\n$/, "");
                 return (
-                  <div className="flex items-center justify-between gap-4 rounded border border-primary/20 bg-primary/5 px-4 py-3 my-4 font-mono text-sm">
-                    <span className="text-primary/80">$ {text}</span>
-                    <CopyButton value={text} />
-                  </div>
+                  <InstallCommand
+                    command={text}
+                    packageName="bash"
+                    packageManager="bun"
+                  />
                 );
               }
             }

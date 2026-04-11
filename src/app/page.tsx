@@ -13,7 +13,7 @@ export default function HomePage() {
       <Features />
       <Services />
       <Steps />
-      <CTA />
+      <CTA className="my-8" />
     </>
   );
 }

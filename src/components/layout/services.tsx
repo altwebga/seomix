@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { TronCarousel } from "../thegridcn";
 import { getContent } from "@/actions/get-content";
 import {
@@ -12,28 +13,30 @@ import { Grid3D } from "../thegridcn";
 
 function ServiceCard({ service }: { service: any }) {
   return (
-    <TronCard>
-      <TronCardHeader>
-        <TronCardTitle>{service.title}</TronCardTitle>
-        <TronCardDescription className="min-h-14">
-          {service.short_description}
-        </TronCardDescription>
-      </TronCardHeader>
-      <TronCardContent>
-        <DirectusImage
-          url={service.cover_image}
-          alt={service.title}
-          width={600}
-          height={600}
-          className="w-2xl h-auto"
-        />
-      </TronCardContent>
-    </TronCard>
+    <Link href={`/services/${service.slug}`}>
+      <TronCard className="cursor-pointer">
+        <TronCardHeader>
+          <TronCardTitle>{service.title}</TronCardTitle>
+          <TronCardDescription className="min-h-14">
+            {service.short_description}
+          </TronCardDescription>
+        </TronCardHeader>
+        <TronCardContent>
+          <DirectusImage
+            url={service.cover_image}
+            alt={service.title}
+            width={600}
+            height={600}
+            className="w-2xl h-auto"
+          />
+        </TronCardContent>
+      </TronCard>
+    </Link>
   );
 }
 
 export async function Services() {
-  const services = await getContent({ content_type: "service" });
+  const services = await getContent({ content_type: "service", limit: 8 });
   return (
     <section id="services" className="px-4 py-16 relative">
       <Grid3D className="absolute inset-0 z-0" />

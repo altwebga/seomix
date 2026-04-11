@@ -1,32 +1,45 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 interface BreadcrumbItem {
-  label: string
-  href?: string
-  active?: boolean
+  label: string;
+  href?: string;
+  active?: boolean;
 }
 
 interface BreadcrumbNavProps extends React.HTMLAttributes<HTMLElement> {
-  items: BreadcrumbItem[]
-  separator?: "chevron" | "slash" | "dot"
+  items: BreadcrumbItem[];
+  separator?: "chevron" | "slash" | "dot";
 }
 
 function SeparatorIcon({ type }: { type: string }) {
   if (type === "slash") {
-    return <span className="text-foreground/20 font-mono text-[10px]">/</span>
+    return <span className="text-foreground/20 font-mono text-[10px]">/</span>;
   }
   if (type === "dot") {
-    return <span className="h-1 w-1 rounded-full bg-foreground/20" />
+    return <span className="h-1 w-1 rounded-full bg-foreground/20" />;
   }
   // chevron
   return (
-    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="text-foreground/20">
-      <path d="M3.5 2l3.5 3-3.5 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <svg
+      width="10"
+      height="10"
+      viewBox="0 0 10 10"
+      fill="none"
+      className="text-foreground/20"
+    >
+      <path
+        d="M3.5 2l3.5 3-3.5 3"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
-  )
+  );
 }
 
 export function BreadcrumbNav({
@@ -41,7 +54,7 @@ export function BreadcrumbNav({
       aria-label="Breadcrumb"
       className={cn(
         "inline-flex items-center gap-2 rounded border border-primary/20 bg-card/80 px-3 py-1.5 backdrop-blur-sm",
-        className
+        className,
       )}
       {...props}
     >
@@ -57,12 +70,12 @@ export function BreadcrumbNav({
               {item.label}
             </span>
           ) : item.href ? (
-            <a
+            <Link
               href={item.href}
               className="font-mono text-[10px] uppercase tracking-widest text-foreground/40 transition-colors hover:text-primary"
             >
               {item.label}
-            </a>
+            </Link>
           ) : (
             <span className="font-mono text-[10px] uppercase tracking-widest text-foreground/40">
               {item.label}
@@ -71,5 +84,5 @@ export function BreadcrumbNav({
         </React.Fragment>
       ))}
     </nav>
-  )
+  );
 }

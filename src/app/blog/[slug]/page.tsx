@@ -6,6 +6,7 @@ import { GlowContainer, BreadcrumbNav } from "@/components/thegridcn";
 import { Markdown } from "@/components/shared/markdown";
 import { Hash } from "lucide-react";
 import { extractH2Headings } from "@/lib/extract-headings";
+import { CTA } from "@/components/layout/cta";
 
 export default async function BlogSinglePage({
   params,
@@ -21,7 +22,7 @@ export default async function BlogSinglePage({
   const posts = await getContent({
     content_type: "article",
     fields: ["id", "title", "slug", "short_description", "date_created"],
-    limit: 3,
+    limit: 4,
   });
 
   const headings = extractH2Headings(article.description);
@@ -75,12 +76,17 @@ export default async function BlogSinglePage({
         </div>
         <Markdown markdown={article.description} headings={headings} />
 
-        {posts.length > 0 && <RelatedArticles posts={posts} />}
+        {posts.length > 0 && (
+          <RelatedArticles
+            posts={posts.filter((post: any) => post.id !== article.id)}
+          />
+        )}
       </div>
       <aside className="w-full md:w-1/3 min-h-screen hidden md:block">
         <div className="sticky top-20 h-fit">
-          <GlowContainer>
+          <GlowContainer className="flex flex-col gap-4">
             <TableContent headings={headings} />
+            <CTA />
           </GlowContainer>
         </div>
       </aside>

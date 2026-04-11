@@ -28,7 +28,7 @@ export async function getContent({
 }: getContentProps): Promise<IContent[]> {
   try {
     const res = await fetch(
-      `${API_URL}/items/content?filter[content_type][_eq]=${content_type}&filter[status][_eq]=${status}&fields=${fields.join(",")}&limit=${limit}`,
+      `${API_URL}/items/content?filter[content_type][_eq]=${content_type}&filter[status][_eq]=${status}&fields=${fields.join(",")}${limit ? `&limit=${limit}` : ""}`,
       {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
