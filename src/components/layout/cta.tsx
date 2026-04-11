@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { CTABanner } from "../thegridcn";
+import { CTABanner } from "../thegridcn/cta-banner";
 
 interface CTAProps {
   title?: string;

@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { CopyButton } from "@/components/thegridcn/copy-button"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { CopyButton } from "@/components/thegridcn/copy-button";
 
-type PackageManager = "npm" | "yarn" | "pnpm" | "bun"
+type PackageManager = "npm" | "yarn" | "pnpm" | "bun";
 
 interface InstallCommandProps extends React.HTMLAttributes<HTMLDivElement> {
-  packageName: string
-  packageManager?: PackageManager | "auto"
-  command?: string
+  packageName: string;
+  packageManager?: PackageManager | "auto";
+  command?: string;
 }
 
 const managerCommands: Record<PackageManager, string> = {
@@ -17,9 +17,9 @@ const managerCommands: Record<PackageManager, string> = {
   yarn: "yarn add",
   pnpm: "pnpm add",
   bun: "bun add",
-}
+};
 
-const allManagers: PackageManager[] = ["npm", "yarn", "pnpm", "bun"]
+const allManagers: PackageManager[] = ["npm", "yarn", "pnpm", "bun"];
 
 export function InstallCommand({
   packageName,
@@ -29,21 +29,21 @@ export function InstallCommand({
   ...props
 }: InstallCommandProps) {
   const [activeManager, setActiveManager] = React.useState<PackageManager>(
-    packageManager === "auto" ? "npm" : packageManager
-  )
+    packageManager === "auto" ? "npm" : packageManager,
+  );
 
-  const showTabs = packageManager === "auto"
+  const showTabs = packageManager === "auto";
 
   const fullCommand = command
     ? command
-    : `${managerCommands[activeManager]} ${packageName}`
+    : `${managerCommands[activeManager]} ${packageName}`;
 
   return (
     <div
       data-slot="tron-install-command"
       className={cn(
         "relative overflow-hidden rounded border border-primary/30 bg-card/80 backdrop-blur-sm",
-        className
+        className,
       )}
       {...props}
     >
@@ -68,7 +68,7 @@ export function InstallCommand({
                 "relative px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest transition-all",
                 activeManager === manager
                   ? "bg-primary/10 text-primary"
-                  : "text-foreground/40 hover:text-foreground/60"
+                  : "text-foreground/40 hover:text-foreground/60",
               )}
             >
               {manager}
@@ -99,7 +99,7 @@ export function InstallCommand({
       </div>
 
       {/* Bottom glow */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent" />
     </div>
-  )
+  );
 }

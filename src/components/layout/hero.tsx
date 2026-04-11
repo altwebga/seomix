@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { HeroSection } from "../thegridcn";
 import { Button } from "../ui/button";
 
@@ -16,11 +17,11 @@ export function Hero() {
           align="center"
           className="border-0 bg-transparent px-0 md:px-0 md:py-28 lg:py-36"
         >
-          <Button variant="default" size="lg" className="rounded-md">
-            Начать проект
+          <Button variant="default" size="lg" className="rounded-md" asChild>
+            <Link href="/contact">Начать проект</Link>
           </Button>
-          <Button variant="outline" size="lg" className="rounded-md">
-            Примеры работ
+          <Button variant="outline" size="lg" className="rounded-md" asChild>
+            <Link href="/portfolio">Примеры работ</Link>
           </Button>
         </HeroSection>
       </div>

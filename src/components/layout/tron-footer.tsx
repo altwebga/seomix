@@ -1,4 +1,4 @@
-import { Footer } from "../thegridcn";
+import { Footer } from "../thegridcn/footer";
 import { Zap } from "lucide-react";
 import { menuLinks } from "@/config/menu-links";
 import { socialLinks } from "@/config/social-links";
