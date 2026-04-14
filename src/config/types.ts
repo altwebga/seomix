@@ -20,6 +20,7 @@ export interface IContent {
   price: string | null;
   seo: ISeo;
   logo: string;
+  video?: string;
 }
 
 export interface ISeo {

@@ -1,5 +1,4 @@
 import { BootSequence } from "../thegridcn";
-import { Radar } from "../thegridcn";
 import { CircuitBackground } from "../thegridcn";
 
 export function Steps() {

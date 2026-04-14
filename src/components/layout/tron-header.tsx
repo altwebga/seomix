@@ -8,6 +8,7 @@ import { TheGridcnLogo } from "./thegridcn-logo";
 import { menuLinks } from "@/config/menu-links";
 import { socialLinks } from "@/config/social-links";
 import Image from "next/image";
+import { Logo } from "../shared/logo";
 
 function MenuIcon({ className }: { className?: string }) {
   return (
@@ -76,9 +77,7 @@ export function TronHeader() {
           <div className="flex h-16 items-center justify-between">
             {/* Left section - Logo */}
             <div className="flex flex-1 justify-start">
-              <Link href="/" className="transition-opacity hover:opacity-80">
-                <TheGridcnLogo size="sm" />
-              </Link>
+              <Logo className="text-primary" />
             </div>
 
             {/* Center section - Navigation (Desktop) */}
