@@ -98,6 +98,27 @@ export async function getCustomers(): Promise<ICustomer[]> {
   }
 }
 
+export async function getCustomerByID(id: string) {
+  try {
+    const res = await fetch(`${API_URL}/items/customers/${id}`, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+      next: { revalidate: 3600 },
+    });
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch content: ${res.status}`);
+    }
+
+    const json = await res.json();
+    return json.data;
+  } catch (error) {
+    console.error("getCustomerByID error:", error);
+    return [];
+  }
+}
+
 export async function getTeams() {
   try {
     const res = await fetch(`${API_URL}/items/team?fields=*,education.*`, {

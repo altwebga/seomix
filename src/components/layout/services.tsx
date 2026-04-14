@@ -45,7 +45,7 @@ export async function Services() {
           <p className="font-mono text-[10px] uppercase tracking-widest text-primary/60">
             SERVICES
           </p>
-          <h2 className="mt-2 font-display text-2xl font-bold uppercase tracking-wider text-foreground md:text-3xl">
+          <h2 className="mt-2 font-display text-2xl font-bold uppercase tracking-wider text-foreground md:text-3xl max-w-3xl mx-auto">
             Полный спектр решений для быстрого и эффективного старта вашего
             бизнеса в интернете
           </h2>

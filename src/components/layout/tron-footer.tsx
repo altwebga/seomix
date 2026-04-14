@@ -1,38 +1,14 @@
-import { Footer } from "../thegridcn/footer";
-import { Zap } from "lucide-react";
-import { menuLinks } from "@/config/menu-links";
 import { socialLinks } from "@/config/social-links";
 import { Logo } from "../shared/logo";
-
-const LANDING_FOOTER_COLUMNS = [
-  {
-    title: "Product",
-    links: [
-      { label: "Components", href: "/components" },
-      { label: "Templates", href: "/templates" },
-      { label: "Themes", href: "#" },
-      { label: "Changelog", href: "#" },
-    ],
-  },
-
-  {
-    title: "Community",
-    links: [
-      { label: "GitHub", href: "#", external: true },
-      { label: "Discord", href: "#", external: true },
-      { label: "Twitter", href: "#", external: true },
-      { label: "Blog", href: "#" },
-    ],
-  },
-];
+import { ThemeSwitcher } from "../theme";
 
 export function TronFooter() {
   return (
-    <Footer
-      logo={<Logo className="text-primary" />}
-      columns={LANDING_FOOTER_COLUMNS}
-      socials={socialLinks}
-      copyright={`\u00A9 ${new Date().getFullYear()} seomix. Все права защищены.`}
-    />
+    <footer className="bg-background border-t border-primary">
+      <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <ThemeSwitcher />
+        <p>{new Date().getFullYear()} seomix. Все права защищены.</p>
+      </div>
+    </footer>
   );
 }
