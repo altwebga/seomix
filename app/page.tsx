@@ -4,6 +4,12 @@ import { Hero } from "@/components/layout/hero"
 import { Portfolio } from "@/components/layout/portfolio"
 import { Services } from "@/components/layout/services"
 import { CallToAction } from "@/components/shared/call-to-action"
+import { getMetadataBySlug } from "@/lib/get-metadata"
+import type { Metadata } from "next"
+
+export async function generateMetadata(): Promise<Metadata> {
+  return getMetadataBySlug("pages", "home")
+}
 
 export default function HomePage() {
   return (

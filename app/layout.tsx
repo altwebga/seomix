@@ -1,5 +1,5 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google"
-
+import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
@@ -18,6 +18,16 @@ const fontMono = Geist_Mono({
   subsets: ["latin", "cyrillic"],
   variable: "--font-mono",
 })
+
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: "SEOMIX",
+    template: "%s | SEOMIX",
+  },
+}
 
 export default function RootLayout({
   children,
