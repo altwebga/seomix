@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/sonner"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
+import { YandexMetrika } from "@/components/shared/yandex-metrika"
+import { AIBot } from "@/components/shared/ai-bot"
 
 const geistHeading = Geist({
   subsets: ["latin", "cyrillic"],
@@ -46,10 +48,10 @@ export default function RootLayout({
         geistHeading.variable
       )}
     >
-      <body>
+      <body className="flex min-h-screen flex-col antialiased">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded focus:border focus:border-primary/40 focus:bg-background focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:text-primary focus:uppercase"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-100 focus:rounded focus:border focus:border-primary/40 focus:bg-background focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:text-primary focus:uppercase"
         >
           Перейти к содержимому
         </a>
@@ -60,9 +62,13 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main id="main-content">{children}</main>
+          <main id="main-content" className="grow">
+            {children}
+          </main>
           <Toaster />
           <Footer />
+          <YandexMetrika />
+          <AIBot />
         </ThemeProvider>
       </body>
     </html>
