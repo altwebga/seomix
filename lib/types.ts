@@ -21,6 +21,17 @@ export interface ISeo {
   meta_description: string
   focus_keyphrase: string
   og_image: string | null
+  sitemap?: {
+    priority: string
+    change_frequency:
+      | "always"
+      | "hourly"
+      | "daily"
+      | "weekly"
+      | "monthly"
+      | "yearly"
+      | "never"
+  }
 }
 
 export interface IPost {
