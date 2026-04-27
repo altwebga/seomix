@@ -49,6 +49,7 @@ function Carousel({
   plugins,
   className,
   children,
+  "aria-label": ariaLabel,
   ...props
 }: React.ComponentProps<"div"> & CarouselProps) {
   const [carouselRef, api] = useEmblaCarousel(
@@ -95,11 +96,12 @@ function Carousel({
 
   React.useEffect(() => {
     if (!api) return
-    onSelect(api)
     api.on("reInit", onSelect)
     api.on("select", onSelect)
+    queueMicrotask(() => onSelect(api))
 
     return () => {
+      api?.off("reInit", onSelect)
       api?.off("select", onSelect)
     }
   }, [api, onSelect])
@@ -123,6 +125,7 @@ function Carousel({
         className={cn("relative", className)}
         role="region"
         aria-roledescription="carousel"
+        aria-label={ariaLabel ?? "Карусель"}
         data-slot="carousel"
         {...props}
       >
@@ -196,7 +199,7 @@ function CarouselPrevious({
       {...props}
     >
       <ChevronLeftIcon />
-      <span className="sr-only">Previous slide</span>
+      <span className="sr-only">Предыдущий слайд</span>
     </Button>
   )
 }
@@ -226,7 +229,7 @@ function CarouselNext({
       {...props}
     >
       <ChevronRightIcon />
-      <span className="sr-only">Next slide</span>
+      <span className="sr-only">Следующий слайд</span>
     </Button>
   )
 }

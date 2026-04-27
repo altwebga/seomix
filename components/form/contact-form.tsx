@@ -108,11 +108,18 @@ export function ContactForm() {
                     {...field}
                     id="contact-form-name"
                     aria-invalid={fieldState.invalid}
+                    aria-describedby={
+                      fieldState.invalid ? "contact-form-name-error" : undefined
+                    }
                     placeholder="Тони Старк"
                     autoComplete="name"
+                    required
                   />
                   {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
+                    <FieldError
+                      id="contact-form-name-error"
+                      errors={[fieldState.error]}
+                    />
                   )}
                 </Field>
               )}
@@ -128,12 +135,22 @@ export function ContactForm() {
                   <Input
                     {...field}
                     id="contact-form-phone"
+                    type="tel"
                     aria-invalid={fieldState.invalid}
+                    aria-describedby={
+                      fieldState.invalid
+                        ? "contact-form-phone-error"
+                        : undefined
+                    }
                     placeholder="+7 999 999 99 99"
                     autoComplete="tel"
+                    required
                   />
                   {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
+                    <FieldError
+                      id="contact-form-phone-error"
+                      errors={[fieldState.error]}
+                    />
                   )}
                 </Field>
               )}
@@ -154,6 +171,11 @@ export function ContactForm() {
                       rows={6}
                       className="min-h-24 resize-none"
                       aria-invalid={fieldState.invalid}
+                      aria-describedby={
+                        fieldState.invalid
+                          ? "contact-form-message-description contact-form-message-error"
+                          : "contact-form-message-description"
+                      }
                     />
                     <InputGroupAddon align="block-end">
                       <InputGroupText className="tabular-nums">
@@ -161,11 +183,14 @@ export function ContactForm() {
                       </InputGroupText>
                     </InputGroupAddon>
                   </InputGroup>
-                  <FieldDescription>
+                  <FieldDescription id="contact-form-message-description">
                     Расскажите подробнее о вашем проекте
                   </FieldDescription>
                   {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
+                    <FieldError
+                      id="contact-form-message-error"
+                      errors={[fieldState.error]}
+                    />
                   )}
                 </Field>
               )}
@@ -175,20 +200,31 @@ export function ContactForm() {
             <Field>
               <div className="ml-2 flex items-center gap-3">
                 <input
+                  id="contact-form-agreement"
                   type="checkbox"
                   checked={agreement}
                   onChange={(e) => setAgreement(e.target.checked)}
                   className="h-4 w-4 shrink-0 rounded-[4px] border border-input accent-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                  aria-describedby="contact-form-agreement-link"
                 />
 
-                <Link
-                  href="/privacy-policy"
-                  target="_blank"
-                  rel="noopener"
-                  className="cursor-pointer"
-                >
-                  Я согласен(а) на обработку персональных данных
-                </Link>
+                <div>
+                  <label
+                    htmlFor="contact-form-agreement"
+                    className="cursor-pointer"
+                  >
+                    Я согласен(а) на обработку персональных данных
+                  </label>
+                  <Link
+                    id="contact-form-agreement-link"
+                    href="/privacy-policy"
+                    target="_blank"
+                    rel="noopener"
+                    className="ml-1 underline underline-offset-4"
+                  >
+                    Открыть документ
+                  </Link>
+                </div>
               </div>
             </Field>
           </FieldGroup>

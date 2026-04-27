@@ -25,7 +25,6 @@ export function TronCodeBlock({
   language = "tsx",
   filename,
   showLineNumbers = true,
-  highlightLines: _highlightLines,
   className,
   ...props
 }: TronCodeBlockProps) {

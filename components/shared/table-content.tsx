@@ -36,12 +36,15 @@ export function TableContent({ headings }: TableContentProps) {
         <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.03)_2px,rgba(0,0,0,0.03)_4px)]" />
         <div className="relative">
           <div className="mb-3 flex items-center gap-2">
-            <Share2 className="h-3.5 w-3.5 text-primary/60" />
+            <Share2
+              className="h-3.5 w-3.5 text-primary/60"
+              aria-hidden="true"
+            />
             <span className="font-mono text-[10px] tracking-widest text-foreground/50 uppercase">
               Контент
             </span>
           </div>
-          <nav className="space-y-0.5">
+          <nav className="space-y-0.5" aria-label="Содержание статьи">
             {headings.map((item) => (
               <a
                 key={item.id}
@@ -53,6 +56,7 @@ export function TableContent({ headings }: TableContentProps) {
                 }`}
               >
                 <div
+                  aria-hidden="true"
                   className={`h-1 w-1 rounded-full ${
                     activeSection === item.id
                       ? "bg-primary"
@@ -72,10 +76,15 @@ export function TableContent({ headings }: TableContentProps) {
 
       {showScrollTop && (
         <button
+          type="button"
+          aria-label="Вернуться к началу страницы"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="fixed right-8 bottom-8 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-primary/20 bg-card/80 text-primary backdrop-blur-sm transition-all hover:bg-primary/10"
         >
-          <div className="h-2 w-2 rotate-45 border-t-2 border-l-2 border-primary" />
+          <div
+            className="h-2 w-2 rotate-45 border-t-2 border-l-2 border-primary"
+            aria-hidden="true"
+          />
         </button>
       )}
     </>

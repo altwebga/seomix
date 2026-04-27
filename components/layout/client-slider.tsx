@@ -14,7 +14,7 @@ export async function ClientSlider() {
     <section className="my-20">
       <div className="container mx-auto">
         <Divider label="Our Clients" variant="default" />
-        <h2 className="my-8 text-center text-2xl font-bold md:my-16 md:text-4xl">
+        <h2 className="section-title mx-auto my-8 text-center md:my-16">
           Среди наших клиентов
         </h2>
         <LogoCloud

@@ -66,7 +66,7 @@ export function CopyButton({
       type="button"
       disabled={disabled}
       data-slot="tron-copy-button"
-      aria-label={copied ? "Copied" : "Copy to clipboard"}
+      aria-label={copied ? "Скопировано" : "Скопировать в буфер обмена"}
       className={cn(
         "inline-flex items-center justify-center gap-1.5 rounded border font-mono tracking-widest uppercase transition-all",
         size === "sm" ? "px-2 py-1 text-[8px]" : "px-3 py-1.5 text-[9px]",
@@ -84,6 +84,7 @@ export function CopyButton({
           viewBox="0 0 12 12"
           fill="none"
           className="animate-in duration-200 zoom-in-50 fade-in"
+          aria-hidden="true"
         >
           <path
             d="M2.5 6.5L5 9L9.5 3.5"
@@ -99,6 +100,7 @@ export function CopyButton({
           height={size === "sm" ? 10 : 12}
           viewBox="0 0 12 12"
           fill="none"
+          aria-hidden="true"
         >
           <rect
             x="4"

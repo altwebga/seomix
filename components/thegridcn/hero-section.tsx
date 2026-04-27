@@ -67,34 +67,6 @@ export function HeroSection({
         />
       </div>
 
-      <style jsx>{`
-        @keyframes heroScan {
-          0%,
-          100% {
-            top: 20%;
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          50% {
-            top: 80%;
-          }
-        }
-        @keyframes heroSweep {
-          0%,
-          100% {
-            margin-left: -10%;
-          }
-          50% {
-            margin-left: 86%;
-          }
-        }
-      `}</style>
-
       {/* Content */}
       <div
         className={cn(

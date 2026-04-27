@@ -58,12 +58,17 @@ export function InstallCommand({
 
       {/* Package manager tabs */}
       {showTabs && (
-        <div className="relative flex border-b border-primary/15">
+        <div
+          className="relative flex border-b border-primary/15"
+          role="group"
+          aria-label="Выбор пакетного менеджера"
+        >
           {allManagers.map((manager) => (
             <button
               key={manager}
               type="button"
               onClick={() => setActiveManager(manager)}
+              aria-pressed={activeManager === manager}
               className={cn(
                 "relative px-3 py-1.5 font-mono text-[9px] tracking-widest uppercase transition-all",
                 activeManager === manager
@@ -73,7 +78,10 @@ export function InstallCommand({
             >
               {manager}
               {activeManager === manager && (
-                <div className="absolute right-0 bottom-0 left-0 h-px bg-primary/60 shadow-[0_0_4px_rgba(var(--primary-rgb,0,180,255),0.3)]" />
+                <div
+                  className="absolute right-0 bottom-0 left-0 h-px bg-primary/60 shadow-[0_0_4px_rgba(var(--primary-rgb,0,180,255),0.3)]"
+                  aria-hidden="true"
+                />
               )}
             </button>
           ))}

@@ -3,7 +3,6 @@
 import { Divider } from "../thegridcn/divider"
 import { FeatureCard } from "../thegridcn/feature-card"
 import { LineChart, Zap, Rocket } from "lucide-react"
-import { GridFloor } from "../thegridcn/grid-floor"
 
 const item = [
   {
@@ -32,10 +31,10 @@ export function Features() {
       <div className="container mx-auto px-4">
         <Divider label="Features" variant="default" />
         <div className="my-8 flex flex-col items-center gap-8 md:my-16 md:flex-row">
-          <h2 className="max-w-3xl text-2xl font-bold md:text-4xl">
+          <h2 className="section-title">
             Берём задачи на себя, без лишних вопросов и затянутых согласований.
           </h2>
-          <p className="max-w-3xl text-muted-foreground">
+          <p className="section-copy">
             Прозрачно объясняем каждый этап работы и всегда держим вас в курсе
             процесса. Никаких сложных ТЗ и брифов — все ключевые вопросы
             выясняем в разговоре или на встрече. Контент для сайта создаём сами:

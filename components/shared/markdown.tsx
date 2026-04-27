@@ -27,50 +27,21 @@ function extractText(children: React.ReactNode): string {
 export function Markdown({ markdown, className, headings }: Props) {
   let h2Index = 0
   return (
-    <article className={className ?? "prose"}>
+    <article className={className ?? "content-markdown"}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[[rehypeHighlight, { ignoreMissing: true }]]}
         components={{
-          h1: ({ children }) => (
-            <h1 className="mt-8 mb-4 text-4xl font-bold">{children}</h1>
-          ),
+          h1: ({ children }) => <h1>{children}</h1>,
           h2: ({ children }) => {
             const id = headings?.[h2Index]?.id
             h2Index++
-            return (
-              <h2
-                id={id}
-                className="mt-8 mb-3 scroll-mt-[75px] text-3xl font-bold"
-              >
-                {children}
-              </h2>
-            )
+            return <h2 id={id}>{children}</h2>
           },
-          h3: ({ children }) => (
-            <h3 className="mt-6 mb-3 text-2xl font-semibold">{children}</h3>
-          ),
-          h4: ({ children }) => (
-            <h4 className="mt-6 mb-2 text-xl font-semibold">{children}</h4>
-          ),
-          h5: ({ children }) => (
-            <h5 className="mt-4 mb-2 text-lg font-semibold">{children}</h5>
-          ),
-          h6: ({ children }) => (
-            <h6 className="mt-4 mb-2 text-base font-semibold">{children}</h6>
-          ),
-          p: ({ children }) => <p className="mb-4 leading-7">{children}</p>,
-          ul: ({ children }) => (
-            <ul className="mb-4 list-outside list-disc space-y-1 pl-6">
-              {children}
-            </ul>
-          ),
-          ol: ({ children }) => (
-            <ol className="mb-4 list-outside list-decimal space-y-1 pl-6">
-              {children}
-            </ol>
-          ),
-          li: ({ children }) => <li className="leading-7">{children}</li>,
+          h3: ({ children }) => <h3>{children}</h3>,
+          h4: ({ children }) => <h4>{children}</h4>,
+          h5: ({ children }) => <h5>{children}</h5>,
+          h6: ({ children }) => <h6>{children}</h6>,
           a: (props) => (
             <a {...props} target="_blank" rel="noopener noreferrer" />
           ),

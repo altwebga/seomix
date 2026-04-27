@@ -34,9 +34,10 @@ export default function ContactPage() {
               >
                 <Image
                   src={link.icon}
-                  alt={link.label}
+                  alt=""
                   width={20}
                   height={20}
+                  aria-hidden="true"
                 />
                 <span>{link.label}</span>
               </a>
@@ -48,13 +49,13 @@ export default function ContactPage() {
           >
             <Image
               src={"/img/qrcode.min.svg"}
-              alt="qrcode"
+              alt="QR-код для добавления SEOMIX в контакты"
               width={600}
               height={600}
               className="aspect-square max-h-80 object-contain"
             />
             <p className="text-center">
-              Отсканируйте QR-код, что бы добавить нас в контакты
+              Отсканируйте QR-код, чтобы добавить нас в контакты
             </p>
           </GlowContainer>
         </div>

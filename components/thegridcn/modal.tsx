@@ -23,6 +23,10 @@ export function Modal({
   children,
   ...props
 }: ModalProps) {
+  const titleId = React.useId()
+  const descriptionId = React.useId()
+  const modalRef = React.useRef<HTMLDivElement>(null)
+
   // Close on Escape
   React.useEffect(() => {
     if (!open) return
@@ -36,9 +40,14 @@ export function Modal({
   // Lock body scroll
   React.useEffect(() => {
     if (open) {
+      const previousActiveElement = document.activeElement
+      modalRef.current?.focus()
       document.body.style.overflow = "hidden"
       return () => {
         document.body.style.overflow = ""
+        if (previousActiveElement instanceof HTMLElement) {
+          previousActiveElement.focus()
+        }
       }
     }
   }, [open])
@@ -51,12 +60,18 @@ export function Modal({
       <div
         className="absolute inset-0 z-50 bg-background/60 backdrop-blur-sm"
         onClick={onClose}
+        aria-hidden="true"
       />
 
       <div
+        ref={modalRef}
         data-slot="tron-modal"
         role="dialog"
         aria-modal="true"
+        tabIndex={-1}
+        aria-label={!title ? "Диалоговое окно" : undefined}
+        aria-labelledby={title ? titleId : undefined}
+        aria-describedby={description ? descriptionId : undefined}
         className={cn(
           "fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded border border-primary/30 bg-card/95 shadow-[0_0_40px_rgba(var(--primary-rgb,0,180,255),0.08)] backdrop-blur-md",
           size === "sm" && "w-full max-w-sm",
@@ -73,12 +88,18 @@ export function Modal({
         {(title || description) && (
           <div className="border-b border-primary/20 px-5 py-3">
             {title && (
-              <h3 className="font-mono text-xs tracking-widest text-primary uppercase">
+              <h3
+                id={titleId}
+                className="font-mono text-xs tracking-widest text-primary uppercase"
+              >
                 {title}
               </h3>
             )}
             {description && (
-              <p className="mt-0.5 font-mono text-[10px] text-foreground/40">
+              <p
+                id={descriptionId}
+                className="mt-0.5 font-mono text-[10px] text-foreground/40"
+              >
                 {description}
               </p>
             )}
@@ -100,9 +121,15 @@ export function Modal({
           type="button"
           onClick={onClose}
           className="absolute top-3 right-3 flex h-6 w-6 items-center justify-center rounded text-foreground/30 transition-colors hover:bg-primary/10 hover:text-primary"
-          aria-label="Close"
+          aria-label="Закрыть"
         >
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+          <svg
+            width="10"
+            height="10"
+            viewBox="0 0 10 10"
+            fill="none"
+            aria-hidden="true"
+          >
             <path
               d="M1 1l8 8M9 1l-8 8"
               stroke="currentColor"
@@ -113,10 +140,22 @@ export function Modal({
         </button>
 
         {/* Corner decorations */}
-        <div className="pointer-events-none absolute top-0 left-0 h-3 w-3 border-t-2 border-l-2 border-primary/50" />
-        <div className="pointer-events-none absolute top-0 right-0 h-3 w-3 border-t-2 border-r-2 border-primary/50" />
-        <div className="pointer-events-none absolute bottom-0 left-0 h-3 w-3 border-b-2 border-l-2 border-primary/50" />
-        <div className="pointer-events-none absolute right-0 bottom-0 h-3 w-3 border-r-2 border-b-2 border-primary/50" />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute top-0 left-0 h-3 w-3 border-t-2 border-l-2 border-primary/50"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute top-0 right-0 h-3 w-3 border-t-2 border-r-2 border-primary/50"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-0 left-0 h-3 w-3 border-b-2 border-l-2 border-primary/50"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute right-0 bottom-0 h-3 w-3 border-r-2 border-b-2 border-primary/50"
+        />
       </div>
     </>
   )

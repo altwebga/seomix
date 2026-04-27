@@ -34,7 +34,9 @@ const CopyButton = ({
 
   return (
     <button
-      title="Copy to clipboard"
+      type="button"
+      title="Скопировать в буфер обмена"
+      aria-label={isCopied ? "Скопировано" : "Скопировать в буфер обмена"}
       className={cn(
         "cursor-pointer",
         "transition-colors duration-200 ease-in-out",
@@ -49,11 +51,13 @@ const CopyButton = ({
         <CheckIcon
           size={iconSize}
           className="animate-in text-emerald-400 duration-200 zoom-in-50"
+          aria-hidden="true"
         />
       ) : (
         <CopyIcon
           size={iconSize}
           className="animate-in duration-200 zoom-in-50"
+          aria-hidden="true"
         />
       )}
     </button>

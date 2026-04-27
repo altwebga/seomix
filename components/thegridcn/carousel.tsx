@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { cn } from "@/lib/utils";
+import * as React from "react"
+import { cn } from "@/lib/utils"
 import {
   Carousel,
   CarouselContent,
@@ -9,16 +9,16 @@ import {
   CarouselPrevious,
   CarouselNext,
   type CarouselApi,
-} from "@/components/ui/carousel";
+} from "@/components/ui/carousel"
 
 interface TronCarouselProps extends React.HTMLAttributes<HTMLDivElement> {
-  items: React.ReactNode[];
-  autoPlay?: boolean;
-  interval?: number;
-  showDots?: boolean;
-  showArrows?: boolean;
-  orientation?: "horizontal" | "vertical";
-  loop?: boolean;
+  items: React.ReactNode[]
+  autoPlay?: boolean
+  interval?: number
+  showDots?: boolean
+  showArrows?: boolean
+  orientation?: "horizontal" | "vertical"
+  loop?: boolean
 }
 
 export function TronCarousel({
@@ -32,35 +32,45 @@ export function TronCarousel({
   className,
   ...props
 }: TronCarouselProps) {
-  const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
+  const [api, setApi] = React.useState<CarouselApi>()
+  const [current, setCurrent] = React.useState(0)
+  const [count, setCount] = React.useState(0)
+
+  const updateCarouselState = React.useCallback((carouselApi: CarouselApi) => {
+    if (!carouselApi) return
+    setCount(carouselApi.scrollSnapList().length)
+    setCurrent(carouselApi.selectedScrollSnap())
+  }, [])
 
   React.useEffect(() => {
-    if (!api) return;
+    if (!api) return
 
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap());
+    const handleSelect = () => updateCarouselState(api)
 
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap());
-    });
-  }, [api]);
+    api.on("reInit", handleSelect)
+    api.on("select", handleSelect)
+    queueMicrotask(handleSelect)
+
+    return () => {
+      api.off("reInit", handleSelect)
+      api.off("select", handleSelect)
+    }
+  }, [api, updateCarouselState])
 
   // Auto-play logic
   React.useEffect(() => {
-    if (!autoPlay || !api) return;
+    if (!autoPlay || !api) return
 
     const timer = setInterval(() => {
       if (api.canScrollNext()) {
-        api.scrollNext();
+        api.scrollNext()
       } else {
-        api.scrollTo(0);
+        api.scrollTo(0)
       }
-    }, interval);
+    }, interval)
 
-    return () => clearInterval(timer);
-  }, [api, autoPlay, interval]);
+    return () => clearInterval(timer)
+  }, [api, autoPlay, interval])
 
   return (
     <div
@@ -74,10 +84,13 @@ export function TronCarousel({
         <div className="pointer-events-none absolute inset-0 z-10 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.03)_2px,rgba(0,0,0,0.03)_4px)]" />
 
         {/* Top accent line */}
-        <div className="absolute top-0 left-0 right-0 z-10 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
+        <div className="absolute top-0 right-0 left-0 z-10 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
 
         {/* Slide counter label */}
-        <div className="absolute top-2 right-3 z-20 font-mono text-[9px] uppercase tracking-widest text-foreground/30">
+        <div
+          className="absolute top-2 right-3 z-20 font-mono text-[9px] tracking-widest text-foreground/30 uppercase"
+          aria-hidden="true"
+        >
           {String(current + 1).padStart(2, "0")}/
           {String(count).padStart(2, "0")}
         </div>
@@ -87,6 +100,7 @@ export function TronCarousel({
           orientation={orientation}
           opts={{ loop }}
           className="w-full"
+          aria-label="Карусель"
         >
           <CarouselContent>
             {items.map((item, index) => (
@@ -105,7 +119,7 @@ export function TronCarousel({
                   "disabled:opacity-20 disabled:hover:shadow-none",
                   orientation === "horizontal"
                     ? "top-1/2 left-2 -translate-y-1/2"
-                    : "-top-2 left-1/2 -translate-x-1/2 rotate-90",
+                    : "-top-2 left-1/2 -translate-x-1/2 rotate-90"
                 )}
               />
               <CarouselNext
@@ -115,7 +129,7 @@ export function TronCarousel({
                   "disabled:opacity-20 disabled:hover:shadow-none",
                   orientation === "horizontal"
                     ? "top-1/2 right-2 -translate-y-1/2"
-                    : "-bottom-2 left-1/2 -translate-x-1/2 rotate-90",
+                    : "-bottom-2 left-1/2 -translate-x-1/2 rotate-90"
                 )}
               />
             </>
@@ -123,13 +137,13 @@ export function TronCarousel({
         </Carousel>
 
         {/* Bottom accent line */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
+        <div className="absolute right-0 bottom-0 left-0 z-10 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
 
         {/* Corner decorations */}
-        <div className="pointer-events-none absolute left-0 top-0 z-10 h-3 w-3 border-l-2 border-t-2 border-primary/30 transition-colors duration-300 group-hover/carousel:border-primary/60" />
-        <div className="pointer-events-none absolute right-0 top-0 z-10 h-3 w-3 border-r-2 border-t-2 border-primary/30 transition-colors duration-300 group-hover/carousel:border-primary/60" />
+        <div className="pointer-events-none absolute top-0 left-0 z-10 h-3 w-3 border-t-2 border-l-2 border-primary/30 transition-colors duration-300 group-hover/carousel:border-primary/60" />
+        <div className="pointer-events-none absolute top-0 right-0 z-10 h-3 w-3 border-t-2 border-r-2 border-primary/30 transition-colors duration-300 group-hover/carousel:border-primary/60" />
         <div className="pointer-events-none absolute bottom-0 left-0 z-10 h-3 w-3 border-b-2 border-l-2 border-primary/30 transition-colors duration-300 group-hover/carousel:border-primary/60" />
-        <div className="pointer-events-none absolute bottom-0 right-0 z-10 h-3 w-3 border-b-2 border-r-2 border-primary/30 transition-colors duration-300 group-hover/carousel:border-primary/60" />
+        <div className="pointer-events-none absolute right-0 bottom-0 z-10 h-3 w-3 border-r-2 border-b-2 border-primary/30 transition-colors duration-300 group-hover/carousel:border-primary/60" />
       </div>
 
       {/* Dot indicators */}
@@ -140,21 +154,22 @@ export function TronCarousel({
               key={index}
               type="button"
               onClick={() => api?.scrollTo(index)}
+              aria-current={index === current ? "true" : undefined}
               className={cn(
                 "h-1.5 rounded-full transition-all duration-300",
                 index === current
                   ? "w-6 bg-primary shadow-[0_0_8px_rgba(var(--primary-rgb,0,180,255),0.3)]"
-                  : "w-1.5 bg-primary/20 hover:bg-primary/40",
+                  : "w-1.5 bg-primary/20 hover:bg-primary/40"
               )}
             >
-              <span className="sr-only">Go to slide {index + 1}</span>
+              <span className="sr-only">Перейти к слайду {index + 1}</span>
             </button>
           ))}
         </div>
       )}
 
       {/* Bottom glow */}
-      <div className="pointer-events-none absolute -bottom-4 left-1/4 right-1/4 h-8 rounded-full bg-primary/5 opacity-0 blur-xl transition-opacity duration-500 group-hover/carousel:opacity-100" />
+      <div className="pointer-events-none absolute right-1/4 -bottom-4 left-1/4 h-8 rounded-full bg-primary/5 opacity-0 blur-xl transition-opacity duration-500 group-hover/carousel:opacity-100" />
     </div>
-  );
+  )
 }

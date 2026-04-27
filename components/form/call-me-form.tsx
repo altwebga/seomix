@@ -115,11 +115,20 @@ export function CallMeForm({
                       {...field}
                       id="call-me-form-name"
                       aria-invalid={fieldState.invalid}
+                      aria-describedby={
+                        fieldState.invalid
+                          ? "call-me-form-name-error"
+                          : undefined
+                      }
                       placeholder="Тони Старк"
                       autoComplete="name"
+                      required
                     />
                     {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
+                      <FieldError
+                        id="call-me-form-name-error"
+                        errors={[fieldState.error]}
+                      />
                     )}
                   </Field>
                 )}
@@ -135,12 +144,22 @@ export function CallMeForm({
                     <Input
                       {...field}
                       id="call-me-form-phone"
+                      type="tel"
                       aria-invalid={fieldState.invalid}
+                      aria-describedby={
+                        fieldState.invalid
+                          ? "call-me-form-phone-error"
+                          : undefined
+                      }
                       placeholder="+7 999 999 99 99"
                       autoComplete="tel"
+                      required
                     />
                     {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
+                      <FieldError
+                        id="call-me-form-phone-error"
+                        errors={[fieldState.error]}
+                      />
                     )}
                   </Field>
                 )}
@@ -151,20 +170,31 @@ export function CallMeForm({
             <Field>
               <div className="ml-2 flex items-center gap-3">
                 <input
+                  id="call-me-form-agreement"
                   type="checkbox"
                   checked={agreement}
                   onChange={(e) => setAgreement(e.target.checked)}
                   className="h-4 w-4 shrink-0 rounded-[4px] border border-input accent-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                  aria-describedby="call-me-form-agreement-link"
                 />
 
-                <Link
-                  href="/privacy-policy"
-                  target="_blank"
-                  rel="noopener"
-                  className="cursor-pointer"
-                >
-                  Я согласен(а) на обработку персональных данных
-                </Link>
+                <div>
+                  <label
+                    htmlFor="call-me-form-agreement"
+                    className="cursor-pointer"
+                  >
+                    Я согласен(а) на обработку персональных данных
+                  </label>
+                  <Link
+                    id="call-me-form-agreement-link"
+                    href="/privacy-policy"
+                    target="_blank"
+                    rel="noopener"
+                    className="ml-1 underline underline-offset-4"
+                  >
+                    Открыть документ
+                  </Link>
+                </div>
               </div>
             </Field>
           </FieldGroup>

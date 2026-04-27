@@ -12,20 +12,22 @@ interface DataFieldProps {
 function DataField({ label, value, highlight = false }: DataFieldProps) {
   return (
     <div className="space-y-1">
-      <div className="text-[10px] tracking-widest text-foreground/80 uppercase">
+      <dt className="text-[10px] tracking-widest text-foreground/80 uppercase">
         {label}
-      </div>
-      <div className="flex items-center gap-2">
-        <span className="text-primary">|</span>
+      </dt>
+      <dd className="flex items-center gap-2">
+        <span className="text-primary" aria-hidden="true">
+          |
+        </span>
         <span
           className={cn(
-            "font-mono text-sm tracking-wide uppercase",
+            "line-clamp-5 font-mono text-sm tracking-wide uppercase",
             highlight && "bg-primary/20 px-2 py-0.5"
           )}
         >
-          <p className="line-clamp-5">{value}</p>
+          {value}
         </span>
-      </div>
+      </dd>
     </div>
   )
 }
@@ -78,7 +80,9 @@ export function DataCard({
           {media && <div className="my-4">{media}</div>}
           {title && (
             <div className="flex items-center gap-2">
-              <span className="text-primary">|</span>
+              <span className="text-primary" aria-hidden="true">
+                |
+              </span>
               <h3 className="text-lg font-bold tracking-wider uppercase">
                 {title}
               </h3>
@@ -88,7 +92,7 @@ export function DataCard({
       )}
 
       {/* Fields */}
-      <div className="space-y-3 p-4">
+      <dl className="space-y-3 p-4">
         {fields.map((field, index) => (
           <DataField
             key={index}
@@ -97,13 +101,25 @@ export function DataCard({
             highlight={field.highlight}
           />
         ))}
-      </div>
+      </dl>
 
       {/* Corner decorations */}
-      <div className="pointer-events-none absolute top-0 left-0 h-4 w-4 border-t-2 border-l-2 border-primary/50" />
-      <div className="pointer-events-none absolute top-0 right-0 h-4 w-4 border-t-2 border-r-2 border-primary/50" />
-      <div className="pointer-events-none absolute bottom-0 left-0 h-4 w-4 border-b-2 border-l-2 border-primary/50" />
-      <div className="pointer-events-none absolute right-0 bottom-0 h-4 w-4 border-r-2 border-b-2 border-primary/50" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-0 left-0 h-4 w-4 border-t-2 border-l-2 border-primary/50"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-0 right-0 h-4 w-4 border-t-2 border-r-2 border-primary/50"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-0 h-4 w-4 border-b-2 border-l-2 border-primary/50"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 bottom-0 h-4 w-4 border-r-2 border-b-2 border-primary/50"
+      />
     </div>
   )
 }

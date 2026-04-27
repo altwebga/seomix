@@ -7,8 +7,8 @@ export function PageHeading({
 }) {
   return (
     <div>
-      <h1 className="text-4xl font-extrabold uppercase md:text-6xl">{title}</h1>
-      <p>{description}</p>
+      <h1 className="page-title">{title}</h1>
+      <p className="page-description">{description}</p>
     </div>
   )
 }

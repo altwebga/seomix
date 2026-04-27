@@ -16,9 +16,7 @@ export async function Portfolio() {
       <div className="container mx-auto px-4">
         <Divider label="Portfolio" variant="default" />
 
-        <h2 className="my-8 max-w-3xl text-2xl font-bold md:text-4xl">
-          Примеры работ
-        </h2>
+        <h2 className="section-title my-8">Примеры работ</h2>
 
         <TronCarousel
           items={caces.map((item) => (

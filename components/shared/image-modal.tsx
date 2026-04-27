@@ -24,6 +24,7 @@ export function ImageModal({
         type="button"
         onClick={() => setOpen(true)}
         className="group overflow-hidden rounded border border-primary/20"
+        aria-label={`Открыть изображение: ${alt}`}
       >
         <DirectusImage
           url={image}
@@ -35,7 +36,7 @@ export function ImageModal({
       </button>
 
       {/* МОДАЛКА */}
-      <Modal open={open} onClose={() => setOpen(false)} size="lg">
+      <Modal open={open} onClose={() => setOpen(false)} size="lg" title={alt}>
         <DirectusImage
           url={image}
           alt={alt}

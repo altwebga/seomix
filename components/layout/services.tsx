@@ -16,11 +16,11 @@ export async function Services() {
         <div>
           <Divider label="Services" variant="default" />
           <div className="my-8 flex flex-col items-center gap-8 md:my-16 md:flex-row">
-            <h2 className="max-w-3xl text-2xl font-bold md:text-4xl">
+            <h2 className="section-title">
               Полный спектр решений для быстрого и эффективного старта вашего
               бизнеса в интернете
             </h2>
-            <p className="max-w-3xl">
+            <p className="section-copy">
               Разрабатываем современные сайты с продуманной структурой и
               дизайном, настраиваем контекстную рекламу в Яндекс Директ,
               занимаемся SEO-продвижением и аналитикой. Помогаем привлекать

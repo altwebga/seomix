@@ -17,10 +17,22 @@ interface BreadcrumbNavProps extends React.HTMLAttributes<HTMLElement> {
 
 function SeparatorIcon({ type }: { type: string }) {
   if (type === "slash") {
-    return <span className="font-mono text-[10px] text-foreground/20">/</span>
+    return (
+      <span
+        aria-hidden="true"
+        className="font-mono text-[10px] text-foreground/20"
+      >
+        /
+      </span>
+    )
   }
   if (type === "dot") {
-    return <span className="h-1 w-1 rounded-full bg-foreground/20" />
+    return (
+      <span
+        aria-hidden="true"
+        className="h-1 w-1 rounded-full bg-foreground/20"
+      />
+    )
   }
   // chevron
   return (
@@ -30,6 +42,7 @@ function SeparatorIcon({ type }: { type: string }) {
       viewBox="0 0 10 10"
       fill="none"
       className="text-foreground/20"
+      aria-hidden="true"
     >
       <path
         d="M3.5 2l3.5 3-3.5 3"
@@ -61,12 +74,15 @@ export function BreadcrumbNav({
       {items.map((item, i) => (
         <React.Fragment key={i}>
           {i > 0 && (
-            <span className="flex items-center">
+            <span className="flex items-center" aria-hidden="true">
               <SeparatorIcon type={separator} />
             </span>
           )}
           {item.active ? (
-            <span className="font-mono text-[10px] tracking-widest text-primary uppercase">
+            <span
+              className="font-mono text-[10px] tracking-widest text-primary uppercase"
+              aria-current="page"
+            >
               {item.label}
             </span>
           ) : item.href ? (

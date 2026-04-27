@@ -32,7 +32,8 @@ export function Marquee({
         variant === "default"
           ? "rounded border border-primary/20 bg-card/80 py-3 backdrop-blur-sm"
           : "py-2",
-        pauseOnHover && "hover:[&_.marquee-track]:pause",
+        pauseOnHover &&
+          "hover:[&_.marquee-track]:[animation-play-state:paused]",
         className
       )}
       {...props}
@@ -55,21 +56,6 @@ export function Marquee({
           </div>
         ))}
       </div>
-
-      <style jsx>{`
-        @keyframes marqueeScroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(calc(-100% - 2rem));
-          }
-        }
-        .marquee-track.pause {
-          animation-play-state: paused !important;
-        }
-      `}</style>
-
       {/* Fade edges */}
       <div
         className={cn(

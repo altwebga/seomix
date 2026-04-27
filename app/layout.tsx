@@ -47,6 +47,12 @@ export default function RootLayout({
       )}
     >
       <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded focus:border focus:border-primary/40 focus:bg-background focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:text-primary focus:uppercase"
+        >
+          Перейти к содержимому
+        </a>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -54,7 +60,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main>{children}</main>
+          <main id="main-content">{children}</main>
           <Toaster />
           <Footer />
         </ThemeProvider>

@@ -70,9 +70,7 @@ export default async function BlogSinglePage({ params }: PageProps) {
                 </span>
               ))}
           </div>
-          <h1 className="mb-8 text-2xl font-bold tracking-wider text-foreground uppercase md:text-3xl lg:text-4xl">
-            {article.title}
-          </h1>
+          <h1 className="article-title">{article.title}</h1>
           {/* Hero Image Placeholder */}
           <div className="relative mb-10 overflow-hidden rounded border border-primary/20">
             <div className="aspect-ratio: 21/9 bg-linear-to-br from-primary/10 via-background to-primary/5">

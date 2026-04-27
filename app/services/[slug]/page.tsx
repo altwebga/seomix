@@ -52,9 +52,7 @@ export default async function ServicesSinglePage({ params }: PageProps) {
               { label: service.title, active: true },
             ]}
           />
-          <h1 className="mb-8 text-2xl font-bold tracking-wider text-foreground uppercase md:text-3xl lg:text-4xl">
-            {service.title}
-          </h1>
+          <h1 className="article-title">{service.title}</h1>
           <Markdown markdown={service.description} />
           <CallToAction
             title="Готовы начать?"
