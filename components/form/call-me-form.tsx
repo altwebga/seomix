@@ -174,7 +174,7 @@ export function CallMeForm({
                   type="checkbox"
                   checked={agreement}
                   onChange={(e) => setAgreement(e.target.checked)}
-                  className="h-4 w-4 shrink-0 rounded-[4px] border border-input accent-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                  className="h-4 w-4 shrink-0 rounded-lg border border-input accent-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                   aria-describedby="call-me-form-agreement-link"
                 />
 
@@ -183,17 +183,16 @@ export function CallMeForm({
                     htmlFor="call-me-form-agreement"
                     className="cursor-pointer"
                   >
-                    Я согласен(а) на обработку персональных данных
+                    <Link
+                      id="call-me-form-agreement-link"
+                      href="/privacy-policy"
+                      target="_blank"
+                      rel="noopener"
+                      className="ml-1 underline underline-offset-4"
+                    >
+                      Я согласен(а) на обработку персональных данных
+                    </Link>
                   </label>
-                  <Link
-                    id="call-me-form-agreement-link"
-                    href="/privacy-policy"
-                    target="_blank"
-                    rel="noopener"
-                    className="ml-1 underline underline-offset-4"
-                  >
-                    Открыть документ
-                  </Link>
                 </div>
               </div>
             </Field>
@@ -215,7 +214,7 @@ export function CallMeForm({
             <Button
               type="submit"
               form="call-me-form"
-              className="rounded border border-primary bg-primary/20 px-5 py-2 font-mono text-[10px] tracking-widest text-primary uppercase shadow-[0_0_12px_rgba(var(--primary-rgb,0,180,255),0.15)] transition-all duration-300 hover:bg-primary/30"
+              className="min-w-48 rounded border border-primary bg-primary/20 px-5 py-2 font-mono text-[10px] tracking-widest text-primary uppercase shadow-[0_0_12px_rgba(var(--primary-rgb,0,180,255),0.15)] transition-all duration-300 hover:bg-primary/30"
               disabled={
                 !agreement || !captchaToken || form.formState.isSubmitting
               }

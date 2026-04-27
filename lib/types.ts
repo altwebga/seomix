@@ -121,3 +121,9 @@ export interface IRequest {
   url: string
   message?: string
 }
+
+export interface ILegalInformation {
+  title: string
+  status: "published" | "draft" | "archived"
+  description: string
+}
