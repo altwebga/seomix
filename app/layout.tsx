@@ -7,12 +7,15 @@ import { Toaster } from "@/components/ui/sonner"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 
-const geistHeading = Geist({ subsets: ["latin"], variable: "--font-heading" })
+const geistHeading = Geist({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-heading",
+})
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
+const inter = Inter({ subsets: ["latin", "cyrillic"], variable: "--font-sans" })
 
 const fontMono = Geist_Mono({
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   variable: "--font-mono",
 })
 

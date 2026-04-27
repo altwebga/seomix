@@ -5,13 +5,26 @@ import { BreadcrumbNav } from "@/components/thegridcn/breadcrumb-nav"
 import { GlowContainer } from "@/components/thegridcn/glow-container"
 import { IService } from "@/lib/types"
 import { getContent } from "@/actions/get-content"
-import { CTABanner } from "@/components/thegridcn/cta-banner"
+import { CallToAction } from "@/components/shared/call-to-action"
 
-export default async function ServicesSinglePage({
+import type { Metadata } from "next"
+import { getMetadataBySlug } from "@/lib/get-metadata"
+
+type PageProps = {
+  params: Promise<{
+    slug: string
+  }>
+}
+
+export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params
+
+  return getMetadataBySlug("services", slug)
+}
+
+export default async function ServicesSinglePage({ params }: PageProps) {
   const { slug } = await params
   const services = await getContent<IService>({
     collection: "services",
@@ -43,11 +56,11 @@ export default async function ServicesSinglePage({
             {service.title}
           </h1>
           <Markdown markdown={service.description} />
-          <CTABanner
+          <CallToAction
             title="Готовы начать?"
             description="Оставьте заявку и мы поможем"
-            primaryAction={{ label: "Связаться с нами", href: "/contact" }}
-            secondaryAction={{ label: "Наши услуги", href: "/services" }}
+            primaryAction="Связаться с нами"
+            secondaryAction={{ label: "Примеры работ", url: "/portfolio" }}
           />
         </div>
         <aside className="w-full md:w-1/3">

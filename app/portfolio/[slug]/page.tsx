@@ -5,13 +5,26 @@ import { RuTubeFrame } from "@/components/shared/rutube-frame"
 import { DataCard } from "@/components/thegridcn/data-card"
 import { getContent, getContentByID } from "@/actions/get-content"
 import { IProject, IClient } from "@/lib/types"
-import { CTABanner } from "@/components/thegridcn/cta-banner"
+import { CallToAction } from "@/components/shared/call-to-action"
 
-export default async function ProjectSinglePage({
+import type { Metadata } from "next"
+import { getMetadataBySlug } from "@/lib/get-metadata"
+
+type PageProps = {
+  params: Promise<{
+    slug: string
+  }>
+}
+
+export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params
+
+  return getMetadataBySlug("portfolio", slug)
+}
+
+export default async function ProjectSinglePage({ params }: PageProps) {
   const { slug } = await params
 
   const portfolio_res = await getContent<IProject>({
@@ -65,11 +78,11 @@ export default async function ProjectSinglePage({
                   ]}
                 />
               )}
-              <CTABanner
+              <CallToAction
                 title="Понравился сайт?"
                 description="Сделаем такой же и даже лучше!"
-                primaryAction={{ label: "Связаться с нами", href: "/contact" }}
-                secondaryAction={{ label: "Наши услуги", href: "/services" }}
+                primaryAction="Связаться с нами"
+                secondaryAction={{ label: "Наши услуги", url: "/services" }}
               />
             </GlowContainer>
           </div>

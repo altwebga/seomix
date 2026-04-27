@@ -1,27 +1,14 @@
-import { Metadata } from "next"
 import { PageHeading } from "@/components/shared/page-heading"
 import { getContent } from "@/actions/get-content"
 import { IProject } from "@/lib/types"
 import { PortfolioCard } from "@/components/card/portfolio-card"
 import Link from "next/link"
 
-export const metadata: Metadata = {
-  title: "Портфолио проектов",
-  description:
-    "Примеры реализованных сайтов и digital-проектов нашей веб-студии.",
-  openGraph: {
-    title: "Портфолио проектов",
-    description:
-      "Примеры реализованных сайтов и digital-проектов нашей веб-студии.",
-    images: [
-      {
-        url: "/img/og/portfolio.png",
-        width: 1200,
-        height: 630,
-        alt: "Портфолио проектов",
-      },
-    ],
-  },
+import type { Metadata } from "next"
+import { getMetadataBySlug } from "@/lib/get-metadata"
+
+export async function generateMetadata(): Promise<Metadata> {
+  return getMetadataBySlug("pages", "portfolio")
 }
 
 export default async function PortfolioPage() {

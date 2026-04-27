@@ -103,3 +103,10 @@ export interface EducationItem {
   team_id: number
   directus_files_id: string
 }
+
+export interface IRequest {
+  name: string
+  phone: string
+  url: string
+  message?: string
+}

@@ -12,7 +12,7 @@ export async function ClientSlider() {
 
   return (
     <section className="my-20">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         <Divider label="Our Clients" variant="default" />
         <h2 className="my-8 text-center text-2xl font-bold md:my-16 md:text-4xl">
           Среди наших клиентов

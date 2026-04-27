@@ -26,7 +26,7 @@ export function LogoCloud({
     <div
       data-slot="tron-logo-cloud"
       className={cn(
-        "relative mx-4 overflow-hidden rounded border border-primary/20 bg-card/80 py-6 backdrop-blur-sm",
+        "relative overflow-hidden rounded border border-primary/20 bg-card/80 py-6 backdrop-blur-sm",
         className
       )}
       {...props}

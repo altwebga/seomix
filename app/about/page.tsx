@@ -6,6 +6,12 @@ import { ITeam } from "@/lib/types"
 import { DirectusImage } from "@/components/shared/directus-image"
 import { ImageModal } from "@/components/shared/image-modal"
 import { Divider } from "@/components/thegridcn/divider"
+import { getMetadataBySlug } from "@/lib/get-metadata"
+import type { Metadata } from "next"
+
+export async function generateMetadata(): Promise<Metadata> {
+  return getMetadataBySlug("pages", "about")
+}
 
 export default async function AboutPage() {
   const teams = await getContent<ITeam>({

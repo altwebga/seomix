@@ -3,6 +3,12 @@ import { getContent } from "@/actions/get-content"
 import { PageHeading } from "@/components/shared/page-heading"
 import { IPost } from "@/lib/types"
 import { BlogCard } from "@/components/card/blog-card"
+import type { Metadata } from "next"
+import { getMetadataBySlug } from "@/lib/get-metadata"
+
+export async function generateMetadata(): Promise<Metadata> {
+  return getMetadataBySlug("pages", "blog")
+}
 
 export default async function BlogPage() {
   const posts = await getContent<IPost>({

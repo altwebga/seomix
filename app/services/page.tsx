@@ -3,7 +3,14 @@ import { getContent } from "@/actions/get-content"
 import Link from "next/link"
 import { IService } from "@/lib/types"
 import { ServicesCard } from "@/components/card/services-card"
-import { CTABanner } from "@/components/thegridcn/cta-banner"
+import { CallToAction } from "@/components/shared/call-to-action"
+
+import type { Metadata } from "next"
+import { getMetadataBySlug } from "@/lib/get-metadata"
+
+export async function generateMetadata(): Promise<Metadata> {
+  return getMetadataBySlug("pages", "services")
+}
 
 export default async function ServicesPage() {
   const services = await getContent<IService>({
@@ -32,10 +39,11 @@ export default async function ServicesPage() {
         </div>
         <aside className="w-full md:w-1/4">
           <div className="mt-4 md:sticky md:top-20">
-            <CTABanner
+            <CallToAction
               title="Не знаете, что выбрать?"
               description="Оставьте заявку и мы поможем"
-              primaryAction={{ label: "Оставить заявку", href: "/contact" }}
+              primaryAction="Оставить заявку"
+              secondaryAction={{ label: "Примеры работ", url: "/portfolio" }}
             />
           </div>
         </aside>

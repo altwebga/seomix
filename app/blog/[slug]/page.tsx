@@ -8,13 +8,26 @@ import { getContent } from "@/actions/get-content"
 import { IPost } from "@/lib/types"
 import { DirectusImage } from "@/components/shared/directus-image"
 import { Markdown } from "@/components/shared/markdown"
-import { CTABanner } from "@/components/thegridcn/cta-banner"
+import { CallToAction } from "@/components/shared/call-to-action"
 
-export default async function BlogSinglePage({
+import type { Metadata } from "next"
+import { getMetadataBySlug } from "@/lib/get-metadata"
+
+type PageProps = {
+  params: Promise<{
+    slug: string
+  }>
+}
+
+export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params
+
+  return getMetadataBySlug("blog", slug)
+}
+
+export default async function BlogSinglePage({ params }: PageProps) {
   const { slug } = await params
 
   const res = await getContent<IPost>({
@@ -95,11 +108,11 @@ export default async function BlogSinglePage({
           <div className="sticky top-20 h-fit">
             <GlowContainer className="flex flex-col gap-4">
               <TableContent headings={headings} />
-              <CTABanner
+              <CallToAction
                 title="Готовы начать?"
+                primaryAction="Связаться с нами"
                 description="Оставьте заявку и мы поможем"
-                primaryAction={{ label: "Связаться с нами", href: "/contact" }}
-                secondaryAction={{ label: "Наши услуги", href: "/services" }}
+                secondaryAction={{ label: "Наши услуги", url: "/services" }}
               />
             </GlowContainer>
           </div>
