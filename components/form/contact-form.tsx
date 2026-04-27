@@ -204,7 +204,7 @@ export function ContactForm() {
                   type="checkbox"
                   checked={agreement}
                   onChange={(e) => setAgreement(e.target.checked)}
-                  className="h-4 w-4 shrink-0 rounded-[4px] border border-input accent-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                  className="h-4 w-4 shrink-0 rounded-lg border border-input accent-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                   aria-describedby="contact-form-agreement-link"
                 />
 
