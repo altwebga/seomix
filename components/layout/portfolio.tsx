@@ -10,6 +10,7 @@ export async function Portfolio() {
     collection: "portfolio",
     fields: ["id", "slug", "title", "coner_image", "release_date"],
     status: "published",
+    limit: 4,
   })
   return (
     <section className="my-20">

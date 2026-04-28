@@ -25,6 +25,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import ym from "react-yandex-metrika"
 
 const formSchema = z.object({
   name: z
@@ -80,6 +81,8 @@ export function CallMeForm({
     toast.success("Заявка отправлена")
     form.reset()
     setModalOpen(false)
+    setCaptchaToken("")
+    ym("reachGoal", "call_me")
   }
 
   return (

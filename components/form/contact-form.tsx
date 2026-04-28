@@ -32,6 +32,7 @@ import {
   InputGroupTextarea,
 } from "@/components/ui/input-group"
 import { SmartCaptchaWidget } from "../shared/smart-captcha"
+import ym from "react-yandex-metrika"
 
 const formSchema = z.object({
   name: z
@@ -85,6 +86,8 @@ export function ContactForm() {
 
     toast.success("Заявка отправлена")
     form.reset()
+    setCaptchaToken("")
+    ym("reachGoal", "send_form")
   }
 
   return (
