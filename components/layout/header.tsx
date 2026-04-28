@@ -176,7 +176,7 @@ export function Header() {
       {/* Mobile Menu Panel */}
       <div
         className={cn(
-          "fixed top-0 right-0 z-50 h-full w-72 transform border-l border-primary/30 bg-background bg-panel transition-transform duration-300 ease-in-out lg:hidden",
+          "fixed top-0 right-0 z-50 h-full w-72 transform border-l border-primary/30 bg-background transition-transform duration-300 ease-in-out lg:hidden",
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
         id="mobile-navigation"

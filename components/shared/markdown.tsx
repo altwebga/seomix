@@ -5,6 +5,15 @@ import rehypeHighlight from "rehype-highlight"
 import { DirectusImage } from "./directus-image"
 import { InstallCommand } from "../thegridcn/install-command"
 import { TronCodeBlock } from "../thegridcn/code-block"
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../ui/table"
 
 type Props = {
   markdown: string
@@ -22,6 +31,12 @@ function extractText(children: React.ReactNode): string {
     )
   }
   return ""
+}
+
+function omitMarkdownNode<T extends { node?: unknown }>(props: T) {
+  const cleanProps = { ...props }
+  delete cleanProps.node
+  return cleanProps
 }
 
 export function Markdown({ markdown, className, headings }: Props) {
@@ -45,6 +60,15 @@ export function Markdown({ markdown, className, headings }: Props) {
           a: (props) => (
             <a {...props} target="_blank" rel="noopener noreferrer" />
           ),
+          table: (props) => (
+            <Table {...omitMarkdownNode(props)} className="my-6" />
+          ),
+          thead: (props) => <TableHeader {...omitMarkdownNode(props)} />,
+          tbody: (props) => <TableBody {...omitMarkdownNode(props)} />,
+          tr: (props) => <TableRow {...omitMarkdownNode(props)} />,
+          th: (props) => <TableHead {...omitMarkdownNode(props)} />,
+          td: (props) => <TableCell {...omitMarkdownNode(props)} />,
+          caption: (props) => <TableCaption {...omitMarkdownNode(props)} />,
           img: ({ src, alt }) => {
             if (!src) return null
             return (

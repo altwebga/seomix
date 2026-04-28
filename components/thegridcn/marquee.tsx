@@ -32,8 +32,7 @@ export function Marquee({
         variant === "default"
           ? "rounded border border-primary/20 bg-card/80 py-3 backdrop-blur-sm"
           : "py-2",
-        pauseOnHover &&
-          "hover:[&_.marquee-track]:[animation-play-state:paused]",
+        pauseOnHover && "hover:[&_.marquee-track]:paused",
         className
       )}
       {...props}
