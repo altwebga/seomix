@@ -12,9 +12,8 @@ const CodeBlock = ({
     <div
       className={cn(
         "not-prose",
-        "flex w-full flex-col overflow-clip",
-        "bg-background",
-        "text-foreground",
+        "flex w-full flex-col overflow-hidden",
+        "bg-[#ffffff] text-[#000000] dark:bg-[#1e1e1e] dark:text-[#d4d4d4]",
         className
       )}
       {...props}
@@ -36,8 +35,8 @@ const CodeBlockHeader = ({
       className={cn(
         "not-prose",
         "flex h-9 items-center justify-between px-3 py-1.5",
-        "border-b border-primary/15 bg-black/60",
-        "text-sm text-foreground/40",
+        "border-b border-[#d4d4d4] bg-[#f3f3f3] dark:border-[#3c3c3c] dark:bg-[#252526]",
+        "text-sm text-[#616161] dark:text-[#cccccc]",
         className
       )}
       {...props}
@@ -74,7 +73,7 @@ const CodeBlockGroup = ({
     <div
       className={cn(
         "flex items-center space-x-2",
-        "text-sm text-foreground/40",
+        "text-sm text-[#616161] dark:text-[#cccccc]",
         className
       )}
       {...props}
@@ -92,8 +91,8 @@ const CodeBlockContent = ({
   return (
     <div
       className={cn(
-        "overflow-y-auto",
-        "bg-black",
+        "overflow-hidden",
+        "bg-[#ffffff] dark:bg-[#1e1e1e]",
         "font-mono text-sm leading-5 whitespace-pre",
         className
       )}

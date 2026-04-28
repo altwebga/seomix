@@ -6,7 +6,7 @@ import { Divider } from "../thegridcn/divider"
 import Link from "next/link"
 
 export async function Portfolio() {
-  const caces = await getContent<IProject>({
+  const cases = await getContent<IProject>({
     collection: "portfolio",
     fields: ["id", "slug", "title", "coner_image", "release_date"],
     status: "published",
@@ -19,7 +19,7 @@ export async function Portfolio() {
         <h2 className="section-title my-8">Примеры работ</h2>
 
         <TronCarousel
-          items={caces.map((item) => (
+          items={cases.map((item) => (
             <Link key={item.id} href={`portfolio/${item.slug}`}>
               <PortfolioCard
                 title={item.title}

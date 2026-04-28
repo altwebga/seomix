@@ -238,6 +238,24 @@
   .content-markdown a {
     @apply text-primary underline-offset-4 transition-colors hover:underline;
   }
+
+  .shiki {
+    color: var(--shiki-light);
+    background-color: var(--shiki-light-bg);
+  }
+
+  .shiki span {
+    color: var(--shiki-light);
+  }
+
+  .dark .shiki {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+  }
+
+  .dark .shiki span {
+    color: var(--shiki-dark);
+  }
 }
 
 @layer utilities {
@@ -264,9 +282,13 @@
     display: inline-block;
     width: 2.5rem;
     margin-right: 1rem;
-    color: color-mix(in oklch, var(--foreground) 35%, transparent);
+    color: #858585;
     text-align: right;
     user-select: none;
+  }
+
+  .dark .shiki-line-numbers code > span::before {
+    color: #6e7681;
   }
 }
 

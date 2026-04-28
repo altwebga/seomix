@@ -25,14 +25,15 @@ const CodeBlockShiki = ({
         return
       }
 
-      const [{ codeToHtml }, { tronTheme }] = await Promise.all([
-        import("shiki"),
-        import("@/lib/shiki-tron-theme"),
-      ])
+      const { codeToHtml } = await import("shiki")
 
       const html = await codeToHtml(code, {
         lang: language,
-        theme: tronTheme,
+        themes: {
+          light: "light-plus",
+          dark: "dark-plus",
+        },
+        defaultColor: false,
         transformers: [
           {
             name: "AddLineNumbers",
@@ -53,7 +54,8 @@ const CodeBlockShiki = ({
   }, [code, language, lineNumbers])
 
   const classNames = cn(
-    "w-full overflow-x-auto [&_pre]:m-0 [&_pre]:p-3",
+    "w-full overflow-x-auto bg-[#ffffff] dark:bg-[#1e1e1e]",
+    "[&_pre]:m-0 [&_pre]:min-w-max [&_pre]:p-3",
     className
   )
 
