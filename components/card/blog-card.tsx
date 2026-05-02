@@ -25,7 +25,7 @@ export function BlogCard({
   tags,
 }: BlogCardProps) {
   return (
-    <TronCard>
+    <TronCard className="transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg">
       <TronCardHeader>
         <div className="mb-4 flex flex-wrap gap-2">
           <Badge dot>{new Date(data).toLocaleDateString()}</Badge>

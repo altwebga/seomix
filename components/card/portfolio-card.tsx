@@ -19,7 +19,7 @@ export function PortfolioCard({
   description,
 }: CarouselItemProps) {
   return (
-    <TronCard>
+    <TronCard className="transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg">
       <TronCardHeader>
         <TronCardTitle>{title}</TronCardTitle>
         <TronCardDescription>{description}</TronCardDescription>

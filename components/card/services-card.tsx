@@ -15,7 +15,7 @@ interface ServicesCardProps {
 
 export function ServicesCard({ title, description, image }: ServicesCardProps) {
   return (
-    <TronCard>
+    <TronCard className="transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg">
       <TronCardHeader>
         <TronCardTitle>{title}</TronCardTitle>
         <TronCardDescription className="line-clamp-3">
