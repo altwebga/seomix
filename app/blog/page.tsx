@@ -34,7 +34,7 @@ export default async function BlogPage() {
         title="Блог"
         description="Заметки по web-разработке в основном что-бы не забыть"
       />
-      <div className="my-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="my-4 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post: IPost) => (
           <Link key={post.id} href={`/blog/${post.slug}`}>
             <BlogCard
