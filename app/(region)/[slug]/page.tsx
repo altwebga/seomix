@@ -1,6 +1,3 @@
-import { Metadata } from "next"
-
-import { getMetadataBySlug } from "@/lib/get-metadata"
 import { getContent } from "@/actions/get-content"
 import { IRegionHero } from "@/lib/types"
 import { Services } from "@/components/layout/services"
@@ -9,6 +6,7 @@ import { Features } from "@/components/layout/features"
 import { Portfolio } from "@/components/layout/portfolio"
 import { CallToAction } from "@/components/shared/call-to-action"
 import { RegionHero } from "@/components/layout/region-hero"
+import type { Metadata } from "next"
 
 type PageProps = {
   params: Promise<{
@@ -20,8 +18,22 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params
+  const regionHero = await getContent<IRegionHero>({
+    collection: "region_hero",
+    fields: ["seo"],
+    slug,
+    limit: 1,
+  })
+  const title =
+    regionHero[0]?.seo?.title ?? "SEOMIX - Разработка и продвижение сайтов"
+  const description =
+    regionHero[0]?.seo?.meta_description ??
+    "SEOMIX - Разработка и продвижение сайтов"
 
-  return getMetadataBySlug("region_hero", slug)
+  return {
+    title,
+    description,
+  }
 }
 
 export default async function RegionSinglePage({ params }: PageProps) {
