@@ -65,7 +65,7 @@ function createSitemapItem(
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [pages, services, blog, portfolio] = await Promise.all([
+  const [pages, services, blog, portfolio, region_hero] = await Promise.all([
     getContent<SitemapItem>({
       collection: "pages",
       fields: ["slug", "seo", "date_updated", "date_created"],
@@ -86,6 +86,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       fields: ["slug", "seo", "date_updated", "date_created"],
       status: "published",
     }),
+    getContent<SitemapItem>({
+      collection: "region_hero",
+      fields: ["slug", "seo", "date_updated", "date_created"],
+      status: "published",
+    }),
   ])
 
   return [
@@ -100,6 +105,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...portfolio.map((item) =>
       createSitemapItem(`/portfolio/${item.slug}`, item, 0.3)
     ),
+    ...region_hero.map((item) => createSitemapItem(`/${item.slug}`, item, 0.8)),
 
     ...blog.map((post) => createSitemapItem(`/blog/${post.slug}`, post, 0.5)),
   ]
