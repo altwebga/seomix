@@ -12,6 +12,7 @@ interface getContentProps {
     | "team"
     | "clients"
     | "legal_information"
+    | "region_hero"
   fields: string[]
   status?: "draft" | "published" | "archived"
   limit?: number

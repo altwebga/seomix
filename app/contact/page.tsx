@@ -45,7 +45,7 @@ export default function ContactPage() {
           </div>
           <GlowContainer
             pulse
-            className="flex flex-col items-center justify-center gap-4"
+            className="mt-8 flex flex-col items-center justify-center gap-4"
           >
             <Image
               src={"/img/qrcode.min.svg"}

@@ -1,4 +1,4 @@
-export interface IService {
+export interface IBaseContent {
   id: number
   status: "published" | "draft" | "archived"
   sort: number | null
@@ -6,6 +6,9 @@ export interface IService {
   date_created: string
   user_updated: string | null
   date_updated: string | null
+}
+
+export interface IService extends IBaseContent {
   title: string
   slug: string
   description: string
@@ -34,14 +37,7 @@ export interface ISeo {
   }
 }
 
-export interface IPost {
-  id: number
-  status: "published" | "draft" | "archived" | string
-  sort: number | null
-  user_created: string
-  date_created: string
-  user_updated: string | null
-  date_updated: string | null
+export interface IPost extends IBaseContent {
   title: string
   description: string
   excerpt: string
@@ -51,15 +47,7 @@ export interface IPost {
   seo: ISeo
 }
 
-export interface IProject {
-  id: number
-  status: "published" | "draft" | "archived" | string
-  sort: number | null
-  user_created: string
-  date_created: string
-  user_updated: string | null
-  date_updated: string | null
-
+export interface IProject extends IBaseContent {
   title: string
   slug: string
   description: string
@@ -80,27 +68,13 @@ export interface IProject {
   site_url: string | null
 }
 
-export interface IClient {
-  id: number
-  status: "published" | "draft" | "archived"
-  sort: number | null
-  user_created: string
-  date_created: string
-  user_updated: string | null
-  date_updated: string | null
+export interface IClient extends IBaseContent {
   title: string
   type_company: string
   logo: string
 }
 
-export interface ITeam {
-  id: number
-  status: "published" | "draft" | "archived"
-  sort: number | null
-  user_created: string
-  date_created: string
-  user_updated: string | null
-  date_updated: string | null
+export interface ITeam extends IBaseContent {
   first_name: string
   last_name: string | null
   position: string
@@ -126,4 +100,11 @@ export interface ILegalInformation {
   title: string
   status: "published" | "draft" | "archived"
   description: string
+}
+
+export interface IRegionHero extends IBaseContent {
+  city: string
+  in_city: string
+  description: string
+  seo: ISeo
 }

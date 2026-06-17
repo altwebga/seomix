@@ -16,6 +16,7 @@ type Collection =
   | "team"
   | "clients"
   | "legal_information"
+  | "region_hero"
 
 interface SeoItem {
   seo: ISeo | null

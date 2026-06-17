@@ -1,19 +1,40 @@
-import { Divider } from "../thegridcn/divider"
-import { HeroSection } from "../thegridcn/hero-section"
-import { Button } from "../ui/button"
+import { Metadata } from "next"
 import Link from "next/link"
+import { getMetadataBySlug } from "@/lib/get-metadata"
+import { getContent } from "@/actions/get-content"
+import { IRegionHero } from "@/lib/types"
+import { HeroSection } from "@/components/thegridcn/hero-section"
+import { Divider } from "@/components/thegridcn/divider"
+import { Button } from "@/components/ui/button"
 
-export function Hero() {
+type PageProps = {
+  params: Promise<{
+    slug: string
+  }>
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params
+
+  return getMetadataBySlug("region_hero", slug)
+}
+
+export default async function RegionSinglePage({ params }: PageProps) {
+  const { slug } = await params
+  const regionHero = await getContent<IRegionHero>({
+    collection: "region_hero",
+    fields: ["*"],
+    slug: slug,
+  })
   return (
     <section className="relative container mx-auto my-2 px-4 py-12 md:my-4 md:py-0">
-      {/* Subtle circuit-like background pattern */}
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(var(--primary-rgb,0,180,255),0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(var(--primary-rgb,0,180,255),0.02)_1px,transparent_1px)] bg-size-[60px_60px]" />
-
       <Divider label="hero" />
       <HeroSection
         badge="студия полного цикла"
-        title="Разработка и продвижение сайтов"
-        description="Создаем эффективные сайты, запускаем SEO и рекламу, настраиваем аналитику и помогаем бизнесу расти. Работаем на результат — если не понравится, вернем деньги."
+        title={`Разработка и продвижение сайтов  ${regionHero[0].in_city}`}
+        description={regionHero[0].description}
         align="center"
       >
         <Button
