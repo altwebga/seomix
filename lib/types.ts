@@ -105,6 +105,7 @@ export interface ILegalInformation {
 export interface IRegionHero extends IBaseContent {
   city: string
   in_city: string
+  from_city: string
   description: string
   seo: ISeo
 }
