@@ -12,13 +12,13 @@ export const socialLinks: SocialLinks[] = [
   },
   {
     label: "Telegram",
-    href: "https://t.me/sib_kos",
+    href: "https://t.me/seomixru",
     icon: "/icon/tg.min.svg",
   },
 
   {
     label: "MAX",
-    href: "https://max.ru/u/f9LHodD0cOL2QIWfos_GcmKjJi58O_WHfZIveyk3CwD0cxTPEJeERa1WmOU",
+    href: "https://max.ru/u/f9LHodD0cOJ1tUVZCOfPgsf7-Q_WNO6qehCCkqZfYCaA2Wx5FBc-siYzh9I",
     icon: "/icon/max.min.svg",
   },
 ]
