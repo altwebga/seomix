@@ -105,7 +105,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...portfolio.map((item) =>
       createSitemapItem(`/portfolio/${item.slug}`, item, 0.3)
     ),
-    ...region_hero.map((item) => createSitemapItem(`/${item.slug}`, item, 0.8)),
+    ...region_hero.map((item) =>
+      createSitemapItem(`/region/${item.slug}`, item, 0.8)
+    ),
 
     ...blog.map((post) => createSitemapItem(`/blog/${post.slug}`, post, 0.5)),
   ]

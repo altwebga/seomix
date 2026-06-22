@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Inter } from "next/font/google"
+import localFont from "next/font/local"
 import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -9,15 +9,51 @@ import { Footer } from "@/components/layout/footer"
 import { YandexMetrika } from "@/components/shared/yandex-metrika"
 import { AIBot } from "@/components/shared/ai-bot"
 
-const geistHeading = Geist({
-  subsets: ["latin", "cyrillic"],
+const geistHeading = localFont({
+  src: [
+    {
+      path: "../public/font/Geist[wght].woff2",
+      weight: "100 900",
+      style: "normal",
+    },
+    {
+      path: "../public/font/Geist-Italic[wght].woff2",
+      weight: "100 900",
+      style: "italic",
+    },
+  ],
   variable: "--font-heading",
 })
 
-const inter = Inter({ subsets: ["latin", "cyrillic"], variable: "--font-sans" })
+const inter = localFont({
+  src: [
+    {
+      path: "../public/font/InterVariable.woff2",
+      weight: "100 900",
+      style: "normal",
+    },
+    {
+      path: "../public/font/InterVariable-Italic.woff2",
+      weight: "100 900",
+      style: "italic",
+    },
+  ],
+  variable: "--font-sans",
+})
 
-const fontMono = Geist_Mono({
-  subsets: ["latin", "cyrillic"],
+const fontMono = localFont({
+  src: [
+    {
+      path: "../public/font/GeistMono[wght].woff2",
+      weight: "100 900",
+      style: "normal",
+    },
+    {
+      path: "../public/font/GeistMono-Italic[wght].woff2",
+      weight: "100 900",
+      style: "italic",
+    },
+  ],
   variable: "--font-mono",
 })
 

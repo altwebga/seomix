@@ -7,6 +7,7 @@ import { GlowContainer } from "@/components/thegridcn/glow-container"
 
 import type { Metadata } from "next"
 import { getMetadataBySlug } from "@/lib/get-metadata"
+import SeomixQRCode from "@/components/shared/qr-code"
 
 export async function generateMetadata(): Promise<Metadata> {
   return getMetadataBySlug("pages", "contact")
@@ -47,13 +48,7 @@ export default function ContactPage() {
             pulse
             className="mt-8 flex flex-col items-center justify-center gap-4"
           >
-            <Image
-              src={"/img/qrcode.min.svg"}
-              alt="QR-код для добавления SEOMIX в контакты"
-              width={600}
-              height={600}
-              className="aspect-square max-h-80 object-contain"
-            />
+            <SeomixQRCode />
             <p className="text-center">
               Отсканируйте QR-код, чтобы добавить нас в контакты
             </p>
