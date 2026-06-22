@@ -75,9 +75,10 @@ export function Markdown({ markdown, className, headings }: Props) {
               <DirectusImage
                 url={src as string}
                 alt={alt ?? ""}
-                width={800}
+                width={600}
                 height={600}
-                className="h-auto w-full"
+                preserveNaturalSize
+                className="mx-auto h-auto max-w-full object-contain"
               />
             )
           },
