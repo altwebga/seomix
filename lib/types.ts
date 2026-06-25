@@ -45,13 +45,13 @@ export interface IPost extends IBaseContent {
   tags: string[]
   slug: string
   seo: ISeo
-  category: IBlogCategories[]
+  categories: IBlogCategories[]
 }
 
 export interface IBlogCategories {
   id: number
   blog_id?: IPost
-  categories_id?: ICategory[]
+  categories_id?: ICategory | ICategory[] | number
 }
 
 export interface ICategory {

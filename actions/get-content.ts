@@ -14,6 +14,7 @@ interface getContentProps {
     | "legal_information"
     | "region_hero"
     | "categories"
+    | "blog_categories"
   fields: string[]
   status?: "draft" | "published" | "archived" | null
   limit?: number

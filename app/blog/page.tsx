@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { getContent } from "@/actions/get-content"
 import { PageHeading } from "@/components/shared/page-heading"
-import { IPost, ICategory } from "@/lib/types"
+import { IPost, ICategory, IBlogCategories } from "@/lib/types"
 import { BlogCard } from "@/components/card/blog-card"
 import type { Metadata } from "next"
 import { getMetadataBySlug } from "@/lib/get-metadata"
@@ -20,36 +20,58 @@ type BlogPageProps = {
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const { category } = await searchParams
   const activeCategoryId = Number(category)
-  const hasActiveCategory = Number.isInteger(activeCategoryId)
+  const hasActiveCategory = Number.isInteger(activeCategoryId) && activeCategoryId > 0
 
-  const [posts, categories] = await Promise.all([
-    getContent<IPost>({
-      collection: "blog",
-      fields: [
-        "id",
-        "slug",
-        "sort",
-        "status",
-        "date_created",
-        "title",
-        "excerpt",
-        "cover_image",
-        "category.categories_id",
-        "tags",
-      ],
-      status: "published",
-      filters: hasActiveCategory
-        ? {
-            "[category][categories_id][id][_eq]": activeCategoryId,
-          }
-        : undefined,
-    }),
+  const postFields = [
+    "id",
+    "slug",
+    "sort",
+    "status",
+    "date_created",
+    "title",
+    "excerpt",
+    "cover_image",
+    "tags",
+  ]
+
+  const [categories, categoryLinks] = await Promise.all([
     getContent<ICategory>({
       collection: "categories",
       fields: ["*"],
       status: null,
     }),
+    hasActiveCategory
+      ? getContent<IBlogCategories>({
+          collection: "blog_categories",
+          fields: ["blog_id"],
+          status: null,
+          filters: {
+            "[categories_id][_eq]": activeCategoryId,
+          },
+        })
+      : Promise.resolve([]),
   ])
+
+  const postIds = categoryLinks
+    .map(({ blog_id }) => (typeof blog_id === "number" ? blog_id : blog_id?.id))
+    .filter((id): id is number => Boolean(id))
+
+  const posts = hasActiveCategory
+    ? postIds.length > 0
+      ? await getContent<IPost>({
+          collection: "blog",
+          fields: postFields,
+          status: "published",
+          filters: {
+            "[id][_in]": postIds.join(","),
+          },
+        })
+      : []
+    : await getContent<IPost>({
+        collection: "blog",
+        fields: postFields,
+        status: "published",
+      })
 
   return (
     <div className="container mx-auto my-8 px-4">
