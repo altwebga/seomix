@@ -13,24 +13,49 @@ interface getContentProps {
     | "clients"
     | "legal_information"
     | "region_hero"
+    | "categories"
   fields: string[]
-  status?: "draft" | "published" | "archived"
+  status?: "draft" | "published" | "archived" | null
   limit?: number
   slug?: string
   id?: number
+  filters?: Record<string, string | number | boolean>
 }
 
 export async function getContent<T>({
   collection,
   fields = ["*"],
-  status = "published",
   limit,
+  status = "published",
   slug,
   id,
+  filters,
 }: getContentProps): Promise<T[]> {
   try {
+    const params = new URLSearchParams({
+      fields: fields.join(","),
+    })
+
+    if (status) {
+      params.set("filter[status][_eq]", status)
+    }
+
+    if (limit) {
+      params.set("limit", String(limit))
+    }
+
+    if (slug) {
+      params.set("filter[slug][_eq]", slug)
+    }
+
+    if (filters) {
+      Object.entries(filters).forEach(([key, value]) => {
+        params.set(`filter${key}`, String(value))
+      })
+    }
+
     const res = await fetch(
-      `${API_URL}/items/${collection}${id ? `/${id}` : ""}?fields=${fields.join(",")}&filter[status][_eq]=${status}${limit ? `&limit=${limit}` : ""}${slug ? `&filter[slug][_eq]=${slug}` : ""}`,
+      `${API_URL}/items/${collection}${id ? `/${id}` : ""}?${params.toString()}`,
       {
         headers: {
           Authorization: `Bearer ${TOKEN}`,

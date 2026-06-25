@@ -45,6 +45,19 @@ export interface IPost extends IBaseContent {
   tags: string[]
   slug: string
   seo: ISeo
+  category: IBlogCategories[]
+}
+
+export interface IBlogCategories {
+  id: number
+  blog_id?: IPost
+  categories_id?: ICategory[]
+}
+
+export interface ICategory {
+  id: number
+  title: string
+  description?: string
 }
 
 export interface IProject extends IBaseContent {
