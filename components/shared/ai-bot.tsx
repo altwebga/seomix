@@ -2,11 +2,6 @@ import Script from "next/script"
 
 export function AIBot() {
   return (
-    <Script
-      id="timeweb-ai-bot"
-      async
-      src="https://timeweb.cloud/api/v1/cloud-ai/agents/691eb2a3-0546-4f7b-8810-e0288b58e52d/embed.js?collapsed=true"
-      strategy="afterInteractive"
-    />
+    <Script src="https://timeweb.cloud/api/v1/cloud-ai/agents/f53b1619-fc6e-4999-a708-7a053f3d6d44/embed.js?collapsed=true" />
   )
 }
