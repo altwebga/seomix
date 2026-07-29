@@ -44,7 +44,7 @@ export function HeroSection({
       <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.03)_2px,rgba(0,0,0,0.03)_4px)]" />
 
       {/* Radial glow from center-top */}
-      <div className="pointer-events-none absolute -top-1/4 left-1/2 h-[600px] w-[800px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(var(--primary-rgb,0,180,255),0.06),transparent_70%)]" />
+      <div className="pointer-events-none absolute -top-1/4 left-1/2 h-150 w-200 -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(var(--primary-rgb,0,180,255),0.06),transparent_70%)]" />
 
       {/* Animated horizontal scan line */}
       <div
