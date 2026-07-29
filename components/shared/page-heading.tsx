@@ -1,3 +1,5 @@
+import { RevealText } from "./reveal-text"
+
 export function PageHeading({
   title,
   description,
@@ -7,7 +9,9 @@ export function PageHeading({
 }) {
   return (
     <div>
-      <h1 className="page-title">{title}</h1>
+      <h1 className="page-title">
+        <RevealText>{title}</RevealText>
+      </h1>
       <p className="page-description">{description}</p>
     </div>
   )

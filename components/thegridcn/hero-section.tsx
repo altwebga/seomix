@@ -1,14 +1,15 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { cn } from "@/lib/utils";
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { RevealText } from "../shared/reveal-text"
 
 interface HeroSectionProps extends React.HTMLAttributes<HTMLDivElement> {
-  title: string;
-  subtitle?: string;
-  description?: string;
-  badge?: string;
-  align?: "left" | "center" | "right";
+  title: string
+  subtitle?: string
+  description?: string
+  badge?: string
+  align?: "left" | "center" | "right"
 }
 
 export function HeroSection({
@@ -25,14 +26,14 @@ export function HeroSection({
     left: "items-start text-left",
     center: "items-center text-center",
     right: "items-end text-right",
-  };
+  }
 
   return (
     <div
       data-slot="tron-hero-section"
       className={cn(
         "group relative overflow-hidden rounded border border-primary/20 bg-card/80 px-6 py-16 backdrop-blur-sm md:px-12 md:py-24 lg:py-32",
-        className,
+        className
       )}
       {...props}
     >
@@ -47,12 +48,12 @@ export function HeroSection({
 
       {/* Animated horizontal scan line */}
       <div
-        className="pointer-events-none absolute left-0 right-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent"
+        className="pointer-events-none absolute right-0 left-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent"
         style={{ animation: "heroScan 6s ease-in-out infinite" }}
       />
 
       {/* Animated top border glow */}
-      <div className="pointer-events-none absolute left-0 right-0 top-0 h-px">
+      <div className="pointer-events-none absolute top-0 right-0 left-0 h-px">
         <div
           className="h-full w-1/4 bg-linear-to-r from-transparent via-primary/60 to-transparent"
           style={{ animation: "heroSweep 5s ease-in-out infinite" }}
@@ -60,7 +61,7 @@ export function HeroSection({
       </div>
 
       {/* Animated bottom border glow */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-px">
+      <div className="pointer-events-none absolute right-0 bottom-0 left-0 h-px">
         <div
           className="h-full w-1/4 bg-linear-to-r from-transparent via-primary/60 to-transparent"
           style={{ animation: "heroSweep 5s ease-in-out infinite reverse" }}
@@ -71,14 +72,14 @@ export function HeroSection({
       <div
         className={cn(
           "relative z-10 flex flex-col gap-4",
-          alignmentClasses[align],
+          alignmentClasses[align]
         )}
       >
         {/* Badge */}
         {badge && (
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 shadow-[0_0_12px_rgba(var(--primary-rgb,0,180,255),0.1)]">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
-            <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
+            <span className="font-mono text-[10px] tracking-widest text-primary uppercase">
               {badge}
             </span>
           </div>
@@ -86,14 +87,14 @@ export function HeroSection({
 
         {/* Subtitle */}
         {subtitle && (
-          <div className="font-mono text-[10px] uppercase tracking-widest text-foreground/50">
+          <div className="font-mono text-[10px] tracking-widest text-foreground/50 uppercase">
             {subtitle}
           </div>
         )}
 
         {/* Title */}
-        <h1 className="max-w-4xl font-display text-3xl font-bold uppercase tracking-wider text-foreground md:text-5xl lg:text-6xl">
-          {title}
+        <h1 className="max-w-4xl font-display text-3xl font-bold tracking-wider text-foreground uppercase md:text-5xl lg:text-6xl">
+          <RevealText>{title}</RevealText>
         </h1>
 
         {/* Title underline accent */}
@@ -101,7 +102,7 @@ export function HeroSection({
           className={cn(
             "flex gap-1",
             align === "center" && "justify-center",
-            align === "right" && "justify-end",
+            align === "right" && "justify-end"
           )}
         >
           <div className="h-px w-12 bg-primary/60" />
@@ -125,22 +126,22 @@ export function HeroSection({
       </div>
 
       {/* Side accent lines (left) */}
-      <div className="pointer-events-none absolute bottom-8 left-0 top-8 flex flex-col justify-between">
+      <div className="pointer-events-none absolute top-8 bottom-8 left-0 flex flex-col justify-between">
         <div className="h-16 w-px bg-linear-to-b from-primary/40 to-transparent" />
         <div className="h-16 w-px bg-linear-to-t from-primary/40 to-transparent" />
       </div>
 
       {/* Side accent lines (right) */}
-      <div className="pointer-events-none absolute bottom-8 right-0 top-8 flex flex-col justify-between">
+      <div className="pointer-events-none absolute top-8 right-0 bottom-8 flex flex-col justify-between">
         <div className="h-16 w-px bg-linear-to-b from-primary/40 to-transparent" />
         <div className="h-16 w-px bg-linear-to-t from-primary/40 to-transparent" />
       </div>
 
       {/* Corner decorations */}
-      <div className="pointer-events-none absolute left-0 top-0 h-6 w-6 border-l-2 border-t-2 border-primary/40" />
-      <div className="pointer-events-none absolute right-0 top-0 h-6 w-6 border-r-2 border-t-2 border-primary/40" />
+      <div className="pointer-events-none absolute top-0 left-0 h-6 w-6 border-t-2 border-l-2 border-primary/40" />
+      <div className="pointer-events-none absolute top-0 right-0 h-6 w-6 border-t-2 border-r-2 border-primary/40" />
       <div className="pointer-events-none absolute bottom-0 left-0 h-6 w-6 border-b-2 border-l-2 border-primary/40" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-6 w-6 border-b-2 border-r-2 border-primary/40" />
+      <div className="pointer-events-none absolute right-0 bottom-0 h-6 w-6 border-r-2 border-b-2 border-primary/40" />
     </div>
-  );
+  )
 }
