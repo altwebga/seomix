@@ -32,6 +32,7 @@ import {
   InputGroupTextarea,
 } from "@/components/ui/input-group"
 import { SmartCaptchaWidget } from "../shared/smart-captcha"
+import { getMetrikaClientId } from "../shared/yandex-metrika"
 import ym from "react-yandex-metrika"
 
 const formSchema = z.object({
@@ -74,9 +75,12 @@ export function ContactForm() {
       return
     }
 
+    const metrikaClientId = await getMetrikaClientId()
+
     const res = await sendForm({
       ...data,
       url: window.location.href,
+      metrika_client_id: metrikaClientId,
     })
 
     if (!res.ok) {

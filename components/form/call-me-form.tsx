@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { SmartCaptchaWidget } from "../shared/smart-captcha"
+import { getMetrikaClientId } from "../shared/yandex-metrika"
 import {
   Dialog,
   DialogContent,
@@ -68,9 +69,12 @@ export function CallMeForm({
       return
     }
 
+    const metrikaClientId = await getMetrikaClientId()
+
     const res = await sendForm({
       ...data,
       url: window.location.href,
+      metrika_client_id: metrikaClientId,
     })
 
     if (!res.ok) {

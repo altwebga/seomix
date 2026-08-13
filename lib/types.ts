@@ -27,13 +27,7 @@ export interface ISeo {
   sitemap?: {
     priority: string
     change_frequency:
-      | "always"
-      | "hourly"
-      | "daily"
-      | "weekly"
-      | "monthly"
-      | "yearly"
-      | "never"
+      "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never"
   }
 }
 
@@ -107,6 +101,7 @@ export interface IRequest {
   phone: string
   url: string
   message?: string
+  metrika_client_id?: string
 }
 
 export interface ILegalInformation {

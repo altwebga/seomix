@@ -6,6 +6,17 @@ import ym, { YMInitializer } from "react-yandex-metrika";
 
 const YM_COUNTER_ID = 91677133;
 
+export function getMetrikaClientId(): Promise<string | undefined> {
+  return new Promise((resolve) => {
+    const timeoutId = window.setTimeout(() => resolve(undefined), 2000);
+
+    ym("getClientID", (clientId: string) => {
+      window.clearTimeout(timeoutId);
+      resolve(clientId);
+    });
+  });
+}
+
 function RouterTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
