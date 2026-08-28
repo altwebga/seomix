@@ -47,7 +47,7 @@ export function Markdown({ markdown, className, headings }: Props) {
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[[rehypeHighlight, { ignoreMissing: true }]]}
         components={{
-          h1: ({ children }) => <h1>{children}</h1>,
+          h1: ({ children }) => <h2>{children}</h2>,
           h2: ({ children }) => {
             const id = headings?.[h2Index]?.id
             h2Index++

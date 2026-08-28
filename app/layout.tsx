@@ -1,4 +1,4 @@
-import localFont from "next/font/local"
+import { Geist_Mono, Roboto, Unbounded } from "next/font/google"
 import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -9,51 +9,19 @@ import { Footer } from "@/components/layout/footer"
 import { YandexMetrika } from "@/components/shared/yandex-metrika"
 import { AIBot } from "@/components/shared/ai-bot"
 
-const geistHeading = localFont({
-  src: [
-    {
-      path: "../public/font/Geist[wght].woff2",
-      weight: "100 900",
-      style: "normal",
-    },
-    {
-      path: "../public/font/Geist-Italic[wght].woff2",
-      weight: "100 900",
-      style: "italic",
-    },
-  ],
+const unbounded = Unbounded({
+  subsets: ["latin", "cyrillic"],
   variable: "--font-heading",
 })
 
-const inter = localFont({
-  src: [
-    {
-      path: "../public/font/InterVariable.woff2",
-      weight: "100 900",
-      style: "normal",
-    },
-    {
-      path: "../public/font/InterVariable-Italic.woff2",
-      weight: "100 900",
-      style: "italic",
-    },
-  ],
+const roboto = Roboto({
+  subsets: ["latin", "cyrillic"],
+  style: ["normal", "italic"],
   variable: "--font-sans",
 })
 
-const fontMono = localFont({
-  src: [
-    {
-      path: "../public/font/GeistMono[wght].woff2",
-      weight: "100 900",
-      style: "normal",
-    },
-    {
-      path: "../public/font/GeistMono-Italic[wght].woff2",
-      weight: "100 900",
-      style: "italic",
-    },
-  ],
+const geistMono = Geist_Mono({
+  subsets: ["latin", "cyrillic"],
   variable: "--font-mono",
 })
 
@@ -79,10 +47,10 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn(
         "antialiased",
-        fontMono.variable,
+        geistMono.variable,
         "font-sans",
-        inter.variable,
-        geistHeading.variable
+        roboto.variable,
+        unbounded.variable
       )}
     >
       <body className="flex min-h-screen flex-col antialiased">

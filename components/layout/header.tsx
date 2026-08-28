@@ -199,7 +199,7 @@ export function Header() {
 
           <button
             onClick={closeMobileMenu}
-            className="flex items-center justify-center text-foreground/50 transition-colors hover:text-primary"
+            className="flex size-8 items-center justify-center text-foreground/50 transition-colors hover:text-primary"
             aria-label="Закрыть меню"
           >
             <CloseIcon className="h-4 w-4" />

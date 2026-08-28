@@ -206,14 +206,19 @@ export function ContactForm() {
 
             <Field>
               <div className="ml-2 flex items-center gap-3">
-                <input
-                  id="contact-form-agreement"
-                  type="checkbox"
-                  checked={agreement}
-                  onChange={(e) => setAgreement(e.target.checked)}
-                  className="h-4 w-4 shrink-0 rounded-lg border border-input accent-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-                  aria-describedby="contact-form-agreement-link"
-                />
+                <label
+                  htmlFor="contact-form-agreement"
+                  className="flex size-8 shrink-0 cursor-pointer items-center justify-center"
+                >
+                  <input
+                    id="contact-form-agreement"
+                    type="checkbox"
+                    checked={agreement}
+                    onChange={(e) => setAgreement(e.target.checked)}
+                    className="h-4 w-4 rounded-lg border border-input accent-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                    aria-describedby="contact-form-agreement-link"
+                  />
+                </label>
 
                 <div>
                   <label
