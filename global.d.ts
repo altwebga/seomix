@@ -13,6 +13,7 @@ declare module "bun:test" {
   export function afterEach(fn: () => void | Promise<void>): void
   export function beforeEach(fn: () => void | Promise<void>): void
   export function describe(name: string, fn: () => void): void
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- bun:test's real matcher chain type isn't declared here
   export function expect(value: unknown): any
   export function mock<T extends (...args: never[]) => unknown>(
     fn: T
