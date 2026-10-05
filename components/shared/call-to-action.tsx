@@ -38,7 +38,7 @@ export function CallToAction({
             asChild
             variant={"outline"}
             size={"lg"}
-            className="rounded border border-primary/30 px-5 py-2 font-mono text-[10px] tracking-widest text-foreground/60 uppercase transition-colors hover:border-primary/50 hover:text-primary"
+            className="min-w-40 rounded border border-primary/30 px-5 py-2 font-mono text-[10px] tracking-widest text-foreground/60 uppercase transition-colors hover:border-primary/50 hover:text-primary"
           >
             <Link href={secondaryAction.url}>{secondaryAction.label}</Link>
           </Button>
