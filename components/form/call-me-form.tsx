@@ -15,7 +15,8 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { SmartCaptchaWidget } from "../shared/smart-captcha"
+// TODO: капча временно отключена
+// import { SmartCaptchaWidget } from "../shared/smart-captcha"
 import { getMetrikaClientId } from "../shared/yandex-metrika"
 import {
   Dialog,
@@ -46,7 +47,8 @@ interface CallMeFormProps {
 export function CallMeForm({
   modalButtonText = "Начать проект",
 }: CallMeFormProps) {
-  const [captchaToken, setCaptchaToken] = useState("")
+  // TODO: капча временно отключена
+  // const [captchaToken, setCaptchaToken] = useState("")
   const [agreement, setAgreement] = useState(true)
   const [modalOpen, setModalOpen] = useState(false)
 
@@ -64,10 +66,11 @@ export function CallMeForm({
       return
     }
 
-    if (!captchaToken) {
-      toast.error("Подтвердите, что вы не робот")
-      return
-    }
+    // TODO: капча временно отключена
+    // if (!captchaToken) {
+    //   toast.error("Подтвердите, что вы не робот")
+    //   return
+    // }
 
     const metrikaClientId = await getMetrikaClientId()
 
@@ -85,7 +88,7 @@ export function CallMeForm({
     toast.success("Заявка отправлена")
     form.reset()
     setModalOpen(false)
-    setCaptchaToken("")
+    // setCaptchaToken("")
     ym("reachGoal", "call_me")
   }
 
@@ -172,7 +175,8 @@ export function CallMeForm({
                 )}
               />
             </div>
-            <SmartCaptchaWidget onToken={setCaptchaToken} language="ru" />
+            {/* TODO: капча временно отключена */}
+            {/* <SmartCaptchaWidget onToken={setCaptchaToken} language="ru" /> */}
 
             <Field>
               <div className="ml-2 flex items-center gap-3">
@@ -228,7 +232,7 @@ export function CallMeForm({
               form="call-me-form"
               className="min-w-48 rounded border border-primary bg-primary/20 px-5 py-2 font-mono text-[10px] tracking-widest text-primary uppercase shadow-[0_0_12px_rgba(var(--primary-rgb,0,180,255),0.15)] transition-all duration-300 hover:bg-primary/30"
               disabled={
-                !agreement || !captchaToken || form.formState.isSubmitting
+                !agreement || form.formState.isSubmitting
               }
             >
               Отправить

@@ -31,7 +31,8 @@ import {
   InputGroupText,
   InputGroupTextarea,
 } from "@/components/ui/input-group"
-import { SmartCaptchaWidget } from "../shared/smart-captcha"
+// TODO: капча временно отключена
+// import { SmartCaptchaWidget } from "../shared/smart-captcha"
 import { getMetrikaClientId } from "../shared/yandex-metrika"
 import ym from "react-yandex-metrika"
 
@@ -53,7 +54,8 @@ const formSchema = z.object({
 })
 
 export function ContactForm() {
-  const [captchaToken, setCaptchaToken] = React.useState("")
+  // TODO: капча временно отключена
+  // const [captchaToken, setCaptchaToken] = React.useState("")
   const [agreement, setAgreement] = React.useState(true)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -70,10 +72,11 @@ export function ContactForm() {
       return
     }
 
-    if (!captchaToken) {
-      toast.error("Подтвердите, что вы не робот")
-      return
-    }
+    // TODO: капча временно отключена
+    // if (!captchaToken) {
+    //   toast.error("Подтвердите, что вы не робот")
+    //   return
+    // }
 
     const metrikaClientId = await getMetrikaClientId()
 
@@ -90,7 +93,7 @@ export function ContactForm() {
 
     toast.success("Заявка отправлена")
     form.reset()
-    setCaptchaToken("")
+    // setCaptchaToken("")
     ym("reachGoal", "send_form")
   }
 
@@ -202,7 +205,8 @@ export function ContactForm() {
                 </Field>
               )}
             />
-            <SmartCaptchaWidget onToken={setCaptchaToken} language="ru" />
+            {/* TODO: капча временно отключена */}
+            {/* <SmartCaptchaWidget onToken={setCaptchaToken} language="ru" /> */}
 
             <Field>
               <div className="ml-2 flex items-center gap-3">
@@ -259,7 +263,7 @@ export function ContactForm() {
             form="contact-form"
             className="min-w-48 rounded border border-primary bg-primary/20 px-5 py-2 font-mono text-[10px] tracking-widest text-primary uppercase shadow-[0_0_12px_rgba(var(--primary-rgb,0,180,255),0.15)] transition-all duration-300 hover:bg-primary/30"
             disabled={
-              !agreement || !captchaToken || form.formState.isSubmitting
+              !agreement || form.formState.isSubmitting
             }
           >
             Отправить
