@@ -9,6 +9,7 @@ import { CallToAction } from "@/components/shared/call-to-action"
 
 import type { Metadata } from "next"
 import { getMetadataBySlug } from "@/lib/get-metadata"
+import { notFound } from "next/navigation"
 
 type PageProps = {
   params: Promise<{
@@ -33,6 +34,10 @@ export default async function ServicesSinglePage({ params }: PageProps) {
     slug: slug,
   })
   const service = services[0]
+
+  if (!service) {
+    notFound()
+  }
 
   const similar_services = await getContent<IService>({
     collection: "services",

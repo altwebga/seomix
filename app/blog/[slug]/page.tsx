@@ -12,6 +12,7 @@ import { CallToAction } from "@/components/shared/call-to-action"
 
 import type { Metadata } from "next"
 import { getMetadataBySlug } from "@/lib/get-metadata"
+import { notFound } from "next/navigation"
 
 type PageProps = {
   params: Promise<{
@@ -38,6 +39,10 @@ export default async function BlogSinglePage({ params }: PageProps) {
   })
 
   const article = res[0]
+
+  if (!article) {
+    notFound()
+  }
 
   const posts = await getContent<IPost>({
     collection: "blog",

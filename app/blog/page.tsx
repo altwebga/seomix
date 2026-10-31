@@ -8,7 +8,15 @@ import { getMetadataBySlug } from "@/lib/get-metadata"
 import { Button } from "@/components/ui/button"
 
 export async function generateMetadata(): Promise<Metadata> {
-  return getMetadataBySlug("pages", "blog")
+  const metadata = await getMetadataBySlug("pages", "blog")
+
+  return {
+    ...metadata,
+    alternates: {
+      ...metadata.alternates,
+      canonical: "/blog",
+    },
+  }
 }
 
 type BlogPageProps = {

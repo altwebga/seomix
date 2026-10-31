@@ -7,6 +7,7 @@ import { Portfolio } from "@/components/layout/portfolio"
 import { CallToAction } from "@/components/shared/call-to-action"
 import { RegionHero } from "@/components/layout/region-hero"
 import type { Metadata } from "next"
+import { notFound } from "next/navigation"
 
 type PageProps = {
   params: Promise<{
@@ -43,12 +44,17 @@ export default async function RegionSinglePage({ params }: PageProps) {
     fields: ["*"],
     slug: slug,
   })
+  const region = regionHero[0]
+
+  if (!region) {
+    notFound()
+  }
 
   return (
     <>
       <RegionHero
-        in_city={regionHero[0].in_city}
-        description={regionHero[0].description}
+        in_city={region.in_city}
+        description={region.description}
       />
       <Services />
       <ClientSlider />s

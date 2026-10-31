@@ -9,6 +9,7 @@ import { CallToAction } from "@/components/shared/call-to-action"
 
 import type { Metadata } from "next"
 import { getMetadataBySlug } from "@/lib/get-metadata"
+import { notFound } from "next/navigation"
 
 type PageProps = {
   params: Promise<{
@@ -35,6 +36,10 @@ export default async function ProjectSinglePage({ params }: PageProps) {
   })
 
   const project = portfolio_res[0]
+
+  if (!project) {
+    notFound()
+  }
 
   const client = await getContentByID<IClient>({
     collection: "clients",

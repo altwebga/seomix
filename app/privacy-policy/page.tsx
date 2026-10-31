@@ -1,6 +1,7 @@
 import { Markdown } from "@/components/shared/markdown"
 import { getContent } from "@/actions/get-content"
 import { ILegalInformation } from "@/lib/types"
+import { notFound } from "next/navigation"
 
 export default async function PrivacyPolicyPage() {
   const res = await getContent<ILegalInformation>({
@@ -11,6 +12,11 @@ export default async function PrivacyPolicyPage() {
   })
 
   const privacy = res[0]
+
+  if (!privacy) {
+    notFound()
+  }
+
   return (
     <section className="my-8">
       <div className="container mx-auto space-y-4 px-4">
